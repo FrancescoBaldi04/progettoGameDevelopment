@@ -19,7 +19,8 @@ public class scientist : MonoBehaviour
     {
         if (this.HitPoints<=0) 
 	{
-		StartCoroutine(Die());
+		yield return new WaitForSeconds(1.5f);
+		Destroy(this.gameObject);
 	}
 	switch (StatoAttuale)
 	{
