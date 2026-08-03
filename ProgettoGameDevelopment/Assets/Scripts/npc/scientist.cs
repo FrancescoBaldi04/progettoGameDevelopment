@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class scientist : MonoBehaviour
 {
-    public enum Stato {escaping, catching, possessed, dead};
+    public enum Stato {escaping, catching, possessed};
     public Stato StatoAttuale;
     public int HitPoints=60;
     void Start()
@@ -19,12 +19,10 @@ public class scientist : MonoBehaviour
     {
         if (this.HitPoints<=0) 
 	{
-		this.StatoAttuale=Stato.dead;
+		StartCoroutine(Die());
 	}
 	switch (StatoAttuale)
 	{
-		case Stato.dead:
-			'erase';
 		case Stato. catching:
 			
 			if ('colpiti dal parassita')
