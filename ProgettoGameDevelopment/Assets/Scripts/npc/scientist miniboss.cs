@@ -24,7 +24,7 @@ public class scientistminiboss : MonoBehaviour
 	}
 	switch (StatoAttuale)
 	{
-		case Stato. catching:
+		case Stato.catching:
 			
 			if (parassita.StatoAttuale==parassita.Stato.possessing)
 			{

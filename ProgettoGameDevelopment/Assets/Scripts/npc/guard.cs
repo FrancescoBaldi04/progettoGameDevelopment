@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class scientist : MonoBehaviour
+public class guard : MonoBehaviour
 {
-    public enum Stato {escaping, catching, possessed};
+    public enum Stato {escaping, positioning, shooting, possessed};
     public Stato StatoAttuale;
     public int HitPoints=60;
     void Start()
     {
         if (parassita.StatoAttuale==parassita.Stato.possessing) 
 	{	
-		this.StatoAttuale=Stato.escaping;
+		this.StatoAttuale=Stato.positioning;
 	} else {
-		this.StatoAttuale=Stato.catching;
+		this.StatoAttuale=Stato.escaping;
 	}
     }
     
@@ -24,7 +24,7 @@ public class scientist : MonoBehaviour
 	}
 	switch (StatoAttuale)
 	{
-		case Stato.catching:
+		case Stato.escaping:
 			
 			if ('colpiti dal parassita')
 			{
@@ -33,15 +33,22 @@ public class scientist : MonoBehaviour
 			}
 			if (parassita.StatoAttuale==parassita.Stato.possessing && this.StatoAttuale!=Stato.possessed)
 			{
-				this.StatoAttuale=Stato.escaping;
+				this.StatoAttuale=Stato.positioning;
 			}	
 			break;
-		case Stato.escaping:
+		case Stato.positioning:
 			
+			if ('raggiunge la posizione')
+			{
+				this.StatoAttuale=Stato.shooting;
+			}
 			if (parassita.StatoAttuale!=parassita.Stato.possessing)
 			{
-				this.StatoAttuale=Stato.catching;
+				this.StatoAttuale=Stato.escaping;
 			}
+			break;
+		case Stato.shooting:
+			
 			break;
 		case Stato.possessed:
 			
@@ -49,12 +56,3 @@ public class scientist : MonoBehaviour
 	}
     }
 }
-
-
-
-
-
-
-
-
-
