@@ -199,7 +199,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1188327197
+  m_SortingLayerID: -979591537
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -208,7 +208,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
 --- !u!1839735485 &189524176
 Tilemap:
@@ -5176,7 +5176,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000f540df14e3902bb9a9a8ec16
+  m_ApplyToSortingLayers: 00000000496345fe8f9e9cc57f60210b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -5350,8 +5350,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 384608425
-  m_SortingLayer: 3
+  m_SortingLayerID: -979591537
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -5359,7 +5359,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
 --- !u!1839735485 &712198210
 Tilemap:
@@ -6054,9 +6054,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4463174233174121991, guid: 87c460042b62b4ea6b60b25239994384, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463174233174121991, guid: 87c460042b62b4ea6b60b25239994384, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -979591537
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934796523741525855, guid: 87c460042b62b4ea6b60b25239994384, type: 3}
+      propertyPath: m_Size.x
+      value: 5.119423
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934796523741525855, guid: 87c460042b62b4ea6b60b25239994384, type: 3}
+      propertyPath: m_Size.y
+      value: 2.7893195
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934796523741525855, guid: 87c460042b62b4ea6b60b25239994384, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.12778854
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934796523741525855, guid: 87c460042b62b4ea6b60b25239994384, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.019659758
+      objectReference: {fileID: 0}
     - target: {fileID: 8229188683713383355, guid: 87c460042b62b4ea6b60b25239994384, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229188683713383355, guid: 87c460042b62b4ea6b60b25239994384, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6151,8 +6179,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 384608425
-  m_SortingLayer: 3
+  m_SortingLayerID: -979591537
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3337933588434638481, guid: 4a9ae2b0a92c1654983271026e23b04b, type: 3}
@@ -6174,7 +6202,7 @@ Transform:
   m_GameObject: {fileID: 1321847432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: -6.03, z: 0}
+  m_LocalPosition: {x: 2.82, y: -6.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6259,7 +6287,7 @@ BoxCollider2D:
   m_Offset: {x: -2.03125, y: 6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 2.047619, y: -2.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.3125, y: 2}
     newSize: {x: 1.3125, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -6279,7 +6307,7 @@ GameObject:
   - component: {fileID: 1537531586}
   - component: {fileID: 1537531588}
   - component: {fileID: 1537531587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6346,7 +6374,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 350175477
+  m_SortingLayerID: -29007031
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0

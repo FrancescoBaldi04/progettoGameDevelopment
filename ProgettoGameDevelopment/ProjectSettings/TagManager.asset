@@ -11,12 +11,12 @@ TagManager:
   - Parassita
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Virus
+  - Human
+  - Bullets
+  - Interactable
+  - Triggers
   - 
   - 
   - 
@@ -40,6 +40,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 4265960265
+    locked: 0
+  - name: Ground_Entities
+    uniqueID: 3315375759
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 186736767
     locked: 0
   m_RenderingLayers:
   - Default

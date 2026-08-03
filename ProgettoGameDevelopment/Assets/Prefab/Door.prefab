@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5934796523741525855}
   - component: {fileID: 3247718333364891678}
   - component: {fileID: 4708773334909077469}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1188327197
+  m_SortingLayerID: -979591537
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
