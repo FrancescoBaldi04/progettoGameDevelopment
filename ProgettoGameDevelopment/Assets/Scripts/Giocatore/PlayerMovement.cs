@@ -10,11 +10,16 @@ public class PlayerMovement : MonoBehaviour
     private const string vertical = "Vertical"; 
     private const string lastHorizontal = "LastHorizontal";
     private const string lastVertical = "LastVertical";
+   private Parassita parassita;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+    }
+ void Start()
+    {
+        parassita = GetComponent<Parassita>();
     }
 
     void Update()
@@ -29,6 +34,13 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat(lastHorizontal, movement.x);
             animator.SetFloat(lastVertical, movement.y);
         }
+        
+    if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            parassita.EsplosioneZipBomb();
+        }
+
+        
     }
 
 }
