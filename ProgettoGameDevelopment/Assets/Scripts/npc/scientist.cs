@@ -2,63 +2,53 @@ using UnityEngine;
 
 public class scientist : MonoBehaviour
 {
-	public enum Stato { escaping, catching, possessed};
-	public Stato StatoAttuale;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public enum Stato {escaping, catching, possessed, dead};
+    public Stato StatoAttuale;
+    public int HitPoints=60;
     void Start()
     {
         if (parassita.StatoAttuale==parassita.Stato.possessing) 
-		{
-		this.StatoAttuale==Stato.escaping;
-		} else 
-	{
-		this.StatoAttuale==Stato.catching;	
-		}
+	{	
+		this.StatoAttuale=Stato.escaping;
+	} else {
+		this.StatoAttuale=Stato.catching;
+	}
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        switch  (this.StatoAttuale)
-	    {
-		case Stato.catching:
+        if (this.HitPoints<=0) 
+	{
+		this.StatoAttuale=Stato.dead;
+	}
+	switch (StatoAttuale)
+	{
+		case Stato.dead:
+			'erase';
+		case Stato. catching:
 			
-			if (parassita.StatoAttuale==parassita.Stato.Possessing && hit?)
+			if ('colpiti dal parassita')
 			{
-				this.StatoAttuale==Stato.possessed;
-				} else
+				this.StatoAttuale=Stato.possessed;
+			}
+			if (parassita.StatoAttuale==parassita.Stato.possessing && this.StatoAttuale!=Stato.possessed)
 			{
-				this.StatoAttuale==Stato.escaping;
-				}
-		break;
+				this.StatoAttuale=Stato.escaping;
+			}	
+			break;
 		case Stato.escaping:
-		    
-			this.StatoAttuale==Stato.catching;
-		break;
+			
+			if (parassita.StatoAttuale!=parassita.Stato.possessing)
+			{
+				this.StatoAttuale=Stato.catching;
+			}
+			break;
 		case Stato.possessed:
-		
-			death;
-		break;
-		    }
+			
+			break:
+	}
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
