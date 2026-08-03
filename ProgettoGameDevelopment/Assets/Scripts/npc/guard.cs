@@ -1,58 +1,60 @@
 using UnityEngine;
-
+ 
 public class guard : MonoBehaviour
 {
     public enum Stato {escaping, positioning, shooting, possessed};
-    public Stato StatoAttuale;
-    public int HitPoints=60;
+    private Stato StatoAttuale;
+    [SerializeField] private int HitPoints=60;
+	private bool isDying = false;
+	[SerializeField] private Parassita parassita; // assegnare il gameObject del parassita nell'inspector una volta creato l'oggetto corrispondente!
+
     void Start()
     {
-        if (parassita.StatoAttuale==parassita.Stato.possessing) 
-	{	
-		this.StatoAttuale=Stato.positioning;
-	} else {
-		this.StatoAttuale=Stato.escaping;
-	}
+        if (parassita.StatoAttuale==Parassita.Stato.possessing) {	
+			StatoAttuale=Stato.positioning;
+		} else {
+			StatoAttuale=Stato.escaping;
+		}
     }
-    
-    void Update()
+
+	void Update()
     {
-        if (this.HitPoints<=0) 
-	{
-		yield return new WaitForSeconds(1.5f);
-		Destroy(this.gameObject);
-	}
-	switch (StatoAttuale)
-	{
-		case Stato.escaping:
+        if (HitPoints<=0 && !isDying) {
+			isDying = true;
+			Destroy(gameObject, 1.5f); // in caso volessimo disabilitare commponenti o eseguire un'animazione di morte forse è meglio usare una coroutine
+		}
+	
+		if (isDying) return;
+
+		switch (StatoAttuale){
+			/*case Stato.escaping:
+				if ('colpiti dal Parassita')
+				{
+					this.StatoAttuale=Stato.possessed;
+					this.HitPoints=60;
+				}
+				if (parassita.StatoAttuale==Parassita.Stato.possessing && this.StatoAttuale!=Stato.possessed)
+				{
+					this.StatoAttuale=Stato.positioning;
+				}	
+				break;
 			
-			if ('colpiti dal parassita')
-			{
-				this.StatoAttuale=Stato.possessed;
-				this.HitPoints=60;
-			}
-			if (parassita.StatoAttuale==parassita.Stato.possessing && this.StatoAttuale!=Stato.possessed)
-			{
-				this.StatoAttuale=Stato.positioning;
-			}	
-			break;
-		case Stato.positioning:
+			case Stato.positioning:
+				if ('raggiunge la posizione')
+				{
+					this.StatoAttuale=Stato.shooting;
+				}
+				if (parassita.StatoAttuale!=Parassita.Stato.possessing)
+				{
+					this.StatoAttuale=Stato.escaping;
+				}
+				break;*/
 			
-			if ('raggiunge la posizione')
-			{
-				this.StatoAttuale=Stato.shooting;
-			}
-			if (parassita.StatoAttuale!=parassita.Stato.possessing)
-			{
-				this.StatoAttuale=Stato.escaping;
-			}
-			break;
-		case Stato.shooting:
+			case Stato.shooting:
+				break;
 			
-			break;
-		case Stato.possessed:
-			
-			break:
-	}
+			case Stato.possessed:
+				break;
+		}
     }
 }

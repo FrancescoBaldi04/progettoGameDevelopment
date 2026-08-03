@@ -3,49 +3,50 @@ using UnityEngine;
 public class scientist : MonoBehaviour
 {
     public enum Stato {escaping, catching, possessed};
-    public Stato StatoAttuale;
-    public int HitPoints=60;
-    void Start()
-    {
-        if (parassita.StatoAttuale==parassita.Stato.possessing) 
-	{	
-		this.StatoAttuale=Stato.escaping;
-	} else {
-		this.StatoAttuale=Stato.catching;
-	}
+    private Stato StatoAttuale;
+    [SerializeField] private int HitPoints=60;
+	private bool isDying = false;
+	[SerializeField] private Parassita parassita; // assegnare il gameObject del parassita nell'inspector una volta creato l'oggetto corrispondente!
+
+    void Start(){
+        if (parassita.StatoAttuale==Parassita.Stato.possessing) {	
+			StatoAttuale=Stato.escaping;
+		} else {
+			StatoAttuale=Stato.catching;
+		}
     }
     
     void Update()
     {
-        if (this.HitPoints<=0) 
-	{
-		yield return new WaitForSeconds(1.5f);
-		Destroy(this.gameObject);
-	}
+        if (HitPoints<=0 && !isDying) {
+			isDying = true;
+			Destroy(gameObject, 1.5f);
+		}
 	switch (StatoAttuale)
 	{
-		case Stato.catching:
+		/*case Stato.catching:
 			
-			if ('colpiti dal parassita')
+			if ('colpiti dal Parassita')
 			{
 				this.StatoAttuale=Stato.possessed;
 				this.HitPoints=60;
 			}
-			if (parassita.StatoAttuale==parassita.Stato.possessing && this.StatoAttuale!=Stato.possessed)
+			if (parassita.StatoAttuale==Parassita.Stato.possessing && this.StatoAttuale!=Stato.possessed)
 			{
 				this.StatoAttuale=Stato.escaping;
 			}	
-			break;
+			break;*/
+		
 		case Stato.escaping:
 			
-			if (parassita.StatoAttuale!=parassita.Stato.possessing)
+			if (parassita.StatoAttuale!=Parassita.Stato.possessing)
 			{
-				this.StatoAttuale=Stato.catching;
+				StatoAttuale=Stato.catching;
 			}
 			break;
+		
 		case Stato.possessed:
-			
-			break:
+			break;
 	}
     }
 }

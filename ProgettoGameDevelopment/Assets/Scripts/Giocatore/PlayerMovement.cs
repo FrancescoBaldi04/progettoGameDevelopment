@@ -39,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
         {
             parassita.EsplosioneZipBomb();
         }
-
-        
     }
 
 }

@@ -3,10 +3,12 @@ using UnityEngine;
 public class turret : MonoBehaviour
 {
     public enum Stato {waiting, shooting};
-    public Stato StatoAttuale;
+    private Stato StatoAttuale;
+	[SerializeField] private Parassita parassita; // assegnare il gameObject del parassita nell'inspector una volta creato l'oggetto corrispondente!
+	
     void Start()
     {
-        if (parassita.StatoAttuale==parassita.Stato.possessing) 
+        if (parassita.StatoAttuale == Parassita.Stato.possessing) 
 	{	
 		this.StatoAttuale=Stato.shooting;
 	} else {
@@ -14,24 +16,21 @@ public class turret : MonoBehaviour
 	}
     }
     
-    void Update()
-    {
-	switch (StatoAttuale)
-	{
+    void Update(){
+	switch (StatoAttuale){
 		case Stato.waiting:
-			if (parassita.StatoAttuale==parassita.Stato.possessing)
-			{
+			if (parassita.StatoAttuale == Parassita.Stato.possessing){
 				this.StatoAttuale=Stato.shooting;
 			}	
 			break;
+		
 		case Stato.shooting:
 			
-			if (parassita.StatoAttuale!=parassita.Stato.possessing)
-			{
+			if (parassita.StatoAttuale != Parassita.Stato.possessing){
 				this.StatoAttuale=Stato.waiting;
 			}
 			break;
-	}
+		}
     }
 }
 
