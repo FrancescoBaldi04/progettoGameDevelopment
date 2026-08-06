@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private const string lastHorizontal = "LastHorizontal";
     private const string lastVertical = "LastVertical";
    private Parassita parassita;
+   private PlayerJump playerJump;
 
     void Awake()
     {
@@ -20,10 +21,15 @@ public class PlayerMovement : MonoBehaviour
  void Start()
     {
         parassita = GetComponent<Parassita>();
+        playerJump = GetComponent<PlayerJump>();
     }
 
     void Update()
-    { 
+    {
+        if (playerJump != null && (playerJump.isCharging || playerJump.isInAir)) {
+            return;
+        }
+        
         movement = InputManager.movement;
         rb.linearVelocity = moveSpeed * movement;
         
@@ -35,8 +41,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat(lastVertical, movement.y);
         }
         
-    if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
+         if (Keyboard.current.eKey.wasPressedThisFrame) {
             parassita.EsplosioneZipBomb();
         }
     }

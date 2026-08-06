@@ -10,7 +10,7 @@ public class Parassita : MonoBehaviour
     private bool hasZipBomb =false;
     private float timerConsumo;
     private float raggioEsplosione = 5f;
-    private int dannoEsplosione = 50;
+    //private int dannoEsplosione = 50;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start(){
