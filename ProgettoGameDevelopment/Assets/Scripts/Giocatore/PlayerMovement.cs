@@ -26,12 +26,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (playerJump != null && (playerJump.isCharging || playerJump.isInAir)) {
+        if (playerJump != null && playerJump.isInAir) {
             return;
         }
         
         movement = InputManager.movement;
-        rb.linearVelocity = moveSpeed * movement;
         
         animator.SetFloat(horizontal, movement.x);
         animator.SetFloat(vertical, movement.y);
@@ -40,8 +39,14 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat(lastHorizontal, movement.x);
             animator.SetFloat(lastVertical, movement.y);
         }
-        
-         if (Keyboard.current.eKey.wasPressedThisFrame) {
+
+        if (playerJump != null && playerJump.isCharging){
+            rb.linearVelocity = Vector2.zero;  // se sta caricando il salto blocco il movimento 
+        }else{
+            rb.linearVelocity = moveSpeed * movement;
+        }
+
+        if (Keyboard.current.eKey.wasPressedThisFrame) {
             parassita.EsplosioneZipBomb();
         }
     }

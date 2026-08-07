@@ -9,6 +9,7 @@ public class PlayerJump : MonoBehaviour
 
     public bool isCharging {get; private set;} = false; // variabili che dovrà leggere PlayerMovement in modo da bloccare gli altri comandi durante il volo
     public bool isInAir {get; private set;} = false;
+    public bool isDead {get; private set;} = false;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -61,19 +62,13 @@ public class PlayerJump : MonoBehaviour
         isCharging = false;
         isInAir = true;
 
-        Vector2 jumpDirection = InputManager.movement.normalized; // calcolo la direzione del salto in base all'ultimo tasto premuto
+        float lastX = animator.GetFloat("LastHorizontal");
+        float lastY = animator.GetFloat("LastVertical");
+        Vector2 jumpDirection = new Vector2(lastX, lastY).normalized; // salta nella direzione dell'ultimo tasto premuto
 
-        if (jumpDirection == Vector2.zero) { // se non ho input di movimento utilizzo la direzione in cui guarda il parassita
-            
-            float lastX = animator.GetFloat("LastHorizontal");
-            float lastY = animator.GetFloat("LastVertical");
-            jumpDirection = new Vector2(lastX, lastY).normalized;
-
-            if (jumpDirection == Vector2.zero) jumpDirection = Vector2.down; // in caso abbia appena avviato il gioco e non mi sia mai mosso prima
-        }
+        if (jumpDirection == Vector2.zero) jumpDirection = Vector2.down; // in caso abbia appena avviato il gioco e non mi sia mai mosso prima
 
         float finalForce = Mathf.Lerp(baseJumpForce, maxJumpForce, (float)currentChargeState / 3f); // calcolo la forza da applicare in modo proporzionale alla carica, Lerp interpola linearmente tra baseJumpForce e maxJumpForce attraverso il valore ottenuto a partire dalla carica
-
         rb.AddForce(jumpDirection * finalForce, ForceMode2D.Impulse); // impulso verso la direzione del salto
 
         animator.SetBool("isCharging", false);
@@ -93,11 +88,23 @@ public class PlayerJump : MonoBehaviour
 
     private void possessNpc(GameObject Npc){
         isInAir = false;
-        // logica di possessione Npc
+        // logica possesso npc
     }
 
-    private void die()
-    {
-        // logica di morte e game over
+    private void die(){
+        if (isDead) return;
+
+        isInAir = false;
+        isDead = false;
+        isCharging = false;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        animator.SetTrigger("Die");
+
+        if (GameManager.gameManager != null) {
+            GameManager.gameManager.GameOver();
+        }
     }
 }
