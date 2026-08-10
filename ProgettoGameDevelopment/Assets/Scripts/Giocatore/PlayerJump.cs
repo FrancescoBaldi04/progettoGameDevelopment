@@ -24,7 +24,7 @@ public class PlayerJump : MonoBehaviour
     
     void Update()
     {
-        if (isInAir) return;
+        if (isInAir || isDead) return;
 
         chargeInput();
     }
@@ -95,7 +95,7 @@ public class PlayerJump : MonoBehaviour
         if (isDead) return;
 
         isInAir = false;
-        isDead = false;
+        isDead = true;
         isCharging = false;
 
         rb.linearVelocity = Vector2.zero;
