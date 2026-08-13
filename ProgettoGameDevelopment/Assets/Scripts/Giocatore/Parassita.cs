@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Parassita : MonoBehaviour
 {
@@ -8,12 +9,31 @@ public class Parassita : MonoBehaviour
     public Stato StatoAttuale => statoAttuale; // proprietà in sola lettura, è il modo breve e compatto per scrivere un getter solo che invece della funzione rende accessibile la variabile di un oggetto di questa classe in sola lettura
     private bool hasTrojanHorse= false;
     private bool hasZipBomb =false;
+    private bool hasWorm = false;
+    private bool running = false;
     private float timerConsumo;
     private float raggioEsplosione = 5f;
     //private int dannoEsplosione = 50;
+[SerializeField] public float moveSpeed = 1.5f;
+    private Rigidbody2D rb; 
+    private Animator animator;
+    private Vector2 movement;
+    private const string horizontal = "Horizontal"; // nomi parametri float che ho usato nell'animator
+    private const string vertical = "Vertical"; 
+    private const string lastHorizontal = "LastHorizontal";
+    private const string lastVertical = "LastVertical";
+   private Parassita parassita;
+   private PlayerJump playerJump;
 
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start(){
+         parassita = GetComponent<Parassita>();
+        playerJump = GetComponent<PlayerJump>();
        statoAttuale = Stato.libero;
        timerConsumo = 0; 
     }
@@ -21,10 +41,37 @@ public class Parassita : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
+        if (playerJump != null && (playerJump.isInAir || playerJump.isDead)) {
+            return;
+        }
+        
+        movement = InputManager.movement;
+        
+        animator.SetFloat(horizontal, movement.x);
+        animator.SetFloat(vertical, movement.y);
+
+        if (movement != Vector2.zero) {
+            animator.SetFloat(lastHorizontal, movement.x);
+            animator.SetFloat(lastVertical, movement.y);
+        }
+
+        if (playerJump != null && playerJump.isCharging){
+            rb.linearVelocity = Vector2.zero;  // se sta caricando il salto blocco il movimento 
+        }else{
+            rb.linearVelocity = moveSpeed * movement;
+        }
+
+        if (Keyboard.current.eKey.wasPressedThisFrame) {
+            parassita.EsplosioneZipBomb();
+        }
         if(StatoAttuale == Stato.possessing)
         {
             ConsumoPossesso();
         }
+        if (Keyboard.current.cKey.wasPressedThisFrame)
+{
+    Run();
+}
     }
 public void Possiedi(GameObject corpo)
     {
@@ -117,6 +164,17 @@ private void ConsumoPossesso(){
 
     statoAttuale = Stato.libero;   
 }
+public void Run (){
+    if(hasWorm){
+running= !running;
+if(running){
+moveSpeed+=2f;
+}else{moveSpeed-=2f;
+
+}
+
+    }
+}
 public void UnlockTrojanHorse(){
     hasTrojanHorse = true;
     Debug.Log("Trojan Horse sbloccato!");
@@ -125,6 +183,11 @@ public void UnlockZipBomb(){
     hasZipBomb = true;
     Debug.Log("Zip Bomb sbloccato!");
 }
+public void UnlockWorm(){
+    hasWorm=true;
+    Debug.Log("Worm sbloccato!");
+}
+
 private void OnDrawGizmosSelected(){
     Gizmos.DrawWireSphere(
         transform.position,
