@@ -23,7 +23,9 @@ public class Door : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     { 
 
-    if (other.CompareTag("Player"))
+   scientist scienziato = other.GetComponent<scientist>();
+
+if (scienziato != null && scienziato.StatoAttuale == scientist.Stato.possessed)
     {
         playerNearby = true;
     }
@@ -31,7 +33,9 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        scientist scienziato = other.GetComponent<scientist>();
+
+if (scienziato != null && scienziato.StatoAttuale == scientist.Stato.possessed)
         {
             playerNearby = false;
             if (doorCollider.enabled == false)
