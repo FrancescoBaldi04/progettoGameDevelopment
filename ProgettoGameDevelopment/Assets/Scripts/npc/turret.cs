@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class turret : MonoBehaviour
+public class turret : Nemico
 {
     public enum Stato {waiting, shooting};
     private Stato StatoAttuale;

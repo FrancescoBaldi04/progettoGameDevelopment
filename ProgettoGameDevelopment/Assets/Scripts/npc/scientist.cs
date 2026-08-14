@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class scientist : MonoBehaviour
+public class scientist : Nemico
 {
     public enum Stato {escaping, catching, possessed};
     public Stato StatoAttuale { get; private set; }
-    [SerializeField] private int HitPoints=60;
 	private bool isDying = false;
 	[SerializeField] private Parassita parassita; // assegnare il gameObject del parassita nell'inspector una volta creato l'oggetto corrispondente!
 

@@ -1,10 +1,10 @@
 using UnityEngine;
  
-public class guard : MonoBehaviour
+public class guard : Nemico
 {
     public enum Stato {escaping, positioning, shooting, possessed};
     private Stato StatoAttuale;
-    [SerializeField] private int HitPoints=60;
+    
 	private bool isDying = false;
 	[SerializeField] private Parassita parassita; // assegnare il gameObject del parassita nell'inspector una volta creato l'oggetto corrispondente!
 

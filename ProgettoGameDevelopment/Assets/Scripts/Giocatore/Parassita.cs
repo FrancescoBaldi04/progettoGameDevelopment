@@ -13,7 +13,7 @@ public class Parassita : MonoBehaviour
     private bool running = false;
     private float timerConsumo;
     private float raggioEsplosione = 5f;
-    //private int dannoEsplosione = 50;
+    private int dannoEsplosione = 50;
 [SerializeField] public float moveSpeed = 1.5f;
     private Rigidbody2D rb; 
     private Animator animator;
@@ -135,27 +135,26 @@ private void ConsumoPossesso(){
     );
 
 
-    foreach(Collider c in colpiti)
-    {   
-        if(c.GetComponent<Parassita>() != null){
+    foreach (Collider c in colpiti)
+    {
+        // Ignora il Parassita
+        if (c.GetComponent<Parassita>() != null)
+        {
             continue;
         }
 
-        // bisogna creare una classe padre nemici generica, così che la zip bomb prenda tutti
-        // esempio provvisorio con guard:
-        /*guard umano = c.GetComponent<guard>();
+        // Cerca un'entità danneggiabile
+        Nemico nemico = c.GetComponent<Nemico>();
 
-       if(umano != null)
+        if (nemico != null)
         {
-            umano.HitPoints -= dannoEsplosione;
+            nemico.PrendiDanno(dannoEsplosione);
 
             Debug.Log(
-                "Danno Zip Bomb a " + umano.name
+                "Danno Zip Bomb a " + nemico.name
             );
-        }*/
+        }
     }
-
-
     // distrugge il corpo sacrificato
     Destroy(corpoPosseduto);
 
