@@ -1,0 +1,1476 @@
+fileFormatVersion: 2
+guid: 8e4c12e0784a6854692b667b5e5af414
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3681339043281993125
+    second: Guardia16x32_SpriteSheet_0
+  - first:
+      213: -4960898537083644541
+    second: Guardia16x32_SpriteSheet_1
+  - first:
+      213: -9203236954029437113
+    second: Guardia16x32_SpriteSheet_2
+  - first:
+      213: -1206571536861104497
+    second: Guardia16x32_SpriteSheet_3
+  - first:
+      213: -739554879973881704
+    second: Guardia16x32_SpriteSheet_4
+  - first:
+      213: -355866789178754720
+    second: Guardia16x32_SpriteSheet_5
+  - first:
+      213: 7790381028898791062
+    second: Guardia16x32_SpriteSheet_6
+  - first:
+      213: 8914760899812080483
+    second: Guardia16x32_SpriteSheet_7
+  - first:
+      213: 8697275695002051394
+    second: Guardia16x32_SpriteSheet_8
+  - first:
+      213: 1476605981746897267
+    second: Guardia16x32_SpriteSheet_9
+  - first:
+      213: 821029393970491855
+    second: Guardia16x32_SpriteSheet_10
+  - first:
+      213: 6434932707556829660
+    second: Guardia16x32_SpriteSheet_11
+  - first:
+      213: -590655250765646264
+    second: Guardia16x32_SpriteSheet_12
+  - first:
+      213: -1042647480222063142
+    second: Guardia16x32_SpriteSheet_13
+  - first:
+      213: 5954548147522919368
+    second: Guardia16x32_SpriteSheet_14
+  - first:
+      213: 6618705750433643042
+    second: Guardia16x32_SpriteSheet_15
+  - first:
+      213: -1175363606617810904
+    second: Guardia16x32_SpriteSheet_16
+  - first:
+      213: 5961203895716342362
+    second: Guardia16x32_SpriteSheet_17
+  - first:
+      213: 8905514021778516836
+    second: Guardia16x32_SpriteSheet_18
+  - first:
+      213: 307936212500173673
+    second: Guardia16x32_SpriteSheet_19
+  - first:
+      213: -8341169720756189236
+    second: Guardia16x32_SpriteSheet_20
+  - first:
+      213: 8249522679274508471
+    second: Guardia16x32_SpriteSheet_21
+  - first:
+      213: 5125319213065827338
+    second: Guardia16x32_SpriteSheet_22
+  - first:
+      213: -5116269886922799860
+    second: Guardia16x32_SpriteSheet_23
+  - first:
+      213: -6850153897835574745
+    second: Guardia16x32_SpriteSheet_24
+  - first:
+      213: -3314272865068760639
+    second: Guardia16x32_SpriteSheet_25
+  - first:
+      213: -8253778514136706244
+    second: Guardia16x32_SpriteSheet_26
+  - first:
+      213: -681022506202767358
+    second: Guardia16x32_SpriteSheet_27
+  - first:
+      213: 7233601540354548735
+    second: Guardia16x32_SpriteSheet_28
+  - first:
+      213: 4111240022918907315
+    second: Guardia16x32_SpriteSheet_29
+  - first:
+      213: 4707435733031223221
+    second: Guardia16x32_SpriteSheet_30
+  - first:
+      213: 2401960521238905037
+    second: Guardia16x32_SpriteSheet_31
+  - first:
+      213: -6382333214446576884
+    second: Guardia16x32_SpriteSheet_32
+  - first:
+      213: 9176386433906654972
+    second: Guardia16x32_SpriteSheet_33
+  - first:
+      213: 5515907204618709354
+    second: Guardia16x32_SpriteSheet_34
+  - first:
+      213: 4882370018325956732
+    second: Guardia16x32_SpriteSheet_35
+  - first:
+      213: 3586877315375235541
+    second: Guardia16x32_SpriteSheet_36
+  - first:
+      213: 2572866146425948526
+    second: Guardia16x32_SpriteSheet_37
+  - first:
+      213: 230153615294664324
+    second: Guardia16x32_SpriteSheet_38
+  - first:
+      213: -1352000830885976374
+    second: Guardia16x32_SpriteSheet_39
+  - first:
+      213: 8449423111155759017
+    second: Guardia16x32_SpriteSheet_40
+  - first:
+      213: -6132289374860853935
+    second: Guardia16x32_SpriteSheet_41
+  - first:
+      213: -475313270923109862
+    second: Guardia16x32_SpriteSheet_42
+  - first:
+      213: -8270664205075194603
+    second: Guardia16x32_SpriteSheet_43
+  - first:
+      213: 8526721458188077617
+    second: Guardia16x32_SpriteSheet_44
+  - first:
+      213: 3656172210144890990
+    second: Guardia16x32_SpriteSheet_45
+  - first:
+      213: 858486346419252931
+    second: Guardia16x32_SpriteSheet_46
+  - first:
+      213: 9051908080272386926
+    second: Guardia16x32_SpriteSheet_47
+  - first:
+      213: 5270640000170174430
+    second: Guardia16x32_SpriteSheet_48
+  - first:
+      213: -4926889325911766597
+    second: Guardia16x32_SpriteSheet_49
+  - first:
+      213: -959675142171330677
+    second: Guardia16x32_SpriteSheet_50
+  - first:
+      213: 4975185507308753056
+    second: Guardia16x32_SpriteSheet_51
+  - first:
+      213: -7000775776405928574
+    second: Guardia16x32_SpriteSheet_52
+  - first:
+      213: 6292243232519450019
+    second: Guardia16x32_SpriteSheet_53
+  - first:
+      213: -213532432418930492
+    second: Guardia16x32_SpriteSheet_54
+  - first:
+      213: 8837369526559492856
+    second: Guardia16x32_SpriteSheet_55
+  - first:
+      213: -2667354079419170890
+    second: Guardia16x32_SpriteSheet_56
+  - first:
+      213: -4875016096492499129
+    second: Guardia16x32_SpriteSheet_57
+  - first:
+      213: 6704932837336486165
+    second: Guardia16x32_SpriteSheet_58
+  - first:
+      213: 5205663050097158589
+    second: Guardia16x32_SpriteSheet_59
+  - first:
+      213: 3103475690380618552
+    second: Guardia16x32_SpriteSheet_60
+  - first:
+      213: 5653361915754024321
+    second: Guardia16x32_SpriteSheet_61
+  - first:
+      213: 1919490104985533066
+    second: Guardia16x32_SpriteSheet_62
+  - first:
+      213: 45948820714644682
+    second: Guardia16x32_SpriteSheet_63
+  - first:
+      213: -1773939985310220372
+    second: Guardia16x32_SpriteSheet_64
+  - first:
+      213: 2750277395390533003
+    second: Guardia16x32_SpriteSheet_65
+  - first:
+      213: -6873814405560180192
+    second: Guardia16x32_SpriteSheet_66
+  - first:
+      213: -4027184158283572486
+    second: Guardia16x32_SpriteSheet_67
+  - first:
+      213: -7352493511450649488
+    second: Guardia16x32_SpriteSheet_68
+  - first:
+      213: 1008703462692630041
+    second: Guardia16x32_SpriteSheet_69
+  - first:
+      213: -5507480925888287
+    second: Guardia16x32_SpriteSheet_70
+  - first:
+      213: 5630519409110370990
+    second: Guardia16x32_SpriteSheet_71
+  - first:
+      213: -8192469819573383326
+    second: Guardia16x32_SpriteSheet_72
+  - first:
+      213: 6809177891982795643
+    second: Guardia16x32_SpriteSheet_73
+  - first:
+      213: -7015906837341293238
+    second: Guardia16x32_SpriteSheet_74
+  - first:
+      213: -7608303335130852115
+    second: Guardia16x32_SpriteSheet_75
+  - first:
+      213: -8565354522667536328
+    second: Guardia16x32_SpriteSheet_76
+  - first:
+      213: 8824398754147734814
+    second: Guardia16x32_SpriteSheet_77
+  - first:
+      213: -2793711720782247833
+    second: Guardia16x32_SpriteSheet_78
+  - first:
+      213: -7127109384692866538
+    second: Guardia16x32_SpriteSheet_79
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ad7994fa5eb61330800000000000000
+      internalID: 3681339043281993125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 352
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385df528019572bb0800000000000000
+      internalID: -4960898537083644541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 352
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74fc35b40c8874080800000000000000
+      internalID: -9203236954029437113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 352
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86fb457495614fe0800000000000000
+      internalID: -1206571536861104497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 898004741c29cb5f0800000000000000
+      internalID: -739554879973881704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 320
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06934ab6a05bf0bf0800000000000000
+      internalID: -355866789178754720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 320
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69e5474454efc1c60800000000000000
+      internalID: 7790381028898791062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 320
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36b37d25ec797bb70800000000000000
+      internalID: 8914760899812080483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2436c3a1a2ee2b870800000000000000
+      internalID: 8697275695002051394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 288
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 371ad372155fd7410800000000000000
+      internalID: 1476605981746897267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc1f3c142e1e46b00800000000000000
+      internalID: 821029393970491855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 288
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd9a77b24397d4950800000000000000
+      internalID: 6434932707556829660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 846f469cd229dc7f0800000000000000
+      internalID: -590655250765646264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 256
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad5686314a5c781f0800000000000000
+      internalID: -1042647480222063142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 256
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cb501bddfdc2a250800000000000000
+      internalID: 5954548147522919368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 256
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22abe6700dd5adb50800000000000000
+      internalID: 6618705750433643042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8289f91f60540bfe0800000000000000
+      internalID: -1175363606617810904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 224
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5ae8ddfb537ab250800000000000000
+      internalID: 5961203895716342362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46b6e52c1ddb69b70800000000000000
+      internalID: 8905514021778516836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 224
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9635d8f8a52064400800000000000000
+      internalID: 307936212500173673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc7451715563e3c80800000000000000
+      internalID: -8341169720756189236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 192
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b09fa04b213c7270800000000000000
+      internalID: 8249522679274508471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a04f54f4baac02740800000000000000
+      internalID: 5125319213065827338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0540fe15ab5ff8b0800000000000000
+      internalID: -5116269886922799860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72ac0c6d25d5fe0a0800000000000000
+      internalID: -6850153897835574745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 160
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c14cd493665102d0800000000000000
+      internalID: -3314272865068760639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c33512afb20b47d80800000000000000
+      internalID: -8253778514136706244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 200ecb983a58c86f0800000000000000
+      internalID: -681022506202767358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff32d83964ae26460800000000000000
+      internalID: 7233601540354548735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 128
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b54370c40f0e0930800000000000000
+      internalID: 4111240022918907315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bf7e4eabdb245140800000000000000
+      internalID: 4707435733031223221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc005f03e5a755120800000000000000
+      internalID: 2401960521238905037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0b1cbaa1c56d67a0800000000000000
+      internalID: -6382333214446576884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfe38b2d7d2195f70800000000000000
+      internalID: 9176386433906654972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a69e059c0607c8c40800000000000000
+      internalID: 5515907204618709354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78065ce9a9a1c340800000000000000
+      internalID: 4882370018325956732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d109db0ae527c130800000000000000
+      internalID: 3586877315375235541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e69c858e028a4b320800000000000000
+      internalID: 2572866146425948526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48e09636e7ba13300800000000000000
+      internalID: 230153615294664324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_39
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac62203586abc3de0800000000000000
+      internalID: -1352000830885976374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a73a697d81624570800000000000000
+      internalID: 8449423111155759017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_41
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15d3487cd4bb5eaa0800000000000000
+      internalID: -6132289374860853935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_42
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1a599139195769f0800000000000000
+      internalID: -475313270923109862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_43
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d54ffa9b2b83d80800000000000000
+      internalID: -8270664205075194603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13a400e5dfff45670800000000000000
+      internalID: 8526721458188077617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_45
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e60575ff0455db230800000000000000
+      internalID: 3656172210144890990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_46
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cea7da98c4f9eb00800000000000000
+      internalID: 858486346419252931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guardia16x32_SpriteSheet_47
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6baf10a076de9d70800000000000000
+      internalID: 9051908080272386926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 04b50ad3ec2b739438de54e3c0e93891
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Guardia16x32_SpriteSheet_0: 3681339043281993125
+      Guardia16x32_SpriteSheet_1: -4960898537083644541
+      Guardia16x32_SpriteSheet_10: 821029393970491855
+      Guardia16x32_SpriteSheet_11: 6434932707556829660
+      Guardia16x32_SpriteSheet_12: -590655250765646264
+      Guardia16x32_SpriteSheet_13: -1042647480222063142
+      Guardia16x32_SpriteSheet_14: 5954548147522919368
+      Guardia16x32_SpriteSheet_15: 6618705750433643042
+      Guardia16x32_SpriteSheet_16: -1175363606617810904
+      Guardia16x32_SpriteSheet_17: 5961203895716342362
+      Guardia16x32_SpriteSheet_18: 8905514021778516836
+      Guardia16x32_SpriteSheet_19: 307936212500173673
+      Guardia16x32_SpriteSheet_2: -9203236954029437113
+      Guardia16x32_SpriteSheet_20: -8341169720756189236
+      Guardia16x32_SpriteSheet_21: 8249522679274508471
+      Guardia16x32_SpriteSheet_22: 5125319213065827338
+      Guardia16x32_SpriteSheet_23: -5116269886922799860
+      Guardia16x32_SpriteSheet_24: -6850153897835574745
+      Guardia16x32_SpriteSheet_25: -3314272865068760639
+      Guardia16x32_SpriteSheet_26: -8253778514136706244
+      Guardia16x32_SpriteSheet_27: -681022506202767358
+      Guardia16x32_SpriteSheet_28: 7233601540354548735
+      Guardia16x32_SpriteSheet_29: 4111240022918907315
+      Guardia16x32_SpriteSheet_3: -1206571536861104497
+      Guardia16x32_SpriteSheet_30: 4707435733031223221
+      Guardia16x32_SpriteSheet_31: 2401960521238905037
+      Guardia16x32_SpriteSheet_32: -6382333214446576884
+      Guardia16x32_SpriteSheet_33: 9176386433906654972
+      Guardia16x32_SpriteSheet_34: 5515907204618709354
+      Guardia16x32_SpriteSheet_35: 4882370018325956732
+      Guardia16x32_SpriteSheet_36: 3586877315375235541
+      Guardia16x32_SpriteSheet_37: 2572866146425948526
+      Guardia16x32_SpriteSheet_38: 230153615294664324
+      Guardia16x32_SpriteSheet_39: -1352000830885976374
+      Guardia16x32_SpriteSheet_4: -739554879973881704
+      Guardia16x32_SpriteSheet_40: 8449423111155759017
+      Guardia16x32_SpriteSheet_41: -6132289374860853935
+      Guardia16x32_SpriteSheet_42: -475313270923109862
+      Guardia16x32_SpriteSheet_43: -8270664205075194603
+      Guardia16x32_SpriteSheet_44: 8526721458188077617
+      Guardia16x32_SpriteSheet_45: 3656172210144890990
+      Guardia16x32_SpriteSheet_46: 858486346419252931
+      Guardia16x32_SpriteSheet_47: 9051908080272386926
+      Guardia16x32_SpriteSheet_5: -355866789178754720
+      Guardia16x32_SpriteSheet_6: 7790381028898791062
+      Guardia16x32_SpriteSheet_7: 8914760899812080483
+      Guardia16x32_SpriteSheet_8: 8697275695002051394
+      Guardia16x32_SpriteSheet_9: 1476605981746897267
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
