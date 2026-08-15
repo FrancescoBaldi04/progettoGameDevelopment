@@ -37,6 +37,10 @@ public class Nemico : MonoBehaviour
 		}
 		return bestDirection;
 	}
+	protected virtual void Awake()
+{
+    parassita = FindFirstObjectByType<Parassita>();
+}
 	public bool isFree(Vector2 direction){
 		RaycastHit2D hitcast=Physics2D.BoxCast(
 			this.transform.position,
