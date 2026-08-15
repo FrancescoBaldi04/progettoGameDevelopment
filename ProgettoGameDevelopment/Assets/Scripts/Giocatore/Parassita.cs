@@ -32,6 +32,8 @@ public class Parassita : MonoBehaviour
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start(){
+        
+
          parassita = GetComponent<Parassita>();
         playerJump = GetComponent<PlayerJump>();
        statoAttuale = Stato.libero;
@@ -40,7 +42,9 @@ public class Parassita : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    { if (!StartScreen.giocoIniziato)
+{
+    return;}
         if (playerJump != null && (playerJump.isInAir || playerJump.isDead)) {
             return;
         }
@@ -187,11 +191,6 @@ public void UnlockWorm(){
     Debug.Log("Worm sbloccato!");
 }
 
-private void OnDrawGizmosSelected(){
-    Gizmos.DrawWireSphere(
-        transform.position,
-        raggioEsplosione
-    );
-}
+
 }
 
