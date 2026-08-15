@@ -2,12 +2,9 @@ using UnityEngine;
 
 public class scientist : Nemico
 {
-	public enum Stato {escaping, catching, possessed};
-	public Stato StatoAttuale { get; private set; }
 	private bool isDying=false;
-	[SerializeField] private Parassita parassita; // assegnare il gameObject del parassita nell'inspector una volta creato l'oggetto corrispondente!
-
-	void Start(){
+	
+	void Start() {
 		up=isFree(Vector2.up);
 		down=isFree(Vector2.down);
 		left=isFree(Vector2.left);
@@ -19,7 +16,7 @@ public class scientist : Nemico
 		}
 	}
 
-	void Update(){
+	void Update() {
 		if (HitPoints<=0 && !isDying) {
 			isDying = true;
 			Destroy(gameObject, 1.5f);
@@ -27,15 +24,12 @@ public class scientist : Nemico
 		switch (StatoAttuale)
 		{
 			case Stato.catching:
-				Vector2 parassitaPosition=new Vector2 (parassita.transform.position.x, parassita.transform.position.y);
-				Vector2 whereToGo=GetBestDirection(parassitaPosition);
 				if (parassita.StatoAttuale==Parassita.Stato.possessing){
 				this.StatoAttuale=Stato.escaping;
 				}	
 			break;
 		
 			case Stato.escaping:
-			
 				if (parassita.StatoAttuale!=Parassita.Stato.possessing)
 				{
 					StatoAttuale=Stato.catching;
@@ -51,7 +45,7 @@ public class scientist : Nemico
 		}
 	}
 	
-	private void OnCollisionEnter(Collision collision){
+	private void OnCollisionEnter(Collision collision) {
 		if (this.StatoAttuale==Stato.catching) 
 		{
 			if (collision.gameObject.name == "parassita" && parassita.StatoAttuale==Parassita.Stato.possessing) 

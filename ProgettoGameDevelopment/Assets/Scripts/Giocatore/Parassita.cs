@@ -17,7 +17,7 @@ public class Parassita : MonoBehaviour
 [SerializeField] public float moveSpeed = 1.5f;
     private Rigidbody2D rb; 
     private Animator animator;
-    private Vector2 movement;
+    public Vector2 movement;
     private const string horizontal = "Horizontal"; // nomi parametri float che ho usato nell'animator
     private const string vertical = "Vertical"; 
     private const string lastHorizontal = "LastHorizontal";

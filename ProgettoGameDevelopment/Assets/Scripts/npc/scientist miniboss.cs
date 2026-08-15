@@ -2,11 +2,8 @@ using UnityEngine;
 
 public class scientistMiniboss : Nemico
 {
-	public enum Stato {escaping, catching};
-	public Stato StatoAttuale { get; private set; }
 	private bool isDying=false;
-	[SerializeField] private Parassita parassita; // assegnare il gameObject del parassita nell'inspector una volta creato l'oggetto corrispondente!
-
+	
 	void Start(){
 		this.HitPoints=200;
 		up=isFree(Vector2.up);
@@ -28,15 +25,12 @@ public class scientistMiniboss : Nemico
 		switch (StatoAttuale)
 		{
 			case Stato.catching:
-				Vector2 parassitaPosition=new Vector2 (parassita.transform.position.x, parassita.transform.position.y);
-				Vector2 whereToGo=GetBestDirection(parassitaPosition);
 				if (parassita.StatoAttuale==Parassita.Stato.possessing){
 				this.StatoAttuale=Stato.escaping;
 				}	
 			break;
 		
 			case Stato.escaping:
-			
 				if (parassita.StatoAttuale!=Parassita.Stato.possessing)
 				{
 					StatoAttuale=Stato.catching;

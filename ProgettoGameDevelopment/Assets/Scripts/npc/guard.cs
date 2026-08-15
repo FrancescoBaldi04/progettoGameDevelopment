@@ -2,23 +2,17 @@ using UnityEngine;
  
 public class guard : Nemico
 {
-    public enum Stato {escaping, positioning, shooting, possessed};
-    private Stato StatoAttuale;
-    
 	private bool isDying = false;
-	[SerializeField] private Parassita parassita; // assegnare il gameObject del parassita nell'inspector una volta creato l'oggetto corrispondente!
-
-    void Start()
-    {
+	
+	void Start() {
         if (parassita.StatoAttuale==Parassita.Stato.possessing) {	
 			StatoAttuale=Stato.positioning;
 		} else {
 			StatoAttuale=Stato.escaping;
 		}
-    }
+	}
 
-	void Update()
-    {
+	void Update() {
         if (HitPoints<=0 && !isDying) {
 			isDying = true;
 			Destroy(gameObject, 1.5f); // in caso volessimo disabilitare commponenti o eseguire un'animazione di morte forse è meglio usare una coroutine
@@ -56,5 +50,5 @@ public class guard : Nemico
 			case Stato.possessed:
 				break;
 		}
-    }
+	}
 }
