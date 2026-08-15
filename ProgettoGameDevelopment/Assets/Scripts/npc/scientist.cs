@@ -45,7 +45,7 @@ public class scientist : Nemico
 		}
 	}
 	
-	private void OnCollisionEnter(Collision collision) {
+	private void OnCollisionEnter2D(Collision2D collision) {
 		if (this.StatoAttuale==Stato.catching) 
 		{
 			if (collision.gameObject.name == "parassita" && parassita.StatoAttuale==Parassita.Stato.possessing) 
