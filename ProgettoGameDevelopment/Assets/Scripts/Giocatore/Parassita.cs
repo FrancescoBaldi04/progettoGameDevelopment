@@ -3,194 +3,262 @@ using UnityEngine.InputSystem;
 
 public class Parassita : MonoBehaviour
 {
-    public enum Stato {libero, possessing};
+    public enum Stato
+    {
+        libero,
+        possessing
+    }
+
     private GameObject corpoPosseduto;
-    private Stato statoAttuale; // pensare se lasciare static o no, non sono sicuro
-    public Stato StatoAttuale => statoAttuale; // proprietà in sola lettura, è il modo breve e compatto per scrivere un getter solo che invece della funzione rende accessibile la variabile di un oggetto di questa classe in sola lettura
-    private bool hasTrojanHorse= false;
-    private bool hasZipBomb =false;
-    private bool hasWorm = false;
+
+    private Stato statoAttuale;
+
+    public Stato StatoAttuale => statoAttuale;
+
     private bool running = false;
+
     private float timerConsumo;
+
     private float raggioEsplosione = 5f;
     private int dannoEsplosione = 50;
-[SerializeField] public float moveSpeed = 1.5f;
-    private Rigidbody2D rb; 
+
+    [SerializeField] public float moveSpeed = 1.5f;
+
+    private Rigidbody2D rb;
     private Animator animator;
+
     public Vector2 movement;
-    private const string horizontal = "Horizontal"; // nomi parametri float che ho usato nell'animator
-    private const string vertical = "Vertical"; 
+
+    private const string horizontal = "Horizontal";
+    private const string vertical = "Vertical";
     private const string lastHorizontal = "LastHorizontal";
     private const string lastVertical = "LastVertical";
-   private Parassita parassita;
-   private PlayerJump playerJump;
 
-    void Awake()
+    private PlayerJump playerJump;
+
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start(){
-        
 
-         parassita = GetComponent<Parassita>();
+
+    private void Start()
+    {
         playerJump = GetComponent<PlayerJump>();
-       statoAttuale = Stato.libero;
-       timerConsumo = 0; 
+
+        statoAttuale = Stato.libero;
+        timerConsumo = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    { if (!StartScreen.giocoIniziato)
-{
-    return;}
-        if (playerJump != null && (playerJump.isInAir || playerJump.isDead)) {
+
+    private void Update()
+    {
+        if (!StartScreen.giocoIniziato)
+        {
             return;
         }
-        
+
+        if (playerJump != null &&
+            (playerJump.isInAir || playerJump.isDead))
+        {
+            return;
+        }
+
+
         movement = InputManager.movement;
-        
+
+
         animator.SetFloat(horizontal, movement.x);
         animator.SetFloat(vertical, movement.y);
 
-        if (movement != Vector2.zero) {
+
+        if (movement != Vector2.zero)
+        {
             animator.SetFloat(lastHorizontal, movement.x);
             animator.SetFloat(lastVertical, movement.y);
         }
 
-        if (playerJump != null && playerJump.isCharging){
-            rb.linearVelocity = Vector2.zero;  // se sta caricando il salto blocco il movimento 
-        }else{
+
+        if (playerJump != null &&
+            playerJump.isCharging)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+        else
+        {
             rb.linearVelocity = moveSpeed * movement;
         }
 
-        if (Keyboard.current.eKey.wasPressedThisFrame) {
-            parassita.EsplosioneZipBomb();
+
+        // =========================
+        // ZIP BOMB
+        // =========================
+
+        if (Keyboard.current != null &&
+            Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            EsplosioneZipBomb();
         }
-        if(StatoAttuale == Stato.possessing)
+
+
+        // =========================
+        // CONSUMO POSSESSO
+        // =========================
+
+        if (StatoAttuale == Stato.possessing)
         {
             ConsumoPossesso();
         }
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-{
-    Run();
-}
+
+
+        // =========================
+        // RUN
+        // =========================
+
+        if (Keyboard.current != null &&
+            Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            Run();
+        }
     }
-public void Possiedi(GameObject corpo)
+
+
+    // =====================================================
+    // POSSESSO
+    // =====================================================
+
+    public void Possiedi(GameObject corpo)
     {
         corpoPosseduto = corpo;
 
         statoAttuale = Stato.possessing;
-          timerConsumo=60;
-        
+
+        timerConsumo = 60;
     }
+
 
     public void SubisciDanno(int danno)
     {
-        if(StatoAttuale == Stato.possessing)
+        if (StatoAttuale == Stato.possessing)
         {
-              timerConsumo = timerConsumo-danno;
+            timerConsumo -= danno;
 
-            if( timerConsumo<= 0)
+            if (timerConsumo <= 0)
             {
-                
+                // eventualmente morte del posseduto
+            }
+        }
+    }
+
+
+    private void ConsumoPossesso()
+    {
+        timerConsumo += Time.deltaTime;
+
+        if (timerConsumo >= 1f)
+        {
+            if (GameManager.gameManager.hasTrojanHorse)
+            {
+                timerConsumo -= 1;
+            }
+            else
+            {
+                timerConsumo -= 2;
+            }
+        }
+    }
+
+
+    // =====================================================
+    // ZIP BOMB
+    // =====================================================
+
+    public void EsplosioneZipBomb()
+    {
+        if (!GameManager.gameManager.hasZipBomb)
+        {
+            Debug.Log("Zip Bomb non sbloccata");
+            return;
+        }
+
+
+        if (statoAttuale != Stato.possessing)
+        {
+            Debug.Log("Zip Bomb non disponibile");
+            return;
+        }
+
+
+        Debug.Log("BOOM! Zip Bomb esplosa");
+
+
+        Vector3 posizione =
+            corpoPosseduto.transform.position;
+
+
+        Collider[] colpiti = Physics.OverlapSphere(
+            posizione,
+            raggioEsplosione
+        );
+
+
+        foreach (Collider c in colpiti)
+        {
+            // Ignora il Parassita
+            if (c.GetComponent<Parassita>() != null)
+            {
+                continue;
+            }
+
+
+            Nemico nemico = c.GetComponent<Nemico>();
+
+
+            if (nemico != null)
+            {
+                nemico.PrendiDanno(dannoEsplosione);
+
+                Debug.Log(
+                    "Danno Zip Bomb a " +
+                    nemico.name
+                );
             }
         }
 
+
+        // Distrugge il corpo sacrificato
+        Destroy(corpoPosseduto);
+
+        corpoPosseduto = null;
+
+        statoAttuale = Stato.libero;
     }
 
-private void ConsumoPossesso(){
-    timerConsumo += Time.deltaTime;
 
-    if (timerConsumo >= 1f  )
-    {if(hasTrojanHorse){
-        timerConsumo -= 1;
-        
-    }else{
-        timerConsumo -= 2;
-    }
-    }
-}
+    // =====================================================
+    // WORM / RUN
+    // =====================================================
 
- 
- public void EsplosioneZipBomb(){
-
-    if(!hasZipBomb){
-        
-        Debug.Log("Zip Bomb non sbloccata");
-        return;
-    }
-    if(statoAttuale != Stato.possessing){
-    Debug.Log("Zip Bomb non disponibile");
-        return;
-    }
-    Debug.Log("BOOM! Zip Bomb esplosa");
-
-
-    // posizione dell'esplosione
-    Vector3 posizione = corpoPosseduto.transform.position;
-
-
-    // trova tutti i collider nel raggio
-    Collider[] colpiti = Physics.OverlapSphere(
-        posizione,
-        raggioEsplosione
-    );
-
-
-    foreach (Collider c in colpiti)
+    public void Run()
     {
-        // Ignora il Parassita
-        if (c.GetComponent<Parassita>() != null)
+        if (!GameManager.gameManager.hasWorm)
         {
-            continue;
+            return;
         }
 
-        // Cerca un'entità danneggiabile
-        Nemico nemico = c.GetComponent<Nemico>();
 
-        if (nemico != null)
+        running = !running;
+
+
+        if (running)
         {
-            nemico.PrendiDanno(dannoEsplosione);
-
-            Debug.Log(
-                "Danno Zip Bomb a " + nemico.name
-            );
+            moveSpeed += 2f;
+        }
+        else
+        {
+            moveSpeed -= 2f;
         }
     }
-    // distrugge il corpo sacrificato
-    Destroy(corpoPosseduto);
-
-
-    corpoPosseduto = null;
-
-    statoAttuale = Stato.libero;   
 }
-public void Run (){
-    if(hasWorm){
-running= !running;
-if(running){
-moveSpeed+=2f;
-}else{moveSpeed-=2f;
-
-}
-
-    }
-}
-public void UnlockTrojanHorse(){
-    hasTrojanHorse = true;
-    Debug.Log("Trojan Horse sbloccato!");
-}
-public void UnlockZipBomb(){
-    hasZipBomb = true;
-    Debug.Log("Zip Bomb sbloccato!");
-}
-public void UnlockWorm(){
-    hasWorm=true;
-    Debug.Log("Worm sbloccato!");
-}
-
-
-}
-

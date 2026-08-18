@@ -19,7 +19,7 @@ public class ZipBombPickup : MonoBehaviour
 
         if (parassita != null)
         {
-            parassita.UnlockZipBomb();
+            GameManager.gameManager.UnlockZipBomb();
 
             Destroy(gameObject);
         }

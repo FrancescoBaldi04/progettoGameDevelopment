@@ -19,7 +19,7 @@ public class WormPickUp : MonoBehaviour
 
         if (parassita != null)
         {
-            parassita.UnlockWorm();
+            GameManager.gameManager.UnlockWorm();
 
             Destroy(gameObject);
         }

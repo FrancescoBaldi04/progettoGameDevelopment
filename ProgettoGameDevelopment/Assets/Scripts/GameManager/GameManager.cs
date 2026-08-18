@@ -4,27 +4,78 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager gameManager {get; private set;} 
+    public static GameManager gameManager { get; private set; }
 
     [SerializeField] private float timeBeforeRestart = 1.2f;
 
-    // Pattern singleton in modo che esista solo un'istanza di questa classe e che essa fornisca un punto di accesso globale a quest'istanza
-    void Awake(){
-        if (gameManager == null){
-            gameManager = this;
-        }else{
-            Destroy(gameObject); // per evitare duplicati se la scena viene ricaricata
+    // =========================
+    // POTENZIAMENTI
+    // =========================
+
+    public bool hasTrojanHorse { get; private set; }
+    public bool hasZipBomb { get; private set; }
+    public bool hasWorm { get; private set; }
+
+
+    private void Awake()
+    {
+        if (gameManager != null && gameManager != this)
+        {
+            Destroy(gameObject);
+            return;
         }
+
+        gameManager = this;
+
+        // Mantiene il GameManager quando cambia scena
+        DontDestroyOnLoad(gameObject);
     }
 
-    public void GameOver(){
-        // inserire qui in futuro la UI per il GameOver, eventuale stop o modifica della musica e tutto ciò relativo all'animazione di morte
+
+    // =========================
+    // SBLOCCO POTENZIAMENTI
+    // =========================
+
+    public void UnlockTrojanHorse()
+    {
+        hasTrojanHorse = true;
+
+        Debug.Log("GameManager: Trojan Horse sbloccato!");
+    }
+
+
+    public void UnlockZipBomb()
+    {
+        hasZipBomb = true;
+
+        Debug.Log("GameManager: Zip Bomb sbloccata!");
+    }
+
+
+    public void UnlockWorm()
+    {
+        hasWorm = true;
+
+        Debug.Log("GameManager: Worm sbloccato!");
+    }
+
+
+    // =========================
+    // GAME OVER
+    // =========================
+
+    public void GameOver()
+    {
         StartCoroutine(restartLevelRoutine());
     }
 
+
     private IEnumerator restartLevelRoutine()
     {
-        yield return new WaitForSeconds(timeBeforeRestart); // sospende la sua esecuzione per timeBeforeRestart secondi 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // ricarico la scena
+        yield return new WaitForSeconds(timeBeforeRestart);
+
+        SceneManager.LoadScene(
+            SceneManager.GetActiveScene().buildIndex
+        );
     }
 }

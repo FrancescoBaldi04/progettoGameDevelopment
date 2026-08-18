@@ -19,7 +19,7 @@ public class TrojanHorsePickup : MonoBehaviour
 
         if (parassita != null)
         {
-            parassita.UnlockTrojanHorse();
+            GameManager.gameManager.UnlockTrojanHorse();
 
             Destroy(gameObject);
         }
