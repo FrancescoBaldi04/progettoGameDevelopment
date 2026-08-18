@@ -8,7 +8,7 @@ public class Parassita : MonoBehaviour
         libero,
         possessing
     }
-
+  [SerializeField] private GameObject esplosionePrefab;
     private GameObject corpoPosseduto;
 
     private Stato statoAttuale;
@@ -196,15 +196,22 @@ public class Parassita : MonoBehaviour
 
         Vector3 posizione =
             corpoPosseduto.transform.position;
+GameObject esplosione = Instantiate(
+    esplosionePrefab,
+    posizione,
+    Quaternion.identity
+);
+
+Animator animatorEsplosione = esplosione.GetComponent<Animator>();
+animatorEsplosione.Play("Explosion");
+
+        Collider2D[] colpiti = Physics2D.OverlapCircleAll(
+    posizione,
+    raggioEsplosione
+);
 
 
-        Collider[] colpiti = Physics.OverlapSphere(
-            posizione,
-            raggioEsplosione
-        );
-
-
-        foreach (Collider c in colpiti)
+        foreach (Collider2D c in colpiti)
         {
             // Ignora il Parassita
             if (c.GetComponent<Parassita>() != null)
