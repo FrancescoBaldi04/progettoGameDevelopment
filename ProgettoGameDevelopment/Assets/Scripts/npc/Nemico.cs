@@ -79,5 +79,34 @@ public class Nemico : MonoBehaviour
 				movement.SetDirection(bestdirection);
 			}
 		}
+		
+		if (this.StatoAttuale==Stato.escaping) {
+			Movement movement=GetComponent<Movement>();
+			Vector2 avoiddirection=Vector2.zero;
+			if (movement!=null) {
+				avoiddirection=-1*movement.direction;
+			}
+			Vector2 bestdirection;
+			Vector2 escapedirection=-1*new Vector2(parassita.transform.position.x,
+										      parassita.transform.position.y);
+			bestdirection=GetBestDirection(escapedirection, avoiddirection);
+			movement.SetDirection(bestdirection);
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
