@@ -21,27 +21,36 @@ public class scientist : Nemico
 			isDying = true;
 			Destroy(gameObject, 1.5f);
 		}
+		Movement parassitaMovement=parassita.GetComponent<Movement>();
 		switch (StatoAttuale)
 		{
-			case Stato.catching:
-				if (parassita.StatoAttuale==Parassita.Stato.possessing){
-				this.StatoAttuale=Stato.escaping;
-				}	
-			break;
-		
-			case Stato.escaping:
-				if (parassita.StatoAttuale!=Parassita.Stato.possessing)
-				{
-					StatoAttuale=Stato.catching;
+			case Stato.catching: {
+				Movement movement=GetComponent<Movement>();
+				Vector2 VersoDiCattura=((Vector2)parassita.transform.position-(Vector2)transform.position).normalized;
+				movement.SetDirection(VersoDiCattura);
+				if (parassita.StatoAttuale==Parassita.Stato.possessing) {
+					this.StatoAttuale=Stato.escaping;
 				}
 			break;
+			}
 		
-			case Stato.possessed:
+			case Stato.escaping: {
+				Movement movement=GetComponent<Movement>();
+				Vector2 VersoDiFuga=((Vector2)transform.position-(Vector2)parassita.transform.position).normalized;
+				movement.SetDirection(VersoDiFuga);
+				if (parassita.StatoAttuale==Parassita.Stato.libero) {
+					this.StatoAttuale=Stato.catching;
+				}
+			break;
+			}
+		
+			case Stato.possessed: {
 				if (parassita.StatoAttuale==Parassita.Stato.libero) 
 					{
 						this.HitPoints=0;
 					}
 			break;
+			}
 		}
 	}
 	

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1193897103082084539}
   - component: {fileID: 4141386045833423530}
   - component: {fileID: 2139001823465939518}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: scientist.man
   m_TagString: Npc
   m_Icon: {fileID: 0}
@@ -203,4 +203,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::scientist
   HitPoints: 60
+  humanLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  StatoAttuale: 1
   parassita: {fileID: 0}
+  up: 0
+  down: 0
+  right: 0
+  left: 0

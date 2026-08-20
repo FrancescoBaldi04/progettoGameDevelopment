@@ -3,9 +3,8 @@ using UnityEngine;
 public class scientistMiniboss : Nemico
 {
 	private bool isDying=false;
-	
-	void Start(){
-		this.HitPoints=200;
+	int HitPoints=200;
+	void Start() {
 		up=isFree(Vector2.up);
 		down=isFree(Vector2.down);
 		left=isFree(Vector2.left);
@@ -17,39 +16,46 @@ public class scientistMiniboss : Nemico
 		}
 	}
 
-	void Update(){
+	void Update() {
 		if (HitPoints<=0 && !isDying) {
 			isDying = true;
 			Destroy(gameObject, 1.5f);
 		}
+		Movement parassitaMovement=parassita.GetComponent<Movement>();
 		switch (StatoAttuale)
 		{
-			case Stato.catching:
-				if (parassita.StatoAttuale==Parassita.Stato.possessing){
-				this.StatoAttuale=Stato.escaping;
-				}	
-			break;
-		
-			case Stato.escaping:
-				if (parassita.StatoAttuale!=Parassita.Stato.possessing)
-				{
-					StatoAttuale=Stato.catching;
+			case Stato.catching: {
+				Movement movement=GetComponent<Movement>();
+				Vector2 VersoDiCattura=((Vector2)parassita.transform.position-(Vector2)transform.position).normalized;
+				movement.SetDirection(VersoDiCattura);
+				if (parassita.StatoAttuale==Parassita.Stato.possessing) {
+					this.StatoAttuale=Stato.escaping;
 				}
 			break;
+			}
+		
+			case Stato.escaping: {
+				Movement movement=GetComponent<Movement>();
+				Vector2 VersoDiFuga=((Vector2)transform.position-(Vector2)parassita.transform.position).normalized;
+				movement.SetDirection(VersoDiFuga);
+				if (parassita.StatoAttuale==Parassita.Stato.libero) {
+					this.StatoAttuale=Stato.catching;
+				}
+			break;
+			}
 		}
 	}
 	
-	private void OnCollisionEnter2D(Collision2D collision){
+	private void OnCollisionEnter2D(Collision2D collision) {
 		if (this.StatoAttuale==Stato.catching) 
 		{
-			if (collision.gameObject.name == "parassita"){
+			if (collision.gameObject.name == "parassita") 
+				{
 					Debug.Log("parassita catturato");
 					//come chiamamo il metodo per la schermata di game over?
 			}
 		}
 	}
-	
-	
 }
 
 

@@ -4,7 +4,7 @@ public class Nemico : MonoBehaviour
 {
 	[SerializeField] protected int HitPoints = 60;
 	public LayerMask humanLayer;
-	public enum Stato {possessed, catching, escaping, positioning, shooting, waiting};
+	public enum Stato {possessed, catching, escaping, positioning, shooting, waiting}; 
 	public Stato StatoAttuale;
 	public Parassita parassita;
 	public bool up, down, right, left;
@@ -63,50 +63,5 @@ public class Nemico : MonoBehaviour
 		Destroy(gameObject);
 		}
 	}
-	public void OnTriggerEnter2D(Collider2D collider) {
-		if (this.StatoAttuale==Stato.catching) {
-			if (parassita!=null) {
-				Vector2 target=new Vector2(parassita.transform.position.x, parassita.transform.position.y)
-							+
-							(0*parassita.movement);
-				Movement movement=GetComponent<Movement>();
-				Vector2 avoiddirection=Vector2.zero;
-				if(movement!=null) {
-					avoiddirection=-1*movement.direction;
-				}
-				Vector2 parassitaPosition=new Vector2 (parassita.transform.position.x, parassita.transform.position.y);
-				Vector2 bestdirection =GetBestDirection(parassitaPosition, avoiddirection);
-				movement.SetDirection(bestdirection);
-			}
-		}
-		
-		if (this.StatoAttuale==Stato.escaping) {
-			Movement movement=GetComponent<Movement>();
-			Vector2 avoiddirection=Vector2.zero;
-			if (movement!=null) {
-				avoiddirection=-1*movement.direction;
-			}
-			Vector2 bestdirection;
-			Vector2 escapedirection=-1*new Vector2(parassita.transform.position.x,
-										      parassita.transform.position.y);
-			bestdirection=GetBestDirection(escapedirection, avoiddirection);
-			movement.SetDirection(bestdirection);
-		}
-	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

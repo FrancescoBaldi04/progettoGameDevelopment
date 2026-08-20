@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8658683336439906657}
   - component: {fileID: 213308560135894655}
   - component: {fileID: -6920064969760064838}
-  m_Layer: 7
+  - component: {fileID: -1300862978185250919}
+  m_Layer: 8
   m_Name: Guardia
   m_TagString: Npc
   m_Icon: {fileID: 0}
@@ -194,4 +195,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::guard
   HitPoints: 60
+  humanLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  StatoAttuale: 2
   parassita: {fileID: 0}
+  up: 0
+  down: 0
+  right: 0
+  left: 0
+--- !u!114 &-1300862978185250919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4735945176615505215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0654e7d1251b543a8c494cc1015b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Movement
+  direction: {x: 1, y: 0}
+  speed: 0.1

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2633873868344422174}
   - component: {fileID: 604848983391821370}
   - component: {fileID: 5918613997443290071}
-  m_Layer: 7
-  m_Name: scientist.armor
+  m_Layer: 8
+  m_Name: scientist.miniboss
   m_TagString: Npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

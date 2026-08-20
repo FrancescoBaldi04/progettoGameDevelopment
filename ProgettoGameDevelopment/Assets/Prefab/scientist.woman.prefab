@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5440281858819404070}
   - component: {fileID: 9191445266810818633}
   - component: {fileID: -5401021960582060194}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: scientist.woman
   m_TagString: Npc
   m_Icon: {fileID: 0}
@@ -203,4 +203,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::scientist
   HitPoints: 60
+  humanLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  StatoAttuale: 0
   parassita: {fileID: 0}
+  up: 0
+  down: 0
+  right: 0
+  left: 0
