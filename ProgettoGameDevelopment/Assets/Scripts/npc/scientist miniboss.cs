@@ -3,7 +3,7 @@ using UnityEngine;
 public class scientistMiniboss : Nemico
 {
 	private bool isDying=false;
-	int HitPoints=200;
+	[SerializeField] private int BossHitPoints=200;
 	void Start() {
 		up=isFree(Vector2.up);
 		down=isFree(Vector2.down);
@@ -17,11 +17,11 @@ public class scientistMiniboss : Nemico
 	}
 
 	void Update() {
-		if (HitPoints<=0 && !isDying) {
+		if (BossHitPoints<=0 && !isDying) {
 			isDying = true;
 			Destroy(gameObject, 1.5f);
 		}
-		Movement parassitaMovement=parassita.GetComponent<Movement>();
+		Movement parassitaMovement=parassita.GetComponent<Movement>(); // assegnamento innecessario secondo il quick fix di Visual Studio, capire come risolvere
 		switch (StatoAttuale)
 		{
 			case Stato.catching: {

@@ -195,21 +195,17 @@ public class Parassita : MonoBehaviour
 
 
         Vector3 posizione =
-            corpoPosseduto.transform.position;
-GameObject esplosione = Instantiate(
-    esplosionePrefab,
-    posizione,
-    Quaternion.identity
-);
+        corpoPosseduto.transform.position;
+        GameObject esplosione = Instantiate(
+            esplosionePrefab,
+            posizione,
+            Quaternion.identity
+        );
 
-Animator animatorEsplosione = esplosione.GetComponent<Animator>();
-animatorEsplosione.Play("Explosion");
+        Animator animatorEsplosione = esplosione.GetComponent<Animator>();
+        animatorEsplosione.Play("Explosion");
 
-        Collider2D[] colpiti = Physics2D.OverlapCircleAll(
-    posizione,
-    raggioEsplosione
-);
-
+        Collider2D[] colpiti = Physics2D.OverlapCircleAll(posizione, raggioEsplosione);
 
         foreach (Collider2D c in colpiti)
         {
