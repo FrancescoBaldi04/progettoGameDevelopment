@@ -14,7 +14,8 @@ public class Movement : MonoBehaviour
 	
 	private void FixedUpdate() {
 		Vector2 translation=this.direction*this.speed;
-		this.body.MovePosition(this.body.position+translation);
+		//this.body.MovePosition(this.body.position+translation);
+		this.body.linearVelocity = this.direction * (this.speed * 50f);
 	}
 	
 	public void SetDirection(Vector2 newdirection) {

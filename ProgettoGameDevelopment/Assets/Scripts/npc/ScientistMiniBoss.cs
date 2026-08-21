@@ -3,7 +3,16 @@ using UnityEngine;
 public class scientistMiniboss : Nemico
 {
 	private bool isDying=false;
-	[SerializeField] private int BossHitPoints=200;
+	private Movement movement;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+		movement=GetComponent<Movement>();
+		this.HitPoints = 200;
+    }
+
 	void Start() {
 		up=isFree(Vector2.up);
 		down=isFree(Vector2.down);
@@ -17,35 +26,48 @@ public class scientistMiniboss : Nemico
 	}
 
 	void Update() {
-		if (BossHitPoints<=0 && !isDying) {
-			isDying = true;
-			Destroy(gameObject, 1.5f);
+		if (isDying) return;
+		
+		if (HitPoints<=0) {
+			Die();
+			return;
 		}
-		Movement parassitaMovement=parassita.GetComponent<Movement>(); // assegnamento innecessario secondo il quick fix di Visual Studio, capire come risolvere
+		
 		switch (StatoAttuale)
 		{
 			case Stato.catching: {
-				Movement movement=GetComponent<Movement>();
 				Vector2 VersoDiCattura=((Vector2)parassita.transform.position-(Vector2)transform.position).normalized;
 				movement.SetDirection(VersoDiCattura);
+				
 				if (parassita.StatoAttuale==Parassita.Stato.possessing) {
 					this.StatoAttuale=Stato.escaping;
 				}
-			break;
+			
+				break;
 			}
 		
 			case Stato.escaping: {
-				Movement movement=GetComponent<Movement>();
 				Vector2 VersoDiFuga=((Vector2)transform.position-(Vector2)parassita.transform.position).normalized;
 				movement.SetDirection(VersoDiFuga);
+				
 				if (parassita.StatoAttuale==Parassita.Stato.libero) {
 					this.StatoAttuale=Stato.catching;
 				}
-			break;
+				
+				break;
 			}
 		}
 	}
 	
+	protected override void Die()
+    {
+        if (isDying) return;
+		isDying = true;
+
+		if (movement != null) movement.speed = 0f;
+		Destroy(gameObject, 1.5f);
+    }
+
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.name == "bullet") {
 			PrendiDanno(10);

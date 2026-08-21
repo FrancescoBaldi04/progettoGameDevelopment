@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5440281858819404070}
   - component: {fileID: 9191445266810818633}
   - component: {fileID: -5401021960582060194}
+  - component: {fileID: -1661836863499011957}
   m_Layer: 8
   m_Name: scientist.woman
   m_TagString: Npc
@@ -44,7 +45,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3083710808066431277}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -61,7 +62,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &9005923279473870065
 SpriteRenderer:
@@ -108,8 +109,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1188327197
-  m_SortingLayer: 0
+  m_SortingLayerID: -979591537
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5786614353037359316, guid: 0133c3d15d28a7d46a117d1a8f7c41fb, type: 3}
@@ -212,3 +213,20 @@ MonoBehaviour:
   down: 0
   right: 0
   left: 0
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 10
+  firePoint: {fileID: 0}
+--- !u!114 &-1661836863499011957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3083710808066431277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0654e7d1251b543a8c494cc1015b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Movement
+  direction: {x: 1, y: 0}
+  speed: 0.1

@@ -5,7 +5,16 @@ public class guardboss : Nemico
 	public float targetDistance=3.0f;
 	private float timer=1.0f;
 	private bool isDying=false;
-	public int HitPoints=300;
+	private Movement movement;
+	private int obstacleLayerMask;
+    protected override void Awake()
+    {
+        base.Awake();
+
+		movement = GetComponent<Movement>();
+		obstacleLayerMask = LayerMask.GetMask("ground");
+    }
+	
 	void Start() {
 		up=isFree(Vector2.up);
 		down=isFree(Vector2.down);
@@ -19,17 +28,21 @@ public class guardboss : Nemico
 	}
 	
 	void Update() {
-		if (HitPoints<=0 && !isDying) {
-			isDying = true;
-			Destroy(gameObject, 1.5f);
-		}
+		if (isDying) return;
+		
+		if (HitPoints<=0) {
+			Die();
+			return;
+		}	
+
 		switch (StatoAttuale) {
 			
 			case Stato.waiting: {
 				if (parassita.StatoAttuale==Parassita.Stato.possessing) {
 					this.StatoAttuale=Stato.positioning;
 				}
-			break;
+				
+				break;
 			}
 		
 			case Stato.positioning: {
@@ -37,14 +50,16 @@ public class guardboss : Nemico
 					this.StatoAttuale=Stato.waiting;
 					break;
 				}
-				Movement movement=GetComponent<Movement>();
+				
 				if (movement!=null && parassita!=null) {
 					Vector2 myPosition=transform.position;
 					Vector2 parassitaPosition=parassita.transform.position;
+					
 					float distance=Vector2.Distance(myPosition, parassitaPosition);
 					Vector2 directionToParassita=(parassitaPosition-myPosition).normalized;
-					int obstacleLayerMask=LayerMask.GetMask("ground");
+					
 					RaycastHit2D hit=Physics2D.Raycast(myPosition, directionToParassita, distance, obstacleLayerMask);
+					
 					if (hit.collider!=null || distance>targetDistance+0.3f) {
 						movement.SetDirection(directionToParassita);
 					} else {
@@ -59,10 +74,12 @@ public class guardboss : Nemico
 				timer-=Time.deltaTime;
 				Vector2 myPosition=transform.position;
 				Vector2 parassitaPosition=parassita.transform.position;
+				
 				float distance=Vector2.Distance(myPosition, parassitaPosition);
 				Vector2 directionToParassita=(parassitaPosition-myPosition).normalized;
-				int obstacleLayerMask=LayerMask.GetMask("ground");
+
 				RaycastHit2D hit=Physics2D.Raycast(myPosition, directionToParassita, distance, obstacleLayerMask);
+				
 				if (hit.collider!=null) {
 					this.StatoAttuale=Stato.positioning;
 					timer=1.0f;
@@ -70,11 +87,21 @@ public class guardboss : Nemico
 					Shoot();
 					timer=1.0f;
 				}
-			break;
+				
+				break;
 			}
 		}
 	}
 	
+	protected override void Die()
+    {
+        if (isDying) return;
+		isDying = true;
+
+		if (movement != null) movement.speed = 0f;
+		Destroy(gameObject, 1.5f);
+    }
+
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.name == "bullet") {
 			PrendiDanno(10);
