@@ -19,8 +19,8 @@ public class Movement : MonoBehaviour
 	}
 	
 	public void SetDirection(Vector2 newdirection) {
-		if (newdirection!=Vector2.zero) {
+		
 			direction=newdirection;
-		}
+		
 	}
 }

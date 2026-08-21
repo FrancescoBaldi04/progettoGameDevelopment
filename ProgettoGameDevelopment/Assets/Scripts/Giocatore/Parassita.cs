@@ -59,6 +59,15 @@ public class Parassita : MonoBehaviour
 
         if (statoAttuale == Stato.possessing)
         {
+             // =========================
+        // ZIP BOMB
+        // =========================
+
+        if (Keyboard.current != null &&
+            Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            EsplosioneZipBomb();
+        }
             // gestione eventuali input aggiuntivi da inserire qui, credo
             ConsumoPossesso();
             return;
@@ -96,15 +105,7 @@ public class Parassita : MonoBehaviour
         }
 
 
-        // =========================
-        // ZIP BOMB
-        // =========================
-
-        if (Keyboard.current != null &&
-            Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            EsplosioneZipBomb();
-        }
+       
 
 
         // =========================
@@ -207,7 +208,14 @@ public class Parassita : MonoBehaviour
         transform.SetParent(null);
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<Collider2D>().enabled = true;
+
+        
+        rb.linearVelocity = Vector2.zero;
         rb.simulated = true;
+
+        animator.Rebind();
+        animator.Update(0f);
+
         statoAttuale = Stato.libero;
 
         if (CameraFollow.instance != null)
@@ -274,14 +282,16 @@ public class Parassita : MonoBehaviour
                 );
             }
         }
+        GameObject corpoDaDistruggere = corpoPosseduto;
 
+    corpoPosseduto = null;
+
+      LiberaParassita();
 
         // Distrugge il corpo sacrificato
-        Destroy(corpoPosseduto);
+        Destroy(corpoDaDistruggere);
 
-        corpoPosseduto = null;
-
-        statoAttuale = Stato.libero;
+        
     }
 
 
