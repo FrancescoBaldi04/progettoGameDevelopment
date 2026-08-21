@@ -14,10 +14,7 @@ public class scientistMiniboss : Nemico
     }
 
 	void Start() {
-		up=isFree(Vector2.up);
-		down=isFree(Vector2.down);
-		left=isFree(Vector2.left);
-		right=isFree(Vector2.right);
+		
 		if (parassita.StatoAttuale==Parassita.Stato.possessing) {	
 			StatoAttuale=Stato.escaping;
 		} else {

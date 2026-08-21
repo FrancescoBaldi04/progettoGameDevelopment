@@ -23,10 +23,7 @@ private Animator animator;
 
 	void Update() {
 		if (isDying) return;
-		up=isFree(Vector2.up);
-		down=isFree(Vector2.down);
-		left=isFree(Vector2.left);
-		right=isFree(Vector2.right);
+		
 		
 		if (HitPoints<=0) {
 			Die();
