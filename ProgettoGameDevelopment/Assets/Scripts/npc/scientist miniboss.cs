@@ -47,6 +47,9 @@ public class scientistMiniboss : Nemico
 	}
 	
 	private void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.gameObject.name == "bullet") {
+			PrendiDanno(10);
+		}
 		if (this.StatoAttuale==Stato.catching) 
 		{
 			if (collision.gameObject.name == "parassita") 

@@ -8,6 +8,16 @@ public class Nemico : MonoBehaviour
 	public Stato StatoAttuale;
 	public Parassita parassita;
 	public bool up, down, right, left;
+	public GameObject bulletPrefab;
+	public float bulletSpeed=1f;
+	public void Shoot() {
+		Vector3 uscitaProiettile=new Vector3(this.transform.position.x+0.1f, this.transform.position.y+0.1f, 0f);
+		GameObject bullet=Instantiate(bulletPrefab, uscitaProiettile, this.transform.rotation);
+		Rigidbody2D rb=bullet.GetComponent<Rigidbody2D>();
+		if (rb!=null) {
+			rb.linearVelocity=this.transform.right*bulletSpeed;
+		}
+	}
 	public Vector2 GetBestDirection(Vector2 targetPosition, Vector2 exclude)
 	{
 		Vector2 currentPosition=new Vector2(this.transform.position.x, this.transform.position.y);

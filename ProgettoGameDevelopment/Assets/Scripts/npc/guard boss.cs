@@ -1,10 +1,11 @@
 using UnityEngine;
- 
-public class guard : Nemico
+
+public class guardboss : Nemico
 {
 	public float targetDistance=3.0f;
 	private float timer=1.0f;
 	private bool isDying=false;
+	public int HitPoints=300;
 	void Start() {
 		up=isFree(Vector2.up);
 		down=isFree(Vector2.down);
@@ -13,7 +14,7 @@ public class guard : Nemico
 		if (parassita.StatoAttuale==Parassita.Stato.possessing) {	
 			StatoAttuale=Stato.positioning;
 		} else {
-			StatoAttuale=Stato.escaping;
+			StatoAttuale=Stato.waiting;
 		}
 	}
 	
@@ -23,10 +24,8 @@ public class guard : Nemico
 			Destroy(gameObject, 1.5f);
 		}
 		switch (StatoAttuale) {
-			case Stato.escaping: {
-				Movement movement=GetComponent<Movement>();
-				Vector2 VersoDiFuga=((Vector2)transform.position-(Vector2)parassita.transform.position).normalized;
-				movement.SetDirection(VersoDiFuga);
+			
+			case Stato.waiting: {
 				if (parassita.StatoAttuale==Parassita.Stato.possessing) {
 					this.StatoAttuale=Stato.positioning;
 				}
@@ -35,7 +34,7 @@ public class guard : Nemico
 		
 			case Stato.positioning: {
 				if (parassita.StatoAttuale==Parassita.Stato.libero) {
-					this.StatoAttuale=Stato.escaping;
+					this.StatoAttuale=Stato.waiting;
 					break;
 				}
 				Movement movement=GetComponent<Movement>();
@@ -73,25 +72,12 @@ public class guard : Nemico
 				}
 			break;
 			}
-			
-			case Stato.possessed: {
-				if (parassita.StatoAttuale==Parassita.Stato.libero) {
-					this.HitPoints=0;
-				}
-			break;
-			}
 		}
 	}
 	
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.name == "bullet") {
 			PrendiDanno(10);
-		}
-		if (this.StatoAttuale==Stato.escaping) {
-			if (collision.gameObject.name == "parassita") {
-				Debug.Log("è stato posseduto");
-				this.StatoAttuale=Stato.possessed;
-			}
 		}
 	}
 }
