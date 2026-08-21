@@ -3,7 +3,7 @@ using UnityEngine;
 public class Nemico : MonoBehaviour
 {
 	[SerializeField] protected int HitPoints = 60;
-	public LayerMask humanLayer;
+	public LayerMask Ground_Entities;
 	public enum Stato {possessed, catching, escaping, positioning, shooting, waiting}; 
 	public Stato StatoAttuale;
 	public Parassita parassita;
@@ -72,7 +72,7 @@ public class Nemico : MonoBehaviour
 			0.0f,
 			direction,
 			1.0f,
-			this.humanLayer
+			this.Ground_Entities
 		);
 		return hitcast.collider==null;
 	}

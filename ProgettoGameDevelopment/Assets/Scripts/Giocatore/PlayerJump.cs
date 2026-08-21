@@ -91,7 +91,7 @@ public class PlayerJump : MonoBehaviour
         // logica possesso npc
     }
 
-    private void die(){
+    public void die(){
         if (isDead) return;
 
         isInAir = false;

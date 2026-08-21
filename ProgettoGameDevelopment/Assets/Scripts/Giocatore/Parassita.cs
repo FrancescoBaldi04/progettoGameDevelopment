@@ -264,4 +264,13 @@ public class Parassita : MonoBehaviour
             moveSpeed -= 2f;
         }
     }
+    public void Muori()
+{
+    Debug.Log("Il parassita è morto!");
+
+    if (playerJump != null)
+    {
+        playerJump.die();
+    }
+}
 }
