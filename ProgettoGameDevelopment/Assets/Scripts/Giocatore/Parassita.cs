@@ -17,7 +17,8 @@ public class Parassita : MonoBehaviour
 
     private bool running = false;
 
-    private float timerConsumo;
+    private float vitaPossesso; // parte da 60 e scende fino a 0 durante il possesso di un npc
+    private float timerSecondo; // conta fino ad un secondo in modo da diminuire la vita ogni secondo
 
     private float raggioEsplosione = 5f;
     private int dannoEsplosione = 50;
@@ -49,14 +50,17 @@ public class Parassita : MonoBehaviour
         playerJump = GetComponent<PlayerJump>();
 
         statoAttuale = Stato.libero;
-        timerConsumo = 0;
     }
 
 
     private void Update()
     {
-        if (!StartScreen.giocoIniziato)
+        if (!StartScreen.giocoIniziato) return;
+
+        if (statoAttuale == Stato.possessing)
         {
+            // gestione eventuali input aggiuntivi da inserire qui, credo
+            ConsumoPossesso();
             return;
         }
 
@@ -132,10 +136,16 @@ public class Parassita : MonoBehaviour
     public void Possiedi(GameObject corpo)
     {
         corpoPosseduto = corpo;
-
         statoAttuale = Stato.possessing;
 
-        timerConsumo = 60;
+        Nemico nemico = corpo.GetComponent<Nemico>();
+        if (nemico != null)
+        {
+            nemico.StatoAttuale = Nemico.Stato.possessed; // imposto lo stato dell'npc in possessed
+        }
+
+        vitaPossesso = 60f;
+        timerSecondo = 0f;
     }
 
 
@@ -143,33 +153,68 @@ public class Parassita : MonoBehaviour
     {
         if (StatoAttuale == Stato.possessing)
         {
-            timerConsumo -= danno;
+            vitaPossesso -= danno;
 
-            if (timerConsumo <= 0)
+            if (vitaPossesso <= 0)
             {
-                // eventualmente morte del posseduto
+                MorteCorpoPosseduto();
             }
         }
     }
-
 
     private void ConsumoPossesso()
     {
-        timerConsumo += Time.deltaTime;
+        timerSecondo += Time.deltaTime;
 
-        if (timerConsumo >= 1f)
+        if (timerSecondo >= 1f)
         {
+            timerSecondo -= 1f;
+            
             if (GameManager.gameManager.hasTrojanHorse)
             {
-                timerConsumo -= 1;
+                vitaPossesso -= 1f;
             }
             else
             {
-                timerConsumo -= 2;
+                vitaPossesso -= 2f;
+            }
+        
+            if (vitaPossesso <= 0)
+            {
+                MorteCorpoPosseduto();
             }
         }
     }
 
+    private void MorteCorpoPosseduto()
+    {
+        if (corpoPosseduto != null)
+        {
+            Nemico nemico = corpoPosseduto.GetComponent<Nemico>();
+
+            if (nemico != null)
+            {
+                nemico.PrendiDanno(9999); // danno fatale, non posso modificare direttamente gli hitPoints, altrimenti potrei fare un metodo dedicato chiamato Uccidi che imposta gli hp a 0 ma è la stessa cosa sostanzialmente
+            }
+        }
+
+        corpoPosseduto = null; // sgancio il corpo posseduto
+        LiberaParassita();
+    }
+
+    public void LiberaParassita()
+    {
+        transform.SetParent(null);
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
+        rb.simulated = true;
+        statoAttuale = Stato.libero;
+
+        if (CameraFollow.instance != null)
+        {
+            CameraFollow.instance.SetTarget(transform);
+        }
+    }
 
     // =====================================================
     // ZIP BOMB
@@ -265,12 +310,12 @@ public class Parassita : MonoBehaviour
         }
     }
     public void Muori()
-{
-    Debug.Log("Il parassita è morto!");
-
-    if (playerJump != null)
     {
-        playerJump.die();
+        Debug.Log("Il parassita è morto!");
+
+        if (playerJump != null)
+        {
+            playerJump.die();
+        }
     }
-}
 }

@@ -88,7 +88,34 @@ public class PlayerJump : MonoBehaviour
 
     private void possessNpc(GameObject Npc){
         isInAir = false;
-        // logica possesso npc
+        
+        Parassita parassita = GetComponent<Parassita>();
+        if (parassita != null)
+        {
+            parassita.Possiedi(Npc);
+        }
+
+        Rigidbody2D npcRb = Npc.GetComponent<Rigidbody2D>();
+        if (npcRb != null)
+        {
+            npcRb.linearVelocity = Vector2.zero;
+            npcRb.angularVelocity = 0f;
+        }
+
+        // Disattivo lo sprite del parassita e la sua fisica
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        // Collego il parassita all'Npc per farlo muovere insieme a lui
+        transform.SetParent(Npc.transform);
+        transform.localPosition = Vector3.zero;
+
+        if (CameraFollow.instance != null)
+        {
+            CameraFollow.instance.SetTarget(Npc.transform); // sposto la telecamera su npc
+        }
     }
 
     public void die(){

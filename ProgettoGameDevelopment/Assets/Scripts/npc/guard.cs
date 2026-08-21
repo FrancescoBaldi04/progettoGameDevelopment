@@ -94,9 +94,17 @@ public class guard : Nemico
 			}
 			
 			case Stato.possessed: {
-				if (parassita.StatoAttuale==Parassita.Stato.libero) {
-					this.HitPoints=0;
+				if (parassita.StatoAttuale == Parassita.Stato.libero) 
+				{
+					this.HitPoints = 0;
+					break;
 				}
+
+				// Leggo l'input da InputManager e lo passo al Movement dell'Npc
+				Vector2 inputGiocatore = InputManager.movement;
+				movement.SetDirection(inputGiocatore);
+				UpdateAnimation(inputGiocatore);
+
 				break;
 			}
 		}
@@ -112,16 +120,20 @@ public class guard : Nemico
     }
 
 	private void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.gameObject.name == "bullet") {
+		if (collision.gameObject.CompareTag("Bullet")) {
 			PrendiDanno(10);
+			return;
 		}
-		if (this.StatoAttuale==Stato.escaping) {
-			if (collision.gameObject.name == "parassita") {
-				Debug.Log("è stato posseduto");
-				this.StatoAttuale=Stato.possessed;
-			}
-		}
+		
+		// In questo caso vogliamo che appena la guardia tocca il parassita mentre il parassita non è in aria lo uccida? 
+		// per ora non succede niente ma in caso basta copiare la seconda parte della funzione di scientist per modificarlo
 	}
+
+	private void UpdateAnimation(Vector2 direction)
+	{
+		// inserire qui la logica delle animazioni delle guardie 
+	}
+
 }
 
 
