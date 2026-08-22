@@ -23,5 +23,15 @@ public class ZipBombPickup : MonoBehaviour
 
             Destroy(gameObject);
         }
+        Nemico nemico = other.GetComponent<Nemico>();
+
+        if (nemico != null && nemico.parassita != null)
+        {
+            parassita = nemico.parassita;
+
+            GameManager.gameManager.UnlockZipBomb();
+
+            Destroy(gameObject);
+            }
     }
 }

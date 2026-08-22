@@ -22,6 +22,8 @@ public class Parassita : MonoBehaviour
 
     private float raggioEsplosione = 5f;
     private int dannoEsplosione = 50;
+    private float normalSpeed;
+    
 
     [SerializeField] public float moveSpeed = 1.5f;
 
@@ -50,6 +52,7 @@ public class Parassita : MonoBehaviour
     private void Start()
     {
         playerJump = GetComponent<PlayerJump>();
+       
 
         statoAttuale = Stato.libero;
     }
@@ -69,6 +72,15 @@ public class Parassita : MonoBehaviour
             Keyboard.current.eKey.wasPressedThisFrame)
         {
             EsplosioneZipBomb();
+        }
+         // =========================
+        // RUN
+        // =========================
+
+        if (Keyboard.current != null &&
+            Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            Run();
         }
             // gestione eventuali input aggiuntivi da inserire qui, credo
             ConsumoPossesso();
@@ -120,15 +132,7 @@ public class Parassita : MonoBehaviour
         }
 
 
-        // =========================
-        // RUN
-        // =========================
-
-        if (Keyboard.current != null &&
-            Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            Run();
-        }
+       
     }
 
 
@@ -310,14 +314,30 @@ public class Parassita : MonoBehaviour
         running = !running;
 
 
+       if (statoAttuale == Stato.possessing)
+    {
+        if (corpoPosseduto == null)
+        {
+            return;
+        }
+
+        Movement movement = corpoPosseduto.GetComponent<Movement>();
+
+        if (movement == null)
+        {
+            Debug.LogWarning("Il corpo posseduto non ha il componente Movement!");
+            return;
+        }
+
         if (running)
         {
-            moveSpeed += 2f;
+            movement.speed += 0.1f;
         }
         else
         {
-            moveSpeed -= 2f;
+            movement.speed -= 0.1f;
         }
+    }
     }
     public void Muori()
     {
