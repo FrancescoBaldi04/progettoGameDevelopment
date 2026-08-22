@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::guard
   HitPoints: 60
-  humanLayer:
+  Ground_Entities:
     serializedVersion: 2
     m_Bits: 0
   StatoAttuale: 2

@@ -7,6 +7,7 @@ public class scientist : Nemico
     private float lastVertical = -1f;
 	private Movement movement;
     private Animator animator;
+   
     protected override void Awake()
     {
         base.Awake();
@@ -136,6 +137,7 @@ public class scientist : Nemico
         animator.SetFloat("Speed", direction.sqrMagnitude);
         animator.SetFloat("LastHorizontal", lastHorizontal);
         animator.SetFloat("LastVertical", lastVertical);
+      
     }
 }
 
