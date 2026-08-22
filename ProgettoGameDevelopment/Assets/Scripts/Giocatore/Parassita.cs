@@ -34,6 +34,8 @@ public class Parassita : MonoBehaviour
     private const string vertical = "Vertical";
     private const string lastHorizontal = "LastHorizontal";
     private const string lastVertical = "LastVertical";
+    private const string jump = "Jump";
+    private const string resetState = "ResetState";
 
     private PlayerJump playerJump;
 
@@ -209,14 +211,12 @@ public class Parassita : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<Collider2D>().enabled = true;
 
-        
-        rb.linearVelocity = Vector2.zero;
         rb.simulated = true;
 
-        animator.Rebind();
-        animator.Update(0f);
-
         statoAttuale = Stato.libero;
+
+        animator.ResetTrigger(jump);  // ripristina il trigger del salto
+        animator.SetTrigger(resetState); // segnala all'animator che il parassita deve tornare alla sua animazione standard
 
         if (CameraFollow.instance != null)
         {

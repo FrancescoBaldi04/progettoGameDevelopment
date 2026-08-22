@@ -3,6 +3,8 @@ using UnityEngine;
 public class scientist : Nemico
 {
 	private bool isDying=false;
+    private float lastHorizontal = 0;
+    private float lastVertical = -1f;
 	private Movement movement;
     private Animator animator;
     protected override void Awake()
@@ -93,7 +95,7 @@ public class scientist : Nemico
 		isDying = true;
 
 		if (movement != null) movement.speed = 0f;
-		Destroy(gameObject, 1.5f);
+		Destroy(gameObject, 1f);
     }
 
 	private void OnCollisionEnter2D(Collision2D collision)
@@ -123,9 +125,17 @@ public class scientist : Nemico
     {
         if (animator == null) return;
 
+        if (direction != Vector2.zero) // se si sta muovendo memorizzo l'ultima direzione 
+        {
+            lastHorizontal = direction.x;
+            lastVertical = direction.y;
+        }
+
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
         animator.SetFloat("Speed", direction.sqrMagnitude);
+        animator.SetFloat("LastHorizontal", lastHorizontal);
+        animator.SetFloat("LastVertical", lastVertical);
     }
 }
 
