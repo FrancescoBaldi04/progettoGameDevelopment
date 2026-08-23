@@ -17,14 +17,12 @@ public class Parassita : MonoBehaviour
 
     private bool running = false;
 
+    private float health = 60f;
     private float vitaPossesso; // parte da 60 e scende fino a 0 durante il possesso di un npc
     private float timerSecondo; // conta fino ad un secondo in modo da diminuire la vita ogni secondo
-
+    [SerializeField] private HealthBar healthBar;
     private float raggioEsplosione = 5f;
     private int dannoEsplosione = 50;
-    private float normalSpeed;
-    
-
     [SerializeField] public float moveSpeed = 1.5f;
 
     private Rigidbody2D rb;
@@ -46,14 +44,13 @@ public class Parassita : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        healthBar.SetMaxHealth(health);
     }
 
 
     private void Start()
     {
         playerJump = GetComponent<PlayerJump>();
-       
-
         statoAttuale = Stato.libero;
     }
 
@@ -62,44 +59,58 @@ public class Parassita : MonoBehaviour
     {
         if (!StartScreen.giocoIniziato) return;
 
+        if (statoAttuale == Stato.possessing) // consumo vita
+        {
+            vitaPossesso = ConsumoVita(vitaPossesso);
+        }
+        else
+        {
+            health = ConsumoVita(health);
+        }
+
+        if (health <= 0 && playerJump != null) // morte parassita
+        {
+            playerJump.die();
+        }
+
+        if (statoAttuale == Stato.possessing && vitaPossesso <= 0) // morte corpo posseduto
+        {
+            MorteCorpoPosseduto();
+        }
+
         if (statoAttuale == Stato.possessing)
         {
-             // =========================
-        // ZIP BOMB
-        // =========================
+            // =========================
+            // ZIP BOMB
+            // =========================
 
-        if (Keyboard.current != null &&
-            Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            EsplosioneZipBomb();
-        }
-         // =========================
-        // RUN
-        // =========================
+            if (Keyboard.current != null &&
+                Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                EsplosioneZipBomb();
+            }
+            // =========================
+            // RUN
+            // =========================
 
-        if (Keyboard.current != null &&
-            Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            Run();
-        }
-            // gestione eventuali input aggiuntivi da inserire qui, credo
-            ConsumoPossesso();
+            if (Keyboard.current != null &&
+                Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                Run();
+            }
+            
             return;
         }
 
-        if (playerJump != null &&
-            (playerJump.isInAir || playerJump.isDead))
+        if (playerJump != null && (playerJump.isInAir || playerJump.isDead))
         {
             return;
         }
-
 
         movement = InputManager.movement;
 
-
         animator.SetFloat(horizontal, movement.x);
         animator.SetFloat(vertical, movement.y);
-
 
         if (movement != Vector2.zero)
         {
@@ -107,34 +118,15 @@ public class Parassita : MonoBehaviour
             animator.SetFloat(lastVertical, movement.y);
         }
 
-
-        if (playerJump != null &&
-            playerJump.isCharging)
+        if (playerJump != null && playerJump.isCharging)
         {
             rb.linearVelocity = Vector2.zero;
         }
         else
         {
             rb.linearVelocity = moveSpeed * movement;
-        }
-
-
-       
-
-
-        // =========================
-        // CONSUMO POSSESSO
-        // =========================
-
-        if (StatoAttuale == Stato.possessing)
-        {
-            ConsumoPossesso();
-        }
-
-
-       
+        }      
     }
-
 
     // =====================================================
     // POSSESSO
@@ -153,6 +145,7 @@ public class Parassita : MonoBehaviour
 
         vitaPossesso = 60f;
         timerSecondo = 0f;
+        healthBar.SetMaxHealth(vitaPossesso);
     }
 
 
@@ -162,6 +155,10 @@ public class Parassita : MonoBehaviour
         {
             vitaPossesso -= danno;
 
+            if (vitaPossesso < 0) vitaPossesso = 0; // se i punti vita sono sotto zero li porto a zero
+
+            healthBar.SetHealth(vitaPossesso);
+
             if (vitaPossesso <= 0)
             {
                 MorteCorpoPosseduto();
@@ -169,28 +166,29 @@ public class Parassita : MonoBehaviour
         }
     }
 
-    private void ConsumoPossesso()
+    private float ConsumoVita(float health)
     {
-        timerSecondo += Time.deltaTime;
+        timerSecondo += Time.deltaTime; 
 
-        if (timerSecondo >= 1f)
+        if (timerSecondo >= 1f) // conto 1 secondo e resetto il timer in modo da decrementare la vita ogni secondo
         {
             timerSecondo -= 1f;
             
-            if (GameManager.gameManager.hasTrojanHorse)
+            if (GameManager.gameManager.hasTrojanHorse) // controllo Trojan Horse
             {
-                vitaPossesso -= 1f;
+                health -= 1f;
             }
             else
             {
-                vitaPossesso -= 2f;
+                health -= 2f;
             }
         
-            if (vitaPossesso <= 0)
-            {
-                MorteCorpoPosseduto();
-            }
+            if (health < 0) health = 0;
+
+            healthBar.SetHealth(health);
         }
+    
+        return health;
     }
 
     private void MorteCorpoPosseduto()
@@ -218,6 +216,7 @@ public class Parassita : MonoBehaviour
         rb.simulated = true;
 
         statoAttuale = Stato.libero;
+        health = 60f;
 
         animator.ResetTrigger(jump);  // ripristina il trigger del salto
         animator.SetTrigger(resetState); // segnala all'animator che il parassita deve tornare alla sua animazione standard
@@ -288,9 +287,10 @@ public class Parassita : MonoBehaviour
         }
         GameObject corpoDaDistruggere = corpoPosseduto;
 
-    corpoPosseduto = null;
+        corpoPosseduto = null;
+        healthBar.SetHealth(0);
 
-      LiberaParassita();
+        LiberaParassita();
 
         // Distrugge il corpo sacrificato
         Destroy(corpoDaDistruggere);

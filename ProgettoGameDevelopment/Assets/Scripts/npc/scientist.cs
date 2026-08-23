@@ -137,7 +137,6 @@ public class scientist : Nemico
         animator.SetFloat("Speed", direction.sqrMagnitude);
         animator.SetFloat("LastHorizontal", lastHorizontal);
         animator.SetFloat("LastVertical", lastVertical);
-      
     }
 }
 

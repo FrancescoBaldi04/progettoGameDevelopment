@@ -185,7 +185,7 @@ public class guard : Nemico
                     // Faccio partire l'animazione dello sparo.
                     if (animator != null)
                     {
-                        animator.SetTrigger("Shoot");
+                        animator.SetTrigger("Shooting");
                     }
 
                     // Eseguo effettivamente lo sparo.
