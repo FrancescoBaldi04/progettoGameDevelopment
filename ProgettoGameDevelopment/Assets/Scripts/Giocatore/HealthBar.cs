@@ -13,7 +13,7 @@ public class HealthBar : MonoBehaviour
     private float maxHealth; 
 
     public void SetMaxHealth(float health)
-    {
+    { 
         slider.maxValue = health;
         slider.value = health;
         
@@ -21,12 +21,18 @@ public class HealthBar : MonoBehaviour
         maxHealth = health;
         
         UpdateText(health);
+       Debug.Log(
+        "Slider: " + slider.GetComponent<RectTransform>().rect +
+        " | Fill: " + slider.fillRect.rect
+    );
+
     }
 
     public void SetHealth(float health)
     {
         targetHealth = health; 
         UpdateText(health);
+        
     }
 
     void Update()
