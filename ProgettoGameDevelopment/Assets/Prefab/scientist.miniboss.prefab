@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5918613997443290071}
   m_Layer: 8
   m_Name: scientist.miniboss
-  m_TagString: Npc
+  m_TagString: boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 2.047619, y: -2.5}
     oldSize: {x: 1.1875, y: 2.1875}
     newSize: {x: 1.1875, y: 2.1875}
     adaptiveTilingThreshold: 0.5

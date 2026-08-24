@@ -2,66 +2,122 @@ using UnityEngine;
 
 public class turret : Nemico
 {
-	private float timer=1.0f;
+	public float targetDistance = 3.0f;
+	private float timer = 1.0f;
+	private bool isDying = false;
+	private Movement movement;
+	private Animator animator;
 	private int obstacleLayerMask;
-    protected override void Awake()
-    {
-        base.Awake();
-
+	private float lastHorizontal = 0f;
+	private float lastVertical = -1f;
+	//GameObject boss = GameObject.GuardBoss;
+	protected override void Awake() {
+		base.Awake();
+		movement = GetComponent<Movement>();
+		this.movement.speed=0f;
+		animator = GetComponent<Animator>();
 		obstacleLayerMask = LayerMask.GetMask("ground");
-    }
-	
-	void Start() {
-        if (parassita.StatoAttuale == Parassita.Stato.possessing) 
-		{	
-			this.StatoAttuale=Stato.shooting;
-		} else {
-			this.StatoAttuale=Stato.waiting;
-		}
 	}
-    
-	void Update(){
-		switch (StatoAttuale){
-			case Stato.waiting: {
-				timer-=Time.deltaTime;
-				if (timer<=0 && parassita.StatoAttuale == Parassita.Stato.possessing) {
-						timer=1.0f;
-						this.StatoAttuale=Stato.shooting;
-				}
-				
-				break;
-			}
-			
-			case Stato.shooting: {
-				timer-=Time.deltaTime;
-				Vector2 myPosition=transform.position;
-				Vector2 parassitaPosition=parassita.transform.position;
-				
-				float distance=Vector2.Distance(myPosition, parassitaPosition);
-				Vector2 directionToParassita=(parassitaPosition-myPosition).normalized;
 
-				RaycastHit2D hit=Physics2D.Raycast(myPosition, directionToParassita, distance, obstacleLayerMask);
-				
-				if (hit.collider!=null) {
-					this.StatoAttuale=Stato.waiting;
-					timer=1.0f;
-				} else if (timer<=0) {
-					Shoot();
-					timer=1.0f;
-				}
-				
-				break;
-			}
+	void Start() {
+		if (parassita.StatoAttuale == Parassita.Stato.possessing)
+		{
+			StatoAttuale = Stato.shooting;
+		} else {
+			StatoAttuale = Stato.waiting;
 		}
+        UpdateAnimation(Vector2.zero);
+	}
+
+	void Update() {
+		if (isDying) return;
+		/*if (GuardBoss == null)
+		{
+			Die();
+			return;
+		}*/
+
+		switch (StatoAttuale) {
+		
+		case Stato.waiting: {
+			if (parassita.StatoAttuale ==Parassita.Stato.possessing) {
+				StatoAttuale = Stato.shooting;
+			}
+		break;
+		}
+		
+		case Stato.shooting: {
+			movement.SetDirection(Vector2.zero);
+			Vector2 origine;
+		if (spriteRenderer != null) {
+			origine = spriteRenderer.bounds.center;
+		} else {
+			origine = transform.position;
+		}
+		Vector2 targetPosition = GetTargetPosition();
+		Vector2 directionToTarget = (targetPosition - origine).normalized;
+		if (directionToTarget != Vector2.zero) {
+			lastHorizontal = directionToTarget.x;
+			lastVertical = directionToTarget.y;
+			animator.SetFloat("LastHorizontal", lastHorizontal);
+			animator.SetFloat("LastVertical", lastVertical);
+		}
+		timer -= Time.deltaTime;
+		float distance = Vector2.Distance(origine, targetPosition);
+		RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget,
+									distance, obstacleLayerMask);
+		if (timer <= 0) {
+			animator.SetTrigger("Shooting");
+			Shoot();
+			timer = 1.0f;
+		}
+		if(parassita.StatoAttuale == Parassita.Stato.libero){
+			StatoAttuale = Stato.waiting;
+		}
+	break;
+	}
 	}
 }
 
 
+    // =========================================================
+    // ANIMAZIONI
+    // =========================================================
+
+	private void UpdateAnimation(Vector2 direction) {
+		if (animator == null) return;
 
 
+        // Memorizzo l'ultima direzione SOLO quando la guardia
+        // si sta effettivamente muovendo.
+		if (direction != Vector2.zero) {
+			lastHorizontal = direction.x;
+			lastVertical = direction.y;
+		}
 
 
+        // Direzione attuale.
+		animator.SetFloat("Horizontal", direction.x);
+		animator.SetFloat("Vertical", direction.y);
+        // Velocità attuale.
+		animator.SetFloat("Speed", direction.magnitude);
+        // Ultima direzione valida.
+		animator.SetFloat("LastHorizontal", lastHorizontal);
+		animator.SetFloat("LastVertical", lastVertical);
+	}
 
 
+    // =========================================================
+    // MORTE
+    // =========================================================
 
-
+	protected override void Die() {
+		if (isDying) return;
+			isDying = true;
+		if (movement != null) {
+			movement.speed = 0f;
+			movement.SetDirection(Vector2.zero);
+		}
+		Destroy(gameObject, 1.5f);
+	}
+}

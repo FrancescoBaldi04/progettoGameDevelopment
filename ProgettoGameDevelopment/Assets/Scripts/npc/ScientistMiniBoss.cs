@@ -3,18 +3,19 @@ using UnityEngine;
 public class scientistMiniboss : Nemico
 {
 	private bool isDying=false;
+	private float lastHorizontal = 0;
+	private float lastVertical = -1f;
 	private Movement movement;
+	private Animator animator;
+     
+	protected override void Awake() {
+		base.Awake();
+		this.HitPoints=200;
+		movement = GetComponent<Movement>();
+		animator = GetComponent<Animator>();
+	}
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-		movement=GetComponent<Movement>();
-		this.HitPoints = 200;
-    }
-
-	void Start() {
-		
+	void Start() {		
 		if (parassita.StatoAttuale==Parassita.Stato.possessing) {	
 			StatoAttuale=Stato.escaping;
 		} else {
@@ -24,66 +25,75 @@ public class scientistMiniboss : Nemico
 
 	void Update() {
 		if (isDying) return;
-		
+				
 		if (HitPoints<=0) {
 			Die();
 			return;
 		}
-		
-		switch (StatoAttuale)
-		{
-			case Stato.catching: {
-				Vector2 VersoDiCattura=((Vector2)parassita.transform.position-(Vector2)transform.position).normalized;
-				movement.SetDirection(VersoDiCattura);
-				
-				if (parassita.StatoAttuale==Parassita.Stato.possessing) {
-					this.StatoAttuale=Stato.escaping;
-				}
+
+		switch (StatoAttuale) {
 			
-				break;
+		case Stato.catching: {
+			float distanza = Vector2.Distance(transform.position, parassita.transform.position);
+			if (distanza > 0.1f) {
+				Vector2 VersoDiCattura = GetBestDirection(parassita.transform.position,
+												Vector2.zero);
+				movement.SetDirection(VersoDiCattura);
+				UpdateAnimation(VersoDiCattura);
+			} else {
+				movement.SetDirection(Vector2.zero);
+				UpdateAnimation(Vector2.zero);
 			}
+			if (parassita.StatoAttuale == Parassita.Stato.possessing) {
+				StatoAttuale = Stato.escaping;
+			}
+                break;
+		}
 		
-			case Stato.escaping: {
-				Vector2 VersoDiFuga=((Vector2)transform.position-(Vector2)parassita.transform.position).normalized;
-				movement.SetDirection(VersoDiFuga);
-				
-				if (parassita.StatoAttuale==Parassita.Stato.libero) {
-					this.StatoAttuale=Stato.catching;
-				}
-				
-				break;
+		case Stato.escaping: {
+			Vector2 VersoDiFuga= -GetBestDirection(parassita.transform.position, Vector2.zero);
+			movement.SetDirection(VersoDiFuga);
+			if (parassita.StatoAttuale==Parassita.Stato.libero) {
+				this.StatoAttuale=Stato.catching;
 			}
+		break;
+		}
 		}
 	}
-	
-	protected override void Die()
-    {
-        if (isDying) return;
-		isDying = true;
 
+	protected override void Die(){
+		if (isDying) return;
+		isDying = true;
 		if (movement != null) movement.speed = 0f;
-		Destroy(gameObject, 1.5f);
-    }
+		Destroy(gameObject, 1f);
+	}
 
 	private void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.gameObject.name == "bullet") {
+        // Il proiettile fa danno allo scienziato
+		if (collision.gameObject.CompareTag("Bullet") ){
 			PrendiDanno(10);
+			return;
 		}
-		if (this.StatoAttuale==Stato.catching) 
-		{
-			if (collision.gameObject.name == "parassita") 
-				{
-					Debug.Log("parassita catturato");
-					//come chiamamo il metodo per la schermata di game over?
+        // Quando Parassita e Scienziato entrano in collisione vengano automaticamente chiamati entrambi i metodi OnCollisionEnter quindi devo fare in modo che il parassita venga ucciso dallo scienziato solo se il parassita non è in aria e quindi non ha effettuato un salto
+		Parassita parassitaScontrato = collision.gameObject.GetComponent<Parassita>();
+		if (StatoAttuale == Stato.catching && parassitaScontrato != null) {
+			PlayerJump playerJump = parassitaScontrato.GetComponent<PlayerJump>();
+			if (playerJump != null && !playerJump.isInAir) {
+				Debug.Log("Parassita catturato!");
+				parassitaScontrato.Muori();
 			}
 		}
 	}
+	private void UpdateAnimation(Vector2 direction) {
+		if (animator == null) return;
+		if (direction != Vector2.zero)  {
+			lastHorizontal = direction.x;
+			lastVertical = direction.y;
+		}
+		animator.SetFloat("Horizontal", direction.x);
+		animator.SetFloat("Vertical", direction.y);
+		animator.SetFloat("Speed", direction.sqrMagnitude);
+		animator.SetFloat("LastHorizontal", lastHorizontal);
+		animator.SetFloat("LastVertical", lastVertical);
+	}
 }
-
-
-
-
-
-
-
-

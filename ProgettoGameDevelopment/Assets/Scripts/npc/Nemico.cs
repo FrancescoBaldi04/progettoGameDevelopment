@@ -13,60 +13,37 @@ public class Nemico : MonoBehaviour
 	public Transform firePoint;
 	protected SpriteRenderer spriteRenderer;
 	
-	public void Shoot()
-{
-    Vector3 uscitaProiettile = spriteRenderer.bounds.center;
-
-    Vector2 posizioneBersaglio = GetTargetPosition();
-
-    Vector2 direzione =
-        (posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
-
-    float angle =
-        Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
-
-    Quaternion rotazioneProiettile =
-        Quaternion.Euler(0, 0, angle);
-
-    GameObject bullet =
-        Instantiate(
-            bulletPrefab,
-            uscitaProiettile,
-            rotazioneProiettile
-        );
+	public void Shoot() {
+		Vector3 uscitaProiettile = spriteRenderer.bounds.center;
+		Vector2 posizioneBersaglio = GetTargetPosition();
+		Vector2 direzione =(posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
+		float angle =Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
+		Quaternion rotazioneProiettile =Quaternion.Euler(0, 0, angle);
+		GameObject bullet =
+		Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
 		Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
-Collider2D enemyCollider = GetComponent<Collider2D>();
-
-if (bulletCollider != null && enemyCollider != null)
-{
-    Physics2D.IgnoreCollision(bulletCollider, enemyCollider);
-}
-
-    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-    if (rb != null)
-    {
-        rb.linearVelocity = direzione * bulletSpeed;
-    }
-}
-	public Vector2 GetBestDirection(Vector2 targetPosition, Vector2 exclude)
-	{
+		Collider2D enemyCollider = GetComponent<Collider2D>();
+		if (bulletCollider != null && enemyCollider != null) {
+			Physics2D.IgnoreCollision(bulletCollider, enemyCollider);
+		}
+		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+		if (rb != null) {
+			rb.linearVelocity = direzione * bulletSpeed;
+		}
+	}
+	public Vector2 GetBestDirection(Vector2 targetPosition, Vector2 exclude) {
 		up = isFree(Vector2.up);
 		down = isFree(Vector2.down);
 		right = isFree(Vector2.right);
 		left = isFree(Vector2.left);
-		
 		Vector2 currentPosition=new Vector2(this.transform.position.x, this.transform.position.y);
 		Vector2 directionVector=targetPosition - currentPosition;
-		
 		float angleUp=Vector2.Angle(Vector2.up, directionVector);
 		float angleDown=Vector2.Angle(Vector2.down, directionVector);
 		float angleRight=Vector2.Angle(Vector2.right, directionVector);
 		float angleLeft=Vector2.Angle(Vector2.left, directionVector);
-		
 		Vector2 bestDirection=Vector2.zero;
 		float bestAngle=360.0f;
-		
 		if (up && angleUp<=bestAngle && exclude!=Vector2.up) {
 			bestDirection=Vector2.up;
 			bestAngle=angleUp;
@@ -85,47 +62,32 @@ if (bulletCollider != null && enemyCollider != null)
 		}
 		return bestDirection;
 	}
-	protected virtual void Awake()
-	{
-    	parassita = FindFirstObjectByType<Parassita>();
+	protected virtual void Awake() {
+		parassita = FindFirstObjectByType<Parassita>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-
 	}
 	public bool isFree(Vector2 direction){
-		RaycastHit2D hitcast=Physics2D.BoxCast(
-			this.transform.position,
-			Vector2.one*0.75f,
-			0.0f,
-			direction,
-			1.0f,
-			this.Ground_Entities
-		);
+		RaycastHit2D hitcast=Physics2D.BoxCast(this.transform.position, Vector2.one*0.75f,
+									    0.0f, direction, 1.0f, this.Ground_Entities);
 		return hitcast.collider==null;
 	}
-	public void PrendiDanno(int danno)
-	{
+	public void PrendiDanno(int danno) {
 		HitPoints -= danno;
-
 		Debug.Log(name + " ha ricevuto " + danno + " danni. HP: " + HitPoints);
-
 		if (HitPoints <= 0){ 
-            Die();
+			Die();
 		}
 	}
 
-	protected virtual void Die() // comportamento base distrugge l'oggetto però i figli possono sovrascrivere il metodo
-	{
+	protected virtual void Die() {
 		Destroy(gameObject);
 	}
-	protected Vector2 GetTargetPosition()
-    {
-        if (parassita.StatoAttuale == Parassita.Stato.possessing &&
-            parassita.corpoPosseduto != null)
-        {
-            return parassita.GetCorpoPossedutoPosition();
-        }
-
-        return parassita.transform.position;
-    }
+	protected Vector2 GetTargetPosition() {
+		if (parassita.StatoAttuale == Parassita.Stato.possessing && 
+			                                    parassita.corpoPosseduto != null) {
+			return parassita.GetCorpoPossedutoPosition();
+		}
+		return parassita.transform.position;
+	}
 	
 }
