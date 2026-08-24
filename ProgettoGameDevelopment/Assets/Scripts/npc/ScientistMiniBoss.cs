@@ -7,6 +7,7 @@ public class scientistMiniboss : Nemico
 	private float lastVertical = -1f;
 	private Movement movement;
 	private Animator animator;
+	[SerializeField] private GameObject ZipBomb;
      
 	protected override void Awake() {
 		base.Awake();
@@ -65,6 +66,8 @@ public class scientistMiniboss : Nemico
 		if (isDying) return;
 		isDying = true;
 		if (movement != null) movement.speed = 0f;
+		//drop potenziamento
+    Instantiate(ZipBomb, transform.position, Quaternion.identity);
 		Destroy(gameObject, 1f);
 	}
 

@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 2f2afd9a55bb9ca48a48207e89ce4003
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - parassita: {instanceID: 0}
+  - bulletPrefab: {instanceID: 0}
+  - firePoint: {instanceID: 0}
+  - TrojanHorse: {fileID: 210843168752834587, guid: fc7798488f1114bcaae2a0fe72548022, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

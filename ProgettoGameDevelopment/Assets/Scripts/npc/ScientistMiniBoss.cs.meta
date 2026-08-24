@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 3190ff594fe2e864b8902696a1a932d6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - parassita: {instanceID: 0}
+  - bulletPrefab: {instanceID: 0}
+  - firePoint: {instanceID: 0}
+  - ZipBomb: {fileID: 3099001216324730113, guid: 86b721e0a657241369f217603d6a6cf1, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

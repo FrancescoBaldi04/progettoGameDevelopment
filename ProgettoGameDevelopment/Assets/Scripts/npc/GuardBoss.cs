@@ -10,6 +10,10 @@ public class guardboss : Nemico
 	private int obstacleLayerMask;
 	private float lastHorizontal = 0f;
 	private float lastVertical = -1f;
+   
+    [SerializeField] private GameObject TrojanHorse;
+
+
 	protected override void Awake() {
 		base.Awake();
 		this.HitPoints=500;
@@ -147,6 +151,13 @@ public class guardboss : Nemico
 			movement.speed = 0f;
 			movement.SetDirection(Vector2.zero);
 		}
-		Destroy(gameObject, 1.5f);
-	}
+		//drop potenziamento
+    Instantiate(TrojanHorse, transform.position, Quaternion.identity);
+    Destroy(gameObject, 1.5f);
+}
+		
+	
+	
+
+
 }
