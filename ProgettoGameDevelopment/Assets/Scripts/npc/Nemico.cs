@@ -11,20 +11,44 @@ public class Nemico : MonoBehaviour
 	public GameObject bulletPrefab;
 	public float bulletSpeed=10f;
 	public Transform firePoint;
-	public void Shoot() {
-		Vector3 uscitaProiettile= (firePoint != null) ? firePoint.position : transform.position;
-		
-		Vector2 direzione = (parassita.transform.position - transform.position).normalized;
-		
-		float angle = Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg; // ruoto il proiettile in modo che guardi sempre verso il parassita
-    	Quaternion rotazioneProiettile = Quaternion.Euler(0, 0, angle);
+	protected SpriteRenderer spriteRenderer;
+	
+	public void Shoot()
+{
+    Vector3 uscitaProiettile = spriteRenderer.bounds.center;
 
-		GameObject bullet=Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
-		Rigidbody2D rb=bullet.GetComponent<Rigidbody2D>();
-		if (rb!=null) {
-			rb.linearVelocity = direzione * bulletSpeed;
-		}
-	}
+    Vector2 posizioneBersaglio = GetTargetPosition();
+
+    Vector2 direzione =
+        (posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
+
+    float angle =
+        Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
+
+    Quaternion rotazioneProiettile =
+        Quaternion.Euler(0, 0, angle);
+
+    GameObject bullet =
+        Instantiate(
+            bulletPrefab,
+            uscitaProiettile,
+            rotazioneProiettile
+        );
+		Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
+Collider2D enemyCollider = GetComponent<Collider2D>();
+
+if (bulletCollider != null && enemyCollider != null)
+{
+    Physics2D.IgnoreCollision(bulletCollider, enemyCollider);
+}
+
+    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+    if (rb != null)
+    {
+        rb.linearVelocity = direzione * bulletSpeed;
+    }
+}
 	public Vector2 GetBestDirection(Vector2 targetPosition, Vector2 exclude)
 	{
 		up = isFree(Vector2.up);
@@ -64,6 +88,8 @@ public class Nemico : MonoBehaviour
 	protected virtual void Awake()
 	{
     	parassita = FindFirstObjectByType<Parassita>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
+
 	}
 	public bool isFree(Vector2 direction){
 		RaycastHit2D hitcast=Physics2D.BoxCast(
@@ -91,5 +117,15 @@ public class Nemico : MonoBehaviour
 	{
 		Destroy(gameObject);
 	}
+	protected Vector2 GetTargetPosition()
+    {
+        if (parassita.StatoAttuale == Parassita.Stato.possessing &&
+            parassita.corpoPosseduto != null)
+        {
+            return parassita.GetCorpoPossedutoPosition();
+        }
+
+        return parassita.transform.position;
+    }
 	
 }

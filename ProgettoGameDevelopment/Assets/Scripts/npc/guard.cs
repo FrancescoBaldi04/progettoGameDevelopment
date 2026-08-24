@@ -24,6 +24,7 @@ public class guard : Nemico
 
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
+        
 
         obstacleLayerMask = LayerMask.GetMask("ground");
     }
@@ -146,58 +147,63 @@ public class guard : Nemico
             // =====================================================
 
             case Stato.shooting:
-            {
-                // La guardia deve rimanere ferma.
-                movement.SetDirection(Vector2.zero);
-                UpdateAnimation(Vector2.zero);
+{
+    movement.SetDirection(Vector2.zero);
 
+    Vector2 origine;
 
-                timer -= Time.deltaTime;
+    if (spriteRenderer != null)
+        origine = spriteRenderer.bounds.center;
+    else
+        origine = transform.position;
 
+    Vector2 targetPosition = GetTargetPosition();
 
-                Vector2 myPosition = transform.position;
-                Vector2 parassitaPosition = parassita.transform.position;
+    Vector2 directionToTarget =
+        (targetPosition - origine).normalized;
 
-                float distance =
-                    Vector2.Distance(myPosition, parassitaPosition);
+    // Aggiorna continuamente la direzione
+    // verso il corpo posseduto
+    if (directionToTarget != Vector2.zero)
+    {
+        lastHorizontal = directionToTarget.x;
+        lastVertical = directionToTarget.y;
 
-                Vector2 directionToParassita =
-                    (parassitaPosition - myPosition).normalized;
+        animator.SetFloat("LastHorizontal", lastHorizontal);
+        animator.SetFloat("LastVertical", lastVertical);
+    }
 
+    timer -= Time.deltaTime;
 
-                RaycastHit2D hit =
-                    Physics2D.Raycast(
-                        myPosition,
-                        directionToParassita,
-                        distance,
-                        obstacleLayerMask
-                    );
+    float distance =
+        Vector2.Distance(origine, targetPosition);
 
+    RaycastHit2D hit =
+        Physics2D.Raycast(
+            origine,
+            directionToTarget,
+            distance,
+            obstacleLayerMask
+        );
 
-                // Ha perso la linea di vista del parassita.
-                if (hit.collider != null)
-                {
-                    StatoAttuale = Stato.positioning;
-                    timer = 1.0f;
-                }
-                else if (timer <= 0)
-                {
-                    // Faccio partire l'animazione dello sparo.
-                    if (animator != null)
-                    {
-                        animator.SetTrigger("Shooting");
-                    }
+    if (hit.collider != null || distance > targetDistance + 0.3f)
+{
+    StatoAttuale = Stato.positioning;
+    timer = 1.0f;
+}
+    else if (timer <= 0)
+    {
+        animator.SetTrigger("Shooting");
 
-                    // Eseguo effettivamente lo sparo.
-                    Shoot();
+        Shoot();
 
-                    // Tempo prima del prossimo sparo.
-                    timer = 1.0f;
-                }
-
-                break;
-            }
-
+        timer = 1.0f;
+    }
+    if(parassita.StatoAttuale==Parassita.Stato.libero){
+StatoAttuale = Stato.escaping;
+    }
+    break;
+}
 
             // =====================================================
             // POSSESSED
@@ -223,6 +229,7 @@ public class guard : Nemico
             }
         }
     }
+   
 
 
     // =========================================================
@@ -278,16 +285,5 @@ public class guard : Nemico
     }
 
 
-    // =========================================================
-    // COLLISIONI
-    // =========================================================
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            PrendiDanno(10);
-            return;
-        }
-    }
+    
 }

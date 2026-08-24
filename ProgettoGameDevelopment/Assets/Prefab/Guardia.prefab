@@ -204,7 +204,7 @@ MonoBehaviour:
   down: 0
   right: 0
   left: 0
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: -2253911629886400664, guid: 8b113ab04efcee14d9bdb335a1d36b95, type: 3}
   bulletSpeed: 10
   firePoint: {fileID: 0}
   targetDistance: 3

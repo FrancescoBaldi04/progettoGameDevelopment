@@ -7,12 +7,14 @@ public class scientist : Nemico
     private float lastVertical = -1f;
 	private Movement movement;
     private Animator animator;
+     
    
     protected override void Awake()
     {
         base.Awake();
 		movement = GetComponent<Movement>();
 		animator = GetComponent<Animator>();
+        
     }
 
 	void Start() {		
@@ -102,10 +104,15 @@ public class scientist : Nemico
 	private void OnCollisionEnter2D(Collision2D collision)
     {
         // Il proiettile fa danno allo scienziato
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet") ){
+            if( parassita.statoAttuale != Parassita.Stato.possessing)
         {
             PrendiDanno(10);
             return;
+        }else{
+            parassita.SubisciDanno(10);
+            return;
+        }
         }
 
         // Quando Parassita e Scienziato entrano in collisione vengano automaticamente chiamati entrambi i metodi OnCollisionEnter quindi devo fare in modo che il parassita venga ucciso dallo scienziato solo se il parassita non è in aria e quindi non ha effettuato un salto

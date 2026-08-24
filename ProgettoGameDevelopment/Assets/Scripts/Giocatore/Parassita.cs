@@ -9,9 +9,9 @@ public class Parassita : MonoBehaviour
         possessing
     }
   [SerializeField] private GameObject esplosionePrefab;
-    private GameObject corpoPosseduto;
+    public GameObject corpoPosseduto;
 
-    private Stato statoAttuale;
+    public Stato statoAttuale;
 
     public Stato StatoAttuale => statoAttuale;
 
@@ -22,7 +22,7 @@ public class Parassita : MonoBehaviour
     private float timerSecondo; // conta fino ad un secondo in modo da diminuire la vita ogni secondo
     [SerializeField] private HealthBar healthBar;
     private float raggioEsplosione = 5f;
-    private int dannoEsplosione = 50;
+    private int dannoEsplosione = 60;
     [SerializeField] public float moveSpeed = 1.5f;
 
     private Rigidbody2D rb;
@@ -58,7 +58,7 @@ public class Parassita : MonoBehaviour
     private void Update()
     {
         if (!StartScreen.giocoIniziato) return;
-
+         
         if (statoAttuale == Stato.possessing) // consumo vita
         {
             vitaPossesso = ConsumoVita(vitaPossesso);
@@ -99,6 +99,8 @@ public class Parassita : MonoBehaviour
                 Run();
             }
             
+
+
             return;
         }
 
@@ -191,7 +193,7 @@ public class Parassita : MonoBehaviour
         return health;
     }
 
-    private void MorteCorpoPosseduto()
+    public void MorteCorpoPosseduto()
     {
         if (corpoPosseduto != null)
         {
@@ -348,4 +350,29 @@ public class Parassita : MonoBehaviour
             playerJump.die();
         }
     }
+    public Vector2 GetCorpoPossedutoPosition()
+{
+    if (corpoPosseduto == null)
+        return transform.position;
+
+    SpriteRenderer sr =
+        corpoPosseduto.GetComponent<SpriteRenderer>();
+
+    if (sr != null)
+        return sr.bounds.center;
+
+    return corpoPosseduto.transform.position;
+}
+private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+ if (collision.gameObject.CompareTag("Bullet"))
+        {
+            SubisciDanno(10);
+            return;
+        }
+
+
+    }
+    
 }
