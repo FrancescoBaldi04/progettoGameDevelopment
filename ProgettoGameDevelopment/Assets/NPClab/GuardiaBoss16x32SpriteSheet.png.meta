@@ -1,0 +1,1476 @@
+fileFormatVersion: 2
+guid: 5b7bba321bed6bd4b9d0202a200086a0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3247806847233407621
+    second: GuardiaBoss16x32SpriteSheet_0
+  - first:
+      213: -4001531283027845501
+    second: GuardiaBoss16x32SpriteSheet_1
+  - first:
+      213: -2024044263974932458
+    second: GuardiaBoss16x32SpriteSheet_2
+  - first:
+      213: 7361572805956214181
+    second: GuardiaBoss16x32SpriteSheet_3
+  - first:
+      213: 4841733284168674113
+    second: GuardiaBoss16x32SpriteSheet_4
+  - first:
+      213: -8157529401700457683
+    second: GuardiaBoss16x32SpriteSheet_5
+  - first:
+      213: 1815946497095274883
+    second: GuardiaBoss16x32SpriteSheet_6
+  - first:
+      213: 5295125514082465116
+    second: GuardiaBoss16x32SpriteSheet_7
+  - first:
+      213: -4383372709425290612
+    second: GuardiaBoss16x32SpriteSheet_8
+  - first:
+      213: -4947951157395786438
+    second: GuardiaBoss16x32SpriteSheet_9
+  - first:
+      213: -8642613537857955885
+    second: GuardiaBoss16x32SpriteSheet_10
+  - first:
+      213: 4974562520657415474
+    second: GuardiaBoss16x32SpriteSheet_11
+  - first:
+      213: -649293874307943989
+    second: GuardiaBoss16x32SpriteSheet_12
+  - first:
+      213: 9129542165244101766
+    second: GuardiaBoss16x32SpriteSheet_13
+  - first:
+      213: -5567275805740266165
+    second: GuardiaBoss16x32SpriteSheet_14
+  - first:
+      213: -7667890815889015764
+    second: GuardiaBoss16x32SpriteSheet_15
+  - first:
+      213: -436150572896695693
+    second: GuardiaBoss16x32SpriteSheet_16
+  - first:
+      213: -1579012557938516021
+    second: GuardiaBoss16x32SpriteSheet_17
+  - first:
+      213: 7881469411051339486
+    second: GuardiaBoss16x32SpriteSheet_18
+  - first:
+      213: 5486015901381322827
+    second: GuardiaBoss16x32SpriteSheet_19
+  - first:
+      213: -3268445538707475281
+    second: GuardiaBoss16x32SpriteSheet_20
+  - first:
+      213: -7076123063059022772
+    second: GuardiaBoss16x32SpriteSheet_21
+  - first:
+      213: 9192745897747039405
+    second: GuardiaBoss16x32SpriteSheet_22
+  - first:
+      213: -4724491593744018325
+    second: GuardiaBoss16x32SpriteSheet_23
+  - first:
+      213: 6972983204157441773
+    second: GuardiaBoss16x32SpriteSheet_24
+  - first:
+      213: -4541341864300294740
+    second: GuardiaBoss16x32SpriteSheet_25
+  - first:
+      213: -8356499868747067394
+    second: GuardiaBoss16x32SpriteSheet_26
+  - first:
+      213: 5116717415449847230
+    second: GuardiaBoss16x32SpriteSheet_27
+  - first:
+      213: -8106802292045761213
+    second: GuardiaBoss16x32SpriteSheet_28
+  - first:
+      213: 8176156685080947568
+    second: GuardiaBoss16x32SpriteSheet_29
+  - first:
+      213: -3146732110501543799
+    second: GuardiaBoss16x32SpriteSheet_30
+  - first:
+      213: 6544296029857674668
+    second: GuardiaBoss16x32SpriteSheet_31
+  - first:
+      213: -5660449078427321095
+    second: GuardiaBoss16x32SpriteSheet_32
+  - first:
+      213: -405700247736455588
+    second: GuardiaBoss16x32SpriteSheet_33
+  - first:
+      213: 4641782788831698069
+    second: GuardiaBoss16x32SpriteSheet_34
+  - first:
+      213: 6996767087400684543
+    second: GuardiaBoss16x32SpriteSheet_35
+  - first:
+      213: -7920356667316621955
+    second: GuardiaBoss16x32SpriteSheet_36
+  - first:
+      213: -3579053954470875544
+    second: GuardiaBoss16x32SpriteSheet_37
+  - first:
+      213: -8768294579448987723
+    second: GuardiaBoss16x32SpriteSheet_38
+  - first:
+      213: -7769192424121076313
+    second: GuardiaBoss16x32SpriteSheet_39
+  - first:
+      213: -1596480489369116049
+    second: GuardiaBoss16x32SpriteSheet_40
+  - first:
+      213: -1104465360934960474
+    second: GuardiaBoss16x32SpriteSheet_41
+  - first:
+      213: -3014971674086805506
+    second: GuardiaBoss16x32SpriteSheet_42
+  - first:
+      213: -5392131515432885839
+    second: GuardiaBoss16x32SpriteSheet_43
+  - first:
+      213: 6020905213495504189
+    second: GuardiaBoss16x32SpriteSheet_44
+  - first:
+      213: 6275958604245796140
+    second: GuardiaBoss16x32SpriteSheet_45
+  - first:
+      213: -4439184384820226265
+    second: GuardiaBoss16x32SpriteSheet_46
+  - first:
+      213: -4255307562978579986
+    second: GuardiaBoss16x32SpriteSheet_47
+  - first:
+      213: -9195480541877430075
+    second: GuardiaBoss16x32SpriteSheet_48
+  - first:
+      213: -6931751124598433594
+    second: GuardiaBoss16x32SpriteSheet_49
+  - first:
+      213: 7786086420187967968
+    second: GuardiaBoss16x32SpriteSheet_50
+  - first:
+      213: 6376142480306253608
+    second: GuardiaBoss16x32SpriteSheet_51
+  - first:
+      213: -7033193647928121131
+    second: GuardiaBoss16x32SpriteSheet_52
+  - first:
+      213: 3591593831857440620
+    second: GuardiaBoss16x32SpriteSheet_53
+  - first:
+      213: 1427618334701199262
+    second: GuardiaBoss16x32SpriteSheet_54
+  - first:
+      213: -2705127703304252686
+    second: GuardiaBoss16x32SpriteSheet_55
+  - first:
+      213: 8258644733352708763
+    second: GuardiaBoss16x32SpriteSheet_56
+  - first:
+      213: -5921632311814873704
+    second: GuardiaBoss16x32SpriteSheet_57
+  - first:
+      213: 1471721733606553145
+    second: GuardiaBoss16x32SpriteSheet_58
+  - first:
+      213: 4039285685108339753
+    second: GuardiaBoss16x32SpriteSheet_59
+  - first:
+      213: -3265252659573385059
+    second: GuardiaBoss16x32SpriteSheet_60
+  - first:
+      213: -5848467126606815864
+    second: GuardiaBoss16x32SpriteSheet_61
+  - first:
+      213: -831462222581016651
+    second: GuardiaBoss16x32SpriteSheet_62
+  - first:
+      213: -5730923471597422056
+    second: GuardiaBoss16x32SpriteSheet_63
+  - first:
+      213: -4971397720559943985
+    second: GuardiaBoss16x32SpriteSheet_64
+  - first:
+      213: -2991181378958163038
+    second: GuardiaBoss16x32SpriteSheet_65
+  - first:
+      213: 377414112566246938
+    second: GuardiaBoss16x32SpriteSheet_66
+  - first:
+      213: 9015281661357082791
+    second: GuardiaBoss16x32SpriteSheet_67
+  - first:
+      213: 6861976622923902789
+    second: GuardiaBoss16x32SpriteSheet_68
+  - first:
+      213: 4246222176959101011
+    second: GuardiaBoss16x32SpriteSheet_69
+  - first:
+      213: -8994628826466335474
+    second: GuardiaBoss16x32SpriteSheet_70
+  - first:
+      213: -3686793621140401370
+    second: GuardiaBoss16x32SpriteSheet_71
+  - first:
+      213: -8308243146851039894
+    second: GuardiaBoss16x32SpriteSheet_72
+  - first:
+      213: -8957319313447962955
+    second: GuardiaBoss16x32SpriteSheet_73
+  - first:
+      213: -1235141977738134037
+    second: GuardiaBoss16x32SpriteSheet_74
+  - first:
+      213: -5410766798109685520
+    second: GuardiaBoss16x32SpriteSheet_75
+  - first:
+      213: -1172616008304880428
+    second: GuardiaBoss16x32SpriteSheet_76
+  - first:
+      213: 7974562517228970026
+    second: GuardiaBoss16x32SpriteSheet_77
+  - first:
+      213: 780021911918579276
+    second: GuardiaBoss16x32SpriteSheet_78
+  - first:
+      213: 356214486378808822
+    second: GuardiaBoss16x32SpriteSheet_79
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58abd64be17821d20800000000000000
+      internalID: 3247806847233407621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 352
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e1385cf74b778c0800000000000000
+      internalID: -4001531283027845501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 352
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6107b1c377629e3e0800000000000000
+      internalID: -2024044263974932458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 352
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ad1237b67f892660800000000000000
+      internalID: 7361572805956214181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14b2f04f4ca413340800000000000000
+      internalID: 4841733284168674113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 320
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d23e6d6ca32aace80800000000000000
+      internalID: -8157529401700457683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 320
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3819a72c7b9833910800000000000000
+      internalID: 1815946497095274883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 320
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c553efba9901c7940800000000000000
+      internalID: 5295125514082465116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c826090beb12b23c0800000000000000
+      internalID: -4383372709425290612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 288
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a35f07143a8555bb0800000000000000
+      internalID: -4947951157395786438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d79ef027c44f0880800000000000000
+      internalID: -8642613537857955885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 288
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23dc1c49142390540800000000000000
+      internalID: 4974562520657415474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc1b90359ae3df6f0800000000000000
+      internalID: -649293874307943989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 256
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68443599a36a2be70800000000000000
+      internalID: 9129542165244101766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 256
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4d8930c6201db2b0800000000000000
+      internalID: -5567275805740266165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 256
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2c747edded269590800000000000000
+      internalID: -7667890815889015764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37ac8e16d5b72f9f0800000000000000
+      internalID: -436150572896695693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 224
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcf913cc178361ae0800000000000000
+      internalID: -1579012557938516021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ede72d9ebaa906d60800000000000000
+      internalID: 7881469411051339486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 224
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b486af9656e322c40800000000000000
+      internalID: 5486015901381322827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa471a9791624a2d0800000000000000
+      internalID: -3268445538707475281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 192
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4cfa67a09f8ccd90800000000000000
+      internalID: -7076123063059022772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da444a150b1339f70800000000000000
+      internalID: 9192745897747039405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b64919a4deb3f6eb0800000000000000
+      internalID: -4724491593744018325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de6c19c974305c060800000000000000
+      internalID: 6972983204157441773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cad45cea2a9e9f0c0800000000000000
+      internalID: -4541341864300294740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff8bbdd4afb70c80800000000000000
+      internalID: -8356499868747067394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb561fb316b320740800000000000000
+      internalID: 5116717415449847230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3453a4e544ade7f80800000000000000
+      internalID: -8106802292045761213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 128
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07b6f2a9f2b877170800000000000000
+      internalID: 8176156685080947568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9808d3e41df8454d0800000000000000
+      internalID: -3146732110501543799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca57aa4e09202da50800000000000000
+      internalID: 6544296029857674668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fcf623bd8b0271b0800000000000000
+      internalID: -5660449078427321095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e616036c9ae5af0800000000000000
+      internalID: -405700247736455588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59cd5dc6adcea6040800000000000000
+      internalID: 4641782788831698069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffb89a47892891160800000000000000
+      internalID: 6996767087400684543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7d223e239d351290800000000000000
+      internalID: -7920356667316621955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86e6ecb1465a45ec0800000000000000
+      internalID: -3579053954470875544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bfb5f15982c05680800000000000000
+      internalID: -8768294579448987723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_39
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a57b9837a84e2490800000000000000
+      internalID: -7769192424121076313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f62ef44147928d9e0800000000000000
+      internalID: -1596480489369116049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_41
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a28fbe1b962ca0f0800000000000000
+      internalID: -1104465360934960474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_42
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: effe0368c3ba826d0800000000000000
+      internalID: -3014971674086805506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_43
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b12f6894fc4b25b0800000000000000
+      internalID: -5392131515432885839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d62bc346d8e8350800000000000000
+      internalID: 6020905213495504189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_45
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25802f591fa81750800000000000000
+      internalID: 6275958604245796140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_46
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72754526259d462c0800000000000000
+      internalID: -4439184384820226265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuardiaBoss16x32SpriteSheet_47
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee9e0aa215c12f4c0800000000000000
+      internalID: -4255307562978579986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 18f2c0e23e58c6c4898fc8fc9cfdba76
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      GuardiaBoss16x32SpriteSheet_0: 3247806847233407621
+      GuardiaBoss16x32SpriteSheet_1: -4001531283027845501
+      GuardiaBoss16x32SpriteSheet_10: -8642613537857955885
+      GuardiaBoss16x32SpriteSheet_11: 4974562520657415474
+      GuardiaBoss16x32SpriteSheet_12: -649293874307943989
+      GuardiaBoss16x32SpriteSheet_13: 9129542165244101766
+      GuardiaBoss16x32SpriteSheet_14: -5567275805740266165
+      GuardiaBoss16x32SpriteSheet_15: -7667890815889015764
+      GuardiaBoss16x32SpriteSheet_16: -436150572896695693
+      GuardiaBoss16x32SpriteSheet_17: -1579012557938516021
+      GuardiaBoss16x32SpriteSheet_18: 7881469411051339486
+      GuardiaBoss16x32SpriteSheet_19: 5486015901381322827
+      GuardiaBoss16x32SpriteSheet_2: -2024044263974932458
+      GuardiaBoss16x32SpriteSheet_20: -3268445538707475281
+      GuardiaBoss16x32SpriteSheet_21: -7076123063059022772
+      GuardiaBoss16x32SpriteSheet_22: 9192745897747039405
+      GuardiaBoss16x32SpriteSheet_23: -4724491593744018325
+      GuardiaBoss16x32SpriteSheet_24: 6972983204157441773
+      GuardiaBoss16x32SpriteSheet_25: -4541341864300294740
+      GuardiaBoss16x32SpriteSheet_26: -8356499868747067394
+      GuardiaBoss16x32SpriteSheet_27: 5116717415449847230
+      GuardiaBoss16x32SpriteSheet_28: -8106802292045761213
+      GuardiaBoss16x32SpriteSheet_29: 8176156685080947568
+      GuardiaBoss16x32SpriteSheet_3: 7361572805956214181
+      GuardiaBoss16x32SpriteSheet_30: -3146732110501543799
+      GuardiaBoss16x32SpriteSheet_31: 6544296029857674668
+      GuardiaBoss16x32SpriteSheet_32: -5660449078427321095
+      GuardiaBoss16x32SpriteSheet_33: -405700247736455588
+      GuardiaBoss16x32SpriteSheet_34: 4641782788831698069
+      GuardiaBoss16x32SpriteSheet_35: 6996767087400684543
+      GuardiaBoss16x32SpriteSheet_36: -7920356667316621955
+      GuardiaBoss16x32SpriteSheet_37: -3579053954470875544
+      GuardiaBoss16x32SpriteSheet_38: -8768294579448987723
+      GuardiaBoss16x32SpriteSheet_39: -7769192424121076313
+      GuardiaBoss16x32SpriteSheet_4: 4841733284168674113
+      GuardiaBoss16x32SpriteSheet_40: -1596480489369116049
+      GuardiaBoss16x32SpriteSheet_41: -1104465360934960474
+      GuardiaBoss16x32SpriteSheet_42: -3014971674086805506
+      GuardiaBoss16x32SpriteSheet_43: -5392131515432885839
+      GuardiaBoss16x32SpriteSheet_44: 6020905213495504189
+      GuardiaBoss16x32SpriteSheet_45: 6275958604245796140
+      GuardiaBoss16x32SpriteSheet_46: -4439184384820226265
+      GuardiaBoss16x32SpriteSheet_47: -4255307562978579986
+      GuardiaBoss16x32SpriteSheet_5: -8157529401700457683
+      GuardiaBoss16x32SpriteSheet_6: 1815946497095274883
+      GuardiaBoss16x32SpriteSheet_7: 5295125514082465116
+      GuardiaBoss16x32SpriteSheet_8: -4383372709425290612
+      GuardiaBoss16x32SpriteSheet_9: -4947951157395786438
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
