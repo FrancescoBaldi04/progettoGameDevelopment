@@ -82,11 +82,11 @@ public class scientist : Nemico
 	private void OnCollisionEnter2D(Collision2D collision) {
         // Il proiettile fa danno allo scienziato
 		if (collision.gameObject.CompareTag("Bullet") ){
-			if( parassita.statoAttuale != Parassita.Stato.possessing) {
-				PrendiDanno(10);
+			if(  parassita.corpoPosseduto.GetComponent<scientist>() != null) {
+				parassita.SubisciDanno(10);
 				return;
 			}else{
-				parassita.SubisciDanno(10);
+				PrendiDanno(10);
 				return;
 			}
 		}

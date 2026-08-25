@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 	public Vector2 direction=Vector2.right;
+	public Vector2 lastDirection=Vector2.right;
 	public float speed=0.1f;
 	private Rigidbody2D body;
 	
@@ -17,6 +18,11 @@ public class Movement : MonoBehaviour
 	}
 	
 	public void SetDirection(Vector2 newdirection) {
-			direction=newdirection;
+		direction=newdirection;
+		  if (newdirection != Vector2.zero)
+        {
+			lastDirection=newdirection;
+		}
+			
 	}
 }

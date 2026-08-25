@@ -98,7 +98,10 @@ public class Parassita : MonoBehaviour
             {
                 Run();
             }
-            
+            if(corpoPosseduto.GetComponent<guard>() != null &&  Keyboard.current.fKey.wasPressedThisFrame){
+            Nemico nemico=corpoPosseduto.GetComponent<guard>();
+            nemico.Shoot(true);
+            }
 
 
             return;
@@ -363,6 +366,7 @@ public class Parassita : MonoBehaviour
 
     return corpoPosseduto.transform.position;
 }
+
 private void OnCollisionEnter2D(Collision2D collision)
     {
 

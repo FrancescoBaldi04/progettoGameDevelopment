@@ -68,7 +68,7 @@ public class turret : Nemico
 									distance, obstacleLayerMask);
 		if (timer <= 0) {
 			animator.SetTrigger("Shooting");
-			Shoot();
+			Shoot(false);
 			timer = 1.0f;
 		}
 		if(parassita.StatoAttuale == Parassita.Stato.libero){

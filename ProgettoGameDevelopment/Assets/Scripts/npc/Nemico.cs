@@ -13,18 +13,53 @@ public class Nemico : MonoBehaviour
 	public Transform firePoint;
 	protected SpriteRenderer spriteRenderer;
 	
-	public void Shoot() {
+	public void Shoot(bool WhoIsShooting) {
 		Vector3 uscitaProiettile = spriteRenderer.bounds.center;
-		Vector2 posizioneBersaglio = GetTargetPosition();
-		Vector2 direzione =(posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
+
+    Vector2 direzione;
+
+    if (WhoIsShooting)
+    {
+        // Il nemico è controllato dal Parassita
+        Movement movement = GetComponent<Movement>();
+
+        if (movement != null)
+        {
+            direzione = movement.lastDirection.normalized;
+        }
+        else
+        {
+            return;
+        }
+    }
+    else
+    {
+        // Il nemico è controllato normalmente dall'IA
+        Vector2 posizioneBersaglio = GetTargetPosition();
+
+        direzione =
+            (posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
+    }
+
 		float angle =Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
 		Quaternion rotazioneProiettile =Quaternion.Euler(0, 0, angle);
 		GameObject bullet =
 		Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
-		Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
+        Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
+		if (WhoIsShooting){
+ Collider2D possessedCollider =
+        parassita.GetComponent<Collider2D>();
+		  Physics2D.IgnoreCollision(
+            bulletCollider,
+            possessedCollider
+        );
+		}else{
+    
+		
 		Collider2D enemyCollider = GetComponent<Collider2D>();
 		if (bulletCollider != null && enemyCollider != null) {
 			Physics2D.IgnoreCollision(bulletCollider, enemyCollider);
+		}
 		}
 		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 		if (rb != null) {

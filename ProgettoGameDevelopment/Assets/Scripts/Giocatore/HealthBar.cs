@@ -21,11 +21,6 @@ public class HealthBar : MonoBehaviour
         maxHealth = health;
         
         UpdateText(health);
-       Debug.Log(
-        "Slider: " + slider.GetComponent<RectTransform>().rect +
-        " | Fill: " + slider.fillRect.rect
-    );
-
     }
 
     public void SetHealth(float health)
