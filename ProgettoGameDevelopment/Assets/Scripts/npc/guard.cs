@@ -120,14 +120,12 @@ public class guard : Nemico
 		}
         }
 	}
-   
-
 
     // =========================================================
     // ANIMAZIONI
     // =========================================================
 
-	private void UpdateAnimation(Vector2 direction) {
+    private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
 
 

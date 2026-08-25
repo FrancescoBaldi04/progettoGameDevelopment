@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class WormPickUp : MonoBehaviour
 {
-   
-
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         Parassita parassita = other.GetComponent<Parassita>();
@@ -15,7 +12,7 @@ public class WormPickUp : MonoBehaviour
 
             Destroy(gameObject);
         }
-         Nemico nemico = other.GetComponent<Nemico>();
+        Nemico nemico = other.GetComponent<Nemico>();
 
         if (nemico != null && nemico.parassita != null)
         {
