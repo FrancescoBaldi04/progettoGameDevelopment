@@ -36010,7 +36010,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 239.50002, y: -66}
+  m_AnchoredPosition: {x: 239.50002, y: -65.999985}
   m_SizeDelta: {x: -740, y: -350}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1340294729
@@ -153629,11 +153629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1422848846223201259, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.37
+      value: -27.2
       objectReference: {fileID: 0}
     - target: {fileID: 1422848846223201259, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.09
+      value: 19.3
       objectReference: {fileID: 0}
     - target: {fileID: 1422848846223201259, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
       propertyPath: m_LocalPosition.z
@@ -153667,6 +153667,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3318381702230074166, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
+      propertyPath: TrojanHorse
+      value: 
+      objectReference: {fileID: 210843168752834587, guid: fc7798488f1114bcaae2a0fe72548022, type: 3}
     - target: {fileID: 3525844817406550510, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
       propertyPath: m_Name
       value: GuardiaBoss

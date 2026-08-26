@@ -47,12 +47,11 @@ public class Nemico : MonoBehaviour
 		Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
         Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
 		if (WhoIsShooting){
- Collider2D possessedCollider =
-        parassita.GetComponent<Collider2D>();
-		  Physics2D.IgnoreCollision(
-            bulletCollider,
-            possessedCollider
-        );
+        Collider2D possessedCollider =  parassita.GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(  bulletCollider,   possessedCollider);
+
+		Collider2D CorpoPossessedCollider=parassita.corpoPosseduto.GetComponent<Collider2D>();
+		Physics2D.IgnoreCollision(bulletCollider,CorpoPossessedCollider);
 		}else{
     
 		

@@ -16,7 +16,7 @@ public class ZipBombPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Parassita parassita = other.GetComponent<Parassita>();
-
+        //  Parassita libero
         if (parassita != null)
         {
             GameManager.gameManager.UnlockZipBomb();
@@ -24,14 +24,17 @@ public class ZipBombPickup : MonoBehaviour
             Destroy(gameObject);
         }
         Nemico nemico = other.GetComponent<Nemico>();
-
+        //  il collider appartiene a un NPC
         if (nemico != null && nemico.parassita != null)
         {
             parassita = nemico.parassita;
 
-            GameManager.gameManager.UnlockZipBomb();
-
-            Destroy(gameObject);
+            
+            if (parassita.corpoPosseduto == nemico.gameObject)
+            {
+                GameManager.gameManager.UnlockZipBomb();
+                Destroy(gameObject);
             }
+        }
     }
 }

@@ -16,7 +16,7 @@ public class guardboss : Nemico
 
 	protected override void Awake() {
 		base.Awake();
-		this.HitPoints=500;
+		this.HitPoints=60;
 		movement = GetComponent<Movement>();
 		animator = GetComponent<Animator>();
 		obstacleLayerMask = LayerMask.GetMask("ground");
@@ -155,9 +155,14 @@ public class guardboss : Nemico
     Instantiate(TrojanHorse, transform.position, Quaternion.identity);
     Destroy(gameObject, 1.5f);
 }
-		
-	
+		private void OnCollisionEnter2D(Collision2D collision) {
+        // Il proiettile fa danno alla guardia boss
+		if (collision.gameObject.CompareTag("Bullet") ){
+				PrendiDanno(10);
+				return;
+			}
+		}
+		}
 	
 
 
-}
