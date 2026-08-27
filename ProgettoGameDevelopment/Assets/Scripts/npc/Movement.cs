@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
 	public Vector2 direction=Vector2.right;
 	public Vector2 lastDirection=Vector2.right;
-	public float speed=5f;
+	public float speed=0.1f;
 	private Rigidbody2D body;
 	
 	private void Start() {
@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
 	}
 	
 	private void FixedUpdate() {
-		this.body.linearVelocity = this.direction * (this.speed);
+		this.body.linearVelocity = this.direction * (this.speed * 50f);
 	}
 	
 	public void SetDirection(Vector2 newdirection) {
