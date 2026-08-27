@@ -14,7 +14,7 @@ public class guardboss : Nemico
 
 	protected override void Awake() {
 		base.Awake();
-		this.HitPoints=60;
+		this.HitPoints=500;
 		movement = GetComponent<Movement>();
 		animator = GetComponent<Animator>();
 		obstacleLayerMask = LayerMask.GetMask("ground");

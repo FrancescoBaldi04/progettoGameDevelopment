@@ -10,6 +10,7 @@ public class guard : Nemico
 	private int obstacleLayerMask;
 	private float lastHorizontal = 0f;
 	private float lastVertical = -1f;
+	
 	protected override void Awake() {
 		base.Awake();
 		movement = GetComponent<Movement>();
