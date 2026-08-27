@@ -10,9 +10,10 @@ public class turret : Nemico
 	private int obstacleLayerMask;
 	private float lastHorizontal = 0f;
 	private float lastVertical = -1f;
-	//GameObject boss = GameObject.GuardBoss;
+	GameObject boss;
 	protected override void Awake() {
 		base.Awake();
+		boss=GameObject.Find("GuardiaBoss");
 		movement = GetComponent<Movement>();
 		this.movement.speed=0f;
 		animator = GetComponent<Animator>();
@@ -31,11 +32,11 @@ public class turret : Nemico
 
 	void Update() {
 		if (isDying) return;
-		/*if (GuardBoss == null)
+		if (boss == null)
 		{
 			Die();
 			return;
-		}*/
+		}
 
 		switch (StatoAttuale) {
 		

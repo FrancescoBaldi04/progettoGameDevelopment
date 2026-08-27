@@ -10,9 +10,7 @@ public class guardboss : Nemico
 	private int obstacleLayerMask;
 	private float lastHorizontal = 0f;
 	private float lastVertical = -1f;
-   
-    [SerializeField] private GameObject TrojanHorse;
-
+	[SerializeField] private GameObject TrojanHorse;
 
 	protected override void Awake() {
 		base.Awake();
@@ -69,7 +67,6 @@ public class guardboss : Nemico
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 					StatoAttuale = Stato.shooting;
-					timer = 1.0f;
 				}
 			}
 		break;
@@ -152,17 +149,14 @@ public class guardboss : Nemico
 			movement.SetDirection(Vector2.zero);
 		}
 		//drop potenziamento
-    Instantiate(TrojanHorse, transform.position, Quaternion.identity);
-    Destroy(gameObject, 1.5f);
-}
+		Instantiate(TrojanHorse, transform.position, Quaternion.identity);
+		Destroy(gameObject, 1.5f);
+	}
 		private void OnCollisionEnter2D(Collision2D collision) {
-        // Il proiettile fa danno alla guardia boss
+		// Il proiettile fa danno alla guardia boss
 		if (collision.gameObject.CompareTag("Bullet") ){
 				PrendiDanno(10);
 				return;
 			}
 		}
 		}
-	
-
-

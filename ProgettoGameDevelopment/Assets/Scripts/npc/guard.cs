@@ -67,7 +67,6 @@ public class guard : Nemico
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 					StatoAttuale = Stato.shooting;
-					timer = 1.0f;
 				}
 			}
 		break;
@@ -125,10 +124,8 @@ public class guard : Nemico
     // ANIMAZIONI
     // =========================================================
 
-    private void UpdateAnimation(Vector2 direction) {
+	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
-
-
         // Memorizzo l'ultima direzione SOLO quando la guardia
         // si sta effettivamente muovendo.
 		if (direction != Vector2.zero) {
