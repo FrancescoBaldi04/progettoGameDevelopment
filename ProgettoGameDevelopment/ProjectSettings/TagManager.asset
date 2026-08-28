@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Npc
   - Bullet
+  - boss
+  - Turret
   layers:
   - Default
   - TransparentFX

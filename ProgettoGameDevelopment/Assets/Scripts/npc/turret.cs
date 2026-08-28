@@ -44,39 +44,45 @@ public class turret : Nemico
 			if (parassita.StatoAttuale ==Parassita.Stato.possessing) {
 				StatoAttuale = Stato.shooting;
 			}
-		break;
+			break;
 		}
 		
 		case Stato.shooting: {
 			movement.SetDirection(Vector2.zero);
 			Vector2 origine;
-		if (spriteRenderer != null) {
-			origine = spriteRenderer.bounds.center;
-		} else {
-			origine = transform.position;
+			
+			if (spriteRenderer != null) {
+				origine = spriteRenderer.bounds.center;
+			} else {
+				origine = transform.position;
+			}
+			
+			Vector2 targetPosition = GetTargetPosition();
+			Vector2 directionToTarget = (targetPosition - origine).normalized;
+			
+			if (directionToTarget != Vector2.zero) {
+				lastHorizontal = directionToTarget.x;
+				lastVertical = directionToTarget.y;
+				animator.SetFloat("LastHorizontal", lastHorizontal);
+				animator.SetFloat("LastVertical", lastVertical);
+			}
+			
+			timer -= Time.deltaTime;
+			float distance = Vector2.Distance(origine, targetPosition);
+			RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget, distance, obstacleLayerMask);
+			
+			if (timer <= 0) {
+				animator.SetTrigger("Shooting");
+				Shoot(false);
+				timer = 1.0f;
+			}
+			
+			if(parassita.StatoAttuale == Parassita.Stato.libero){
+				StatoAttuale = Stato.waiting;
+			}
+		
+			break;
 		}
-		Vector2 targetPosition = GetTargetPosition();
-		Vector2 directionToTarget = (targetPosition - origine).normalized;
-		if (directionToTarget != Vector2.zero) {
-			lastHorizontal = directionToTarget.x;
-			lastVertical = directionToTarget.y;
-			animator.SetFloat("LastHorizontal", lastHorizontal);
-			animator.SetFloat("LastVertical", lastVertical);
-		}
-		timer -= Time.deltaTime;
-		float distance = Vector2.Distance(origine, targetPosition);
-		RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget,
-									distance, obstacleLayerMask);
-		if (timer <= 0) {
-			animator.SetTrigger("Shooting");
-			Shoot(false);
-			timer = 1.0f;
-		}
-		if(parassita.StatoAttuale == Parassita.Stato.libero){
-			StatoAttuale = Stato.waiting;
-		}
-	break;
-	}
 	}
 }
 
@@ -88,9 +94,6 @@ public class turret : Nemico
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
 
-
-        // Memorizzo l'ultima direzione SOLO quando la guardia
-        // si sta effettivamente muovendo.
 		if (direction != Vector2.zero) {
 			lastHorizontal = direction.x;
 			lastVertical = direction.y;
@@ -100,8 +103,7 @@ public class turret : Nemico
         // Direzione attuale.
 		animator.SetFloat("Horizontal", direction.x);
 		animator.SetFloat("Vertical", direction.y);
-        // Velocità attuale.
-		animator.SetFloat("Speed", direction.magnitude);
+		//animator.SetFloat("Speed", direction.magnitude); non serve per le torrette giusto?
         // Ultima direzione valida.
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
