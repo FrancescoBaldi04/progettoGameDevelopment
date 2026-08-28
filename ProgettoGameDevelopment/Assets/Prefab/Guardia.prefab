@@ -152,9 +152,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.001301736, y: 0.24876392}
-  m_Size: {x: 0.529554, y: 0.33776924}
-  m_Direction: 1
+  m_Offset: {x: -2.026828, y: 6.608243}
+  m_Size: {x: 0.6812692, y: 1.831274}
+  m_Direction: 0
 --- !u!50 &213308560135894655
 Rigidbody2D:
   serializedVersion: 5
@@ -221,4 +221,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   direction: {x: 1, y: 0}
+  lastDirection: {x: 1, y: 0}
   speed: 0.1

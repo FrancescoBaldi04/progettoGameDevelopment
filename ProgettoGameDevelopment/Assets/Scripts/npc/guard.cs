@@ -162,7 +162,7 @@ public class guard : Nemico
 	private void OnCollisionEnter2D(Collision2D collision) {
         // Il proiettile fa danno alla guardia
 		if (collision.gameObject.CompareTag("Bullet") ){
-			if(  parassita.corpoPosseduto.GetComponent<guard>() != null) {
+			if(parassita.corpoPosseduto.GetComponent<guard>() != null) {
 				parassita.SubisciDanno(10);
 				return;
 			}else{
