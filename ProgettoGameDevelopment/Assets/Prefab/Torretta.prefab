@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3094045524384663519}
   - component: {fileID: 1737279428777187796}
   - component: {fileID: 3716376787295005293}
+  - component: {fileID: -5763290418079137161}
   m_Layer: 6
   m_Name: Torretta
   m_TagString: Turret
@@ -141,3 +142,40 @@ MonoBehaviour:
   bulletSpeed: 10
   firePoint: {fileID: 0}
   targetDistance: 3
+--- !u!70 &-5763290418079137161
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8925518691956127971}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -2.40625, y: 7.53125}
+  m_Size: {x: 1.4375, y: 0.9375}
+  m_Direction: 0

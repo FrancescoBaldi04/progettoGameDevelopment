@@ -153668,9 +153668,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318381702230074166, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
+      propertyPath: parassita
+      value: 
+      objectReference: {fileID: 1321847439}
+    - target: {fileID: 3318381702230074166, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
       propertyPath: TrojanHorse
       value: 
       objectReference: {fileID: 210843168752834587, guid: fc7798488f1114bcaae2a0fe72548022, type: 3}
+    - target: {fileID: 3318381702230074166, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 6073277577126612181, guid: c6f521d0cc32b5843ba1f33eeb51b663, type: 3}
     - target: {fileID: 3525844817406550510, guid: 71a5823bd8124344b971d5e188858d20, type: 3}
       propertyPath: m_Name
       value: GuardiaBoss
@@ -153688,6 +153696,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5763290418079137161, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3274385
+      objectReference: {fileID: 0}
+    - target: {fileID: -5763290418079137161, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
+      propertyPath: m_Size.y
+      value: 0.83215916
+      objectReference: {fileID: 0}
+    - target: {fileID: -5763290418079137161, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
+      propertyPath: m_Offset.x
+      value: -2.4612808
+      objectReference: {fileID: 0}
+    - target: {fileID: -5763290418079137161, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
+      propertyPath: m_Offset.y
+      value: 7.481724
+      objectReference: {fileID: 0}
+    - target: {fileID: -5763290418079137161, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2912679560158351464, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.95
@@ -153736,6 +153764,14 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -979591537
       objectReference: {fileID: 0}
+    - target: {fileID: 3716376787295005293, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
+      propertyPath: parassita
+      value: 
+      objectReference: {fileID: 1321847439}
+    - target: {fileID: 3716376787295005293, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 6073277577126612181, guid: c6f521d0cc32b5843ba1f33eeb51b663, type: 3}
     - target: {fileID: 8925518691956127971, guid: 5fa9138466ea6d1419aadfde1c33ebb7, type: 3}
       propertyPath: m_Name
       value: Torretta

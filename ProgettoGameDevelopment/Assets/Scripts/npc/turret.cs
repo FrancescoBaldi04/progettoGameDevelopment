@@ -5,7 +5,6 @@ public class turret : Nemico
 	public float targetDistance = 3.0f;
 	private float timer = 1.0f;
 	private bool isDying = false;
-	private Movement movement;
 	private Animator animator;
 	private int obstacleLayerMask;
 	private float lastHorizontal = 0f;
@@ -14,20 +13,23 @@ public class turret : Nemico
 	protected override void Awake() {
 		base.Awake();
 		boss=GameObject.Find("GuardiaBoss");
-		movement = GetComponent<Movement>();
-		this.movement.speed=0f;
 		animator = GetComponent<Animator>();
 		obstacleLayerMask = LayerMask.GetMask("ground");
+		StatoAttuale = Stato.waiting;
 	}
 
 	void Start() {
-		if (parassita.StatoAttuale == Parassita.Stato.possessing)
-		{
+		if (parassita == null) {
+			parassita = FindFirstObjectByType<Parassita>();
+		}
+
+		if (parassita != null && parassita.StatoAttuale == Parassita.Stato.possessing) {
 			StatoAttuale = Stato.shooting;
 		} else {
 			StatoAttuale = Stato.waiting;
 		}
-        UpdateAnimation(Vector2.zero);
+	
+		UpdateAnimation(Vector2.zero);
 	}
 
 	void Update() {
@@ -48,7 +50,6 @@ public class turret : Nemico
 		}
 		
 		case Stato.shooting: {
-			movement.SetDirection(Vector2.zero);
 			Vector2 origine;
 			
 			if (spriteRenderer != null) {
@@ -101,8 +102,8 @@ public class turret : Nemico
 
 
         // Direzione attuale.
-		animator.SetFloat("Horizontal", direction.x);
-		animator.SetFloat("Vertical", direction.y);
+		//animator.SetFloat("Horizontal", direction.x);
+		//animator.SetFloat("Vertical", direction.y);
 		//animator.SetFloat("Speed", direction.magnitude); non serve per le torrette giusto?
         // Ultima direzione valida.
 		animator.SetFloat("LastHorizontal", lastHorizontal);
@@ -116,11 +117,7 @@ public class turret : Nemico
 
 	protected override void Die() {
 		if (isDying) return;
-			isDying = true;
-		if (movement != null) {
-			movement.speed = 0f;
-			movement.SetDirection(Vector2.zero);
-		}
+		isDying = true;
 		Destroy(gameObject, 1.5f);
 	}
 }

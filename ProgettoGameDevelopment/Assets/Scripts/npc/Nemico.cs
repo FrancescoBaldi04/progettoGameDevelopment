@@ -4,7 +4,7 @@ public class Nemico : MonoBehaviour
 {
 	[SerializeField] protected int HitPoints = 60;
 	public LayerMask Ground_Entities;
-	public enum Stato {possessed, catching, escaping, positioning, shooting, waiting}; 
+	public enum Stato {waiting, possessed, catching, escaping, positioning, shooting}; 
 	public Stato StatoAttuale;
 	public Parassita parassita;
 	public bool up, down, right, left;
@@ -13,6 +13,11 @@ public class Nemico : MonoBehaviour
 	public Transform firePoint;
 	protected SpriteRenderer spriteRenderer;
 	
+	protected virtual void Awake() {
+		parassita = FindFirstObjectByType<Parassita>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
+
 	public void Shoot(bool WhoIsShooting) {
 		Vector3 uscitaProiettile = spriteRenderer.bounds.center;
 
@@ -96,13 +101,8 @@ public class Nemico : MonoBehaviour
 		}
 		return bestDirection;
 	}
-	protected virtual void Awake() {
-		parassita = FindFirstObjectByType<Parassita>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
-	}
 	public bool isFree(Vector2 direction){
-		RaycastHit2D hitcast=Physics2D.BoxCast(this.transform.position, Vector2.one*0.75f,
-									    0.0f, direction, 1.0f, this.Ground_Entities);
+		RaycastHit2D hitcast=Physics2D.BoxCast(this.transform.position, Vector2.one*0.75f, 0.0f, direction, 1.0f, this.Ground_Entities);
 		return hitcast.collider==null;
 	}
 	public void PrendiDanno(int danno) {
@@ -117,8 +117,7 @@ public class Nemico : MonoBehaviour
 		Destroy(gameObject);
 	}
 	protected Vector2 GetTargetPosition() {
-		if (parassita.StatoAttuale == Parassita.Stato.possessing && 
-			                                    parassita.corpoPosseduto != null) {
+		if (parassita.StatoAttuale == Parassita.Stato.possessing && parassita.corpoPosseduto != null) {
 			return parassita.GetCorpoPossedutoPosition();
 		}
 		return parassita.transform.position;
