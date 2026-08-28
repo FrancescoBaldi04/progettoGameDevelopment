@@ -52,7 +52,7 @@ public class guardboss : Nemico
 			if (parassita.StatoAttuale ==Parassita.Stato.libero) {
 				StatoAttuale = Stato.waiting;
 				break;
-			}
+			} 
 			if (movement != null && parassita != null) {
 				Vector2 myPosition = transform.position;
 				Vector2 parassitaPosition = parassita.transform.position;
@@ -60,6 +60,7 @@ public class guardboss : Nemico
 				Vector2 directionToParassita =(parassitaPosition - myPosition).normalized;
 				RaycastHit2D hit =Physics2D.Raycast(myPosition, directionToParassita, 
 											distance, obstacleLayerMask);
+											
 				if (hit.collider != null || distance > targetDistance + 0.3f) {
 					movement.SetDirection(directionToParassita);
 					UpdateAnimation(directionToParassita);
@@ -93,6 +94,11 @@ public class guardboss : Nemico
 		Vector2.Distance(origine, targetPosition);
 		RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget,
 									distance, obstacleLayerMask);
+									Debug.Log(
+    "BOSS SHOOTING | distanza: " + distance +
+    " | hit: " + (hit.collider != null ? hit.collider.name : "NESSUNO") +
+    " | timer: " + timer
+);
 		if (hit.collider != null || distance > targetDistance + 0.3f) {
 			StatoAttuale = Stato.positioning;
 			timer = 1.0f;
