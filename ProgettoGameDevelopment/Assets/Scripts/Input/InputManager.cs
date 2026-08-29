@@ -21,6 +21,15 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f) // se siamo nel menu di pausa non legge gli input
+        {
+            movement = Vector2.zero;
+            chargeStarted = false;
+            chargeHeld = false;
+            chargeReleased = false;
+            return;
+        }
+        
         movement = moveAction.ReadValue<Vector2>();
 
         chargeStarted = chargeAction.WasPressedThisFrame();

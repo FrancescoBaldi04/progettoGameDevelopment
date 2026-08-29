@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class TrojanHorsePickup : MonoBehaviour
 {
+    [SerializeField] private string trojanHorseUIdescription;
     private PickupMessage pickupMessage;
 
     private void Start()
     {
-       pickupMessage = FindFirstObjectByType<PickupMessage>(
-        FindObjectsInactive.Include
-    );
+       pickupMessage = FindFirstObjectByType<PickupMessage>(FindObjectsInactive.Include);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,9 +19,12 @@ public class TrojanHorsePickup : MonoBehaviour
         {
             GameManager.gameManager.UnlockTrojanHorse();
 
-            pickupMessage.ShowMessage(
-                "Trojan Horse ottenuto! Premere 'C' per attivare/disattivare"
-            );
+            if (PauseManager.pauseManager != null)
+            {
+                PauseManager.pauseManager.UpdateWormText(trojanHorseUIdescription);
+            }
+
+            pickupMessage.ShowMessage("Trojan Horse ottenuto! Premere 'C' per attivare/disattivare");
 
             Destroy(gameObject);
             return;
@@ -39,9 +41,12 @@ public class TrojanHorsePickup : MonoBehaviour
             {
                 GameManager.gameManager.UnlockTrojanHorse();
 
-                pickupMessage.ShowMessage(
-                    "Trojan Horse ottenuto! Premere 'C' per attivare/disattivare"
-                );
+                if (PauseManager.pauseManager != null)
+                {
+                    PauseManager.pauseManager.UpdateWormText(trojanHorseUIdescription);
+                }
+
+                pickupMessage.ShowMessage("Trojan Horse ottenuto! Premere 'C' per attivare/disattivare");
 
                 Destroy(gameObject);
             }

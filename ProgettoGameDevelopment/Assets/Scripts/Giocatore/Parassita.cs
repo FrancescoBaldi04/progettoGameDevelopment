@@ -57,6 +57,8 @@ public class Parassita : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return; // se siamo nel menu di pausa non permettiamo al parassita di muoversi
+        
         if (!StartScreen.giocoIniziato) return;
          
         if (statoAttuale == Stato.possessing) // consumo vita

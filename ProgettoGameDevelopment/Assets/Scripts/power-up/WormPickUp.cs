@@ -2,22 +2,21 @@ using UnityEngine;
 
 public class WormPickUp : MonoBehaviour
 {
+    [SerializeField] private string wormUIdescription;
     private PickupMessage pickupMessage;
 
     private void Start()
     {
-         pickupMessage = FindFirstObjectByType<PickupMessage>(
-        FindObjectsInactive.Include
-    );
+        pickupMessage = FindFirstObjectByType<PickupMessage>(FindObjectsInactive.Include);
         
          if (pickupMessage == null)
-    {
-        Debug.LogError("ERRORE: PickupMessage non trovato nella scena!");
-    }
-    else
-    {
-        Debug.Log("PickupMessage trovato correttamente!");
-    }
+        {
+            Debug.LogError("ERRORE: PickupMessage non trovato nella scena!");
+        }
+        else
+        {
+            Debug.Log("PickupMessage trovato correttamente!");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,9 +27,12 @@ public class WormPickUp : MonoBehaviour
         {
             GameManager.gameManager.UnlockWorm();
 
-            pickupMessage.ShowMessage(
-                "Worm ottenuto! Premere 'C' per attivare/disattivare"
-            );
+            if (PauseManager.pauseManager != null)
+            {
+                PauseManager.pauseManager.UpdateWormText(wormUIdescription);
+            }
+
+            pickupMessage.ShowMessage("Worm ottenuto! Premere 'C' per attivare/disattivare");
 
             Destroy(gameObject);
             return;
@@ -46,9 +48,12 @@ public class WormPickUp : MonoBehaviour
             {
                 GameManager.gameManager.UnlockWorm();
 
-                pickupMessage.ShowMessage(
-                    "Worm ottenuto! Premere 'C' per attivare/disattivare"
-                );
+                if (PauseManager.pauseManager != null)
+                {
+                    PauseManager.pauseManager.UpdateWormText(wormUIdescription);
+                }
+
+                pickupMessage.ShowMessage("Worm ottenuto! Premere 'C' per attivare/disattivare");
 
                 Destroy(gameObject);
             }

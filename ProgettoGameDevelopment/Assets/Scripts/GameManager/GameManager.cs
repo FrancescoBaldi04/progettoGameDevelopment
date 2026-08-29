@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (gameManager != null && gameManager != this)
+        if (gameManager != null && gameManager != this) // pattern Singleton
         {
             Destroy(gameObject);
             return;
@@ -76,5 +76,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(
             SceneManager.GetActiveScene().buildIndex
         );
+    }
+
+    public void ReturnToMainMenu()
+    {
+        hasTrojanHorse = false;
+        hasZipBomb = false;
+        hasWorm = false;
+
+        SceneManager.LoadScene(0);
     }
 }

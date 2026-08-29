@@ -169,3 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7497df3ad91d496f82288cec48d2579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  wormUIdescription: 'Worm: Press C to increase your movement speed '

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ZipBombPickup : MonoBehaviour
 {
+    [SerializeField] private string zipBombUIdescription;
     private PickupMessage pickupMessage;
 
     private void Start()
@@ -20,9 +21,12 @@ public class ZipBombPickup : MonoBehaviour
         {
             GameManager.gameManager.UnlockZipBomb();
 
-            pickupMessage.ShowMessage(
-                "Zip Bomb ottenuta! Premere 'E' per attivare"
-            );
+            if (PauseManager.pauseManager != null)
+            {
+                PauseManager.pauseManager.UpdateWormText(zipBombUIdescription);
+            }
+
+            pickupMessage.ShowMessage("Zip Bomb ottenuta! Premere 'E' per attivare");
 
             Destroy(gameObject);
             return;
@@ -39,9 +43,12 @@ public class ZipBombPickup : MonoBehaviour
             {
                 GameManager.gameManager.UnlockZipBomb();
 
-                pickupMessage.ShowMessage(
-                    "Zip Bomb ottenuta! Premere 'C' per attivare/disattivare"
-                );
+                if (PauseManager.pauseManager != null)
+                {
+                    PauseManager.pauseManager.UpdateWormText(zipBombUIdescription);
+                }
+
+                pickupMessage.ShowMessage("Zip Bomb ottenuta! Premere 'C' per attivare/disattivare");
 
                 Destroy(gameObject);
             }
