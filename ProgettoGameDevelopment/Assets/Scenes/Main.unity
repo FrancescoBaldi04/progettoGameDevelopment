@@ -18910,6 +18910,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6920064969760064838, guid: 285e2c93b5c22334c88abd471db2c2dc, type: 3}
+      propertyPath: left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6920064969760064838, guid: 285e2c93b5c22334c88abd471db2c2dc, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 6073277577126612181, guid: c6f521d0cc32b5843ba1f33eeb51b663, type: 3}
     - target: {fileID: 4735945176615505215, guid: 285e2c93b5c22334c88abd471db2c2dc, type: 3}
       propertyPath: m_Name
       value: Guardia
@@ -112415,7 +112423,7 @@ Transform:
   m_GameObject: {fileID: 1545736486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.2, y: 5.3, z: 0}
+  m_LocalPosition: {x: 7.54, y: 4.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

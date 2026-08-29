@@ -51,21 +51,42 @@ public class Nemico : MonoBehaviour
 		GameObject bullet =
 		Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
         Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
-		
-		if (WhoIsShooting){
-        Collider2D possessedCollider =  parassita.GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(  bulletCollider,   possessedCollider);
 
-		Collider2D CorpoPossessedCollider=parassita.corpoPosseduto.GetComponent<Collider2D>();
-		Physics2D.IgnoreCollision(bulletCollider,CorpoPossessedCollider);
-		}else{
-    
-		
-		Collider2D enemyCollider = GetComponent<Collider2D>();
-		if (bulletCollider != null && enemyCollider != null) {
-			Physics2D.IgnoreCollision(bulletCollider, enemyCollider);
-		}
-		}
+if (bulletCollider == null)
+{
+    Debug.LogError("Il prefab Proiettile non ha un Collider2D!");
+    return;
+}
+
+if (WhoIsShooting)
+{
+    Collider2D possessedCollider = parassita.GetComponent<Collider2D>();
+
+    if (possessedCollider != null)
+    {
+        Physics2D.IgnoreCollision(bulletCollider, possessedCollider);
+    }
+
+    if (parassita.corpoPosseduto != null)
+    {
+        Collider2D corpoPossedutoCollider =
+            parassita.corpoPosseduto.GetComponent<Collider2D>();
+
+        if (corpoPossedutoCollider != null)
+        {
+            Physics2D.IgnoreCollision(bulletCollider, corpoPossedutoCollider);
+        }
+    }
+}
+else
+{
+    Collider2D enemyCollider = GetComponent<Collider2D>();
+
+    if (enemyCollider != null)
+    {
+        Physics2D.IgnoreCollision(bulletCollider, enemyCollider);
+    }
+}
 		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 		if (rb != null) {
 			rb.linearVelocity = direzione * bulletSpeed;
