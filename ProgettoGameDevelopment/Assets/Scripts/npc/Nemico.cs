@@ -21,72 +21,73 @@ public class Nemico : MonoBehaviour
 	public void Shoot(bool WhoIsShooting) {
 		Vector3 uscitaProiettile = spriteRenderer.bounds.center;
 
-    Vector2 direzione;
+		Vector2 direzione;
 
-    if (WhoIsShooting)
-    {
-        // Il nemico è controllato dal Parassita
-        Movement movement = GetComponent<Movement>();
+		if (WhoIsShooting)
+		{
+			// Il nemico è controllato dal Parassita
+			Movement movement = GetComponent<Movement>();
 
-        if (movement != null)
-        {
-            direzione = movement.lastDirection.normalized;
-        }
-        else
-        {
-            return;
-        }
-    }
-    else
-    {
-        // Il nemico è controllato normalmente dall'IA
-        Vector2 posizioneBersaglio = GetTargetPosition();
+			if (movement != null)
+			{
+				direzione = movement.lastDirection.normalized;
+			}
+			else
+			{
+				return;
+			}
+		}
+		else
+		{
+			// Il nemico è controllato normalmente dall'IA
+			Vector2 posizioneBersaglio = GetTargetPosition();
 
-        direzione =
-            (posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
-    }
+			direzione = (posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
+		}
 
-		float angle =Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
-		Quaternion rotazioneProiettile =Quaternion.Euler(0, 0, angle);
-		GameObject bullet = Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
-        Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
+			float angle =Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
+			Quaternion rotazioneProiettile =Quaternion.Euler(0, 0, angle);
+			GameObject bullet = Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
+			Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
 
-if (bulletCollider == null)
-{
-    Debug.LogError("Il prefab Proiettile non ha un Collider2D!");
-    return;
-}
+		if (bulletCollider == null)
+		{
+			Debug.LogError("Il prefab Proiettile non ha un Collider2D!");
+			return;
+		}
 
-if (WhoIsShooting)
-{
-    Collider2D possessedCollider = parassita.GetComponent<Collider2D>();
+		if (WhoIsShooting)
+		{
+			Collider2D possessedCollider = parassita.GetComponent<Collider2D>();
 
-    if (possessedCollider != null)
-    {
-        Physics2D.IgnoreCollision(bulletCollider, possessedCollider);
-    }
+			if (possessedCollider != null)
+			{
+				Physics2D.IgnoreCollision(bulletCollider, possessedCollider);
+			}
 
-    if (parassita.corpoPosseduto != null)
-    {
-        Collider2D corpoPossedutoCollider =
-            parassita.corpoPosseduto.GetComponent<Collider2D>();
+			if (parassita.corpoPosseduto != null)
+			{
+				Collider2D corpoPossedutoCollider =
+					parassita.corpoPosseduto.GetComponent<Collider2D>();
 
-        if (corpoPossedutoCollider != null)
-        {
-            Physics2D.IgnoreCollision(bulletCollider, corpoPossedutoCollider);
-        }
-    }
-}
-else
-{
-    Collider2D enemyCollider = GetComponent<Collider2D>();
+				if (corpoPossedutoCollider != null)
+				{
+					Physics2D.IgnoreCollision(bulletCollider, corpoPossedutoCollider);
+				}
+			}
+		}
+		else
+		{
+			Collider2D enemyCollider = GetComponent<Collider2D>();
 
-    if (enemyCollider != null)
-    {
-        Physics2D.IgnoreCollision(bulletCollider, enemyCollider);
-    }
-}
+			if (enemyCollider != null)
+			{
+				Physics2D.IgnoreCollision(bulletCollider, enemyCollider);
+			}
+		}
+		
 		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+		
 		if (rb != null) {
 			rb.linearVelocity = direzione * bulletSpeed;
 		}
@@ -123,8 +124,14 @@ else
 		return bestDirection;
 	}
 	public bool isFree(Vector2 direction){
-		RaycastHit2D hitcast=Physics2D.BoxCast(this.transform.position, Vector2.one*0.75f, 0.0f, direction, 1.0f, this.Ground_Entities);
-		return hitcast.collider==null;
+		/*RaycastHit2D hitcast=Physics2D.BoxCast(this.transform.position, Vector2.one*0.75f, 0.0f, direction, 1.0f, this.Ground_Entities);
+		return hitcast.collider==null;*/
+		Vector2 boxSize = new Vector2(0.4f, 0.4f); 
+		float checkDistance = 0.5f; 
+
+		RaycastHit2D hitcast = Physics2D.BoxCast(this.transform.position, boxSize, 0.0f, direction, checkDistance, this.Ground_Entities);
+
+		return hitcast.collider == null;
 	}
 	public void PrendiDanno(int danno) {
 		HitPoints -= danno;
@@ -144,4 +151,29 @@ else
 		return parassita.transform.position;
 	}
 	
+	public Vector2 GetEscapeDirection(Vector2 dangerPosition)
+	{
+		Vector2 currentPos = transform.position;
+		Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+
+		Vector2 bestDir = Vector2.zero;
+		float maxDistance = -1f;
+
+		foreach (Vector2 dir in directions)
+		{
+			if (isFree(dir))
+			{
+				Vector2 nextPos = currentPos + dir;
+				float distanceToDanger = Vector2.Distance(nextPos, dangerPosition);
+
+				if (distanceToDanger > maxDistance)
+				{
+					maxDistance = distanceToDanger;
+					bestDir = dir;
+				}
+			}
+		}
+
+		return bestDir;
+	}
 }

@@ -16,9 +16,6 @@ public class PickupMessage : MonoBehaviour
 
     public void ShowMessage(string message)
     {
-        
-        
-
         text.text = message;
         text.gameObject.SetActive(true);
 

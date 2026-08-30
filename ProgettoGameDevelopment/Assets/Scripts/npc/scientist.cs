@@ -32,43 +32,53 @@ public class scientist : Nemico
 
 		switch (StatoAttuale) {
 			
-		case Stato.catching: {
-			float distanza = Vector2.Distance(transform.position, parassita.transform.position);
-			if (distanza > 0.1f) {
-				Vector2 VersoDiCattura = GetBestDirection(parassita.transform.position,
-												Vector2.zero);
-				movement.SetDirection(VersoDiCattura);
-				UpdateAnimation(VersoDiCattura);
-			} else {
-				movement.SetDirection(Vector2.zero);
-				UpdateAnimation(Vector2.zero);
+			case Stato.catching: {
+				float distanza = Vector2.Distance(transform.position, parassita.transform.position);
+				if (distanza > 0.1f) {
+					Vector2 VersoDiCattura = GetBestDirection(parassita.transform.position, Vector2.zero);
+					movement.SetDirection(VersoDiCattura);
+					UpdateAnimation(VersoDiCattura);
+				} else {
+					movement.SetDirection(Vector2.zero);
+					UpdateAnimation(Vector2.zero);
+				}
+				if (parassita.StatoAttuale == Parassita.Stato.possessing) {
+					StatoAttuale = Stato.escaping;
+				}
+				break;
 			}
-			if (parassita.StatoAttuale == Parassita.Stato.possessing) {
-				StatoAttuale = Stato.escaping;
+			
+			case Stato.escaping: {
+				/*Vector2 VersoDiFuga= -GetBestDirection(parassita.transform.position, Vector2.zero);
+				movement.SetDirection(VersoDiFuga);
+				if (parassita.StatoAttuale==Parassita.Stato.libero) {
+					StatoAttuale=Stato.catching;
+				}
+				break;*/
+
+				Vector2 posizionePericolo = GetTargetPosition();
+				Vector2 VersoDiFuga = GetEscapeDirection(posizionePericolo);
+
+				movement.SetDirection(VersoDiFuga);
+				UpdateAnimation(VersoDiFuga);
+
+				if (parassita.StatoAttuale == Parassita.Stato.libero) {
+					StatoAttuale = Stato.catching;
+				}
+				break;
 			}
-                break;
-		}
-		
-		case Stato.escaping: {
-			Vector2 VersoDiFuga= -GetBestDirection(parassita.transform.position, Vector2.zero);
-			movement.SetDirection(VersoDiFuga);
-			if (parassita.StatoAttuale==Parassita.Stato.libero) {
-				this.StatoAttuale=Stato.catching;
+			
+			case Stato.possessed: {
+				if (parassita.StatoAttuale == Parassita.Stato.libero) {
+					this.HitPoints = 0;
+				break;
+				}
+				// Leggo l'input da InputManager e lo passo al Movement dell'Npc
+				Vector2 inputGiocatore = InputManager.movement;
+				movement.SetDirection(inputGiocatore);
+				UpdateAnimation(inputGiocatore);
+				break;
 			}
-		break;
-		}
-		
-		case Stato.possessed: {
-			if (parassita.StatoAttuale == Parassita.Stato.libero) {
-				this.HitPoints = 0;
-			break;
-			}
-                // Leggo l'input da InputManager e lo passo al Movement dell'Npc
-			Vector2 inputGiocatore = InputManager.movement;
-			movement.SetDirection(inputGiocatore);
-			UpdateAnimation(inputGiocatore);
-                break;
-		}
 		}
 	}
 

@@ -160,7 +160,7 @@ MonoBehaviour:
   HitPoints: 60
   Ground_Entities:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   StatoAttuale: 0
   parassita: {fileID: 0}
   up: 0

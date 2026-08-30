@@ -102,9 +102,8 @@ public class Parassita : MonoBehaviour
             }
             if(corpoPosseduto.GetComponent<guard>() != null &&  Keyboard.current.fKey.wasPressedThisFrame){
             Nemico nemico=corpoPosseduto.GetComponent<guard>();
-            nemico.Shoot(true);
+                nemico.Shoot(true);
             }
-
 
             return;
         }
@@ -356,29 +355,26 @@ public class Parassita : MonoBehaviour
         }
     }
     public Vector2 GetCorpoPossedutoPosition()
-{
-    if (corpoPosseduto == null)
-        return transform.position;
-
-    SpriteRenderer sr =
-        corpoPosseduto.GetComponent<SpriteRenderer>();
-
-    if (sr != null)
-        return sr.bounds.center;
-
-    return corpoPosseduto.transform.position;
-}
-
-private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (corpoPosseduto == null)
+            return transform.position;
 
- if (collision.gameObject.CompareTag("Bullet"))
+        SpriteRenderer sr =
+            corpoPosseduto.GetComponent<SpriteRenderer>();
+
+        if (sr != null)
+            return sr.bounds.center;
+
+        return corpoPosseduto.transform.position;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             SubisciDanno(10);
             return;
         }
-
-
     }
     
 }

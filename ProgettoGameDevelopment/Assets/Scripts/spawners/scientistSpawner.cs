@@ -4,23 +4,23 @@ public class spawnerScientistBase : MonoBehaviour
 {
 	[SerializeField] private GameObject ScienziatoUomo;
 	[SerializeField] private GameObject ScienziatoDonna;
-	int quantitàMassima;
+	int quantitaMassima;
 	bool genere;
 	
 	void Start() {
 		int LivelloAttuale = SceneManager.GetActiveScene().buildIndex;
 		if (LivelloAttuale == 0) {
-			quantitàMassima = 3;
+			quantitaMassima = 3;
 		} else if (LivelloAttuale == 1) {
-			quantitàMassima = 2;
+			quantitaMassima = 2;
 		} else {
-			quantitàMassima = 1;
+			quantitaMassima = 1;
 		}
 	}
 
 	void Update() {
 		int numeroScienziati = FindObjectsByType<scientist>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
-		if (numeroScienziati < quantitàMassima) {
+		if (numeroScienziati < quantitaMassima) {
 			if (genere) {
 				genere = false;
 				GameObject scientist = Instantiate(ScienziatoUomo, transform.position, transform.rotation);
