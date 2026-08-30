@@ -42,6 +42,7 @@ public class guardboss : Nemico
 		switch (StatoAttuale) {
 		
 		case Stato.waiting: {
+			movement.SetDirection(Vector2.zero);
 			if (parassita.StatoAttuale ==Parassita.Stato.possessing) {
 				StatoAttuale = Stato.positioning;
 			}

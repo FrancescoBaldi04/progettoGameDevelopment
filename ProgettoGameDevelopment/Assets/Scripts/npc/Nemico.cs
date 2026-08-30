@@ -48,8 +48,7 @@ public class Nemico : MonoBehaviour
 
 		float angle =Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
 		Quaternion rotazioneProiettile =Quaternion.Euler(0, 0, angle);
-		GameObject bullet =
-		Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
+		GameObject bullet = Instantiate(bulletPrefab, uscitaProiettile, rotazioneProiettile);
         Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
 
 if (bulletCollider == null)
