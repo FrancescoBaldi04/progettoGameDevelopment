@@ -49,7 +49,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_GravityScale: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   direction: {x: 1, y: 0}
+  lastDirection: {x: 1, y: 0}
   speed: 0.1
 --- !u!70 &7331559015918409648
 CapsuleCollider2D:
@@ -194,7 +195,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 93333876204a2924da3270f30f260866, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -218,6 +219,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.8377972, y: 6.9375}
-  m_Size: {x: 1.1875, y: 2.3125}
+  m_Offset: {x: -1.8377972, y: 6.375}
+  m_Size: {x: 1.1875, y: 1.1875}
   m_Direction: 0

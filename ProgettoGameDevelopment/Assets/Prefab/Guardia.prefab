@@ -152,8 +152,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -2.026828, y: 6.608243}
-  m_Size: {x: 0.6812692, y: 1.831274}
+  m_Offset: {x: -2.026828, y: 6.4397993}
+  m_Size: {x: 0.68126917, y: 1.4943867}
   m_Direction: 0
 --- !u!50 &213308560135894655
 Rigidbody2D:
