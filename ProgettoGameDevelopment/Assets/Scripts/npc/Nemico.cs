@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Nemico : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class Nemico : MonoBehaviour
 	public float bulletSpeed=10f;
 	public Transform firePoint;
 	protected SpriteRenderer spriteRenderer;
+	[SerializeField] private Vector2 detectionBoxSize = new Vector2(5f, 5f);
+    [SerializeField] private float catchingDistance = 2f;
+	protected Vector2 randomDirection = Vector2.zero;
+	[SerializeField] protected float randomCheckDistance = 1.2f;
+[SerializeField] protected float randomCheckSize = 0.4f;
+
 	
 	protected virtual void Awake() {
 		parassita = FindFirstObjectByType<Parassita>();
@@ -176,4 +183,125 @@ public class Nemico : MonoBehaviour
 
 		return bestDir;
 	}
+	
+	protected bool CheckForParassita()
+{
+    Collider2D[] objectsInside = Physics2D.OverlapBoxAll(
+        transform.position,
+        detectionBoxSize,
+        0f
+    );
+
+    foreach (Collider2D collider in objectsInside)
+    {
+        Parassita p = collider.GetComponent<Parassita>();
+
+        if (p != null)
+        {
+            StatoAttuale = Stato.catching;
+            return true;
+        }
+
+        Nemico nemico = collider.GetComponent<Nemico>();
+
+        if (nemico != null &&
+            nemico.parassita != null &&
+            nemico.parassita.corpoPosseduto == nemico.gameObject)
+        {
+            StatoAttuale = Stato.escaping;
+            return true ;
+        }
+    }
+	return false;
+}
+protected Vector2 GetRandomDirection()
+{
+    Vector2[] directions =
+    {
+        Vector2.up,
+        Vector2.down,
+        Vector2.left,
+        Vector2.right
+    };
+
+    List<Vector2> availableDirections = new List<Vector2>();
+
+    foreach (Vector2 direction in directions)
+    {
+        if (!WallInDirection(direction))
+        {
+            availableDirections.Add(direction);
+        }
+    }
+
+    if (availableDirections.Count == 0)
+    {
+        return Vector2.zero;
+    }
+
+    return availableDirections[
+        Random.Range(0, availableDirections.Count)
+    ];
+}
+protected bool WallInDirection(Vector2 direction)
+{
+    Vector2 spritePosition = spriteRenderer.bounds.center;
+
+    Vector2 checkPosition =
+        spritePosition +
+        direction * randomCheckDistance;
+
+    Collider2D[] colliders = Physics2D.OverlapBoxAll(
+        checkPosition,
+        new Vector2(randomCheckSize, randomCheckSize),
+        0f
+    );
+
+    foreach (Collider2D collider in colliders)
+    {
+        if (collider.CompareTag("Wall"))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+protected Vector2 RandomMovement()
+{
+    if (randomDirection == Vector2.zero ||
+        WallInDirection(randomDirection))
+    {
+        randomDirection = GetRandomDirection();
+    }
+
+    return randomDirection;
+}
+private void OnDrawGizmosSelected()
+{
+    if (spriteRenderer == null)
+        return;
+
+    Vector2 spritePosition = spriteRenderer.bounds.center;
+
+    Vector2[] directions =
+    {
+        Vector2.up,
+        Vector2.down,
+        Vector2.left,
+        Vector2.right
+    };
+
+    foreach (Vector2 direction in directions)
+    {
+        Vector2 checkPosition =
+            spritePosition +
+            direction * randomCheckDistance;
+
+        Gizmos.DrawWireCube(
+            checkPosition,
+            new Vector2(randomCheckSize, randomCheckSize)
+        );
+    }
+}
 }

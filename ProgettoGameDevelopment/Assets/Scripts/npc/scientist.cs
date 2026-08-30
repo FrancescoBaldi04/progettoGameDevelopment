@@ -14,12 +14,16 @@ public class scientist : Nemico
 		animator = GetComponent<Animator>();
 	}
 
-	void Start() {		
+	void Start() {	
+		if(CheckForParassita())	{
 		if (parassita.StatoAttuale==Parassita.Stato.possessing) {	
 			StatoAttuale=Stato.escaping;
 		} else {
 			StatoAttuale=Stato.catching;
 		}
+		}
+		StatoAttuale=Stato.waiting;
+
 	}
 
 	void Update() {
@@ -31,6 +35,17 @@ public class scientist : Nemico
 		}
 
 		switch (StatoAttuale) {
+			case Stato.waiting:{
+             if(!CheckForParassita()){
+             
+			 Vector2 direction = RandomMovement();
+             movement.SetDirection(direction);
+             UpdateAnimation(direction);
+             }
+
+
+				break;
+			}
 			
 			case Stato.catching: {
 				float distanza = Vector2.Distance(transform.position, parassita.transform.position);
@@ -122,6 +137,7 @@ public class scientist : Nemico
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
 	}
+	
 }
 
 
