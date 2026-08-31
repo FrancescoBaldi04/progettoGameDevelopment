@@ -170,7 +170,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   bulletSpeed: 10
   firePoint: {fileID: 0}
-  ZipBomb: {fileID: 0}
+  detectionBoxSize: {x: 15, y: 15}
+  catchingDistance: 4
+  randomCheckDistance: 1.5
+  randomCheckSize: 0.5
+  ZipBomb: {fileID: 3099001216324730113, guid: 86b721e0a657241369f217603d6a6cf1, type: 3}
 --- !u!114 &1048872465137419035
 MonoBehaviour:
   m_ObjectHideFlags: 0

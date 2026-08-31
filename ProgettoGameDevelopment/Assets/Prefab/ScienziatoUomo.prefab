@@ -170,6 +170,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   bulletSpeed: 10
   firePoint: {fileID: 0}
+  detectionBoxSize: {x: 15, y: 15}
+  catchingDistance: 4
+  randomCheckDistance: 1.5
+  randomCheckSize: 0.5
 --- !u!114 &-7153338316112819658
 MonoBehaviour:
   m_ObjectHideFlags: 0

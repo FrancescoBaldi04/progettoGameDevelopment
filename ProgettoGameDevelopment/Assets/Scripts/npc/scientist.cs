@@ -1,149 +1,339 @@
+
 using UnityEngine;
 
 public class scientist : Nemico
 {
-	private bool isDying=false;
+	private bool isDying = false;
 	private float lastHorizontal = 0;
 	private float lastVertical = -1f;
+
 	private Movement movement;
 	private Animator animator;
-     
-	protected override void Awake() {
+
+
+	protected override void Awake()
+	{
 		base.Awake();
+
 		movement = GetComponent<Movement>();
 		animator = GetComponent<Animator>();
 	}
 
-	void Start() {	
-		if(CheckForParassita())	{
-		if (parassita.StatoAttuale==Parassita.Stato.possessing) {	
-			StatoAttuale=Stato.escaping;
-		} else {
-			StatoAttuale=Stato.catching;
-		}
-		}
-		StatoAttuale=Stato.waiting;
 
+	void Start()
+	{
+		// Parte sempre in waiting.
+		// Sarà CheckForParassita() a determinare
+		// successivamente se deve catturare o scappare.
+		StatoAttuale = Stato.waiting;
 	}
 
-	void Update() {
-		if (isDying) return;
-				
-		if (HitPoints<=0) {
+
+	void Update()
+	{
+		if (isDying)
+			return;
+
+
+		if (HitPoints <= 0)
+		{
 			Die();
 			return;
 		}
 
-		switch (StatoAttuale) {
-			case Stato.waiting:{
-             if(!CheckForParassita()){
-             
-			 Vector2 direction = RandomMovement();
-             movement.SetDirection(direction);
-             UpdateAnimation(direction);
-             }
 
+		switch (StatoAttuale)
+		{
+			// =================================================
+			// WAITING
+			// =================================================
+
+			case Stato.waiting:
+			{
+				if (!CheckForParassita())
+				{
+					// Nessun Parassita vicino:
+					// movimento casuale
+
+					Vector2 direction = RandomMovement();
+
+					movement.SetDirection(direction);
+					UpdateAnimation(direction);
+				}
+				else
+				{
+					// Abbiamo trovato il Parassita
+					// oppure un corpo posseduto
+
+					if (parassita.StatoAttuale ==
+						Parassita.Stato.possessing)
+					{
+						StatoAttuale = Stato.escaping;
+					}
+					else
+					{
+						StatoAttuale = Stato.catching;
+					}
+				}
 
 				break;
 			}
-			
-			case Stato.catching: {
-				float distanza = Vector2.Distance(transform.position, parassita.transform.position);
-				if (distanza > 0.1f) {
-					Vector2 VersoDiCattura = GetBestDirection(parassita.transform.position, Vector2.zero);
-					movement.SetDirection(VersoDiCattura);
-					UpdateAnimation(VersoDiCattura);
-				} else {
-					movement.SetDirection(Vector2.zero);
-					UpdateAnimation(Vector2.zero);
+
+
+			// =================================================
+			// CATCHING
+			// =================================================
+
+			case Stato.catching:
+			{
+				// Centro dello sprite dello scienziato
+				Vector2 scientistPosition =
+					spriteRenderer.bounds.center;
+
+
+				// Centro dello sprite del Parassita
+				Vector2 parasitePosition =
+					parassita.GetComponent<SpriteRenderer>()
+					.bounds.center;
+
+
+				float distanza =
+					Vector2.Distance(
+						scientistPosition,
+						parasitePosition
+					);
+
+
+				if (distanza > 0.1f)
+				{
+					Vector2 VersoDiCattura =
+						GetBestDirection(
+							parasitePosition,
+							Vector2.zero
+						);
+
+
+					movement.SetDirection(
+						VersoDiCattura
+					);
+
+					UpdateAnimation(
+						VersoDiCattura
+					);
 				}
-				if (parassita.StatoAttuale == Parassita.Stato.possessing) {
+				else
+				{
+					movement.SetDirection(
+						Vector2.zero
+					);
+
+					UpdateAnimation(
+						Vector2.zero
+					);
+				}
+
+
+				// Se il Parassita entra nel corpo di un NPC,
+				// lo scienziato deve iniziare a scappare.
+
+				if (parassita.StatoAttuale ==
+					Parassita.Stato.possessing)
+				{
 					StatoAttuale = Stato.escaping;
 				}
+
 				break;
 			}
-			
-			case Stato.escaping: {
-				/*Vector2 VersoDiFuga= -GetBestDirection(parassita.transform.position, Vector2.zero);
-				movement.SetDirection(VersoDiFuga);
-				if (parassita.StatoAttuale==Parassita.Stato.libero) {
-					StatoAttuale=Stato.catching;
-				}
-				break;*/
 
-				Vector2 posizionePericolo = GetTargetPosition();
-				Vector2 VersoDiFuga = GetEscapeDirection(posizionePericolo);
 
-				movement.SetDirection(VersoDiFuga);
-				UpdateAnimation(VersoDiFuga);
+			// =================================================
+			// ESCAPING
+			// =================================================
 
-				if (parassita.StatoAttuale == Parassita.Stato.libero) {
+			case Stato.escaping:
+			{
+				Vector2 posizionePericolo =
+					GetTargetPosition();
+
+
+				Vector2 VersoDiFuga =
+					GetEscapeDirection(
+						posizionePericolo
+					);
+
+
+				movement.SetDirection(
+					VersoDiFuga
+				);
+
+				UpdateAnimation(
+					VersoDiFuga
+				);
+
+
+				// Se il Parassita torna libero,
+				// lo scienziato torna a cercarlo.
+
+				if (parassita.StatoAttuale ==
+					Parassita.Stato.libero)
+				{
 					StatoAttuale = Stato.catching;
 				}
+
 				break;
 			}
-			
-			case Stato.possessed: {
-				if (parassita.StatoAttuale == Parassita.Stato.libero) {
+
+
+			// =================================================
+			// POSSESSED
+			// =================================================
+
+			case Stato.possessed:
+			{
+				if (parassita.StatoAttuale ==
+					Parassita.Stato.libero)
+				{
 					this.HitPoints = 0;
-				break;
+					break;
 				}
-				// Leggo l'input da InputManager e lo passo al Movement dell'Npc
-				Vector2 inputGiocatore = InputManager.movement;
-				movement.SetDirection(inputGiocatore);
-				UpdateAnimation(inputGiocatore);
+
+
+				// Input del giocatore
+				Vector2 inputGiocatore =
+					InputManager.movement;
+
+
+				movement.SetDirection(
+					inputGiocatore
+				);
+
+				UpdateAnimation(
+					inputGiocatore
+				);
+
 				break;
 			}
 		}
 	}
 
-	protected override void Die(){
-		if (isDying) return;
+
+	// =========================================================
+	// MORTE
+	// =========================================================
+
+	protected override void Die()
+	{
+		if (isDying)
+			return;
+
+
 		isDying = true;
-		if (movement != null) movement.speed = 0f;
+
+
+		if (movement != null)
+			movement.speed = 0f;
+
+
 		Destroy(gameObject, 1f);
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision) {
-        // Il proiettile fa danno allo scienziato
-		if (collision.gameObject.CompareTag("Bullet") ){
-			if(  parassita.corpoPosseduto.GetComponent<scientist>() != null) {
+
+	// =========================================================
+	// COLLISIONI
+	// =========================================================
+
+	private void OnCollisionEnter2D(
+		Collision2D collision)
+	{
+		// Proiettile
+
+		if (collision.gameObject.CompareTag("Bullet"))
+		{
+			if (parassita.corpoPosseduto != null &&
+				parassita.corpoPosseduto
+				.GetComponent<scientist>() != null)
+			{
 				parassita.SubisciDanno(10);
 				return;
-			}else{
+			}
+			else
+			{
 				PrendiDanno(10);
 				return;
 			}
 		}
-        // Quando Parassita e Scienziato entrano in collisione vengano automaticamente chiamati entrambi i metodi OnCollisionEnter quindi devo fare in modo che il parassita venga ucciso dallo scienziato solo se il parassita non è in aria e quindi non ha effettuato un salto
-		Parassita parassitaScontrato = collision.gameObject.GetComponent<Parassita>();
-		if (StatoAttuale == Stato.catching && parassitaScontrato != null) {
-			PlayerJump playerJump = parassitaScontrato.GetComponent<PlayerJump>();
-			if (playerJump != null && !playerJump.isInAir) {
-				Debug.Log("Parassita catturato!");
+
+
+		// Collisione con il Parassita
+
+		Parassita parassitaScontrato =
+			collision.gameObject
+			.GetComponent<Parassita>();
+
+
+		if (StatoAttuale == Stato.catching &&
+			parassitaScontrato != null)
+		{
+			PlayerJump playerJump =
+				parassitaScontrato
+				.GetComponent<PlayerJump>();
+
+
+			if (playerJump != null &&
+				!playerJump.isInAir)
+			{
+				Debug.Log(
+					"Parassita catturato!"
+				);
+
 				parassitaScontrato.Muori();
 			}
 		}
 	}
-	private void UpdateAnimation(Vector2 direction) {
-		if (animator == null) return;
-		if (direction != Vector2.zero)  {
+
+
+	// =========================================================
+	// ANIMAZIONE
+	// =========================================================
+
+	private void UpdateAnimation(
+		Vector2 direction)
+	{
+		if (animator == null)
+			return;
+
+
+		if (direction != Vector2.zero)
+		{
 			lastHorizontal = direction.x;
 			lastVertical = direction.y;
 		}
-		animator.SetFloat("Horizontal", direction.x);
-		animator.SetFloat("Vertical", direction.y);
-		animator.SetFloat("Speed", direction.sqrMagnitude);
-		animator.SetFloat("LastHorizontal", lastHorizontal);
-		animator.SetFloat("LastVertical", lastVertical);
+
+
+		animator.SetFloat(
+			"Horizontal",
+			direction.x
+		);
+
+		animator.SetFloat(
+			"Vertical",
+			direction.y
+		);
+
+		animator.SetFloat(
+			"Speed",
+			direction.sqrMagnitude
+		);
+
+		animator.SetFloat(
+			"LastHorizontal",
+			lastHorizontal
+		);
+
+		animator.SetFloat(
+			"LastVertical",
+			lastVertical
+		);
 	}
-	
 }
-
-
-
-
-
-
-
 
