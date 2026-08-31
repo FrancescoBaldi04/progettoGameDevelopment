@@ -257,31 +257,29 @@ public class Nemico : MonoBehaviour
 	// =========================================================
 
 	public bool isFree(Vector2 direction)
-	{
-		Vector2 boxSize =
-			new Vector2(0.4f, 0.4f);
+{
+    Vector2 spritePosition = spriteRenderer.bounds.center;
 
-		float checkDistance = 0.5f;
+    Vector2 checkPosition =
+        spritePosition +
+        direction * randomCheckDistance;
 
+    Collider2D[] colliders = Physics2D.OverlapBoxAll(
+        checkPosition,
+        new Vector2(randomCheckSize, randomCheckSize),
+        0f
+    );
 
-		// CENTRO DELLO SPRITE
-		Vector2 spritePosition =
-			GetSpritePosition();
+    foreach (Collider2D collider in colliders)
+    {
+        if (collider.CompareTag("Wall"))
+        {
+            return false;
+        }
+    }
 
-
-		RaycastHit2D hitcast =
-			Physics2D.BoxCast(
-				spritePosition,
-				boxSize,
-				0.0f,
-				direction,
-				checkDistance,
-				Ground_Entities
-			);
-
-
-		return hitcast.collider == null;
-	}
+    return true;
+}
 
 
 	// =========================================================

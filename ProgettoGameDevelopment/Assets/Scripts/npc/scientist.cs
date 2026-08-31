@@ -40,6 +40,7 @@ public class scientist : Nemico
 			Die();
 			return;
 		}
+		
 
 
 		switch (StatoAttuale)
@@ -52,8 +53,7 @@ public class scientist : Nemico
 			{
 				if (!CheckForParassita())
 				{
-					// Nessun Parassita vicino:
-					// movimento casuale
+					
 
 					Vector2 direction = RandomMovement();
 
@@ -62,8 +62,7 @@ public class scientist : Nemico
 				}
 				else
 				{
-					// Abbiamo trovato il Parassita
-					// oppure un corpo posseduto
+					
 
 					if (parassita.StatoAttuale ==
 						Parassita.Stato.possessing)
@@ -85,6 +84,13 @@ public class scientist : Nemico
 			// =================================================
 
 			case Stato.catching:
+			 if (!CheckForParassita())
+    {
+              StatoAttuale = Stato.waiting;
+              movement.SetDirection(Vector2.zero);
+              UpdateAnimation(Vector2.zero);
+              break;
+    }
 			{
 				// Centro dello sprite dello scienziato
 				Vector2 scientistPosition =
@@ -152,6 +158,13 @@ public class scientist : Nemico
 
 			case Stato.escaping:
 			{
+				 if (parassita.StatoAttuale == Parassita.Stato.libero)
+    {
+        StatoAttuale = Stato.waiting;
+        movement.SetDirection(Vector2.zero);
+        UpdateAnimation(Vector2.zero);
+        break;
+    }
 				Vector2 posizionePericolo =
 					GetTargetPosition();
 

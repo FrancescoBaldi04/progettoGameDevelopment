@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class guard : Nemico
 {
-	public float targetDistance = 3.0f;
+	public float targetDistance = 5.0f;
 	private float timer = 1.0f;
 	private bool isDying = false;
 
@@ -61,8 +61,7 @@ public class guard : Nemico
 			{
 				if (!CheckForParassita())
 				{
-					// Nessun Parassita nelle vicinanze:
-					// movimento casuale.
+					
 
 					Vector2 direction = RandomMovement();
 
@@ -71,8 +70,7 @@ public class guard : Nemico
 				}
 				else
 				{
-					// Abbiamo rilevato il Parassita
-					// oppure un NPC posseduto.
+					
 
 					if (parassita.StatoAttuale ==
 						Parassita.Stato.possessing)
@@ -94,7 +92,14 @@ public class guard : Nemico
 			// =========================================================
 
 			case Stato.escaping:
-			{
+			{ 
+				if (parassita.StatoAttuale == Parassita.Stato.possessing)
+    {
+        StatoAttuale = Stato.waiting;
+        movement.SetDirection(Vector2.zero);
+        UpdateAnimation(Vector2.zero);
+        break;
+    }
 				// Centro dello sprite della guardia.
 				Vector2 guardPosition =
 					spriteRenderer.bounds.center;
@@ -131,7 +136,7 @@ public class guard : Nemico
 			// =========================================================
 
 			case Stato.positioning:
-			{
+			{ 
 				if (parassita.StatoAttuale ==
 					Parassita.Stato.libero)
 				{
