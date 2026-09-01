@@ -85,12 +85,12 @@ public class scientist : Nemico
 
 			case Stato.catching:
 			 if (!CheckForParassita())
-    {
-              StatoAttuale = Stato.waiting;
-              movement.SetDirection(Vector2.zero);
-              UpdateAnimation(Vector2.zero);
-              break;
-    }
+		{
+				StatoAttuale = Stato.waiting;
+				movement.SetDirection(Vector2.zero);
+				UpdateAnimation(Vector2.zero);
+				break;
+		}
 			{
 				// Centro dello sprite dello scienziato
 				Vector2 scientistPosition =
@@ -159,30 +159,18 @@ public class scientist : Nemico
 			case Stato.escaping:
 			{
 				 if (parassita.StatoAttuale == Parassita.Stato.libero)
-    {
-        StatoAttuale = Stato.waiting;
-        movement.SetDirection(Vector2.zero);
-        UpdateAnimation(Vector2.zero);
-        break;
-    }
-				Vector2 posizionePericolo =
-					GetTargetPosition();
-
-
-				Vector2 VersoDiFuga =
-					GetEscapeDirection(
-						posizionePericolo
-					);
-
-
-				movement.SetDirection(
-					VersoDiFuga
-				);
-
-				UpdateAnimation(
-					VersoDiFuga
-				);
-
+				{
+					StatoAttuale = Stato.waiting;
+					movement.SetDirection(Vector2.zero);
+					UpdateAnimation(Vector2.zero);
+					break;
+				}
+				
+				Vector2 posizionePericolo = GetTargetPosition();
+				Vector2 VersoDiFuga = GetEscapeDirection(posizionePericolo);
+				
+				movement.SetDirection(VersoDiFuga);
+				UpdateAnimation(VersoDiFuga);
 
 				// Se il Parassita torna libero,
 				// lo scienziato torna a cercarlo.

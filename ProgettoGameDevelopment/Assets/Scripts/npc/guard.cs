@@ -94,12 +94,12 @@ public class guard : Nemico
 			case Stato.escaping:
 			{ 
 				if (parassita.StatoAttuale == Parassita.Stato.possessing)
-    {
-        StatoAttuale = Stato.waiting;
-        movement.SetDirection(Vector2.zero);
-        UpdateAnimation(Vector2.zero);
-        break;
-    }
+				{
+					StatoAttuale = Stato.waiting;
+					movement.SetDirection(Vector2.zero);
+					UpdateAnimation(Vector2.zero);
+					break;
+				}
 				// Centro dello sprite della guardia.
 				Vector2 guardPosition =
 					spriteRenderer.bounds.center;
@@ -109,17 +109,14 @@ public class guard : Nemico
 					parassita.GetComponent<SpriteRenderer>()
 					.bounds.center;
 
-
 				Vector2 versoDiFuga =
 					-GetBestDirection(
 						parassitaPosition,
 						Vector2.zero
 					);
 
-
 				movement.SetDirection(versoDiFuga);
 				UpdateAnimation(versoDiFuga);
-
 
 				if (parassita.StatoAttuale ==
 					Parassita.Stato.possessing)
