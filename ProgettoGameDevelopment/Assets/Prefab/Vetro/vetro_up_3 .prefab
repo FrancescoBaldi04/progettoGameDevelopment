@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4273968233889558786}
   m_Layer: 10
   m_Name: 'vetro_up_3 '
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

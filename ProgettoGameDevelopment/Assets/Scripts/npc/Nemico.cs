@@ -34,7 +34,7 @@ public class Nemico : MonoBehaviour
 	// Distanza per i controlli del movimento casuale
 	protected Vector2 randomDirection = Vector2.zero;
 	[SerializeField] protected float randomCheckDistance = 1.5f;
-	[SerializeField] protected float randomCheckSize = 0.4f;
+	[SerializeField] protected float randomCheckSize = 0.75f;
 
 
 	protected virtual void Awake()
@@ -81,25 +81,16 @@ public class Nemico : MonoBehaviour
 		{
 			Vector2 posizioneBersaglio = GetTargetPosition();
 
-			direzione =
-				(posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
+			direzione = (posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
 		}
 
-		float angle =
-			Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
+		float angle = Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
 
-		Quaternion rotazioneProiettile =
-			Quaternion.Euler(0, 0, angle);
+		Quaternion rotazioneProiettile = Quaternion.Euler(0, 0, angle);
 
-		GameObject bullet =
-			Instantiate(
-				bulletPrefab,
-				uscitaProiettile,
-				rotazioneProiettile
-			);
+		GameObject bullet = Instantiate(bulletPrefab,uscitaProiettile,rotazioneProiettile);
 
-		Collider2D bulletCollider =
-			bullet.GetComponent<Collider2D>();
+		Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
 
 		if (bulletCollider == null)
 		{
@@ -109,54 +100,39 @@ public class Nemico : MonoBehaviour
 
 		if (WhoIsShooting)
 		{
-			Collider2D possessedCollider =
-				parassita.GetComponent<Collider2D>();
+			Collider2D possessedCollider = parassita.GetComponent<Collider2D>();
 
 			if (possessedCollider != null)
 			{
-				Physics2D.IgnoreCollision(
-					bulletCollider,
-					possessedCollider
-				);
+				Physics2D.IgnoreCollision(bulletCollider,possessedCollider);
 			}
 
 			if (parassita.corpoPosseduto != null)
 			{
-				Collider2D corpoPossedutoCollider =
-					parassita.corpoPosseduto
-					.GetComponent<Collider2D>();
+				Collider2D corpoPossedutoCollider = parassita.corpoPosseduto.GetComponent<Collider2D>();
 
 				if (corpoPossedutoCollider != null)
 				{
-					Physics2D.IgnoreCollision(
-						bulletCollider,
-						corpoPossedutoCollider
-					);
+					Physics2D.IgnoreCollision(bulletCollider,corpoPossedutoCollider);
 				}
 			}
 		}
 		else
 		{
-			Collider2D enemyCollider =
-				GetComponent<Collider2D>();
+			Collider2D enemyCollider = GetComponent<Collider2D>();
 
 			if (enemyCollider != null)
 			{
-				Physics2D.IgnoreCollision(
-					bulletCollider,
-					enemyCollider
-				);
+				Physics2D.IgnoreCollision(bulletCollider,enemyCollider);
 			}
 		}
 
 
-		Rigidbody2D rb =
-			bullet.GetComponent<Rigidbody2D>();
+		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
 		if (rb != null)
 		{
-			rb.linearVelocity =
-				direzione * bulletSpeed;
+			rb.linearVelocity = direzione * bulletSpeed;
 		}
 	}
 
@@ -165,9 +141,7 @@ public class Nemico : MonoBehaviour
 	// DIREZIONE VERSO UN TARGET
 	// =========================================================
 
-	public Vector2 GetBestDirection(
-		Vector2 targetPosition,
-		Vector2 exclude)
+	public Vector2 GetBestDirection(Vector2 targetPosition,Vector2 exclude)
 	{
 		up = isFree(Vector2.up);
 		down = isFree(Vector2.down);
@@ -175,69 +149,43 @@ public class Nemico : MonoBehaviour
 		left = isFree(Vector2.left);
 
 		// CENTRO DELLO SPRITE
-		Vector2 currentPosition =
-			GetSpritePosition();
+		Vector2 currentPosition = GetSpritePosition();
 
-		Vector2 directionVector =
-			targetPosition - currentPosition;
+		Vector2 directionVector = targetPosition - currentPosition;
 
 
-		float angleUp =
-			Vector2.Angle(
-				Vector2.up,
-				directionVector
-			);
+		float angleUp = Vector2.Angle(Vector2.up,directionVector);
 
-		float angleDown =
-			Vector2.Angle(
-				Vector2.down,
-				directionVector
-			);
+		float angleDown = Vector2.Angle(Vector2.down,directionVector);
 
-		float angleRight =
-			Vector2.Angle(
-				Vector2.right,
-				directionVector
-			);
+		float angleRight = Vector2.Angle(Vector2.right,directionVector);
 
-		float angleLeft =
-			Vector2.Angle(
-				Vector2.left,
-				directionVector
-			);
+		float angleLeft = Vector2.Angle(Vector2.left,directionVector);
 
 
 		Vector2 bestDirection = Vector2.zero;
 		float bestAngle = 360f;
 
 
-		if (up &&
-			angleUp <= bestAngle &&
-			exclude != Vector2.up)
+		if (up && angleUp <= bestAngle && exclude != Vector2.up)
 		{
 			bestDirection = Vector2.up;
 			bestAngle = angleUp;
 		}
 
-		if (down &&
-			angleDown <= bestAngle &&
-			exclude != Vector2.down)
+		if (down && angleDown <= bestAngle && exclude != Vector2.down)
 		{
 			bestDirection = Vector2.down;
 			bestAngle = angleDown;
 		}
 
-		if (right &&
-			angleRight <= bestAngle &&
-			exclude != Vector2.right)
+		if (right && angleRight <= bestAngle && exclude != Vector2.right)
 		{
 			bestDirection = Vector2.right;
 			bestAngle = angleRight;
 		}
 
-		if (left &&
-			angleLeft <= bestAngle &&
-			exclude != Vector2.left)
+		if (left && angleLeft <= bestAngle && exclude != Vector2.left)
 		{
 			bestDirection = Vector2.left;
 			bestAngle = angleLeft;
@@ -256,19 +204,13 @@ public class Nemico : MonoBehaviour
 	{
 		Vector2 spritePosition = spriteRenderer.bounds.center;
 
-		Vector2 checkPosition =
-			spritePosition +
-			direction * randomCheckDistance;
+		Vector2 checkPosition = spritePosition + direction * randomCheckDistance;
 
-		Collider2D[] colliders = Physics2D.OverlapBoxAll(
-			checkPosition,
-			new Vector2(randomCheckSize, randomCheckSize),
-			0f
-		);
+		Collider2D[] colliders = Physics2D.OverlapBoxAll(checkPosition,new Vector2(randomCheckSize, randomCheckSize),0f);
 
 		foreach (Collider2D collider in colliders)
 		{
-			if (collider.CompareTag("Wall"))
+			if (collider.CompareTag("Wall") || collider.CompareTag("Npc"))
 			{
 				return false;
 			}
@@ -305,9 +247,7 @@ public class Nemico : MonoBehaviour
 
 	protected Vector2 GetTargetPosition()
 	{
-		if (parassita.StatoAttuale ==
-			Parassita.Stato.possessing &&
-			parassita.corpoPosseduto != null)
+		if (parassita.StatoAttuale == Parassita.Stato.possessing && parassita.corpoPosseduto != null)
 		{
 			return parassita.GetCorpoPossedutoPosition();
 		}
@@ -320,21 +260,13 @@ public class Nemico : MonoBehaviour
 	// DIREZIONE DI FUGA
 	// =========================================================
 
-	public Vector2 GetEscapeDirection(
-		Vector2 dangerPosition)
+	public Vector2 GetEscapeDirection(Vector2 dangerPosition)
 	{
 		// CENTRO DELLO SPRITE
-		Vector2 currentPos =
-			GetSpritePosition();
+		Vector2 currentPos = GetSpritePosition();
 
 
-		Vector2[] directions =
-		{
-			Vector2.up,
-			Vector2.down,
-			Vector2.left,
-			Vector2.right
-		};
+		Vector2[] directions = {Vector2.up,Vector2.down,Vector2.left,Vector2.right};
 
 
 		Vector2 bestDir = Vector2.zero;
@@ -345,15 +277,10 @@ public class Nemico : MonoBehaviour
 		{
 			if (isFree(dir))
 			{
-				Vector2 nextPos =
-					currentPos + dir;
+				Vector2 nextPos = currentPos + dir;
 
 
-				float distanceToDanger =
-					Vector2.Distance(
-						nextPos,
-						dangerPosition
-					);
+				float distanceToDanger = Vector2.Distance(nextPos,dangerPosition);
 
 
 				if (distanceToDanger > maxDistance)
@@ -380,18 +307,12 @@ public class Nemico : MonoBehaviour
 			GetSpritePosition();
 
 
-		Collider2D[] objectsInside =
-			Physics2D.OverlapBoxAll(
-				spritePosition,
-				detectionBoxSize,
-				0f
-			);
+		Collider2D[] objectsInside = Physics2D.OverlapBoxAll(spritePosition,detectionBoxSize,0f);
 
 
 		foreach (Collider2D collider in objectsInside)
 		{
-			Parassita p =
-				collider.GetComponent<Parassita>();
+			Parassita p = collider.GetComponent<Parassita>();
 
 
 			if (p != null)
@@ -400,14 +321,10 @@ public class Nemico : MonoBehaviour
 			}
 
 
-			Nemico nemico =
-				collider.GetComponent<Nemico>();
+			Nemico nemico = collider.GetComponent<Nemico>();
 
 
-			if (nemico != null &&
-				nemico.parassita != null &&
-				nemico.parassita.corpoPosseduto ==
-				nemico.gameObject)
+			if (nemico != null && nemico.parassita != null && nemico.parassita.corpoPosseduto ==nemico.gameObject)
 			{
 				return true;
 			}
@@ -425,16 +342,10 @@ public class Nemico : MonoBehaviour
 	protected Vector2 GetRandomDirection()
 	{
 		Vector2[] directions =
-		{
-			Vector2.up,
-			Vector2.down,
-			Vector2.left,
-			Vector2.right
-		};
+		{Vector2.up,Vector2.down,Vector2.left,Vector2.right};
 
 
-		List<Vector2> availableDirections =
-			new List<Vector2>();
+		List<Vector2> availableDirections =new List<Vector2>();
 
 
 		foreach (Vector2 direction in directions)
@@ -465,33 +376,21 @@ public class Nemico : MonoBehaviour
 	// CONTROLLO MURO
 	// =========================================================
 
-	protected bool WallInDirection(
-		Vector2 direction)
+	protected bool WallInDirection(Vector2 direction)
 	{
 		// CENTRO DELLO SPRITE
-		Vector2 spritePosition =
-			GetSpritePosition();
+		Vector2 spritePosition = GetSpritePosition();
 
 
-		Vector2 checkPosition =
-			spritePosition +
-			direction * randomCheckDistance;
+		Vector2 checkPosition = spritePosition + direction * randomCheckDistance;
 
 
-		Collider2D[] colliders =
-			Physics2D.OverlapBoxAll(
-				checkPosition,
-				new Vector2(
-					randomCheckSize,
-					randomCheckSize
-				),
-				0f
-			);
+		Collider2D[] colliders = Physics2D.OverlapBoxAll(checkPosition,new Vector2(randomCheckSize,randomCheckSize),0f);
 
 
 		foreach (Collider2D collider in colliders)
 		{
-			if (collider.CompareTag("Wall"))
+			if (collider.CompareTag("Wall") || collider.CompareTag("Npc"))
 			{
 				return true;
 			}
@@ -508,11 +407,9 @@ public class Nemico : MonoBehaviour
 
 	protected Vector2 RandomMovement()
 	{
-		if (randomDirection == Vector2.zero ||
-			WallInDirection(randomDirection))
+		if (randomDirection == Vector2.zero || WallInDirection(randomDirection))
 		{
-			randomDirection =
-				GetRandomDirection();
+			randomDirection = GetRandomDirection();
 		}
 
 
@@ -555,18 +452,10 @@ public class Nemico : MonoBehaviour
 
 		foreach (Vector2 direction in directions)
 		{
-			Vector2 checkPosition =
-				spritePosition +
-				direction * randomCheckDistance;
+			Vector2 checkPosition = spritePosition + direction * randomCheckDistance;
 
 
-			Gizmos.DrawWireCube(
-				checkPosition,
-				new Vector2(
-					randomCheckSize,
-					randomCheckSize
-				)
-			);
+			Gizmos.DrawWireCube(checkPosition,new Vector2(randomCheckSize,randomCheckSize));
 		}
 	}
 }

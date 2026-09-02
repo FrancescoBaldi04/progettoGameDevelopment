@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6699158092764048066}
   m_Layer: 10
   m_Name: vetro_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
