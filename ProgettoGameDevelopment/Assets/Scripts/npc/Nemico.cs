@@ -103,10 +103,6 @@ public class Nemico : MonoBehaviour
 
 		if (bulletCollider == null)
 		{
-			Debug.LogError(
-				"Il prefab Proiettile non ha un Collider2D!"
-			);
-
 			return;
 		}
 
@@ -289,14 +285,6 @@ public class Nemico : MonoBehaviour
 	public void PrendiDanno(int danno)
 	{
 		HitPoints -= danno;
-
-		Debug.Log(
-			name +
-			" ha ricevuto " +
-			danno +
-			" danni. HP: " +
-			HitPoints
-		);
 
 		if (HitPoints <= 0)
 		{

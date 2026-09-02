@@ -140,6 +140,13 @@ public class guard : Nemico
 					StatoAttuale = Stato.escaping;
 					break;
 				}
+				if (!CheckForParassita())
+		{
+				StatoAttuale = Stato.waiting;
+				movement.SetDirection(Vector2.zero);
+				UpdateAnimation(Vector2.zero);
+				break;
+		}
 
 
 				if (movement != null &&
@@ -324,19 +331,9 @@ public class guard : Nemico
 					HitPoints = 0;
 					break;
 				}
-
-
-				Vector2 inputGiocatore =
-					InputManager.movement;
-
-
-				movement.SetDirection(
-					inputGiocatore
-				);
-
-				UpdateAnimation(
-					inputGiocatore
-				);
+				Vector2 inputGiocatore = InputManager.movement;
+				movement.SetDirection(inputGiocatore);
+				UpdateAnimation(inputGiocatore);
 
 				break;
 			}
@@ -354,8 +351,7 @@ public class guard : Nemico
 			return;
 
 
-		// Memorizzo l'ultima direzione SOLO
-		// quando la guardia si sta muovendo.
+		// Memorizzo l'ultima direzione SOLO quando la guardia si sta muovendo.
 
 		if (direction != Vector2.zero)
 		{
@@ -421,25 +417,21 @@ public class guard : Nemico
 	// COLLISIONI
 	// =========================================================
 
-	private void OnCollisionEnter2D(
-		Collision2D collision)
-	{
-		// Il proiettile fa danno alla guardia.
+	private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Bullet"))
+    {
+       
+        if (parassita.corpoPosseduto == gameObject)
+        {
+            parassita.SubisciDanno(10);
+        }
+        else
+        {
+            PrendiDanno(10);
+        }
 
-		if (collision.gameObject.CompareTag("Bullet"))
-		{
-			if (parassita.corpoPosseduto != null &&
-				parassita.corpoPosseduto
-				.GetComponent<guard>() != null)
-			{
-				parassita.SubisciDanno(10);
-				return;
-			}
-			else
-			{
-				PrendiDanno(10);
-				return;
-			}
-		}
-	}
+        return;
+    }
+}
 }

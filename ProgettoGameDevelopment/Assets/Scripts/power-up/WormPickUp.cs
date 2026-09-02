@@ -11,11 +11,11 @@ public class WormPickUp : MonoBehaviour
         
          if (pickupMessage == null)
         {
-            Debug.LogError("ERRORE: PickupMessage non trovato nella scena!");
+
         }
         else
         {
-            Debug.Log("PickupMessage trovato correttamente!");
+
         }
     }
 

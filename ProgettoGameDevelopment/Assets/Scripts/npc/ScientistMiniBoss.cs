@@ -277,9 +277,7 @@ public class scientistMiniboss : Nemico
 			if (playerJump != null &&
 				!playerJump.isInAir)
 			{
-				Debug.Log(
-					"Parassita catturato!"
-				);
+				
 
 				parassitaScontrato.Muori();
 			}

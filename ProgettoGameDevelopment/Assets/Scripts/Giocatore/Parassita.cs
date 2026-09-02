@@ -215,6 +215,7 @@ public class Parassita : MonoBehaviour
 
     public void LiberaParassita()
     {
+        running=false;
         transform.SetParent(null);
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<Collider2D>().enabled = true;
@@ -241,19 +242,19 @@ public class Parassita : MonoBehaviour
     {
         if (!GameManager.gameManager.hasZipBomb)
         {
-            Debug.Log("Zip Bomb non sbloccata");
+          
             return;
         }
 
 
         if (statoAttuale != Stato.possessing)
         {
-            Debug.Log("Zip Bomb non disponibile");
+         
             return;
         }
 
 
-        Debug.Log("BOOM! Zip Bomb esplosa");
+       
 
 
         Vector3 posizione =
@@ -285,10 +286,7 @@ public class Parassita : MonoBehaviour
             {
                 nemico.PrendiDanno(dannoEsplosione);
 
-                Debug.Log(
-                    "Danno Zip Bomb a " +
-                    nemico.name
-                );
+             
             }
         }
         GameObject corpoDaDistruggere = corpoPosseduto;
@@ -331,7 +329,7 @@ public class Parassita : MonoBehaviour
 
         if (movement == null)
         {
-            Debug.LogWarning("Il corpo posseduto non ha il componente Movement!");
+           
             return;
         }
 
@@ -347,7 +345,7 @@ public class Parassita : MonoBehaviour
     }
     public void Muori()
     {
-        Debug.Log("Il parassita è morto!");
+       
 
         if (playerJump != null)
         {

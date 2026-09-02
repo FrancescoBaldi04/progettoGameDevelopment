@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     {
         hasTrojanHorse = true;
 
-        Debug.Log("GameManager: Trojan Horse sbloccato!");
+
     }
 
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     {
         hasZipBomb = true;
 
-        Debug.Log("GameManager: Zip Bomb sbloccata!");
+
     }
 
 
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         hasWorm = true;
 
-        Debug.Log("GameManager: Worm sbloccato!");
+
     }
 
 

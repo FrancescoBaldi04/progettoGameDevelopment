@@ -84,14 +84,15 @@ public class scientist : Nemico
 			// =================================================
 
 			case Stato.catching:
-			 if (!CheckForParassita())
+			 
+			{
+				if (!CheckForParassita())
 		{
 				StatoAttuale = Stato.waiting;
 				movement.SetDirection(Vector2.zero);
 				UpdateAnimation(Vector2.zero);
 				break;
 		}
-			{
 				// Centro dello sprite dello scienziato
 				Vector2 scientistPosition =
 					spriteRenderer.bounds.center;
@@ -243,49 +244,37 @@ public class scientist : Nemico
 	// COLLISIONI
 	// =========================================================
 
-	private void OnCollisionEnter2D(
-		Collision2D collision)
-	{
-		// Proiettile
+	private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Bullet"))
+    {
+        // Controllo se QUESTO corpo è quello posseduto dal parassita
+        if (parassita.corpoPosseduto == gameObject)
+        {
+            parassita.SubisciDanno(10);
+        }
+        else
+        {
+            PrendiDanno(10);
+        }
 
-		if (collision.gameObject.CompareTag("Bullet"))
-		{
-			if (parassita.corpoPosseduto != null &&
-				parassita.corpoPosseduto
-				.GetComponent<scientist>() != null)
-			{
-				parassita.SubisciDanno(10);
-				return;
-			}
-			else
-			{
-				PrendiDanno(10);
-				return;
-			}
-		}
+        return;
+    }
+
 
 
 		// Collisione con il Parassita
 
-		Parassita parassitaScontrato =
-			collision.gameObject
-			.GetComponent<Parassita>();
+		Parassita parassitaScontrato = collision.gameObject.GetComponent<Parassita>();
 
 
-		if (StatoAttuale == Stato.catching &&
-			parassitaScontrato != null)
+		if (StatoAttuale == Stato.catching && parassitaScontrato != null)
 		{
-			PlayerJump playerJump =
-				parassitaScontrato
-				.GetComponent<PlayerJump>();
+			PlayerJump playerJump = parassitaScontrato.GetComponent<PlayerJump>();
 
 
-			if (playerJump != null &&
-				!playerJump.isInAir)
+			if (playerJump != null && !playerJump.isInAir)
 			{
-				Debug.Log(
-					"Parassita catturato!"
-				);
 
 				parassitaScontrato.Muori();
 			}
@@ -311,30 +300,15 @@ public class scientist : Nemico
 		}
 
 
-		animator.SetFloat(
-			"Horizontal",
-			direction.x
-		);
+		animator.SetFloat("Horizontal",direction.x);
 
-		animator.SetFloat(
-			"Vertical",
-			direction.y
-		);
+		animator.SetFloat("Vertical",direction.y);
 
-		animator.SetFloat(
-			"Speed",
-			direction.sqrMagnitude
-		);
+		animator.SetFloat("Speed",direction.sqrMagnitude);
 
-		animator.SetFloat(
-			"LastHorizontal",
-			lastHorizontal
-		);
+		animator.SetFloat("LastHorizontal",lastHorizontal);
 
-		animator.SetFloat(
-			"LastVertical",
-			lastVertical
-		);
+		animator.SetFloat("LastVertical",lastVertical);
 	}
 }
 

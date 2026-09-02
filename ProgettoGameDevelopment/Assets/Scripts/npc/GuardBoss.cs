@@ -93,13 +93,8 @@ public class guardboss : Nemico
 		timer -= Time.deltaTime;
 		float distance =
 		Vector2.Distance(origine, targetPosition);
-		RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget,
-									distance, obstacleLayerMask);
-									Debug.Log(
-    "BOSS SHOOTING | distanza: " + distance +
-    " | hit: " + (hit.collider != null ? hit.collider.name : "NESSUNO") +
-    " | timer: " + timer
-);
+		RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget,distance, obstacleLayerMask);
+									
 		if (hit.collider != null || distance > targetDistance + 0.3f) {
 			StatoAttuale = Stato.positioning;
 			timer = 1.0f;
