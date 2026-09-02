@@ -45694,6 +45694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7786c57be5852473bbda22fb4d9b1274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartScreen
+  healthBar: {fileID: 363703910}
 --- !u!114 &840508420
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class StartScreen : MonoBehaviour
 {
     public static bool giocoIniziato = false;
+    [SerializeField] private HealthBar healthBar;
 
     void Awake()
     {
@@ -13,6 +14,7 @@ public class StartScreen : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0f;
+        healthBar.gameObject.SetActive(false);
     }
 
     void Update()
@@ -21,7 +23,7 @@ public class StartScreen : MonoBehaviour
             Keyboard.current.anyKey.wasPressedThisFrame)
         {
             giocoIniziato = true;
-
+            healthBar.gameObject.SetActive(true);
             Time.timeScale = 1f;
 
             gameObject.SetActive(false);

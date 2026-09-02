@@ -20767,11 +20767,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1502745378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 387.48, y: -82.144}
-  m_SizeDelta: {x: 479.1, y: 25}
-  m_Pivot: {x: 1.2864413, y: 2.3942237}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 49.13, y: 85}
+  m_SizeDelta: {x: 577.37, y: 25}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &946055086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20792,17 +20792,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Premere un tasto per iniziare
+  m_text: '   Press any key to start'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a54a5767dc4c3c74eaee1170829fab9f, type: 2}
+  m_sharedMaterial: {fileID: 3748721709753690444, guid: a54a5767dc4c3c74eaee1170829fab9f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280483109
+  m_fontColor: {r: 0.14509805, g: 0.99215686, b: 0.13333334, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -20819,14 +20819,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -20858,7 +20858,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -21.308289, y: 0, z: 0.8964386, w: 0}
+  m_margin: {x: -21.308289, y: 0, z: 126.22004, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -21152,11 +21152,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1502745378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -91.49, y: 104.26}
-  m_SizeDelta: {x: 311.02, y: 71.49}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 97.58, y: -30}
+  m_SizeDelta: {x: 703.57, y: 70.49}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1077933601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21177,17 +21177,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nome Gioco
+  m_text: PARASITE ESCAPE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a54a5767dc4c3c74eaee1170829fab9f, type: 2}
+  m_sharedMaterial: {fileID: 3748721709753690444, guid: a54a5767dc4c3c74eaee1170829fab9f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280483109
+  m_fontColor: {r: 0.14698146, g: 0.9924528, b: 0.13295123, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -21204,8 +21204,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -21243,7 +21243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.0000152578195, w: 0}
+  m_margin: {x: 0, y: 0, z: 128.74548, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -29668,6 +29668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7786c57be5852473bbda22fb4d9b1274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartScreen
+  healthBar: {fileID: 1340294730}
 --- !u!114 &1502745380
 MonoBehaviour:
   m_ObjectHideFlags: 0

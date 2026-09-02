@@ -60833,7 +60833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00000031537, y: -100}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 700, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &913642313
@@ -61736,11 +61736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6802635466956660590, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -37.984146
+      value: -37.98416
       objectReference: {fileID: 0}
     - target: {fileID: 6802635466956660590, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -35.74821
+      value: -35.748215
       objectReference: {fileID: 0}
     - target: {fileID: 6802635466956660590, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -62621,6 +62621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7786c57be5852473bbda22fb4d9b1274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartScreen
+  healthBar: {fileID: 1565912592}
 --- !u!114 &1930143920
 MonoBehaviour:
   m_ObjectHideFlags: 0
