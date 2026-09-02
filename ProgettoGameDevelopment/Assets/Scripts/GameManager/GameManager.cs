@@ -73,9 +73,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforeRestart);
 
-        SceneManager.LoadScene(
-            SceneManager.GetActiveScene().buildIndex
-        );
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ReturnToMainMenu()

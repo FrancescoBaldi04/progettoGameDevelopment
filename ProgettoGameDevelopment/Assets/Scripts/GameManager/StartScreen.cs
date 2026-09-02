@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class StartScreen : MonoBehaviour
 {
@@ -8,19 +9,37 @@ public class StartScreen : MonoBehaviour
 
     void Awake()
     {
-        giocoIniziato = false; // tutte le volte che avviene un GameOver o il giocatore preme il pulsante quit del menu giocoIniziato deve essere impostato a false perché altrimenti dopo aver quittato il gioco dal menu e aver premuto il tasto di apertura menu come primo tasto per avviare la partita il menu viene aperto ma il gioco parte lo stesso
+        if (SceneManager.GetActiveScene().name != "Main")
+        {
+              giocoIniziato = true;
+        }
+        else
+        {
+              giocoIniziato = false; // tutte le volte che avviene un GameOver o il giocatore preme il pulsante quit del menu giocoIniziato deve essere impostato a false perché altrimenti dopo aver quittato il gioco dal menu e aver premuto il tasto di apertura menu come primo tasto per avviare la partita il menu viene aperto ma il gioco parte lo stesso
+        }
     }
 
     void Start()
     {
-        Time.timeScale = 0f;
-        healthBar.gameObject.SetActive(false);
+        if (giocoIniziato)
+        {
+            Time.timeScale = 1f;
+
+            healthBar.gameObject.SetActive(true);
+
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0f;
+
+            healthBar.gameObject.SetActive(false);
+        }
     }
 
     void Update()
     {
-        if (Keyboard.current != null &&
-            Keyboard.current.anyKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
         {
             giocoIniziato = true;
             healthBar.gameObject.SetActive(true);
