@@ -46,7 +46,7 @@ public class TrojanHorsePickup : MonoBehaviour
                     PauseManager.pauseManager.UpdateWormText(trojanHorseUIdescription);
                 }
 
-                pickupMessage.ShowMessage("Trojan Horse ottenuto! Premere 'C' per attivare/disattivare");
+                pickupMessage.ShowMessage("Trojan Horse ottenuto!");
 
                 Destroy(gameObject);
             }

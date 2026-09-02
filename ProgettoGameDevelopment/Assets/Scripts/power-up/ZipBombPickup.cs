@@ -48,7 +48,7 @@ public class ZipBombPickup : MonoBehaviour
                     PauseManager.pauseManager.UpdateWormText(zipBombUIdescription);
                 }
 
-                pickupMessage.ShowMessage("Zip Bomb ottenuta! Premere 'C' per attivare/disattivare");
+                pickupMessage.ShowMessage("Zip Bomb ottenuta! Premere 'E' per attivare/disattivare");
 
                 Destroy(gameObject);
             }
