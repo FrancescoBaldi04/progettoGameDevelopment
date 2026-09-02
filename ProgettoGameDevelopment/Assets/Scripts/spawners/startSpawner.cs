@@ -6,6 +6,7 @@ public class startSpawner : MonoBehaviour
 	
 	void Start() {
 		GameObject scientist = Instantiate(ScienziatoDonna, transform.position, transform.rotation);
+		Destroy(gameObject);
 	}
 
 }
