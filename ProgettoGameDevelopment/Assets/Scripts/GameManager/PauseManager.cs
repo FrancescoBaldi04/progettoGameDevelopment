@@ -58,7 +58,7 @@ public class PauseManager : MonoBehaviour
             UpdateTrojanHorsetext();
         }
         if(showingCommands ){
-            if(Keyboard.current.enterKey.wasPressedThisFrame){
+            if(Keyboard.current.lKey.wasPressedThisFrame){
                  Description.SetActive(false);
                   pauseMenuPanel.SetActive(true);
                   showingCommands = false;

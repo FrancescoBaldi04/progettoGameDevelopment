@@ -418,17 +418,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88275287}
   m_CullTransparentMesh: 1
---- !u!114 &146226115 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3884704495465225015, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
-  m_PrefabInstance: {fileID: 373743536}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &189524173
 GameObject:
   m_ObjectHideFlags: 0
@@ -18831,14 +18820,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406283753}
     m_Modifications:
-    - target: {fileID: 3884704495465225015, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
+    - target: {fileID: 1171546747484845520, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1734470014}
+    - target: {fileID: 1171546747484845520, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 911918583}
     - target: {fileID: 3884704495465225015, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 1609822621}
+      objectReference: {fileID: 1734470013}
     - target: {fileID: 3884704495465225015, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -18928,25 +18921,17 @@ PrefabInstance:
       value: PausePanel
       objectReference: {fileID: 0}
     - target: {fileID: 8282617969686159057, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8282617969686159057, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
-      objectReference: {fileID: 1609822621}
+      objectReference: {fileID: 1734470013}
     - target: {fileID: 8282617969686159057, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 911918583}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6954844162085829674, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3359620511629043537, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1609822621}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
 --- !u!224 &373743537 stripped
 RectTransform:
@@ -18958,28 +18943,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5391894239275397472, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
   m_PrefabInstance: {fileID: 373743536}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &373743542 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6269108828218629087, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
-  m_PrefabInstance: {fileID: 373743536}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373743541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &373743544 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8282617969686159057, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
-  m_PrefabInstance: {fileID: 373743536}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373743541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &394139885
 GameObject:
   m_ObjectHideFlags: 0
@@ -116612,67 +116575,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1609822616 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3359620511629043537, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
-  m_PrefabInstance: {fileID: 373743536}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1609822621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609822616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
-  m_Navigation:
-    m_Mode: 4
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 373743544}
-    m_SelectOnDown: {fileID: 146226115}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6248591, g: 0.9622642, b: 0.1216447, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.62352943, g: 0.9607843, b: 0.12156863, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 373743542}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 911918583}
-        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
-        m_MethodName: comandi
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1629453072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116800,6 +116702,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 856bfab9389754a669ee20236c0ed61d, type: 3}
+--- !u!114 &1734470013 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1171546747484845520, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
+  m_PrefabInstance: {fileID: 373743536}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1734470014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5358015460481864989, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
+  m_PrefabInstance: {fileID: 373743536}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1842147320
 GameObject:
   m_ObjectHideFlags: 0
