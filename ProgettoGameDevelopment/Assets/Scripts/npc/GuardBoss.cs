@@ -27,7 +27,7 @@ public class guardboss : Nemico
 		} else {
 			StatoAttuale = Stato.waiting;
 		}
-        UpdateAnimation(Vector2.zero);
+		UpdateAnimation(Vector2.zero);
 	}
 
 	void Update() {
@@ -52,7 +52,7 @@ public class guardboss : Nemico
 		case Stato.positioning: {
 			if (parassita.StatoAttuale ==Parassita.Stato.libero) {
 				StatoAttuale = Stato.waiting;
-				break;
+			break;
 			} 
 			if (movement != null && parassita != null) {
 				Vector2 myPosition = transform.position;
@@ -60,7 +60,7 @@ public class guardboss : Nemico
 				float distance =Vector2.Distance(myPosition, parassitaPosition);
 				Vector2 directionToParassita =(parassitaPosition - myPosition).normalized;
 				RaycastHit2D hit =Physics2D.Raycast(myPosition, directionToParassita, 
-											distance, obstacleLayerMask);
+				                                                        distance, obstacleLayerMask);
 											
 				if (hit.collider != null || distance > targetDistance + 0.3f) {
 					movement.SetDirection(directionToParassita);
@@ -77,57 +77,55 @@ public class guardboss : Nemico
 		case Stato.shooting: {
 			movement.SetDirection(Vector2.zero);
 			Vector2 origine;
-		if (spriteRenderer != null) {
-			origine = spriteRenderer.bounds.center;
-		} else {
-			origine = transform.position;
-		}
-		Vector2 targetPosition = GetTargetPosition();
-		Vector2 directionToTarget = (targetPosition - origine).normalized;
-		if (directionToTarget != Vector2.zero) {
-			lastHorizontal = directionToTarget.x;
-			lastVertical = directionToTarget.y;
-			animator.SetFloat("LastHorizontal", lastHorizontal);
-			animator.SetFloat("LastVertical", lastVertical);
-		}
-		timer -= Time.deltaTime;
-		float distance =
-		Vector2.Distance(origine, targetPosition);
-		RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget,distance, obstacleLayerMask);
+			
+			if (spriteRenderer != null) {
+				origine = spriteRenderer.bounds.center;
+			} else {
+				origine = transform.position;
+			}
+			
+			Vector2 targetPosition = GetTargetPosition();
+			Vector2 directionToTarget = (targetPosition - origine).normalized;
+			
+			if (directionToTarget != Vector2.zero) {
+				lastHorizontal = directionToTarget.x;
+				lastVertical = directionToTarget.y;
+				animator.SetFloat("LastHorizontal", lastHorizontal);
+				animator.SetFloat("LastVertical", lastVertical);
+			}
+			
+			timer -= Time.deltaTime;
+			float distance = Vector2.Distance(origine, targetPosition);
+			RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget,distance, 
+			                                                        obstacleLayerMask);
 									
-		if (hit.collider != null || distance > targetDistance + 0.3f) {
-			StatoAttuale = Stato.positioning;
-			timer = 1.0f;
-		} else if (timer <= 0) {
-			animator.SetTrigger("Shooting");
-			Shoot(false);
-			timer = 1.0f;
+			if (hit.collider != null || distance > targetDistance + 0.3f) {
+				StatoAttuale = Stato.positioning;
+				timer = 1.0f;
+			} else if (timer <= 0) {
+				animator.SetTrigger("Shooting");
+				Shoot(false);
+				timer = 1.0f;
+			}
+			
+			if(parassita.StatoAttuale == Parassita.Stato.libero){
+				StatoAttuale = Stato.waiting;
+			}
+		break;
 		}
-		if(parassita.StatoAttuale == Parassita.Stato.libero){
-			StatoAttuale = Stato.waiting;
 		}
-	break;
 	}
-	}
-}
-
-
     // =========================================================
     // ANIMAZIONI
     // =========================================================
-
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
-
-
-        // Memorizzo l'ultima direzione SOLO quando la guardia
-        // si sta effettivamente muovendo.
+	// Memorizzo l'ultima direzione SOLO quando la guardia
+	// si sta effettivamente muovendo
 		if (direction != Vector2.zero) {
 			lastHorizontal = direction.x;
 			lastVertical = direction.y;
 		}
-
-
         // Direzione attuale.
 		animator.SetFloat("Horizontal", direction.x);
 		animator.SetFloat("Vertical", direction.y);
@@ -137,15 +135,12 @@ public class guardboss : Nemico
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
 	}
-
-
     // =========================================================
     // MORTE
     // =========================================================
-
 	protected override void Die() {
 		if (isDying) return;
-			isDying = true;
+		isDying = true;
 		if (movement != null) {
 			movement.speed = 0f;
 			movement.SetDirection(Vector2.zero);
@@ -154,11 +149,12 @@ public class guardboss : Nemico
 		Instantiate(TrojanHorse, transform.position, Quaternion.identity);
 		Destroy(gameObject, 1.5f);
 	}
-		private void OnCollisionEnter2D(Collision2D collision) {
-		// Il proiettile fa danno alla guardia boss
+	
+	private void OnCollisionEnter2D(Collision2D collision) {
+	// Il proiettile fa danno alla guardia boss
 		if (collision.gameObject.CompareTag("Bullet") ){
-				PrendiDanno(10);
-				return;
-			}
+			PrendiDanno(10);
+			return;
 		}
-		}
+	}
+}

@@ -81,17 +81,13 @@ public class turret : Nemico
 			if(parassita.StatoAttuale == Parassita.Stato.libero){
 				StatoAttuale = Stato.waiting;
 			}
-		
-			break;
+		break;
+		}
 		}
 	}
-}
-
-
-    // =========================================================
-    // ANIMAZIONI
-    // =========================================================
-
+	// =========================================================
+	// ANIMAZIONI
+	// =========================================================
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
 
@@ -99,8 +95,6 @@ public class turret : Nemico
 			lastHorizontal = direction.x;
 			lastVertical = direction.y;
 		}
-
-
         // Direzione attuale.
 		//animator.SetFloat("Horizontal", direction.x);
 		//animator.SetFloat("Vertical", direction.y);
@@ -109,12 +103,9 @@ public class turret : Nemico
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
 	}
-
-
-    // =========================================================
-    // MORTE
-    // =========================================================
-
+	// =========================================================
+	// MORTE
+	// =========================================================
 	protected override void Die() {
 		if (isDying) return;
 		isDying = true;
