@@ -169,5 +169,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c8182ce69074f298ecbfffa8437fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZipBombPickup
-  zipBombUIdescription: 'Zip Bomb: While possessing a body, press E to sacrifice
+  zipBombUIdescription: '-Zip Bomb: While possessing a body, press E to sacrifice
     it and generate an explosion that deals 60 damage'

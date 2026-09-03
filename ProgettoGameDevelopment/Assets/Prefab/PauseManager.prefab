@@ -48,10 +48,10 @@ MonoBehaviour:
   Description: {fileID: 0}
   resumeButton: {fileID: 0}
   wormText: {fileID: 0}
-  wormUIdescription: 'Worm: Press C to increase your movement speed '
+  wormUIdescription: '-Worm: Press C to increase your movement speed '
   trojanHorseText: {fileID: 0}
-  trojanHorseUIdescription: 'Trojan Horse: Decreases damage taken from the parasite
+  trojanHorseUIdescription: '-Trojan Horse: Decreases damage taken from the parasite
     from 2 per second to 1 per second'
   zipBombText: {fileID: 0}
-  zipBombUIdescription: 'Zip Bomb: While possessing a body, press E to sacrifice
+  zipBombUIdescription: '-Zip Bomb: While possessing a body, press E to sacrifice
     it and generate an explosion that deals 60 damage'

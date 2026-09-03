@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class WormPickUp : MonoBehaviour
 {
-    [SerializeField] private string wormUIdescription;
     private PickupMessage pickupMessage;
 
     private void Start()

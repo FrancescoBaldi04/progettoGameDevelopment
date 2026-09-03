@@ -38,7 +38,6 @@ public class PauseManager : MonoBehaviour
     {
         pauseMenuPanel.SetActive(false);
         Description.SetActive(false);
-
     }
 
     private void Update()
@@ -57,21 +56,19 @@ public class PauseManager : MonoBehaviour
         {
             UpdateTrojanHorsetext();
         }
-        if(showingCommands ){
-            if(Keyboard.current.lKey.wasPressedThisFrame){
-                 Description.SetActive(false);
-                  pauseMenuPanel.SetActive(true);
-                  showingCommands = false;
-                  if (resumeButton != null && EventSystem.current != null)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(resumeButton);
-        }
-
         
+        if(showingCommands ){
+            if(Keyboard.current.bKey.wasPressedThisFrame){
+                Description.SetActive(false);
+                pauseMenuPanel.SetActive(true);
+                showingCommands = false;
+                if (resumeButton != null && EventSystem.current != null)
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                    EventSystem.current.SetSelectedGameObject(resumeButton);
+                }
             }
             return;
-
         }
 
         if (StartScreen.giocoIniziato && Keyboard.current != null &&
@@ -102,14 +99,12 @@ public class PauseManager : MonoBehaviour
         }
         
     }
-    public void comandi()
+    public void Comandi()
     {
         pauseMenuPanel.SetActive(false);
         Description.SetActive(true);
         showingCommands = true;
-
-
-  }
+    }
     public void Resume()
     {
         pauseMenuPanel.SetActive(false);

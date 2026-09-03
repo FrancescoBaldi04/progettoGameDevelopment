@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ZipBombPickup : MonoBehaviour
 {
-    [SerializeField] private string zipBombUIdescription;
     private PickupMessage pickupMessage;
 
     private void Start()
