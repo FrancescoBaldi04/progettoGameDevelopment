@@ -169,5 +169,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12669ede85b384a259e6f2f8db72f3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrojanHorsePickup
-  trojanHorseUIdescription: 'Trojan Horse: Decreases damage taken from the parasite
+  trojanHorseUIdescription: '-Trojan Horse: Decreases damage taken from the parasite
     from 2 per second to 1 per second'

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TrojanHorsePickup : MonoBehaviour
 {
-    [SerializeField] private string trojanHorseUIdescription;
     private PickupMessage pickupMessage;
 
     private void Start()
