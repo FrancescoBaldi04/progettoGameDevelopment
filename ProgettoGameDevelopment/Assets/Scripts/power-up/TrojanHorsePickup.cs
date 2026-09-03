@@ -21,10 +21,10 @@ public class TrojanHorsePickup : MonoBehaviour
 
             if (PauseManager.pauseManager != null)
             {
-                PauseManager.pauseManager.UpdateWormText(trojanHorseUIdescription);
+                PauseManager.pauseManager.UpdateTrojanHorsetext();
             }
 
-            pickupMessage.ShowMessage("Trojan Horse ottenuto! Premere 'C' per attivare/disattivare");
+            pickupMessage.ShowMessage("Trojan Horse ottenuto!");
 
             Destroy(gameObject);
             return;
@@ -43,7 +43,7 @@ public class TrojanHorsePickup : MonoBehaviour
 
                 if (PauseManager.pauseManager != null)
                 {
-                    PauseManager.pauseManager.UpdateWormText(trojanHorseUIdescription);
+                    PauseManager.pauseManager.UpdateTrojanHorsetext();
                 }
 
                 pickupMessage.ShowMessage("Trojan Horse ottenuto!");

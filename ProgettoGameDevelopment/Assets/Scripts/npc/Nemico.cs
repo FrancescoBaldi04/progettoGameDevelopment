@@ -235,7 +235,7 @@ public class Nemico : MonoBehaviour
 	}
 
 
-	protected virtual void Die()
+	protected virtual void Die() // verificare se è possibile toglierlo lasciando solo quelli nelle classi derivate o se è meglio lasciarlo qui e cancellare quelli delle classi derivate
 	{
 		Destroy(gameObject);
 	}

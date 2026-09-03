@@ -12,8 +12,11 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject resumeButton; // Riferimento al bottone "Resume" per selezionarlo in automatico
 
     [SerializeField] private TextMeshProUGUI wormText; // Riferimenti ai tre oggetti relativi al testo dei power
+    [SerializeField] private string wormUIdescription;
     [SerializeField] private TextMeshProUGUI trojanHorseText;
+    [SerializeField] private string trojanHorseUIdescription;
     [SerializeField] private TextMeshProUGUI zipBombText;
+    [SerializeField] private string zipBombUIdescription;
 
     private bool isPaused = false;
 
@@ -36,6 +39,21 @@ public class PauseManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.gameManager.hasWorm)
+        {
+            UpdateWormText();
+        }
+
+        if (GameManager.gameManager.hasZipBomb)
+        {
+            UpdateZipBombText();
+        }
+
+        if (GameManager.gameManager.hasTrojanHorse)
+        {
+            UpdateTrojanHorsetext();
+        }
+
         if (StartScreen.giocoIniziato && Keyboard.current != null &&
             (Keyboard.current.escapeKey.wasPressedThisFrame || Keyboard.current.pKey.wasPressedThisFrame))
         {
@@ -81,18 +99,18 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void UpdateWormText(string newText) 
+    public void UpdateWormText() 
     { 
-        if (wormText != null) wormText.text = newText; 
+        if (wormText != null) wormText.text = wormUIdescription; 
     }
     
-    public void UpdateTrojanHorsetext(string newText) 
+    public void UpdateTrojanHorsetext() 
     { 
-        if (trojanHorseText != null) trojanHorseText.text = newText; 
+        if (trojanHorseText != null) trojanHorseText.text = trojanHorseUIdescription; 
     }
     
-    public void UpdateZipBombText(string newText) 
+    public void UpdateZipBombText() 
     { 
-        if (zipBombText != null) zipBombText.text = newText; 
+        if (zipBombText != null) zipBombText.text = zipBombUIdescription; 
     }
 }

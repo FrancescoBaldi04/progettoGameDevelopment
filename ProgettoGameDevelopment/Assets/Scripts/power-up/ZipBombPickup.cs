@@ -23,7 +23,7 @@ public class ZipBombPickup : MonoBehaviour
 
             if (PauseManager.pauseManager != null)
             {
-                PauseManager.pauseManager.UpdateWormText(zipBombUIdescription);
+                PauseManager.pauseManager.UpdateZipBombText();
             }
 
             pickupMessage.ShowMessage("Zip Bomb ottenuta! Premere 'E' per attivare");
@@ -45,7 +45,7 @@ public class ZipBombPickup : MonoBehaviour
 
                 if (PauseManager.pauseManager != null)
                 {
-                    PauseManager.pauseManager.UpdateWormText(zipBombUIdescription);
+                    PauseManager.pauseManager.UpdateZipBombText();
                 }
 
                 pickupMessage.ShowMessage("Zip Bomb ottenuta! Premere 'E' per attivare/disattivare");

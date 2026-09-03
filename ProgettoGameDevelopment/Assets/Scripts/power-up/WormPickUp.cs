@@ -8,15 +8,6 @@ public class WormPickUp : MonoBehaviour
     private void Start()
     {
         pickupMessage = FindFirstObjectByType<PickupMessage>(FindObjectsInactive.Include);
-        
-         if (pickupMessage == null)
-        {
-
-        }
-        else
-        {
-
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,7 +20,7 @@ public class WormPickUp : MonoBehaviour
 
             if (PauseManager.pauseManager != null)
             {
-                PauseManager.pauseManager.UpdateWormText(wormUIdescription);
+                PauseManager.pauseManager.UpdateWormText();
             }
 
             pickupMessage.ShowMessage("Worm ottenuto! Premere 'C' per attivare/disattivare");
@@ -50,7 +41,7 @@ public class WormPickUp : MonoBehaviour
 
                 if (PauseManager.pauseManager != null)
                 {
-                    PauseManager.pauseManager.UpdateWormText(wormUIdescription);
+                    PauseManager.pauseManager.UpdateWormText();
                 }
 
                 pickupMessage.ShowMessage("Worm ottenuto! Premere 'C' per attivare/disattivare");
