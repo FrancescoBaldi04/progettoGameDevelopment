@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f5f49e16f75ae42bc608d7a64a9a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
-  pauseMenuPanel: {fileID: 6964388146034203097, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
+  pauseMenuPanel: {fileID: 0}
+  Description: {fileID: 0}
   resumeButton: {fileID: 0}
   wormText: {fileID: 0}
   wormUIdescription: 'Worm: Press C to increase your movement speed '

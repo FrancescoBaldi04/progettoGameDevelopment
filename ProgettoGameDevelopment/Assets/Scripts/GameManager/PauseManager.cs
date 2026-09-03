@@ -8,9 +8,10 @@ public class PauseManager : MonoBehaviour
     public static PauseManager pauseManager { get; private set;} // Pattern Singleton
 
     [SerializeField] private GameObject pauseMenuPanel;
-
+    [SerializeField] private GameObject Description;
+    
     [SerializeField] private GameObject resumeButton; // Riferimento al bottone "Resume" per selezionarlo in automatico
-
+     
     [SerializeField] private TextMeshProUGUI wormText; // Riferimenti ai tre oggetti relativi al testo dei power
     [SerializeField] private string wormUIdescription;
     [SerializeField] private TextMeshProUGUI trojanHorseText;
@@ -19,6 +20,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private string zipBombUIdescription;
 
     private bool isPaused = false;
+    private bool showingCommands = false;
 
     private void Awake()
     {
@@ -35,6 +37,8 @@ public class PauseManager : MonoBehaviour
     private void Start()
     {
         pauseMenuPanel.SetActive(false);
+        Description.SetActive(false);
+
     }
 
     private void Update()
@@ -52,6 +56,22 @@ public class PauseManager : MonoBehaviour
         if (GameManager.gameManager.hasTrojanHorse)
         {
             UpdateTrojanHorsetext();
+        }
+        if(showingCommands ){
+            if(Keyboard.current.enterKey.wasPressedThisFrame){
+                 Description.SetActive(false);
+                  pauseMenuPanel.SetActive(true);
+                  showingCommands = false;
+                  if (resumeButton != null && EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(resumeButton);
+        }
+
+        
+            }
+            return;
+
         }
 
         if (StartScreen.giocoIniziato && Keyboard.current != null &&
@@ -80,8 +100,16 @@ public class PauseManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null); // Pulisce selezioni precedenti
             EventSystem.current.SetSelectedGameObject(resumeButton);
         }
+        
     }
+    public void comandi()
+    {
+        pauseMenuPanel.SetActive(false);
+        Description.SetActive(true);
+        showingCommands = true;
 
+
+  }
     public void Resume()
     {
         pauseMenuPanel.SetActive(false);
