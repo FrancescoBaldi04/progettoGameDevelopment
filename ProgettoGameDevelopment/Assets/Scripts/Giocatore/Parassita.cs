@@ -100,10 +100,14 @@ public class Parassita : MonoBehaviour
             {
                 Run();
             }
-            if(corpoPosseduto.GetComponent<guard>() != null &&  Keyboard.current.fKey.wasPressedThisFrame){
-            Nemico nemico=corpoPosseduto.GetComponent<guard>();
-                nemico.Shoot(true);
-            }
+            if (corpoPosseduto != null && corpoPosseduto.GetComponent<guard>() != null && Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
+           {   
+             Nemico nemico = corpoPosseduto.GetComponent<guard>();
+           if (nemico != null)
+           {
+             nemico.Shoot(true);
+           }
+}
 
             return;
         }
@@ -240,16 +244,26 @@ public class Parassita : MonoBehaviour
 
     public void EsplosioneZipBomb()
     {
-        if (!GameManager.gameManager.hasZipBomb)
-        {
-          
-            return;
-        }
-
-
+       
         if (statoAttuale != Stato.possessing)
         {
          
+            return;
+        }
+        
+         GameObject corpoDaDistruggere = corpoPosseduto;
+         if (!GameManager.gameManager.hasZipBomb)
+        {
+         
+
+        corpoPosseduto = null;
+        healthBar.SetHealth(0);
+
+        LiberaParassita();
+
+        // Distrugge il corpo sacrificato
+        Destroy(corpoDaDistruggere);
+
             return;
         }
 
@@ -289,7 +303,7 @@ public class Parassita : MonoBehaviour
              
             }
         }
-        GameObject corpoDaDistruggere = corpoPosseduto;
+       
 
         corpoPosseduto = null;
         healthBar.SetHealth(0);
