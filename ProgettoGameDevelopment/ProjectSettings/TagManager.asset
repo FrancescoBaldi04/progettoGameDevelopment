@@ -52,8 +52,11 @@ TagManager:
   - name: Ground_Entities
     uniqueID: 3315375759
     locked: 0
-  - name: New Layer 4
+  - name: Oggetti
     uniqueID: 186736767
+    locked: 0
+  - name: Oggeti2
+    uniqueID: 953537261
     locked: 0
   - name: UI
     uniqueID: 622150963
