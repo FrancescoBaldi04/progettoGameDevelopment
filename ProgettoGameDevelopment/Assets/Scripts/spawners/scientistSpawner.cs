@@ -52,7 +52,7 @@ public class spawnerScientistBase : MonoBehaviour
 	}
 	
 	protected bool CheckForParassita() {
-		// CENTRO DELLO SPRITE
+		// CENTRO DELLO SPAWNER
 		Vector2 position = this.transform.position;
 		Collider2D[] objectsInside = Physics2D.OverlapBoxAll(position, detectionBoxSize, 0f);
 		
