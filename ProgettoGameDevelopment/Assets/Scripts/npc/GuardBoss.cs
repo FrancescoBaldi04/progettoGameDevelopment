@@ -69,8 +69,6 @@ public class guardboss : Nemico
 					}
 
 					float distance = Vector2.Distance(myPosition, parassitaPosition);
-					Debug.Log("DISTANZA BOSS-PARASSITA: " + distance + 
-          " | TARGET DISTANCE: " + targetDistance);
 					Vector2 directionToParassita = (parassitaPosition - myPosition).normalized;
 					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParassita, 
 					                                                         distance, obstacleLayerMask);
