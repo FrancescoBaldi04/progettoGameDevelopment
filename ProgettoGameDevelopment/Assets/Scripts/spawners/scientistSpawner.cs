@@ -14,7 +14,7 @@ public class spawnerScientistBase : MonoBehaviour
 		int LivelloAttuale = SceneManager.GetActiveScene().buildIndex;
 		if (LivelloAttuale == 0) {
 			quantitaMassima = 5;
-		} else if (LivelloAttuale == 3) {
+		} else if (LivelloAttuale == 4) {
 			quantitaMassima = 1;
 		} else {
 			quantitaMassima = 3;

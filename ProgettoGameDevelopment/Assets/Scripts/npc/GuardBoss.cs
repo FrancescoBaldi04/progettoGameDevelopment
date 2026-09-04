@@ -49,70 +49,81 @@ public class guardboss : Nemico
 		break;
 		}
 			
-		case Stato.positioning: {
-			if (parassita.StatoAttuale ==Parassita.Stato.libero) {
-				StatoAttuale = Stato.waiting;
-			break;
-			} 
-			if (movement != null && parassita != null) {
-				Vector2 myPosition = transform.position;
-				Vector2 parassitaPosition = parassita.transform.position;
-				float distance =Vector2.Distance(myPosition, parassitaPosition);
-				Vector2 directionToParassita =(parassitaPosition - myPosition).normalized;
-				RaycastHit2D hit =Physics2D.Raycast(myPosition, directionToParassita, 
-				                                                        distance, obstacleLayerMask);
-											
-				if (hit.collider != null || distance > targetDistance + 0.3f) {
-					movement.SetDirection(directionToParassita);
-					UpdateAnimation(directionToParassita);
-				} else {
-					movement.SetDirection(Vector2.zero);
-					UpdateAnimation(Vector2.zero);
-					StatoAttuale = Stato.shooting;
+		case Stato.positioning: { 
+				if (parassita.StatoAttuale == Parassita.Stato.libero) {
+					StatoAttuale = Stato.waiting;
+					break;
 				}
+				
+				if (movement != null && parassita != null) {
+					// Centro dello sprite della guardia.
+					Vector2 myPosition = spriteRenderer.bounds.center;
+					// Centro dello sprite del Parassita.
+					SpriteRenderer parassitaSprite = parassita.GetComponent<SpriteRenderer>();
+					Vector2 parassitaPosition;
+
+					if (parassitaSprite != null) {
+						parassitaPosition = parassitaSprite.bounds.center;
+					} else {
+						parassitaPosition = parassita.transform.position;
+					}
+
+					float distance = Vector2.Distance(myPosition, parassitaPosition);
+					Vector2 directionToParassita = (parassitaPosition - myPosition).normalized;
+					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParassita, 
+					                                                         distance, obstacleLayerMask);
+
+
+					if (hit.collider != null || distance > targetDistance + 0.3f) {
+						movement.SetDirection(directionToParassita);
+						UpdateAnimation(directionToParassita);
+					} else {
+						movement.SetDirection(Vector2.zero);
+						UpdateAnimation(Vector2.zero);
+						StatoAttuale = Stato.shooting;
+					}
+				}
+				break;
 			}
-		break;
-		}
-		
-		case Stato.shooting: {
-			movement.SetDirection(Vector2.zero);
-			Vector2 origine;
-			
-			if (spriteRenderer != null) {
-				origine = spriteRenderer.bounds.center;
-			} else {
-				origine = transform.position;
+			// =========================================================
+			// SHOOTING
+			// =========================================================
+			case Stato.shooting: {
+				movement.SetDirection(Vector2.zero);
+				// Centro dello sprite della guardia.
+				Vector2 origine = spriteRenderer.bounds.center;
+				// Posizione del bersaglio.
+				Vector2 targetPosition = GetTargetPosition();
+				Vector2 directionToTarget = (targetPosition - origine).normalized;
+				
+				if (directionToTarget != Vector2.zero) {
+					lastHorizontal = directionToTarget.x; 
+					lastVertical = directionToTarget.y;
+					animator.SetFloat("LastHorizontal", lastHorizontal);
+					animator.SetFloat("LastVertical", lastVertical);
+				}
+
+				timer -= Time.deltaTime;
+				float distance = Vector2.Distance(origine, targetPosition);
+
+				RaycastHit2D hit = Physics2D.Raycast(origine, directionToTarget, 
+											distance, obstacleLayerMask);
+
+				if (hit.collider != null || distance > targetDistance + 0.3f) {
+					StatoAttuale = Stato.positioning;
+					timer = 1.0f;
+				} else if (timer <= 0) {
+					animator.SetTrigger("Shooting");
+					Shoot(false);
+					timer = 1.0f;
+				}
+
+				if (parassita.StatoAttuale == Parassita.Stato.libero) {
+					StatoAttuale = Stato.waiting;
+				}
+				
+				break;
 			}
-			
-			Vector2 targetPosition = GetTargetPosition();
-			Vector2 directionToTarget = (targetPosition - origine).normalized;
-			
-			if (directionToTarget != Vector2.zero) {
-				lastHorizontal = directionToTarget.x;
-				lastVertical = directionToTarget.y;
-				animator.SetFloat("LastHorizontal", lastHorizontal);
-				animator.SetFloat("LastVertical", lastVertical);
-			}
-			
-			timer -= Time.deltaTime;
-			float distance = Vector2.Distance(origine, targetPosition);
-			RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget,distance, 
-			                                                        obstacleLayerMask);
-									
-			if (hit.collider != null || distance > targetDistance + 0.3f) {
-				StatoAttuale = Stato.positioning;
-				timer = 1.0f;
-			} else if (timer <= 0) {
-				animator.SetTrigger("Shooting");
-				Shoot(false);
-				timer = 1.0f;
-			}
-			
-			if(parassita.StatoAttuale == Parassita.Stato.libero){
-				StatoAttuale = Stato.waiting;
-			}
-		break;
-		}
 		}
 	}
     // =========================================================

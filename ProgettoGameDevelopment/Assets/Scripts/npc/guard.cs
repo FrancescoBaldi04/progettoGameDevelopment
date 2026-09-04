@@ -4,7 +4,7 @@ using UnityEngine;
 public class guard : Nemico
 {
 	public float targetDistance = 5.0f;
-	private float timer = 1.0f;
+	private float timer = 60.0f;
 	private bool isDying = false;
 	private Movement movement;
 	private Animator animator;
@@ -23,9 +23,9 @@ public class guard : Nemico
 
 
 	void Start() {
-		// Tutte le guardie iniziano in waiting.
+		// Tutte le guardie iniziano in idle.
 		// CheckForParassita() deciderà poi cosa fare.
-		StatoAttuale = Stato.waiting;
+		StatoAttuale = Stato.idle;
 		UpdateAnimation(Vector2.zero);
 	}
 
@@ -44,7 +44,14 @@ public class guard : Nemico
 			// =========================================================
 			// WAITING
 			// =========================================================
-			case Stato.waiting: {
+			case Stato.idle: {
+				timer-=Time.deltaTime;
+				
+				if (timer == 0) {
+					Die();
+					return;
+				}
+					
 				if (!CheckForParassita()) {
 					Vector2 direction = RandomMovement();
 					movement.SetDirection(direction);
@@ -52,8 +59,10 @@ public class guard : Nemico
 				} else {
 					if (parassita.StatoAttuale == Parassita.Stato.possessing) {
 						StatoAttuale = Stato.positioning;
+						timer = 1.0f;
 					} else {
 						StatoAttuale = Stato.escaping;
+						timer = 1.0f;
 					}
 				}
 				break;
@@ -62,11 +71,12 @@ public class guard : Nemico
 			// ESCAPING
 			// =========================================================
 			case Stato.escaping: { 
-				if (parassita.StatoAttuale == Parassita.Stato.possessing) {
-					StatoAttuale = Stato.waiting;
+				if (!CheckForParassita()) {
+					timer = 60.0f;
+					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
-					break;
+				break;
 				}
 				// Centro dello sprite della guardia.
 				Vector2 guardPosition = spriteRenderer.bounds.center;
@@ -90,11 +100,12 @@ public class guard : Nemico
 					break;
 				}
 				if (!CheckForParassita()) {
-					StatoAttuale = Stato.waiting;
+					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
-					break;
+				break;
 				}
+				
 				if (movement != null && parassita != null) {
 					// Centro dello sprite della guardia.
 					Vector2 myPosition = spriteRenderer.bounds.center;
@@ -207,7 +218,7 @@ public class guard : Nemico
 			movement.speed = 0f;
 			movement.SetDirection(Vector2.zero);
 		}
-		Destroy(gameObject, 1.5f);
+		Destroy(gameObject, 0.5f);
 	}
 	// =========================================================
 	// COLLISIONI

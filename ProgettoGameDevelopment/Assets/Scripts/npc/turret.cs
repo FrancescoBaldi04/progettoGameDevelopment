@@ -50,38 +50,34 @@ public class turret : Nemico
 		}
 		
 		case Stato.shooting: {
-			Vector2 origine;
-			
-			if (spriteRenderer != null) {
-				origine = spriteRenderer.bounds.center;
-			} else {
-				origine = transform.position;
-			}
-			
+			// Centro dello sprite della guardia.
+			Vector2 origine = spriteRenderer.bounds.center;
+			// Posizione del bersaglio.
 			Vector2 targetPosition = GetTargetPosition();
 			Vector2 directionToTarget = (targetPosition - origine).normalized;
-			
+				
 			if (directionToTarget != Vector2.zero) {
-				lastHorizontal = directionToTarget.x;
+				lastHorizontal = directionToTarget.x; 
 				lastVertical = directionToTarget.y;
 				animator.SetFloat("LastHorizontal", lastHorizontal);
 				animator.SetFloat("LastVertical", lastVertical);
 			}
-			
+
 			timer -= Time.deltaTime;
 			float distance = Vector2.Distance(origine, targetPosition);
-			RaycastHit2D hit =Physics2D.Raycast(origine, directionToTarget, distance, obstacleLayerMask);
-			
+			RaycastHit2D hit = Physics2D.Raycast(origine, directionToTarget, 
+										distance, obstacleLayerMask);
+
 			if (timer <= 0) {
 				animator.SetTrigger("Shooting");
 				Shoot(false);
 				timer = 1.0f;
 			}
-			
-			if(parassita.StatoAttuale == Parassita.Stato.libero){
+
+			if (parassita.StatoAttuale == Parassita.Stato.libero) {
 				StatoAttuale = Stato.waiting;
 			}
-		break;
+			break;
 		}
 		}
 	}

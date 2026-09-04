@@ -8,6 +8,7 @@ public class scientist : Nemico
 	private float lastVertical = -1f;
 	private Movement movement;
 	private Animator animator;
+	private float timer = 60.0f;
 
 	protected override void Awake() {
 		base.Awake();
@@ -16,10 +17,10 @@ public class scientist : Nemico
 	}
 
 	void Start() {
-		// Parte sempre in waiting.
+		// Parte sempre in idle.
 		// Sarà CheckForParassita() a determinare
 		// successivamente se deve catturare o scappare.
-		StatoAttuale = Stato.waiting;
+		StatoAttuale = Stato.idle;
 	}
 
 	void Update() {
@@ -34,7 +35,14 @@ public class scientist : Nemico
 			// =================================================
 			// WAITING
 			// =================================================
-			case Stato.waiting: {
+			case Stato.idle: {
+				timer -= Time.deltaTime;
+				
+				if (timer == 0) {
+					Die();
+					return;
+				}
+				
 				if (!CheckForParassita()) {
 					Vector2 direction = RandomMovement();
 					movement.SetDirection(direction);
@@ -53,7 +61,8 @@ public class scientist : Nemico
 			// =================================================
 			case Stato.catching: {
 				if (!CheckForParassita()) {
-					StatoAttuale = Stato.waiting;
+					timer = 60.0f;
+					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				break;
@@ -85,7 +94,8 @@ public class scientist : Nemico
 			// =================================================
 			case Stato.escaping: {
 				 if (parassita.StatoAttuale == Parassita.Stato.libero) {
-					StatoAttuale = Stato.waiting;
+					timer = 60.0f;
+					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				break;
@@ -126,7 +136,7 @@ public class scientist : Nemico
 		
 		if (movement != null) movement.speed = 0f;
 		
-		Destroy(gameObject, 1f);
+		Destroy(gameObject, 0.5f);
 	}
 	// =========================================================
 	// COLLISIONI

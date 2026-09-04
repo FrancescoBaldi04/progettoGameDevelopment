@@ -6,7 +6,7 @@ public class Nemico : MonoBehaviour
 {
 	[SerializeField] protected int HitPoints = 60;
 	public LayerMask Ground_Entities;
-	public enum Stato {waiting, possessed, catching, escaping, positioning, shooting};
+	public enum Stato {idle, waiting, possessed, catching, escaping, positioning, shooting};
 	public Stato StatoAttuale;
 	public Parassita parassita;
 	public bool up, down, right, left;
