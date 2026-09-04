@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class turret : Nemico
 {
-	public float targetDistance = 3.0f;
+	public float targetDistance = 7.5f;
 	private float timer = 1.0f;
 	private bool isDying = false;
 	private Animator animator;

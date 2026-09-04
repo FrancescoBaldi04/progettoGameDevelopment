@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class guard : Nemico
 {
-	public float targetDistance = 5.0f;
+	public float targetDistance = 7.5f;
 	private float timer = 60.0f;
 	private bool isDying = false;
 	private Movement movement;

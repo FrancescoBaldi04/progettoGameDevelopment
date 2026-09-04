@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class guardboss : Nemico
 {
-	public float targetDistance = 3.0f;
+	public float targetDistance = 7.5f;
 	private float timer = 1.0f;
 	private bool isDying = false;
 	private Movement movement;
@@ -69,6 +69,8 @@ public class guardboss : Nemico
 					}
 
 					float distance = Vector2.Distance(myPosition, parassitaPosition);
+					Debug.Log("DISTANZA BOSS-PARASSITA: " + distance + 
+          " | TARGET DISTANCE: " + targetDistance);
 					Vector2 directionToParassita = (parassitaPosition - myPosition).normalized;
 					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParassita, 
 					                                                         distance, obstacleLayerMask);

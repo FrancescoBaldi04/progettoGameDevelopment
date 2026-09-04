@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -979591537
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8974181751051217979, guid: 185e97994dfe0044381fd8051bd8791a, type: 3}
@@ -141,6 +141,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   bulletSpeed: 10
   firePoint: {fileID: 0}
+  detectionBoxSize: {x: 15, y: 15}
+  randomCheckDistance: 1.5
+  randomCheckSize: 0.75
   targetDistance: 3
 --- !u!70 &-5763290418079137161
 CapsuleCollider2D:
