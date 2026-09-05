@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502461f1f41ff4c06b1b03279ba84f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  DoorCollider: {fileID: 0}
+  DoorCollider: {fileID: 407062083}
 --- !u!1 &426059971
 GameObject:
   m_ObjectHideFlags: 3
