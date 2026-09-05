@@ -15,9 +15,7 @@ public class Movement : MonoBehaviour
 	
 	private void FixedUpdate() {
 		this.body.linearVelocity = this.direction * (this.speed);
-		Debug.Log("Movement - direction: " + direction +
-              " speed: " + speed +
-              " velocity: " + body.linearVelocity);
+		
 	}
 	
 	public void SetDirection(Vector2 newdirection) {

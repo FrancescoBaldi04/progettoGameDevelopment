@@ -9,6 +9,7 @@ TagManager:
   - boss
   - Turret
   - Wall
+  - ParassitaDangerZone
   layers:
   - Default
   - TransparentFX

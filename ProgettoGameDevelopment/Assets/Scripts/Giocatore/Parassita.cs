@@ -23,7 +23,7 @@ public class Parassita : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
     private float raggioEsplosione = 5f;
     private int dannoEsplosione = 60;
-    [SerializeField] public float moveSpeed = 1.5f;
+    [SerializeField] public float moveSpeed = 2.6f;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -91,15 +91,7 @@ public class Parassita : MonoBehaviour
             {
                 EsplosioneZipBomb();
             }
-            // =========================
-            // RUN
-            // =========================
-
-            if (Keyboard.current != null &&
-                Keyboard.current.cKey.wasPressedThisFrame)
-            {
-                Run();
-            }
+           
             if (corpoPosseduto != null && corpoPosseduto.GetComponent<guard>() != null && Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
            {   
              Nemico nemico = corpoPosseduto.GetComponent<guard>();
@@ -111,6 +103,15 @@ public class Parassita : MonoBehaviour
 
             return;
         }
+         // =========================
+            // RUN
+            // =========================
+
+            if (Keyboard.current != null &&
+                Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                Run();
+            }
 
         if (playerJump != null && (playerJump.isInAir || playerJump.isDead))
         {
@@ -206,6 +207,8 @@ public class Parassita : MonoBehaviour
         if (corpoPosseduto != null)
         {
             Nemico nemico = corpoPosseduto.GetComponent<Nemico>();
+           corpoPosseduto = null; // sgancio il corpo posseduto
+            transform.SetParent(null);
 
             if (nemico != null)
             {
@@ -213,7 +216,7 @@ public class Parassita : MonoBehaviour
             }
         }
 
-        corpoPosseduto = null; // sgancio il corpo posseduto
+        
         LiberaParassita();
     }
 
@@ -231,7 +234,7 @@ public class Parassita : MonoBehaviour
 
         animator.ResetTrigger(jump);  // ripristina il trigger del salto
         animator.SetTrigger(resetState); // segnala all'animator che il parassita deve tornare alla sua animazione standard
-
+        
         if (CameraFollow.instance != null)
         {
             CameraFollow.instance.SetTarget(transform);
@@ -329,31 +332,19 @@ public class Parassita : MonoBehaviour
         }
 
 
-        running = !running;
+      
 
 
-       if (statoAttuale == Stato.possessing)
-    {
-        if (corpoPosseduto == null)
-        {
-            return;
-        }
-
-        Movement movement = corpoPosseduto.GetComponent<Movement>();
-
-        if (movement == null)
-        {
-           
-            return;
-        }
-
+       if (statoAttuale == Stato.libero)
+    {   running = !running;
+       
         if (running)
         {
-            movement.speed += 0.1f;
+            moveSpeed = moveSpeed*2;
         }
         else
         {
-            movement.speed -= 0.1f;
+            moveSpeed = moveSpeed/2;
         }
     }
     }
