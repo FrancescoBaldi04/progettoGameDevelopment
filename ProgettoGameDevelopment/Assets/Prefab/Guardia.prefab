@@ -225,4 +225,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   direction: {x: 1, y: 0}
   lastDirection: {x: 1, y: 0}
-  speed: 0.1
+  speed: 5

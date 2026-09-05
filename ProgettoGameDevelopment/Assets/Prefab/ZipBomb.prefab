@@ -120,12 +120,12 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5737189354043811488, guid: f0a9886f59d3e1e4e8ad09115537a945, type: 3}
+  m_Sprite: {fileID: -4798003625503995636, guid: 8244fa86a1b244a138ca4b108abeab66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5625, y: 0.5625}
+  m_Size: {x: 6.09, y: 6.233042}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -169,5 +169,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c8182ce69074f298ecbfffa8437fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZipBombPickup
-  zipBombUIdescription: '-Zip Bomb: While possessing a body, press E to sacrifice
-    it and generate an explosion that deals 60 damage'

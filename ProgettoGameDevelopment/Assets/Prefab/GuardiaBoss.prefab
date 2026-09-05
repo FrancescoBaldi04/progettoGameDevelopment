@@ -207,8 +207,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6073277577126612181, guid: c6f521d0cc32b5843ba1f33eeb51b663, type: 3}
   bulletSpeed: 10
   firePoint: {fileID: 0}
+  detectionBoxSize: {x: 15, y: 15}
+  randomCheckDistance: 1.5
+  randomCheckSize: 0.75
   targetDistance: 3
-  TrojanHorse: {fileID: 210843168752834587, guid: fc7798488f1114bcaae2a0fe72548022, type: 3}
 --- !u!114 &-6318213938407051519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,4 +225,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   direction: {x: 1, y: 0}
   lastDirection: {x: 1, y: 0}
-  speed: 0.1
+  speed: 5

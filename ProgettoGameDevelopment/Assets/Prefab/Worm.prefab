@@ -120,7 +120,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3156238726698625839, guid: a97fe1babcc874d77a6deae95ad057a3, type: 3}
+  m_Sprite: {fileID: 2359946127174569430, guid: 8244fa86a1b244a138ca4b108abeab66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,4 +169,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7497df3ad91d496f82288cec48d2579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  wormUIdescription: '-Worm: Press C to increase your movement speed '

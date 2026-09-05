@@ -171,7 +171,6 @@ MonoBehaviour:
   bulletSpeed: 10
   firePoint: {fileID: 0}
   detectionBoxSize: {x: 15, y: 15}
-  catchingDistance: 4
   randomCheckDistance: 1.5
   randomCheckSize: 0.5
   ZipBomb: {fileID: 3099001216324730113, guid: 86b721e0a657241369f217603d6a6cf1, type: 3}
@@ -189,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   direction: {x: 1, y: 0}
   lastDirection: {x: 1, y: 0}
-  speed: 0.1
+  speed: 5
 --- !u!70 &3714753125233516760
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
