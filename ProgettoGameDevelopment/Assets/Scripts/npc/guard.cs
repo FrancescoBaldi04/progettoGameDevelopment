@@ -218,7 +218,7 @@ public class guard : Nemico
 			movement.speed = 0f;
 			movement.SetDirection(Vector2.zero);
 		}
-		Destroy(gameObject, 0.5f);
+		Destroy(gameObject);
 	}
 	// =========================================================
 	// COLLISIONI

@@ -136,7 +136,7 @@ public class scientist : Nemico
 		
 		if (movement != null) movement.speed = 0f;
 		
-		Destroy(gameObject, 0.5f);
+		Destroy(gameObject);
 	}
 	// =========================================================
 	// COLLISIONI

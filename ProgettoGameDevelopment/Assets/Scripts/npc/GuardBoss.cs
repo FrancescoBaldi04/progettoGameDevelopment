@@ -10,7 +10,6 @@ public class guardboss : Nemico
 	private int obstacleLayerMask;
 	private float lastHorizontal = 0f;
 	private float lastVertical = -1f;
-	[SerializeField] private GameObject TrojanHorse;
 
 	protected override void Awake() {
 		base.Awake();
@@ -157,7 +156,7 @@ public class guardboss : Nemico
 			movement.SetDirection(Vector2.zero);
 		}
 		GameManager.gameManager.BossDefeated();
-		Destroy(gameObject, 1.5f);
+		Destroy(gameObject);
 	}
 	
 	private void OnCollisionEnter2D(Collision2D collision) {

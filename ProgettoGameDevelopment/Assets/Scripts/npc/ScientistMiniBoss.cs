@@ -119,7 +119,7 @@ public class scientistMiniboss : Nemico
 		}
 		// Drop potenziamento
 		Instantiate(ZipBomb, spriteRenderer.bounds.center, Quaternion.identity);
-		Destroy(gameObject, 1f);
+		Destroy(gameObject);
 	}
 	// =========================================================
 	// COLLISIONI
