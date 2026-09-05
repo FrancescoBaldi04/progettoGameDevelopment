@@ -8,6 +8,7 @@ public class PauseManager : MonoBehaviour
     public static PauseManager pauseManager { get; private set;} // Pattern Singleton
 
     [SerializeField] private GameObject pauseMenuPanel;
+    [SerializeField] private GameObject VictoryScreen;
     [SerializeField] private GameObject Description;
     
     [SerializeField] private GameObject resumeButton; // Riferimento al bottone "Resume" per selezionarlo in automatico
@@ -36,6 +37,10 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
+        if (VictoryScreen != null)
+        {
+            VictoryScreen.SetActive(false);
+        }
         pauseMenuPanel.SetActive(false);
         Description.SetActive(false);
     }
@@ -120,6 +125,11 @@ public class PauseManager : MonoBehaviour
         {
             GameManager.gameManager.ReturnToMainMenu();
         }
+    }
+
+    public void ShowVictoryScreen()
+    {
+        VictoryScreen.SetActive(true);
     }
 
     public void UpdateWormText() 

@@ -2,27 +2,23 @@ using UnityEngine;
 
 public class DoorNextLevel : MonoBehaviour
 {
-     private Animator animator;
-     private scientistMiniboss miniboss;
-     [SerializeField] private Collider2D doorCollider;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Animator Animator;
+    private scientistMiniboss Miniboss;
+    [SerializeField] private Collider2D DoorCollider;
+
     void Start()
     {
-         miniboss = FindFirstObjectByType<scientistMiniboss>();
-        animator = GetComponent<Animator>();
+        Miniboss = FindFirstObjectByType<scientistMiniboss>();
+        Animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-         if (miniboss==null)
+        if (Miniboss==null) // verificare se questo controllo su null sia sicuro o meno
         {
-            animator.SetTrigger("Open");
-            doorCollider.enabled = false;
+            Animator.SetTrigger("Open");
+            DoorCollider.enabled = false;
              enabled = false;
         }
     }
-
-
-
 }

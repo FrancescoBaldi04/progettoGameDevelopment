@@ -156,8 +156,7 @@ public class guardboss : Nemico
 			movement.speed = 0f;
 			movement.SetDirection(Vector2.zero);
 		}
-		//drop potenziamento
-		Instantiate(TrojanHorse, transform.position, Quaternion.identity);
+		GameManager.gameManager.BossDefeated();
 		Destroy(gameObject, 1.5f);
 	}
 	

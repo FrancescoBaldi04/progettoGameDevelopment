@@ -31,6 +31,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void BossDefeated()
+    {
+        Time.timeScale = 0f;
+        PauseManager.pauseManager.ShowVictoryScreen();
+    }
+
     // =========================
     // SBLOCCO POTENZIAMENTI
     // =========================
