@@ -222,7 +222,7 @@ public class Parassita : MonoBehaviour
 
     public void LiberaParassita()
     {
-        running=false;
+       
         transform.SetParent(null);
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<Collider2D>().enabled = true;
@@ -230,6 +230,9 @@ public class Parassita : MonoBehaviour
         rb.simulated = true;
 
         statoAttuale = Stato.libero;
+         if(running){
+            Run();
+        }
         health = 60f;
 
         animator.ResetTrigger(jump);  // ripristina il trigger del salto
@@ -331,12 +334,8 @@ public class Parassita : MonoBehaviour
             return;
         }
 
-
-      
-
-
        if (statoAttuale == Stato.libero)
-    {   running = !running;
+        {running = !running;
        
         if (running)
         {
