@@ -71,12 +71,12 @@ public class guard : Nemico
 			// ESCAPING
 			// =========================================================
 			case Stato.escaping: { 
-				if (!CheckForParassita()) {
+				if (parassita.StatoAttuale == Parassita.Stato.possessing){
 					timer = 60.0f;
 					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
-				break;
+					break;
 				}
 				// Centro dello sprite della guardia.
 				Vector2 guardPosition = spriteRenderer.bounds.center;
