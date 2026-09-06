@@ -1,20 +1,18 @@
-
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Nemico : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-	[SerializeField] protected int HitPoints = 60;
-	public LayerMask Ground_Entities;
-	public enum Stato {idle, waiting, possessed, catching, escaping, positioning, shooting};
-	public Stato StatoAttuale;
-	public Parassita parassita;
+	[SerializeField] protected int hitPoints = 60;
+	public LayerMask groundEntities;
+	public enum State {idle, waiting, possessed, catching, escaping, positioning, shooting};
+	public State currentState;
+	public Parasite parasite;
 	public bool up, down, right, left;
 	public GameObject bulletPrefab;
 	public float bulletSpeed = 10f;
-	public Transform firePoint;
 	protected SpriteRenderer spriteRenderer;
-	// Area di rilevamento del Parassita
+	// Area di rilevamento del parasite
 	[SerializeField] private Vector2 detectionBoxSize = new Vector2(15f, 15f);
 	// Distanza per i controlli del movimento casuale
 	protected Vector2 randomDirection = Vector2.zero;
@@ -22,7 +20,7 @@ public class Nemico : MonoBehaviour
 	[SerializeField] protected float randomCheckSize = 0.75f;
 
 	protected virtual void Awake() {
-		parassita = FindFirstObjectByType<Parassita>();
+		parasite = FindFirstObjectByType<Parasite>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	// =========================================================
@@ -35,25 +33,25 @@ public class Nemico : MonoBehaviour
 	// SPARO
 	// =========================================================
 	public void Shoot(bool WhoIsShooting) {
-		Vector3 uscitaProiettile = spriteRenderer.bounds.center;
-		Vector2 direzione;
+		Vector3 firePoint = spriteRenderer.bounds.center;
+		Vector2 direction;
 		
 		if (WhoIsShooting) {
 			Movement movement = GetComponent<Movement>();
 
 			if (movement != null) {
-				direzione = movement.lastDirection.normalized;
+				direction = movement.lastDirection.normalized;
 			} else {
 				return;
 			}
 		} else {
-			Vector2 posizioneBersaglio = GetTargetPosition();
-			direzione = (posizioneBersaglio - (Vector2)uscitaProiettile).normalized;
+			Vector2 targetPosition = GetTargetPosition();
+			direction = (targetPosition - (Vector2)firePoint).normalized;
 		}
 
-		float angle = Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg;
-		Quaternion rotazioneProiettile = Quaternion.Euler(0, 0, angle);
-		GameObject bullet = Instantiate(bulletPrefab,uscitaProiettile,rotazioneProiettile);
+		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		Quaternion bulletRotation = Quaternion.Euler(0, 0, angle);
+		GameObject bullet = Instantiate(bulletPrefab,firePoint,bulletRotation);
 		Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
 
 		if (bulletCollider == null) {
@@ -61,17 +59,17 @@ public class Nemico : MonoBehaviour
 		}
 
 		if (WhoIsShooting) {
-			Collider2D possessedCollider = parassita.GetComponent<Collider2D>();
+			Collider2D possessedCollider = parasite.GetComponent<Collider2D>();
 
 			if (possessedCollider != null) {
 				Physics2D.IgnoreCollision(bulletCollider,possessedCollider);
 			}
 
-			if (parassita.corpoPosseduto != null) {
-				Collider2D corpoPossedutoCollider = parassita.corpoPosseduto.GetComponent<Collider2D>();
+			if (parasite.possessedBody != null) {
+				Collider2D possessedBodyCollider = parasite.possessedBody.GetComponent<Collider2D>();
 
-				if (corpoPossedutoCollider != null) {
-					Physics2D.IgnoreCollision(bulletCollider,corpoPossedutoCollider);
+				if (possessedBodyCollider != null) {
+					Physics2D.IgnoreCollision(bulletCollider,possessedBodyCollider);
 				}
 			}
 		} else {
@@ -85,9 +83,10 @@ public class Nemico : MonoBehaviour
 		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 		
 		if (rb != null) {
-			rb.linearVelocity = direzione * bulletSpeed;
+			rb.linearVelocity = direction * bulletSpeed;
 		}
 	}
+	
 	// =========================================================
 	// DIREZIONE VERSO UN TARGET
 	// =========================================================
@@ -96,13 +95,16 @@ public class Nemico : MonoBehaviour
 		down = isFree(Vector2.down);
 		right = isFree(Vector2.right);
 		left = isFree(Vector2.left);
+		
 		// CENTRO DELLO SPRITE
 		Vector2 currentPosition = GetSpritePosition();
 		Vector2 directionVector = targetPosition - currentPosition;
+		
 		float angleUp = Vector2.Angle(Vector2.up,directionVector);
 		float angleDown = Vector2.Angle(Vector2.down,directionVector);
 		float angleRight = Vector2.Angle(Vector2.right,directionVector);
 		float angleLeft = Vector2.Angle(Vector2.left,directionVector);
+		
 		Vector2 bestDirection = Vector2.zero;
 		float bestAngle = 360f;
 
@@ -146,10 +148,10 @@ public class Nemico : MonoBehaviour
 	// =========================================================
 	// DANNO
 	// =========================================================
-	public void PrendiDanno(int danno) {
-		HitPoints -= danno;
+	public void ReceiveDamage(int damage) {
+		hitPoints -= damage;
 		
-		if (HitPoints <= 0) {
+		if (hitPoints <= 0) {
 			Die();
 		}
 	}
@@ -161,53 +163,53 @@ public class Nemico : MonoBehaviour
 	// POSIZIONE DEL TARGET
 	// =========================================================
 	protected Vector2 GetTargetPosition() {
-		if (parassita.StatoAttuale == Parassita.Stato.possessing && parassita.corpoPosseduto != null) {
-			return parassita.GetCorpoPossedutoPosition();
+		if (parasite.currentState == Parasite.State.possessing && parasite.possessedBody != null) {
+			return parasite.GetPossessedBodyPosition();
 		}
-		return parassita.transform.position;
+		return parasite.transform.position;
 	}
 	// =========================================================
 	// DIREZIONE DI FUGA
 	// =========================================================
 	public Vector2 GetEscapeDirection(Vector2 dangerPosition) {
 		// CENTRO DELLO SPRITE
-		Vector2 currentPos = GetSpritePosition();
+		Vector2 currentPosition = GetSpritePosition();
 		Vector2[] directions = {Vector2.up,Vector2.down,Vector2.left,Vector2.right};
-		Vector2 bestDir = Vector2.zero;
+		Vector2 bestDirection = Vector2.zero;
 		float maxDistance = -1f;
 		
 		foreach (Vector2 dir in directions) {
 			if (isFree(dir)) {
-				Vector2 nextPos = currentPos + dir;
+				Vector2 nextPos = currentPosition + dir;
 				float distanceToDanger = Vector2.Distance(nextPos,dangerPosition);
 
 				if (distanceToDanger > maxDistance) {
 					maxDistance = distanceToDanger;
-					bestDir = dir;
+					bestDirection = dir;
 				}
 			}
 		}
-		return bestDir;
+		return bestDirection;
 	}
 	// =========================================================
-	// CONTROLLO PARASSITA
+	// CONTROLLO parasite
 	// =========================================================
-	protected bool CheckForParassita() {
+	protected bool CheckForParasite() {
 		// CENTRO DELLO SPRITE
 		Vector2 spritePosition = GetSpritePosition();
 		Collider2D[] objectsInside = Physics2D.OverlapBoxAll(spritePosition,detectionBoxSize,0f);
 
 		foreach (Collider2D collider in objectsInside) {
 			
-			if (collider.TryGetComponent<Parassita>(out _)) {
+			if (collider.TryGetComponent<Parasite>(out _)) {
 				return true;
 			}
 			
-			if (collider.TryGetComponent<guard>(out var g) && g.StatoAttuale == guard.Stato.possessed) {
+			if (collider.TryGetComponent<Guard>(out var g) && g.currentState == Guard.State.possessed) {
 				return true;
 			}
 			
-			if (collider.TryGetComponent<scientist>(out var s) && s.StatoAttuale == scientist.Stato.possessed) {
+			if (collider.TryGetComponent<Scientist>(out var s) && s.currentState == Scientist.State.possessed) {
 				return true;
 			}
 		}
@@ -266,7 +268,7 @@ public class Nemico : MonoBehaviour
 	private void OnDrawGizmosSelected() {
 		if (spriteRenderer == null) return;
 		Vector2 spritePosition = spriteRenderer.bounds.center;
-		// AREA CONTROLLO PARASSITA
+		// AREA CONTROLLO parasite
 		Gizmos.DrawWireCube(spritePosition, detectionBoxSize);
 		// CONTROLLI MURI
 		Vector2[] directions = {Vector2.up, Vector2.down, Vector2.left, Vector2.right};

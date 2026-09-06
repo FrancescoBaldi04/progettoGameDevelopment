@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class startSpawner : MonoBehaviour
+public class StartSpawner : MonoBehaviour
 {
-	[SerializeField] private GameObject ScienziatoDonna;
+	[SerializeField] private GameObject femaleScientist;
 	
 	void Start() {
-		GameObject scientist = Instantiate(ScienziatoDonna, transform.position, transform.rotation);
+		GameObject scientist = Instantiate(femaleScientist, transform.position, transform.rotation);
 		Destroy(gameObject);
 	}
 

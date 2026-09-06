@@ -1,71 +1,71 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class spawnerScientistBase : MonoBehaviour
+public class ScientistSpawner : MonoBehaviour
 {
-	[SerializeField] private GameObject ScienziatoUomo;
-	[SerializeField] private GameObject ScienziatoDonna;
+	[SerializeField] private GameObject maleScientist;
+	[SerializeField] private GameObject femaleScientist;
 	[SerializeField] private Vector2 detectionBoxSize = new Vector2(30f, 30f);
-	private int quantitaMassima;
+	private int maxAmount;
 	private float timer = 10.0f;
-	private bool genere;
+	private bool gender;
 	private bool block = false;
 	
 	void Start() {
 		int LivelloAttuale = SceneManager.GetActiveScene().buildIndex;
 		if (LivelloAttuale == 0) {
-			quantitaMassima = 5;
+			maxAmount = 5;
 		} else {
-			quantitaMassima = 3;
+			maxAmount = 3;
 		}
 	}
 
 	void Update() {
 		timer -= Time.deltaTime;
 		if (timer <= 0) block = true;
-		if (CheckForParassita()) {
-			int numeroScienziati = FindObjectsByType<scientist>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
+		if (CheckForParasite()) {
+			int numeroScienziati = FindObjectsByType<Scientist>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 			
 			if (numeroScienziati == 0 && !block) {
 				block = true;
-				if (genere) {
-					genere = false;
-					GameObject scientist = Instantiate(ScienziatoUomo, transform.position, transform.rotation);
+				if (gender) {
+					gender = false;
+					GameObject scientist = Instantiate(maleScientist, transform.position, transform.rotation);
 				} else {
-					genere = true;
-					GameObject scientist = Instantiate(ScienziatoDonna, transform.position, transform.rotation);
+					gender = true;
+					GameObject scientist = Instantiate(femaleScientist, transform.position, transform.rotation);
 				}
 			}
 			
-			if (numeroScienziati < quantitaMassima && timer <=0) {
+			if (numeroScienziati < maxAmount && timer <=0) {
 				block = false;
 				timer = 10.0f;
-				if (genere) {
-					genere = false;
-					GameObject scientist = Instantiate(ScienziatoUomo, transform.position, transform.rotation);
+				if (gender) {
+					gender = false;
+					GameObject scientist = Instantiate(maleScientist, transform.position, transform.rotation);
 				} else {
-					genere = true;
-					GameObject scientist = Instantiate(ScienziatoDonna, transform.position, transform.rotation);
+					gender = true;
+					GameObject scientist = Instantiate(femaleScientist, transform.position, transform.rotation);
 				}
 			}
 		}
 	}
 	
-	protected bool CheckForParassita() {
+	protected bool CheckForParasite() {
 		// CENTRO DELLO SPAWNER
 		Vector2 position = this.transform.position;
 		Collider2D[] objectsInside = Physics2D.OverlapBoxAll(position, detectionBoxSize, 0f);
 		
 		foreach (Collider2D collider in objectsInside) {
 			
-			if (collider.TryGetComponent<Parassita>(out _)) {
+			if (collider.TryGetComponent<Parasite>(out _)) {
 				return true;
 			}
 			
-			if (collider.TryGetComponent<guard>(out var g) && g.StatoAttuale == guard.Stato.possessed) {
+			if (collider.TryGetComponent<Guard>(out var g) && g.currentState == Guard.State.possessed) {
 				return true;
 			}
 			
-			if (collider.TryGetComponent<scientist>(out var s) && s.StatoAttuale == scientist.Stato.possessed) {
+			if (collider.TryGetComponent<Scientist>(out var s) && s.currentState == Scientist.State.possessed) {
 				return true;
 			}
 		}

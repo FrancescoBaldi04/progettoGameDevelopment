@@ -63029,11 +63029,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4885650133219382062, guid: e6875d5ce50069443bb3cb50c0d7ef6e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.7
+      value: 14.35
       objectReference: {fileID: 0}
     - target: {fileID: 4885650133219382062, guid: e6875d5ce50069443bb3cb50c0d7ef6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 89.6
+      value: 85.69
       objectReference: {fileID: 0}
     - target: {fileID: 4885650133219382062, guid: e6875d5ce50069443bb3cb50c0d7ef6e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -63828,9 +63828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a897f95f4d674ed585d843f78d6421f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  esplosionePrefab: {fileID: 631990212493483533, guid: 6706a80e133d944629fa67e19d3d20e0, type: 3}
-  corpoPosseduto: {fileID: 0}
-  statoAttuale: 0
+  prefabExplosion: {fileID: 631990212493483533, guid: 6706a80e133d944629fa67e19d3d20e0, type: 3}
+  possessedBody: {fileID: 0}
   healthBar: {fileID: 962360843}
   moveSpeed: 3.3
   movement: {x: 0, y: 0}
@@ -64366,6 +64365,10 @@ PrefabInstance:
       objectReference: {fileID: 1955806851}
     - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
       propertyPath: Description
+      value: 
+      objectReference: {fileID: 1955806848}
+    - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
+      propertyPath: description
       value: 
       objectReference: {fileID: 1955806848}
     - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
@@ -65007,7 +65010,7 @@ PrefabInstance:
       objectReference: {fileID: 1336094969}
     - target: {fileID: 1171546747484845520, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Comandi
+      value: Controls
       objectReference: {fileID: 0}
     - target: {fileID: 1421355289911310291, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_AnchorMax.y
@@ -81907,11 +81910,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1478297557163326126, guid: ee0a3b5dab6d10744a5a3f962fd981db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.7
+      value: -9.89
       objectReference: {fileID: 0}
     - target: {fileID: 1478297557163326126, guid: ee0a3b5dab6d10744a5a3f962fd981db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 78.1
+      value: 78.76
       objectReference: {fileID: 0}
     - target: {fileID: 1478297557163326126, guid: ee0a3b5dab6d10744a5a3f962fd981db, type: 3}
       propertyPath: m_LocalPosition.z

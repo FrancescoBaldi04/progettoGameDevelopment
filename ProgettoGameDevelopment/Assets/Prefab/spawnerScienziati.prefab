@@ -104,5 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc5490ae6994b7488ab6dbaa86b755a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::spawnerScientistBase
-  ScienziatoUomo: {fileID: 6090173181688363909, guid: f7fbd377b3bb541bf93ac9287b623413, type: 3}
-  ScienziatoDonna: {fileID: 3083710808066431277, guid: 43aa80502cbb241b3bd54e7610aa3540, type: 3}
+  maleScientist: {fileID: 6090173181688363909, guid: f7fbd377b3bb541bf93ac9287b623413, type: 3}
+  femaleScientist: {fileID: 3083710808066431277, guid: 43aa80502cbb241b3bd54e7610aa3540, type: 3}
+  detectionBoxSize: {x: 30, y: 30}

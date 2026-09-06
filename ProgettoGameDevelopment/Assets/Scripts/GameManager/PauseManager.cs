@@ -8,8 +8,8 @@ public class PauseManager : MonoBehaviour
     public static PauseManager pauseManager { get; private set;} // Pattern Singleton
 
     [SerializeField] private GameObject pauseMenuPanel;
-    [SerializeField] private GameObject VictoryScreen;
-    [SerializeField] private GameObject Description;
+    [SerializeField] private GameObject victoryScreen;
+    [SerializeField] private GameObject description;
     
     [SerializeField] private GameObject resumeButton; // Riferimento al bottone "Resume" per selezionarlo in automatico
      
@@ -37,12 +37,12 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        if (VictoryScreen != null)
+        if (victoryScreen != null)
         {
-            VictoryScreen.SetActive(false);
+            victoryScreen.SetActive(false);
         }
         pauseMenuPanel.SetActive(false);
-        Description.SetActive(false);
+        description.SetActive(false);
     }
 
     private void Update()
@@ -64,7 +64,7 @@ public class PauseManager : MonoBehaviour
         
         if(showingCommands ){
             if(Keyboard.current.bKey.wasPressedThisFrame){
-                Description.SetActive(false);
+                description.SetActive(false);
                 pauseMenuPanel.SetActive(true);
                 showingCommands = false;
                 if (resumeButton != null && EventSystem.current != null)
@@ -76,7 +76,7 @@ public class PauseManager : MonoBehaviour
             return;
         }
 
-        if (StartScreen.giocoIniziato && Keyboard.current != null &&
+        if (StartScreen.isGameStarted && Keyboard.current != null &&
             (Keyboard.current.escapeKey.wasPressedThisFrame || Keyboard.current.pKey.wasPressedThisFrame))
         {
             if (isPaused)
@@ -104,10 +104,10 @@ public class PauseManager : MonoBehaviour
         }
         
     }
-    public void Comandi()
+    public void Controls()
     {
         pauseMenuPanel.SetActive(false);
-        Description.SetActive(true);
+        description.SetActive(true);
         showingCommands = true;
     }
     public void Resume()
@@ -129,7 +129,7 @@ public class PauseManager : MonoBehaviour
 
     public void ShowVictoryScreen()
     {
-        VictoryScreen.SetActive(true);
+        victoryScreen.SetActive(true);
     }
 
     public void UpdateWormText() 

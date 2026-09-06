@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class scientist : Nemico
+public class Scientist : Enemy
 {
 	private bool isDying = false;
 	private float lastHorizontal = 0;
@@ -18,24 +18,24 @@ public class scientist : Nemico
 
 	void Start() {
 		// Parte sempre in idle.
-		// Sarà CheckForParassita() a determinare
+		// Sarà CheckForparasite() a determinare
 		// successivamente se deve catturare o scappare.
-		StatoAttuale = Stato.idle;
+		currentState = State.idle;
 	}
 
 	void Update() {
 		if (isDying) return;
 		
-		if (HitPoints <= 0) {
+		if (hitPoints <= 0) {
 			Die();
 			return;
 		}
 		
-		switch (StatoAttuale) {
+		switch (currentState) {
 			// =================================================
 			// WAITING
 			// =================================================
-			case Stato.idle: {
+			case State.idle: {
 				timer -= Time.deltaTime;
 				
 				if (timer == 0) {
@@ -43,15 +43,15 @@ public class scientist : Nemico
 					return;
 				}
 				
-				if (!CheckForParassita()) {
+				if (!CheckForParasite()) {
 					Vector2 direction = RandomMovement();
 					movement.SetDirection(direction);
 					UpdateAnimation(direction);
 				} else {
-					if (parassita.StatoAttuale == Parassita.Stato.possessing) {
-						StatoAttuale = Stato.escaping;
+					if (parasite.currentState == Parasite.State.possessing) {
+						currentState = State.escaping;
 					} else {
-						StatoAttuale = Stato.catching;
+						currentState = State.catching;
 					}
 				}
 				break;
@@ -59,10 +59,10 @@ public class scientist : Nemico
 			// =================================================
 			// CATCHING
 			// =================================================
-			case Stato.catching: {
-				if (!CheckForParassita()) {
+			case State.catching: {
+				if (!CheckForParasite()) {
 					timer = 30.0f;
-					StatoAttuale = Stato.idle;
+					currentState = State.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				break;
@@ -70,59 +70,59 @@ public class scientist : Nemico
 				
 				// Centro dello sprite dello scienziato
 				Vector2 scientistPosition = spriteRenderer.bounds.center;
-				// Centro dello sprite del Parassita
-				Vector2 parasitePosition = parassita.GetComponent<SpriteRenderer>().bounds.center;
-				float distanza = Vector2.Distance(scientistPosition, parasitePosition);
+				// Centro dello sprite del parasite
+				Vector2 parasitePosition = parasite.GetComponent<SpriteRenderer>().bounds.center;
+				float distance = Vector2.Distance(scientistPosition, parasitePosition);
 
-				if (distanza > 0.1f) {
-					Vector2 VersoDiCattura = GetBestDirection(parasitePosition, Vector2.zero);
-					movement.SetDirection(VersoDiCattura);
-					UpdateAnimation(VersoDiCattura);
+				if (distance > 0.1f) {
+					Vector2 captureDirection = GetBestDirection(parasitePosition, Vector2.zero);
+					movement.SetDirection(captureDirection);
+					UpdateAnimation(captureDirection);
 				} else {
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				}
-				// Se il Parassita entra nel corpo di un NPC,
+				// Se il parasite entra nel corpo di un NPC,
 				// lo scienziato deve iniziare a scappare.
-				if (parassita.StatoAttuale == Parassita.Stato.possessing) {
-					StatoAttuale = Stato.escaping;
+				if (parasite.currentState == Parasite.State.possessing) {
+					currentState = State.escaping;
 				}
 			break;
 			}
 			// =================================================
 			// ESCAPING
 			// =================================================
-			case Stato.escaping: {
-				 if (parassita.StatoAttuale == Parassita.Stato.libero) {
+			case State.escaping: {
+				 if (parasite.currentState == Parasite.State.free) {
 					timer = 30.0f;
-					StatoAttuale = Stato.idle;
+					currentState = State.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				break;
 				}
-				Vector2 posizionePericolo = GetTargetPosition();
-				Vector2 VersoDiFuga = GetEscapeDirection(posizionePericolo);
-				movement.SetDirection(VersoDiFuga);
-				UpdateAnimation(VersoDiFuga);
-				// Se il Parassita torna libero,
+				Vector2 threatPosition = GetTargetPosition();
+				Vector2 fleeDirection = GetEscapeDirection(threatPosition);
+				movement.SetDirection(fleeDirection);
+				UpdateAnimation(fleeDirection);
+				// Se il parasite torna libero,
 				// lo scienziato torna a cercarlo.
-				if (parassita.StatoAttuale == Parassita.Stato.libero) {
-					StatoAttuale = Stato.catching;
+				if (parasite.currentState == Parasite.State.free) {
+					currentState = State.catching;
 				}
 			break;
 			}
 			// =================================================
 			// POSSESSED
 			// =================================================
-			case Stato.possessed: {
-				if (parassita.StatoAttuale == Parassita.Stato.libero) {
-					this.HitPoints = 0;
+			case State.possessed: {
+				if (parasite.currentState == Parasite.State.free) {
+					this.hitPoints = 0;
 					break;
 				}
 				// Input del giocatore
-				Vector2 inputGiocatore = InputManager.movement;
-				movement.SetDirection(inputGiocatore);
-				UpdateAnimation(inputGiocatore);
+				Vector2 playerInput = InputManager.movement;
+				movement.SetDirection(playerInput);
+				UpdateAnimation(playerInput);
 			break;
 			}
 		}
@@ -143,21 +143,21 @@ public class scientist : Nemico
 	// =========================================================
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag("Bullet")) {
-		// Controllo se QUESTO corpo è quello posseduto dal parassita
-			if (parassita.corpoPosseduto == gameObject) {
-				parassita.SubisciDanno(10);
+		// Controllo se QUESTO corpo è quello posseduto dal parasite
+			if (parasite.possessedBody == gameObject) {
+				parasite.TakeDamage(10);
 			} else {
-				PrendiDanno(10);
+				ReceiveDamage(10);
 			}
 		return;
 		}
-		// Collisione con il Parassita
-		Parassita parassitaScontrato = collision.gameObject.GetComponent<Parassita>();
+		// Collisione con il parasite
+		Parasite collidedParasite = collision.gameObject.GetComponent<Parasite>();
 
-		if (StatoAttuale == Stato.catching && parassitaScontrato != null) {
-			PlayerJump playerJump = parassitaScontrato.GetComponent<PlayerJump>();
+		if (currentState == State.catching && collidedParasite != null) {
+			PlayerJump playerJump = collidedParasite.GetComponent<PlayerJump>();
 			if (playerJump != null && !playerJump.isInAir) {
-				parassitaScontrato.Muori();
+				collidedParasite.Die();
 			}
 		}
 	}

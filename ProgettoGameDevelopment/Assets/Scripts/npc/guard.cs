@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class guard : Nemico
+public class Guard : Enemy
 {
 	public float targetDistance = 7.5f;
 	private float timer = 30.0f;
@@ -24,8 +24,8 @@ public class guard : Nemico
 
 	void Start() {
 		// Tutte le guardie iniziano in idle.
-		// CheckForParassita() deciderà poi cosa fare.
-		StatoAttuale = Stato.idle;
+		// CheckForparasite() deciderà poi cosa fare.
+		currentState = State.idle;
 		UpdateAnimation(Vector2.zero);
 	}
 
@@ -33,18 +33,18 @@ public class guard : Nemico
 	void Update() {
 		if (isDying) return;
 		
-		if (HitPoints <= 0)
+		if (hitPoints <= 0)
 		{
 			Die();
 			return;
 		}
 
 
-		switch (StatoAttuale) {
+		switch (currentState) {
 			// =========================================================
 			// WAITING
 			// =========================================================
-			case Stato.idle: {
+			case State.idle: {
 				timer-=Time.deltaTime;
 				
 				if (timer == 0) {
@@ -52,16 +52,16 @@ public class guard : Nemico
 					return;
 				}
 					
-				if (!CheckForParassita()) {
+				if (!CheckForParasite()) {
 					Vector2 direction = RandomMovement();
 					movement.SetDirection(direction);
 					UpdateAnimation(direction);
 				} else {
-					if (parassita.StatoAttuale == Parassita.Stato.possessing) {
-						StatoAttuale = Stato.positioning;
+					if (parasite.currentState == Parasite.State.possessing) {
+						currentState = State.positioning;
 						timer = 1.0f;
 					} else {
-						StatoAttuale = Stato.escaping;
+						currentState = State.escaping;
 						timer = 1.0f;
 					}
 				}
@@ -70,69 +70,69 @@ public class guard : Nemico
 			// =========================================================
 			// ESCAPING
 			// =========================================================
-			case Stato.escaping: { 
-				if (parassita.StatoAttuale == Parassita.Stato.possessing){
+			case State.escaping: { 
+				if (parasite.currentState == Parasite.State.possessing){
 					timer = 30.0f;
-					StatoAttuale = Stato.idle;
+					currentState = State.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 					break;
 				}
 				// Centro dello sprite della guardia.
 				Vector2 guardPosition = spriteRenderer.bounds.center;
-				// Centro dello sprite del Parassita.
-				Vector2 parassitaPosition = parassita.GetComponent<SpriteRenderer>().bounds.center;
-				Vector2 versoDiFuga = -GetBestDirection(parassitaPosition, Vector2.zero);
+				// Centro dello sprite del parasite.
+				Vector2 parasitePosition = parasite.GetComponent<SpriteRenderer>().bounds.center;
+				Vector2 versoDiFuga = -GetBestDirection(parasitePosition, Vector2.zero);
 				movement.SetDirection(versoDiFuga);
 				UpdateAnimation(versoDiFuga);
 
-				if (parassita.StatoAttuale == Parassita.Stato.possessing) {
-					StatoAttuale = Stato.positioning;
+				if (parasite.currentState == Parasite.State.possessing) {
+					currentState = State.positioning;
 				}
 				break;
 			}
 			// =========================================================
 			// POSITIONING
 			// =========================================================
-			case Stato.positioning: { 
-				if (parassita.StatoAttuale == Parassita.Stato.libero) {
-					StatoAttuale = Stato.escaping;
+			case State.positioning: { 
+				if (parasite.currentState == Parasite.State.free) {
+					currentState = State.escaping;
 					break;
 				}
-				if (!CheckForParassita()) {
+				if (!CheckForParasite()) {
 					timer = 30.0f;
-					StatoAttuale = Stato.idle;
+					currentState = State.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				break;
 				}
 				
-				if (movement != null && parassita != null) {
+				if (movement != null && parasite != null) {
 					// Centro dello sprite della guardia.
 					Vector2 myPosition = spriteRenderer.bounds.center;
-					// Centro dello sprite del Parassita.
-					SpriteRenderer parassitaSprite = parassita.GetComponent<SpriteRenderer>();
-					Vector2 parassitaPosition;
+					// Centro dello sprite del parasite.
+					SpriteRenderer parasiteSprite = parasite.GetComponent<SpriteRenderer>();
+					Vector2 parasitePosition;
 
-					if (parassitaSprite != null) {
-						parassitaPosition = parassitaSprite.bounds.center;
+					if (parasiteSprite != null) {
+						parasitePosition = parasiteSprite.bounds.center;
 					} else {
-						parassitaPosition = parassita.transform.position;
+						parasitePosition = parasite.transform.position;
 					}
 
-					float distance = Vector2.Distance(myPosition, parassitaPosition);
-					Vector2 directionToParassita = (parassitaPosition - myPosition).normalized;
-					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParassita, 
+					float distance = Vector2.Distance(myPosition, parasitePosition);
+					Vector2 directionToparasite = (parasitePosition - myPosition).normalized;
+					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToparasite, 
 					                                                         distance, obstacleLayerMask);
 
 
 					if (hit.collider != null || distance > targetDistance + 0.3f) {
-						movement.SetDirection(directionToParassita);
-						UpdateAnimation(directionToParassita);
+						movement.SetDirection(directionToparasite);
+						UpdateAnimation(directionToparasite);
 					} else {
 						movement.SetDirection(Vector2.zero);
 						UpdateAnimation(Vector2.zero);
-						StatoAttuale = Stato.shooting;
+						currentState = State.shooting;
 					}
 				}
 				break;
@@ -140,7 +140,7 @@ public class guard : Nemico
 			// =========================================================
 			// SHOOTING
 			// =========================================================
-			case Stato.shooting: {
+			case State.shooting: {
 				movement.SetDirection(Vector2.zero);
 				// Centro dello sprite della guardia.
 				Vector2 origine = spriteRenderer.bounds.center;
@@ -162,7 +162,7 @@ public class guard : Nemico
 											distance, obstacleLayerMask);
 
 				if (hit.collider != null || distance > targetDistance + 0.3f) {
-					StatoAttuale = Stato.positioning;
+					currentState = State.positioning;
 					timer = 1.0f;
 				} else if (timer <= 0) {
 					animator.SetTrigger("Shooting");
@@ -170,8 +170,8 @@ public class guard : Nemico
 					timer = 1.0f;
 				}
 
-				if (parassita.StatoAttuale == Parassita.Stato.libero) {
-					StatoAttuale = Stato.escaping;
+				if (parasite.currentState == Parasite.State.free) {
+					currentState = State.escaping;
 				}
 				
 				break;
@@ -179,9 +179,9 @@ public class guard : Nemico
 			// =========================================================
 			// POSSESSED
 			// =========================================================
-			case Stato.possessed: {
-				if (parassita.StatoAttuale == Parassita.Stato.libero) {
-					HitPoints = 0;
+			case State.possessed: {
+				if (parasite.currentState == Parasite.State.free) {
+					hitPoints = 0;
 					break;
 				}
 				Vector2 inputGiocatore = InputManager.movement;
@@ -226,10 +226,10 @@ public class guard : Nemico
 	// =========================================================
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag("Bullet")) {
-			if (parassita.corpoPosseduto == gameObject) {
-				parassita.SubisciDanno(10);
+			if (parasite.possessedBody == gameObject) {
+				parasite.TakeDamage(10);
 			} else {
-				PrendiDanno(10);
+				ReceiveDamage(10);
 			}
 		return;
 		}

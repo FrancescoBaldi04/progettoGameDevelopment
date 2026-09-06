@@ -11,9 +11,9 @@ public class WormPickUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Parassita parassita = other.GetComponent<Parassita>();
+        Parasite parasite = other.GetComponent<Parasite>();
 
-        if (parassita != null)
+        if (parasite != null)
         {
             GameManager.gameManager.UnlockWorm();
 
@@ -27,13 +27,13 @@ public class WormPickUp : MonoBehaviour
             return;
         }
 
-        Nemico nemico = other.GetComponent<Nemico>();
+        Enemy enemy = other.GetComponent<Enemy>();
 
-        if (nemico != null && nemico.parassita != null)
+        if (enemy != null && enemy.parasite != null)
         {
-            parassita = nemico.parassita;
+            parasite = enemy.parasite;
 
-            if (parassita.corpoPosseduto == nemico.gameObject)
+            if (parasite.possessedBody == enemy.gameObject)
             {
                 GameManager.gameManager.UnlockWorm();
 

@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class blocco : MonoBehaviour
+public class Block : MonoBehaviour
 {
-    [SerializeField] private Collider2D Blocco;
+    [SerializeField] private Collider2D block;
     [SerializeField] private GameObject BlockMessage;
 
     private Coroutine messageCoroutine;
@@ -11,26 +11,26 @@ public class blocco : MonoBehaviour
     private void Start()
     {
         BlockMessage.SetActive(false);
-        AggiornaBlocco();
+        BlockUpdate();
     }
 
     private void Update()
     {
-        AggiornaBlocco();
+        BlockUpdate();
     }
 
-    private void AggiornaBlocco()
+    private void BlockUpdate()
     {
         if (GameManager.gameManager == null)
             return;
 
         if (GameManager.gameManager.hasTrojanHorse)
         {
-            Blocco.enabled = false;
+            block.enabled = false;
         }
         else
         {
-            Blocco.enabled = true;
+            block.enabled = true;
         }
     }
 
@@ -42,7 +42,7 @@ public class blocco : MonoBehaviour
         if (GameManager.gameManager.hasTrojanHorse)
             return;
 
-        if (other.GetComponent<Parassita>() != null)
+        if (other.GetComponent<Parasite>() != null)
         {
             if (messageCoroutine != null)
                 StopCoroutine(messageCoroutine);

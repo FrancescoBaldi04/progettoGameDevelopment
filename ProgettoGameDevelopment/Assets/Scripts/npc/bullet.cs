@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
 	[SerializeField] private float lifeTime = 3f;
 	void Start()

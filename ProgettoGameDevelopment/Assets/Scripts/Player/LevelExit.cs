@@ -7,7 +7,7 @@ public class LevelExit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Parassita>() != null)
+        if (other.GetComponent<Parasite>() != null)
         {
             SceneManager.LoadScene(nextScene);
         }

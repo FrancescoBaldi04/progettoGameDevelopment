@@ -48896,7 +48896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a756eca428c4be2976082b5ac1d039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Blocco: {fileID: 645147784}
+  block: {fileID: 0}
   BlockMessage: {fileID: 1308763385}
 --- !u!50 &645147783
 Rigidbody2D:
@@ -49140,7 +49140,7 @@ PrefabInstance:
       objectReference: {fileID: 1724805030}
     - target: {fileID: 1171546747484845520, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Comandi
+      value: Controls
       objectReference: {fileID: 0}
     - target: {fileID: 1421355289911310291, guid: 9dc26c392fd053a4a815e9fe0d19f6ad, type: 3}
       propertyPath: m_AnchorMax.y
@@ -71737,9 +71737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a897f95f4d674ed585d843f78d6421f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  esplosionePrefab: {fileID: 631990212493483533, guid: 6706a80e133d944629fa67e19d3d20e0, type: 3}
-  corpoPosseduto: {fileID: 0}
-  statoAttuale: 0
+  prefabExplosion: {fileID: 631990212493483533, guid: 6706a80e133d944629fa67e19d3d20e0, type: 3}
+  possessedBody: {fileID: 0}
   healthBar: {fileID: 798140721}
   moveSpeed: 3.3
   movement: {x: 0, y: 0}
@@ -72776,6 +72775,10 @@ PrefabInstance:
       objectReference: {fileID: 897119730}
     - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
       propertyPath: Description
+      value: 
+      objectReference: {fileID: 897119727}
+    - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
+      propertyPath: description
       value: 
       objectReference: {fileID: 897119727}
     - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}

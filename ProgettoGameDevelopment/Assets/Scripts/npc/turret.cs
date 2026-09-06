@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class turret : Nemico
+public class Turret : Enemy
 {
 	public float targetDistance = 7.5f;
 	private float timer = 1.0f;
@@ -15,18 +15,18 @@ public class turret : Nemico
 		boss=GameObject.Find("GuardiaBoss");
 		animator = GetComponent<Animator>();
 		obstacleLayerMask = LayerMask.GetMask("ground");
-		StatoAttuale = Stato.waiting;
+		currentState = State.waiting;
 	}
 
 	void Start() {
-		if (parassita == null) {
-			parassita = FindFirstObjectByType<Parassita>();
+		if (parasite == null) {
+			parasite = FindFirstObjectByType<Parasite>();
 		}
 
-		if (parassita != null && parassita.StatoAttuale == Parassita.Stato.possessing) {
-			StatoAttuale = Stato.shooting;
+		if (parasite != null && parasite.currentState == Parasite.State.possessing) {
+			currentState = State.shooting;
 		} else {
-			StatoAttuale = Stato.waiting;
+			currentState = State.waiting;
 		}
 	
 		UpdateAnimation(Vector2.zero);
@@ -40,16 +40,16 @@ public class turret : Nemico
 			return;
 		}
 
-		switch (StatoAttuale) {
+		switch (currentState) {
 		
-		case Stato.waiting: {
-			if (parassita.StatoAttuale ==Parassita.Stato.possessing) {
-				StatoAttuale = Stato.shooting;
+		case State.waiting: {
+			if (parasite.currentState ==Parasite.State.possessing) {
+				currentState = State.shooting;
 			}
 			break;
 		}
 		
-		case Stato.shooting: {
+		case State.shooting: {
 			// Centro dello sprite della guardia.
 			Vector2 origine = spriteRenderer.bounds.center;
 			// Posizione del bersaglio.
@@ -74,8 +74,8 @@ public class turret : Nemico
 				timer = 1.0f;
 			}
 
-			if (parassita.StatoAttuale == Parassita.Stato.libero) {
-				StatoAttuale = Stato.waiting;
+			if (parasite.currentState == Parasite.State.free) {
+				currentState = State.waiting;
 			}
 			break;
 		}

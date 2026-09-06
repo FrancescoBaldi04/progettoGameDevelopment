@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6920064969760064838}
   - component: {fileID: -1300862978185250919}
   m_Layer: 8
-  m_Name: Guardia
+  m_Name: Guard
   m_TagString: Npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,19 +194,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205c9f4b590752448b3d0bf2a20df795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::guard
-  HitPoints: 60
-  Ground_Entities:
+  hitPoints: 60
+  groundEntities:
     serializedVersion: 2
     m_Bits: 64
-  StatoAttuale: 0
-  parassita: {fileID: 0}
+  currentState: 0
+  parasite: {fileID: 0}
   up: 0
   down: 0
   right: 1
   left: 0
   bulletPrefab: {fileID: 6073277577126612181, guid: c6f521d0cc32b5843ba1f33eeb51b663, type: 3}
   bulletSpeed: 10
-  firePoint: {fileID: 0}
   detectionBoxSize: {x: 15, y: 15}
   randomCheckDistance: 1.5
   randomCheckSize: 0.4

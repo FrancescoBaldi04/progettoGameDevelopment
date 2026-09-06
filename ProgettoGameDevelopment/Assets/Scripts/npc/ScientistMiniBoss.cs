@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class scientistMiniboss : Nemico
+public class scientistMiniboss : Enemy
 {
 	private bool isDying = false;
 	private float lastHorizontal = 0;
@@ -12,7 +12,7 @@ public class scientistMiniboss : Nemico
 
 	protected override void Awake() {
 		base.Awake();
-		this.HitPoints = 200;
+		this.hitPoints = 200;
 		movement = GetComponent<Movement>();
 		animator = GetComponent<Animator>();
 	}
@@ -20,7 +20,7 @@ public class scientistMiniboss : Nemico
 	void Start() {
 		// Parte sempre in waiting.
 		// CheckForParassita() verrà controllato continuamente.
-		StatoAttuale = Stato.waiting;
+		currentState = State.waiting;
 		UpdateAnimation(Vector2.zero);
 	}
 
@@ -28,17 +28,17 @@ public class scientistMiniboss : Nemico
 	void Update() {
 		if (isDying) return;
 
-		if (HitPoints <= 0) {
+		if (hitPoints <= 0) {
 			Die();
 			return;
 		}
 
-		switch (StatoAttuale) {
+		switch (currentState) {
 			// =========================================================
 			// WAITING
 			// =========================================================
-			case Stato.waiting: {
-				if (!CheckForParassita()) {
+			case State.waiting: {
+				if (!CheckForParasite()) {
 					// Nessun Parassita vicino:
 					// movimento casuale.
 					Vector2 direction = RandomMovement();
@@ -47,10 +47,10 @@ public class scientistMiniboss : Nemico
 				} else {
 					// Abbiamo rilevato il Parassita
 					// oppure un corpo posseduto.
-					if (parassita.StatoAttuale == Parassita.Stato.possessing) {
-						StatoAttuale = Stato.escaping;
+					if (parasite.currentState == Parasite.State.possessing) {
+						currentState = State.escaping;
 					} else {
-						StatoAttuale = Stato.catching;
+						currentState = State.catching;
 					}
 				}
 			break;
@@ -58,49 +58,49 @@ public class scientistMiniboss : Nemico
 			// =========================================================
 			// CATCHING
 			// =========================================================
-			case Stato.catching: {
+			case State.catching: {
 				// Centro dello sprite del miniboss.
 				Vector2 minibossPosition = spriteRenderer.bounds.center;
 				// Centro dello sprite del Parassita.
-				SpriteRenderer parassitaSprite = parassita.GetComponent<SpriteRenderer>();
-				Vector2 parassitaPosition;
-				if (parassitaSprite != null) {
-					parassitaPosition = parassitaSprite.bounds.center;
+				SpriteRenderer parasiteSprite = parasite.GetComponent<SpriteRenderer>();
+				Vector2 parasitePosition;
+				if (parasiteSprite != null) {
+					parasitePosition = parasiteSprite.bounds.center;
 				} else {
-					parassitaPosition = parassita.transform.position;
+					parasitePosition = parasite.transform.position;
 				}
 
-				float distanza = Vector2.Distance(minibossPosition, parassitaPosition);
+				float distance = Vector2.Distance(minibossPosition, parasitePosition);
 
-				if (distanza > 0.1f) {
-					Vector2 VersoDiCattura = GetBestDirection(parassitaPosition, Vector2.zero);
-					movement.SetDirection( VersoDiCattura);
-					UpdateAnimation(VersoDiCattura);
+				if (distance > 0.1f) {
+					Vector2 captureDirection = GetBestDirection(parasitePosition, Vector2.zero);
+					movement.SetDirection( captureDirection);
+					UpdateAnimation(captureDirection);
 				} else {
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				}
 				// Se il Parassita possiede qualcuno,
 				// il miniboss deve scappare.
-				if (parassita.StatoAttuale == Parassita.Stato.possessing) {
-					StatoAttuale = Stato.escaping;
+				if (parasite.currentState == Parasite.State.possessing) {
+					currentState = State.escaping;
 				}
 			break;
 			}
 			// =========================================================
 			// ESCAPING
 			// =========================================================
-			case Stato.escaping: {
+			case State.escaping: {
 				// Centro dello sprite del Parassita.
-				Vector2 posizionePericolo = GetTargetPosition();
+				Vector2 threatPosition = GetTargetPosition();
 				// Calcolo la direzione di fuga.
-				Vector2 VersoDiFuga = GetEscapeDirection(posizionePericolo);
-				movement.SetDirection(VersoDiFuga);
-				UpdateAnimation(VersoDiFuga);
+				Vector2 fleeDirection = GetEscapeDirection(threatPosition);
+				movement.SetDirection(fleeDirection);
+				UpdateAnimation(fleeDirection);
 				// Se il Parassita torna libero,
 				// torniamo a inseguirlo.
-				if (parassita.StatoAttuale == Parassita.Stato.libero) {
-					StatoAttuale = Stato.catching;
+				if (parasite.currentState == Parasite.State.free) {
+					currentState = State.catching;
 				}
 			break;
 			}
@@ -127,17 +127,17 @@ public class scientistMiniboss : Nemico
 	private void OnCollisionEnter2D(Collision2D collision) {
 		// Il proiettile fa danno al miniboss.
 		if (collision.gameObject.CompareTag("Bullet")) {
-			PrendiDanno(10);
+			ReceiveDamage(10);
 			return;
 		}
 		// Collisione con il Parassita.
-		Parassita parassitaScontrato =collision.gameObject.GetComponent<Parassita>();
+		Parasite collidedParasite =collision.gameObject.GetComponent<Parasite>();
 
-		if (StatoAttuale == Stato.catching && parassitaScontrato != null) {
-			PlayerJump playerJump = parassitaScontrato.GetComponent<PlayerJump>();
+		if (currentState == State.catching && collidedParasite != null) {
+			PlayerJump playerJump = collidedParasite.GetComponent<PlayerJump>();
 
 			if (playerJump != null && !playerJump.isInAir) {
-				parassitaScontrato.Muori();
+				collidedParasite.Die();
 			}
 		}
 	}

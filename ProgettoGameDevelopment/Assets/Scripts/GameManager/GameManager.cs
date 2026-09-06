@@ -44,36 +44,24 @@ public class GameManager : MonoBehaviour
     public void UnlockTrojanHorse()
     {
         hasTrojanHorse = true;
-
-
     }
-
-
     public void UnlockZipBomb()
     {
         hasZipBomb = true;
-
-
     }
-
 
     public void UnlockWorm()
     {
         hasWorm = true;
-
-
     }
-
 
     // =========================
     // GAME OVER
     // =========================
-
     public void GameOver()
     {
         StartCoroutine(restartLevelRoutine());
     }
-
 
     private IEnumerator restartLevelRoutine()
     {

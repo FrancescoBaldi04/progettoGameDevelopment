@@ -23,19 +23,19 @@ public class Door : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     { 
 
-   scientist scienziato = other.GetComponent<scientist>();
+        Scientist scienziato = other.GetComponent<Scientist>();
 
-if (scienziato != null && scienziato.StatoAttuale == scientist.Stato.possessed)
-    {
-        playerNearby = true;
-    }
+        if (scienziato != null && scienziato.currentState == Scientist.State.possessed)
+        {
+            playerNearby = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        scientist scienziato = other.GetComponent<scientist>();
+        Scientist scienziato = other.GetComponent<Scientist>();
 
-if (scienziato != null && scienziato.StatoAttuale == scientist.Stato.possessed)
+        if (scienziato != null && scienziato.currentState == Scientist.State.possessed)
         {
             playerNearby = false;
             if (doorCollider.enabled == false)

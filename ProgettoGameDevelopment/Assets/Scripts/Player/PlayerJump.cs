@@ -79,20 +79,20 @@ public class PlayerJump : MonoBehaviour
     private void OnCollisionEnter2D (Collision2D collision) {
         if (isInAir){
             if (collision.gameObject.CompareTag("Npc")){ // ricordarsi di assegnare il tag Npc ai prefab degli npc
-                possessNpc(collision.gameObject);
+                PossessNpc(collision.gameObject);
             }else{
-                die();   
+                Die();   
             }
         }
     }
 
-    private void possessNpc(GameObject Npc){
+    private void PossessNpc(GameObject Npc){
         isInAir = false;
         
-        Parassita parassita = GetComponent<Parassita>();
-        if (parassita != null)
+        Parasite parasite = GetComponent<Parasite>();
+        if (parasite != null)
         {
-            parassita.Possiedi(Npc);
+            parasite.Possess(Npc);
         }
 
         Rigidbody2D npcRb = Npc.GetComponent<Rigidbody2D>();
@@ -118,7 +118,7 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    public void die(){
+    public void Die(){
         if (isDead) return;
 
         isInAir = false;
