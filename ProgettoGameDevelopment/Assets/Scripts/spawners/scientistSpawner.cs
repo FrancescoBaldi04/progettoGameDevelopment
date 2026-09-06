@@ -4,7 +4,7 @@ public class spawnerScientistBase : MonoBehaviour
 {
 	[SerializeField] private GameObject ScienziatoUomo;
 	[SerializeField] private GameObject ScienziatoDonna;
-	[SerializeField] private Vector2 detectionBoxSize = new Vector2(20f, 20f);
+	[SerializeField] private Vector2 detectionBoxSize = new Vector2(30f, 30f);
 	private int quantitaMassima;
 	private float timer = 10.0f;
 	private bool genere;
@@ -14,19 +14,18 @@ public class spawnerScientistBase : MonoBehaviour
 		int LivelloAttuale = SceneManager.GetActiveScene().buildIndex;
 		if (LivelloAttuale == 0) {
 			quantitaMassima = 5;
-		} else if (LivelloAttuale == 4) {
-			quantitaMassima = 1;
 		} else {
 			quantitaMassima = 3;
 		}
 	}
 
 	void Update() {
+		timer -= Time.deltaTime;
+		if (timer <= 0) block = true;
 		if (CheckForParassita()) {
-			timer -= Time.deltaTime;
 			int numeroScienziati = FindObjectsByType<scientist>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 			
-			if (numeroScienziati == 0 && !block || quantitaMassima == 1) {
+			if (numeroScienziati == 0 && !block) {
 				block = true;
 				if (genere) {
 					genere = false;

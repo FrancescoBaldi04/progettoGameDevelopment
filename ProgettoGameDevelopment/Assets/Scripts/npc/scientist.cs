@@ -8,7 +8,7 @@ public class scientist : Nemico
 	private float lastVertical = -1f;
 	private Movement movement;
 	private Animator animator;
-	private float timer = 60.0f;
+	private float timer = 30.0f;
 
 	protected override void Awake() {
 		base.Awake();
@@ -61,7 +61,7 @@ public class scientist : Nemico
 			// =================================================
 			case Stato.catching: {
 				if (!CheckForParassita()) {
-					timer = 60.0f;
+					timer = 30.0f;
 					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
@@ -94,7 +94,7 @@ public class scientist : Nemico
 			// =================================================
 			case Stato.escaping: {
 				 if (parassita.StatoAttuale == Parassita.Stato.libero) {
-					timer = 60.0f;
+					timer = 30.0f;
 					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);

@@ -4,7 +4,7 @@ using UnityEngine;
 public class guard : Nemico
 {
 	public float targetDistance = 7.5f;
-	private float timer = 60.0f;
+	private float timer = 30.0f;
 	private bool isDying = false;
 	private Movement movement;
 	private Animator animator;
@@ -72,7 +72,7 @@ public class guard : Nemico
 			// =========================================================
 			case Stato.escaping: { 
 				if (parassita.StatoAttuale == Parassita.Stato.possessing){
-					timer = 60.0f;
+					timer = 30.0f;
 					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
@@ -100,6 +100,7 @@ public class guard : Nemico
 					break;
 				}
 				if (!CheckForParassita()) {
+					timer = 30.0f;
 					StatoAttuale = Stato.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);

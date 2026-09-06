@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 public class guardSpawner : MonoBehaviour
 {
 	[SerializeField] private GameObject Guardia;
-	[SerializeField] private Vector2 detectionBoxSize = new Vector2(20f, 20f);
+	[SerializeField] private Vector2 detectionBoxSize = new Vector2(30f, 30f);
 	private Parassita parassita;
 	private int quantitaMassima;
 	private float timer = 10.0f;
@@ -22,8 +22,9 @@ public class guardSpawner : MonoBehaviour
 	}
 
 	void Update() {
+		timer -= Time.deltaTime;
+		if (timer <= 0) block = true;
 		if (CheckForParassita() && quantitaMassima > 0) {
-			timer -= Time.deltaTime;
 			int numeroGuardie = FindObjectsByType<guard>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 			
 			if (numeroGuardie == 0 && !block) {
