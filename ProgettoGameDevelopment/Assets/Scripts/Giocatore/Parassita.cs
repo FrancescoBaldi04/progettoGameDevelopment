@@ -257,10 +257,23 @@ public class Parassita : MonoBehaviour
             return;
         }
         
-         GameObject corpoDaDistruggere = corpoPosseduto;
-         if (!GameManager.gameManager.hasZipBomb)
-        {
          
+          
+         
+        
+
+        
+       
+       
+
+           
+
+
+       
+
+
+        Vector3 posizione = GetCorpoPossedutoPosition();
+        GameObject corpoDaDistruggere = corpoPosseduto;
 
         corpoPosseduto = null;
         healthBar.SetHealth(0);
@@ -269,21 +282,10 @@ public class Parassita : MonoBehaviour
 
         // Distrugge il corpo sacrificato
         Destroy(corpoDaDistruggere);
+        if (GameManager.gameManager.hasZipBomb)
+        {
 
-            return;
-        }
-
-
-       
-
-
-        Vector3 posizione =
-        corpoPosseduto.transform.position;
-        GameObject esplosione = Instantiate(
-            esplosionePrefab,
-            posizione,
-            Quaternion.identity
-        );
+        GameObject esplosione = Instantiate(esplosionePrefab, posizione,Quaternion.identity);
 
         Animator animatorEsplosione = esplosione.GetComponent<Animator>();
         animatorEsplosione.Play("Explosion");
@@ -309,15 +311,8 @@ public class Parassita : MonoBehaviour
              
             }
         }
+        }
        
-
-        corpoPosseduto = null;
-        healthBar.SetHealth(0);
-
-        LiberaParassita();
-
-        // Distrugge il corpo sacrificato
-        Destroy(corpoDaDistruggere);
 
         
     }

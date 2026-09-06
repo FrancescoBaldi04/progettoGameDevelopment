@@ -1,30 +1,28 @@
 using UnityEngine;
 
 public class blocco : MonoBehaviour
-{  
+{
     [SerializeField] private Collider2D Blocco;
-    private bool playerNearby = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
-        
+        // Il blocco è attivo se NON abbiamo il Trojan Horse
+       Blocco.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    { if (playerNearby ){
-       Blocco.enabled = false;
-    }
-        
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    { 
-
-   Nemico nemico = other.GetComponent<Nemico>();
-
-if (nemico != null && nemico.StatoAttuale == Nemico.Stato.possessed && GameManager.gameManager.hasTrojanHorse)
+    private void Update()
     {
-        playerNearby = true;
+        AggiornaBlocco();
     }
+
+    private void AggiornaBlocco()
+    {
+        if (GameManager.gameManager == null)
+            return;
+
+        // SENZA Trojan Horse = blocco attivo
+        // CON Trojan Horse = blocco disattivato
+        Blocco.enabled = !GameManager.gameManager.hasTrojanHorse;
     }
 }
+
