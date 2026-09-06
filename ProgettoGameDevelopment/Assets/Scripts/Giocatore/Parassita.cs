@@ -21,7 +21,7 @@ public class Parassita : MonoBehaviour
     private float vitaPossesso; // parte da 60 e scende fino a 0 durante il possesso di un npc
     private float timerSecondo; // conta fino ad un secondo in modo da diminuire la vita ogni secondo
     [SerializeField] private HealthBar healthBar;
-    private float raggioEsplosione = 5f;
+    private float raggioEsplosione = 3f;
     private int dannoEsplosione = 60;
     [SerializeField] public float moveSpeed = 2.6f;
 
