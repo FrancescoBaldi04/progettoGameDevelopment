@@ -26,7 +26,7 @@ public class spawnerScientistBase : MonoBehaviour
 			timer -= Time.deltaTime;
 			int numeroScienziati = FindObjectsByType<scientist>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 			
-			if (numeroScienziati == 0 && !block) {
+			if (numeroScienziati == 0 && !block || quantitaMassima == 1) {
 				block = true;
 				if (genere) {
 					genere = false;
