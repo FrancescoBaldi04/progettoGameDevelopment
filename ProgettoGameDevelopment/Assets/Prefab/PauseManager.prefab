@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuPanel: {fileID: 0}
+  VictoryScreen: {fileID: 0}
   Description: {fileID: 0}
   resumeButton: {fileID: 0}
   wormText: {fileID: 0}
-  wormUIdescription: '-Worm: Press C to increase your movement speed '
+  wormUIdescription: '-Worm: While controlling a scientist, Press C to increase your
+    movement speed '
   trojanHorseText: {fileID: 0}
   trojanHorseUIdescription: '-Trojan Horse: Decreases damage taken from the parasite
     from 2 per second to 1 per second'

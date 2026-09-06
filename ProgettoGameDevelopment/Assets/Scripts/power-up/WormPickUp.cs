@@ -22,8 +22,7 @@ public class WormPickUp : MonoBehaviour
                 PauseManager.pauseManager.UpdateWormText();
             }
 
-            pickupMessage.ShowMessage("Worm ottenuto! Premere 'C' per attivare/disattivare");
-
+            pickupMessage.ShowMessage("Worm obtained! While controlling a scientist, Press 'C' to toggle");
             Destroy(gameObject);
             return;
         }
@@ -43,7 +42,7 @@ public class WormPickUp : MonoBehaviour
                     PauseManager.pauseManager.UpdateWormText();
                 }
 
-                pickupMessage.ShowMessage("Worm ottenuto! Premere 'C' per attivare/disattivare");
+                pickupMessage.ShowMessage("Worm obtained! While controlling a scientist, Press 'C' to toggle");
 
                 Destroy(gameObject);
             }

@@ -64232,7 +64232,7 @@ MonoBehaviour:
   corpoPosseduto: {fileID: 0}
   statoAttuale: 0
   healthBar: {fileID: 962360843}
-  moveSpeed: 2.6
+  moveSpeed: 3.3
   movement: {x: 0, y: 0}
 --- !u!50 &1098605922
 Rigidbody2D:
@@ -64489,8 +64489,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: potenziamento raccolto! premere 'x' per attivare
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

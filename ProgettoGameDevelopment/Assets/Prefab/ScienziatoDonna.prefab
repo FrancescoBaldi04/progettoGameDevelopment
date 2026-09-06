@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   direction: {x: 1, y: 0}
   lastDirection: {x: 1, y: 0}
-  speed: 5
+  speed: 6.3
 --- !u!70 &7331559015918409648
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class ZipBombPickup : MonoBehaviour
                 PauseManager.pauseManager.UpdateZipBombText();
             }
 
-            pickupMessage.ShowMessage("Zip Bomb ottenuta! Premere 'E' per attivare");
+            pickupMessage.ShowMessage("Zip Bomb obtained! While controlling an NPC, Press 'E' to activate");
 
             Destroy(gameObject);
             return;
@@ -47,7 +47,7 @@ public class ZipBombPickup : MonoBehaviour
                     PauseManager.pauseManager.UpdateZipBombText();
                 }
 
-                pickupMessage.ShowMessage("Zip Bomb ottenuta! Premere 'E' per attivare/disattivare");
+                pickupMessage.ShowMessage("Zip Bomb obtained! While controlling an NPC, Press 'E' to activate");
 
                 Destroy(gameObject);
             }

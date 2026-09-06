@@ -23,7 +23,7 @@ public class TrojanHorsePickup : MonoBehaviour
                 PauseManager.pauseManager.UpdateTrojanHorsetext();
             }
 
-            pickupMessage.ShowMessage("Trojan Horse ottenuto!");
+            pickupMessage.ShowMessage("Trojan Horse obtained!");
 
             Destroy(gameObject);
             return;
@@ -45,7 +45,7 @@ public class TrojanHorsePickup : MonoBehaviour
                     PauseManager.pauseManager.UpdateTrojanHorsetext();
                 }
 
-                pickupMessage.ShowMessage("Trojan Horse ottenuto!");
+                pickupMessage.ShowMessage("Trojan Horse obtained!");
 
                 Destroy(gameObject);
             }
