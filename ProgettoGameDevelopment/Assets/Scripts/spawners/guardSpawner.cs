@@ -11,9 +11,9 @@ public class guardSpawner : MonoBehaviour
 	
 	void Start() {
 		int LivelloAttuale = SceneManager.GetActiveScene().buildIndex;
-		if (LivelloAttuale == 2) {
+		if (LivelloAttuale == 1) {
 			quantitaMassima = 3;
-		} else if (LivelloAttuale == 3) {
+		} else if (LivelloAttuale == 2) {
 			quantitaMassima = 4;
 		} else {
 			quantitaMassima = 0;
