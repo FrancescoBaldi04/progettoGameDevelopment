@@ -22,8 +22,8 @@ public class spawnerScientistBase : MonoBehaviour
 	}
 
 	void Update() {
-		timer -= Time.deltaTime;
 		if (CheckForParassita()) {
+			timer -= Time.deltaTime;
 			int numeroScienziati = FindObjectsByType<scientist>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 			
 			if (numeroScienziati == 0 && !block) {

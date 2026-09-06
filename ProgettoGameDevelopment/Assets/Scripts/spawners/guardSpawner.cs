@@ -11,9 +11,9 @@ public class guardSpawner : MonoBehaviour
 	
 	void Start() {
 		int LivelloAttuale = SceneManager.GetActiveScene().buildIndex;
-		if (LivelloAttuale == 1) {
+		if (LivelloAttuale == 2) {
 			quantitaMassima = 3;
-		} else if (LivelloAttuale == 2) {
+		} else if (LivelloAttuale == 3) {
 			quantitaMassima = 4;
 		} else {
 			quantitaMassima = 0;
@@ -22,8 +22,8 @@ public class guardSpawner : MonoBehaviour
 	}
 
 	void Update() {
-		timer -= Time.deltaTime;
 		if (CheckForParassita() && quantitaMassima > 0) {
+			timer -= Time.deltaTime;
 			int numeroGuardie = FindObjectsByType<guard>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 			
 			if (numeroGuardie == 0 && !block) {
