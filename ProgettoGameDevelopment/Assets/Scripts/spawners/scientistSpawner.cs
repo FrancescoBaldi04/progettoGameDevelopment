@@ -27,6 +27,7 @@ public class ScientistSpawner : MonoBehaviour
 			
 			if (numeroScienziati == 0 && !block) {
 				block = true;
+				timer = 10.0f;
 				if (gender) {
 					gender = false;
 					GameObject scientist = Instantiate(maleScientist, transform.position, transform.rotation);

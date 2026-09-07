@@ -17,9 +17,6 @@ public class Scientist : Enemy
 	}
 
 	void Start() {
-		// Parte sempre in idle.
-		// Sarà CheckForparasite() a determinare
-		// successivamente se deve catturare o scappare.
 		currentState = State.idle;
 	}
 
@@ -38,7 +35,7 @@ public class Scientist : Enemy
 			case State.idle: {
 				timer -= Time.deltaTime;
 				
-				if (timer == 0) {
+				if (timer <= 0) {
 					Die();
 					return;
 				}
@@ -47,12 +44,10 @@ public class Scientist : Enemy
 					Vector2 direction = RandomMovement();
 					movement.SetDirection(direction);
 					UpdateAnimation(direction);
+				} else if (parasite.currentState == Parasite.State.possessing) {
+					currentState = State.escaping;
 				} else {
-					if (parasite.currentState == Parasite.State.possessing) {
-						currentState = State.escaping;
-					} else {
-						currentState = State.catching;
-					}
+					currentState = State.catching;
 				}
 				break;
 			}
@@ -68,9 +63,9 @@ public class Scientist : Enemy
 				break;
 				}
 				
-				// Centro dello sprite dello scienziato
+				// CENTER OF THE SCIENTIST'S SPRITE
 				Vector2 scientistPosition = spriteRenderer.bounds.center;
-				// Centro dello sprite del parasite
+				// CENTER OF THE PARASITE'S SPRITE
 				Vector2 parasitePosition = parasite.GetComponent<SpriteRenderer>().bounds.center;
 				float distance = Vector2.Distance(scientistPosition, parasitePosition);
 
@@ -82,8 +77,7 @@ public class Scientist : Enemy
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				}
-				// Se il parasite entra nel corpo di un NPC,
-				// lo scienziato deve iniziare a scappare.
+				
 				if (parasite.currentState == Parasite.State.possessing) {
 					currentState = State.escaping;
 				}
@@ -104,8 +98,7 @@ public class Scientist : Enemy
 				Vector2 fleeDirection = GetEscapeDirection(threatPosition);
 				movement.SetDirection(fleeDirection);
 				UpdateAnimation(fleeDirection);
-				// Se il parasite torna libero,
-				// lo scienziato torna a cercarlo.
+				
 				if (parasite.currentState == Parasite.State.free) {
 					currentState = State.catching;
 				}
@@ -119,7 +112,7 @@ public class Scientist : Enemy
 					this.hitPoints = 0;
 					break;
 				}
-				// Input del giocatore
+				// PLAYER INPUT
 				Vector2 playerInput = InputManager.movement;
 				movement.SetDirection(playerInput);
 				UpdateAnimation(playerInput);
@@ -127,8 +120,9 @@ public class Scientist : Enemy
 			}
 		}
 	}
+	
 	// =========================================================
-	// MORTE
+	// DEATH
 	// =========================================================
 	protected override void Die() {
 		if (isDying) return;
@@ -139,30 +133,7 @@ public class Scientist : Enemy
 		Destroy(gameObject);
 	}
 	// =========================================================
-	// COLLISIONI
-	// =========================================================
-	private void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.gameObject.CompareTag("Bullet")) {
-		// Controllo se QUESTO corpo è quello posseduto dal parasite
-			if (parasite.possessedBody == gameObject) {
-				parasite.TakeDamage(10);
-			} else {
-				ReceiveDamage(10);
-			}
-		return;
-		}
-		// Collisione con il parasite
-		Parasite collidedParasite = collision.gameObject.GetComponent<Parasite>();
-
-		if (currentState == State.catching && collidedParasite != null) {
-			PlayerJump playerJump = collidedParasite.GetComponent<PlayerJump>();
-			if (playerJump != null && !playerJump.isInAir) {
-				collidedParasite.Die();
-			}
-		}
-	}
-	// =========================================================
-	// ANIMAZIONE
+	// ANIMATIONS
 	// =========================================================
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
@@ -177,6 +148,28 @@ public class Scientist : Enemy
 		animator.SetFloat("Speed",direction.sqrMagnitude);
 		animator.SetFloat("LastHorizontal",lastHorizontal);
 		animator.SetFloat("LastVertical",lastVertical);
+	}
+	// =========================================================
+	// COLLISIONS
+	// =========================================================
+	private void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.gameObject.CompareTag("Bullet")) {
+			if (parasite.possessedBody == gameObject) {
+				parasite.TakeDamage(10);
+			} else {
+				ReceiveDamage(10);
+			}
+		return;
+		}
+
+		Parasite collidedParasite = collision.gameObject.GetComponent<Parasite>();
+
+		if (currentState == State.catching && collidedParasite != null) {
+			PlayerJump playerJump = collidedParasite.GetComponent<PlayerJump>();
+			if (playerJump != null && !playerJump.isInAir) {
+				collidedParasite.Die();
+			}
+		}
 	}
 }
 

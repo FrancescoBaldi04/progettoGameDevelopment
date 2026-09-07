@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GuardSpawner : MonoBehaviour
 {
-	[SerializeField] private GameObject Guardia;
+	[SerializeField] private GameObject Guards;
 	[SerializeField] private Vector2 detectionBoxSize = new Vector2(30f, 30f);
 	private Parasite Parasite;
 	private int maxAmount;
@@ -29,13 +29,13 @@ public class GuardSpawner : MonoBehaviour
 			
 			if (totalGuards == 0 && !block) {
 				block = true;
-				GameObject guard = Instantiate(Guardia, transform.position, transform.rotation);
+				GameObject Guard = Instantiate(Guards, transform.position, transform.rotation);
 			}
 			
 			if (totalGuards < maxAmount && timer <= 0) {
 				block = false;
 				timer = 10.0f;
-				GameObject guard = Instantiate(Guardia, transform.position, transform.rotation);
+				GameObject Guard = Instantiate(Guards, transform.position, transform.rotation);
 			}
 		}
 	}

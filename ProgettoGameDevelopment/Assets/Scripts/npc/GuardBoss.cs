@@ -55,9 +55,9 @@ public class GuardBoss : Enemy
 				}
 				
 				if (movement != null && parasite != null) {
-					// Centro dello sprite della guardia.
+					// CENTER OF THIS SPRITE
 					Vector2 myPosition = spriteRenderer.bounds.center;
-					// Centro dello sprite del parasite.
+					// CENTER OF THE PARASITE'S SPRITE
 					SpriteRenderer parasiteSprite = parasite.GetComponent<SpriteRenderer>();
 					Vector2 parasitePosition;
 
@@ -88,9 +88,9 @@ public class GuardBoss : Enemy
 			// =========================================================
 			case State.shooting: {
 				movement.SetDirection(Vector2.zero);
-				// Centro dello sprite della guardia.
+				// CENTER OF THIS SPRITE
 				Vector2 origin = spriteRenderer.bounds.center;
-				// Posizione del bersaglio.
+				// TARGET'S POSITION
 				Vector2 targetPosition = GetTargetPosition();
 				Vector2 directionToTarget = (targetPosition - origin).normalized;
 				
@@ -124,27 +124,26 @@ public class GuardBoss : Enemy
 		}
 	}
     // =========================================================
-    // ANIMAZIONI
+    // ANIMATIONS
     // =========================================================
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
-	// Memorizzo l'ultima direzione SOLO quando la guardia
-	// si sta effettivamente muovendo
+	// MEMORIZE LAST POSITION ONLY IF GUARDBOSS IS MOVING
 		if (direction != Vector2.zero) {
 			lastHorizontal = direction.x;
 			lastVertical = direction.y;
 		}
-        // Direzione attuale.
+        // CURRENT DIRECTION
 		animator.SetFloat("Horizontal", direction.x);
 		animator.SetFloat("Vertical", direction.y);
-        // Velocità attuale.
+        // CURRENT SPEED
 		animator.SetFloat("Speed", direction.magnitude);
-        // Ultima direzione valida.
+        // LAST VALID DIRECTION
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
 	}
     // =========================================================
-    // MORTE
+    // DEATH
     // =========================================================
 	protected override void Die() {
 		if (isDying) return;
@@ -158,7 +157,7 @@ public class GuardBoss : Enemy
 	}
 	
 	private void OnCollisionEnter2D(Collision2D collision) {
-	// Il proiettile fa danno alla guardia boss
+	// PROJECTILE DAMAGES GUARDBOSS
 		if (collision.gameObject.CompareTag("Bullet") ){
 			ReceiveDamage(10);
 			return;

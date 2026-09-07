@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
 	}
 	
 	// =========================================================
-	// DIREZIONE VERSO UN TARGET
+	// DIRECTION TOWARDS TARGET
 	// =========================================================
 	public Vector2 GetBestDirection(Vector2 targetPosition,Vector2 exclude) {
 		up = isFree(Vector2.up);
@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
 		right = isFree(Vector2.right);
 		left = isFree(Vector2.left);
 		
-		// CENTRO DELLO SPRITE
+		// CENTER OF THE SPRITE
 		Vector2 currentPosition = GetSpritePosition();
 		Vector2 directionVector = targetPosition - currentPosition;
 		
@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
 		return bestDirection;
 	}
 	// =========================================================
-	// CONTROLLO DIREZIONE LIBERA
+	// CONTROL FREE DIRECTION
 	// =========================================================
 	public bool isFree(Vector2 direction) {
 		Vector2 spritePosition = spriteRenderer.bounds.center;
@@ -146,7 +146,7 @@ public class Enemy : MonoBehaviour
 		return true;
 	}
 	// =========================================================
-	// DANNO
+	// DAMAGE
 	// =========================================================
 	public void ReceiveDamage(int damage) {
 		hitPoints -= damage;
@@ -160,7 +160,7 @@ public class Enemy : MonoBehaviour
 		Destroy(gameObject);
 	}
 	// =========================================================
-	// POSIZIONE DEL TARGET
+	// POSITION OF TARGET
 	// =========================================================
 	protected Vector2 GetTargetPosition() {
 		if (parasite.currentState == Parasite.State.possessing && parasite.possessedBody != null) {
@@ -169,10 +169,10 @@ public class Enemy : MonoBehaviour
 		return parasite.transform.position;
 	}
 	// =========================================================
-	// DIREZIONE DI FUGA
+	// ESCAPE DIRECTION
 	// =========================================================
 	public Vector2 GetEscapeDirection(Vector2 dangerPosition) {
-		// CENTRO DELLO SPRITE
+		// CENTER OF THE SPRITE
 		Vector2 currentPosition = GetSpritePosition();
 		Vector2[] directions = {Vector2.up,Vector2.down,Vector2.left,Vector2.right};
 		Vector2 bestDirection = Vector2.zero;
@@ -192,10 +192,10 @@ public class Enemy : MonoBehaviour
 		return bestDirection;
 	}
 	// =========================================================
-	// CONTROLLO parasite
+	// CHECK FOR PARASITE
 	// =========================================================
 	protected bool CheckForParasite() {
-		// CENTRO DELLO SPRITE
+		// CENTER OF THE SPRITE
 		Vector2 spritePosition = GetSpritePosition();
 		Collider2D[] objectsInside = Physics2D.OverlapBoxAll(spritePosition,detectionBoxSize,0f);
 
@@ -216,7 +216,7 @@ public class Enemy : MonoBehaviour
 		return false;
 	}
 	// =========================================================
-	// SCELTA DIREZIONE RANDOM
+	// CHOOSE RANDOM DIRECTION
 	// =========================================================
 	protected Vector2 GetRandomDirection() {
 		Vector2[] directions =
@@ -236,10 +236,10 @@ public class Enemy : MonoBehaviour
 		return availableDirections[Random.Range(0, availableDirections.Count)];
 	}
 	// =========================================================
-	// CONTROLLO MURO
+	// CHECK FOR WALLS
 	// =========================================================
 	protected bool WallInDirection(Vector2 direction) {
-		// CENTRO DELLO SPRITE
+		// CENTER OF THE SPRITE
 		Vector2 spritePosition = GetSpritePosition();
 		Vector2 checkPosition = spritePosition + direction * randomCheckDistance;
 		Collider2D[] colliders = Physics2D.OverlapBoxAll(checkPosition,new Vector2(randomCheckSize,randomCheckSize),0f);
@@ -253,7 +253,7 @@ public class Enemy : MonoBehaviour
 		return false;
 	}
 	// =========================================================
-	// MOVIMENTO RANDOM
+	//  RANDOM MOVEMENT
 	// =========================================================
 	protected Vector2 RandomMovement() {
 		if (randomDirection == Vector2.zero || WallInDirection(randomDirection)) {

@@ -50,9 +50,9 @@ public class Turret : Enemy
 		}
 		
 		case State.shooting: {
-			// Centro dello sprite della guardia.
+			// CENTER OF THE TURRET'S SPRITE
 			Vector2 origine = spriteRenderer.bounds.center;
-			// Posizione del bersaglio.
+			// TARGET'S POSITION
 			Vector2 targetPosition = GetTargetPosition();
 			Vector2 directionToTarget = (targetPosition - origine).normalized;
 				
@@ -82,7 +82,15 @@ public class Turret : Enemy
 		}
 	}
 	// =========================================================
-	// ANIMAZIONI
+	// DEATH
+	// =========================================================
+	protected override void Die() {
+		if (isDying) return;
+		isDying = true;
+		Destroy(gameObject, 0.5f);
+	}
+	// =========================================================
+	// ANIMATIONS
 	// =========================================================
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
@@ -91,20 +99,7 @@ public class Turret : Enemy
 			lastHorizontal = direction.x;
 			lastVertical = direction.y;
 		}
-        // Direzione attuale.
-		//animator.SetFloat("Horizontal", direction.x);
-		//animator.SetFloat("Vertical", direction.y);
-		//animator.SetFloat("Speed", direction.magnitude); non serve per le torrette giusto?
-        // Ultima direzione valida.
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
-	}
-	// =========================================================
-	// MORTE
-	// =========================================================
-	protected override void Die() {
-		if (isDying) return;
-		isDying = true;
-		Destroy(gameObject, 1.5f);
 	}
 }

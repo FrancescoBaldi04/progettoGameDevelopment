@@ -18,8 +18,6 @@ public class scientistMiniboss : Enemy
 	}
 
 	void Start() {
-		// Parte sempre in waiting.
-		// CheckForParassita() verrà controllato continuamente.
 		currentState = State.waiting;
 		UpdateAnimation(Vector2.zero);
 	}
@@ -39,19 +37,13 @@ public class scientistMiniboss : Enemy
 			// =========================================================
 			case State.waiting: {
 				if (!CheckForParasite()) {
-					// Nessun Parassita vicino:
-					// movimento casuale.
 					Vector2 direction = RandomMovement();
 					movement.SetDirection(direction);
 					UpdateAnimation(direction);
+				} else if (parasite.currentState == Parasite.State.possessing) {
+					currentState = State.escaping;
 				} else {
-					// Abbiamo rilevato il Parassita
-					// oppure un corpo posseduto.
-					if (parasite.currentState == Parasite.State.possessing) {
-						currentState = State.escaping;
-					} else {
-						currentState = State.catching;
-					}
+					currentState = State.catching;
 				}
 			break;
 			}
@@ -59,9 +51,9 @@ public class scientistMiniboss : Enemy
 			// CATCHING
 			// =========================================================
 			case State.catching: {
-				// Centro dello sprite del miniboss.
+				// CENTER OF THE MINIBOSS' SPRITE
 				Vector2 minibossPosition = spriteRenderer.bounds.center;
-				// Centro dello sprite del Parassita.
+				// CENTER OF THE PARASITE'S SPRITE
 				SpriteRenderer parasiteSprite = parasite.GetComponent<SpriteRenderer>();
 				Vector2 parasitePosition;
 				if (parasiteSprite != null) {
@@ -80,8 +72,6 @@ public class scientistMiniboss : Enemy
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
 				}
-				// Se il Parassita possiede qualcuno,
-				// il miniboss deve scappare.
 				if (parasite.currentState == Parasite.State.possessing) {
 					currentState = State.escaping;
 				}
@@ -91,14 +81,12 @@ public class scientistMiniboss : Enemy
 			// ESCAPING
 			// =========================================================
 			case State.escaping: {
-				// Centro dello sprite del Parassita.
+				// CENTER OF THE PARASITE'S SPRITE
 				Vector2 threatPosition = GetTargetPosition();
-				// Calcolo la direzione di fuga.
 				Vector2 fleeDirection = GetEscapeDirection(threatPosition);
 				movement.SetDirection(fleeDirection);
 				UpdateAnimation(fleeDirection);
-				// Se il Parassita torna libero,
-				// torniamo a inseguirlo.
+				
 				if (parasite.currentState == Parasite.State.free) {
 					currentState = State.catching;
 				}
@@ -107,7 +95,7 @@ public class scientistMiniboss : Enemy
 		}
 	}
 	// =========================================================
-	// MORTE
+	// DEATH
 	// =========================================================
 	protected override void Die() {
 		if (isDying) return;
@@ -117,32 +105,12 @@ public class scientistMiniboss : Enemy
 			movement.speed = 0f;
 			movement.SetDirection(Vector2.zero);
 		}
-		// Drop potenziamento
+		// DROP POWERUP
 		Instantiate(ZipBomb, spriteRenderer.bounds.center, Quaternion.identity);
 		Destroy(gameObject);
 	}
 	// =========================================================
-	// COLLISIONI
-	// =========================================================
-	private void OnCollisionEnter2D(Collision2D collision) {
-		// Il proiettile fa danno al miniboss.
-		if (collision.gameObject.CompareTag("Bullet")) {
-			ReceiveDamage(10);
-			return;
-		}
-		// Collisione con il Parassita.
-		Parasite collidedParasite =collision.gameObject.GetComponent<Parasite>();
-
-		if (currentState == State.catching && collidedParasite != null) {
-			PlayerJump playerJump = collidedParasite.GetComponent<PlayerJump>();
-
-			if (playerJump != null && !playerJump.isInAir) {
-				collidedParasite.Die();
-			}
-		}
-	}
-	// =========================================================
-	// ANIMAZIONE
+	// ANIMATIONS
 	// =========================================================
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
@@ -157,6 +125,25 @@ public class scientistMiniboss : Enemy
 		animator.SetFloat("Speed", direction.sqrMagnitude);
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
+	}
+	// =========================================================
+	// COLLISIONS
+	// =========================================================
+	private void OnCollisionEnter2D(Collision2D collision) {
+		
+		if (collision.gameObject.CompareTag("Bullet")) {
+			ReceiveDamage(10);
+			return;
+		}
+		Parasite collidedParasite =collision.gameObject.GetComponent<Parasite>();
+
+		if (currentState == State.catching && collidedParasite != null) {
+			PlayerJump playerJump = collidedParasite.GetComponent<PlayerJump>();
+
+			if (playerJump != null && !playerJump.isInAir) {
+				collidedParasite.Die();
+			}
+		}
 	}
 }
 

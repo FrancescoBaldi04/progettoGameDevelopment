@@ -23,8 +23,8 @@ public class Guard : Enemy
 
 
 	void Start() {
-		// Tutte le guardie iniziano in idle.
-		// CheckForparasite() deciderà poi cosa fare.
+		// ALL GUARDS START IDLE
+		// CheckForparasite() WILL ACTIVATE THEM
 		currentState = State.idle;
 		UpdateAnimation(Vector2.zero);
 	}
@@ -47,7 +47,7 @@ public class Guard : Enemy
 			case State.idle: {
 				timer-=Time.deltaTime;
 				
-				if (timer == 0) {
+				if (timer <= 0) {
 					Die();
 					return;
 				}
@@ -56,14 +56,12 @@ public class Guard : Enemy
 					Vector2 direction = RandomMovement();
 					movement.SetDirection(direction);
 					UpdateAnimation(direction);
+				} else if (parasite.currentState == Parasite.State.possessing) {
+					currentState = State.positioning;
+					timer = 1.0f;
 				} else {
-					if (parasite.currentState == Parasite.State.possessing) {
-						currentState = State.positioning;
-						timer = 1.0f;
-					} else {
-						currentState = State.escaping;
-						timer = 1.0f;
-					}
+					currentState = State.escaping;
+					timer = 1.0f;
 				}
 				break;
 			}
@@ -71,12 +69,12 @@ public class Guard : Enemy
 			// ESCAPING
 			// =========================================================
 			case State.escaping: { 
-				if (parasite.currentState == Parasite.State.possessing){
+				if (!CheckForParasite()){
 					timer = 30.0f;
 					currentState = State.idle;
 					movement.SetDirection(Vector2.zero);
 					UpdateAnimation(Vector2.zero);
-					break;
+				break;
 				}
 				// Centro dello sprite della guardia.
 				Vector2 guardPosition = spriteRenderer.bounds.center;
@@ -121,14 +119,14 @@ public class Guard : Enemy
 					}
 
 					float distance = Vector2.Distance(myPosition, parasitePosition);
-					Vector2 directionToparasite = (parasitePosition - myPosition).normalized;
-					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToparasite, 
+					Vector2 directionToParasite = (parasitePosition - myPosition).normalized;
+					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParasite, 
 					                                                         distance, obstacleLayerMask);
 
 
 					if (hit.collider != null || distance > targetDistance + 0.3f) {
-						movement.SetDirection(directionToparasite);
-						UpdateAnimation(directionToparasite);
+						movement.SetDirection(directionToParasite);
+						UpdateAnimation(directionToParasite);
 					} else {
 						movement.SetDirection(Vector2.zero);
 						UpdateAnimation(Vector2.zero);
@@ -142,9 +140,9 @@ public class Guard : Enemy
 			// =========================================================
 			case State.shooting: {
 				movement.SetDirection(Vector2.zero);
-				// Centro dello sprite della guardia.
+				// CENTER OF THE GUARD SPRITE
 				Vector2 origine = spriteRenderer.bounds.center;
-				// Posizione del bersaglio.
+				// TARGET'S POSITION
 				Vector2 targetPosition = GetTargetPosition();
 				Vector2 directionToTarget = (targetPosition - origine).normalized;
 				
@@ -184,6 +182,7 @@ public class Guard : Enemy
 					hitPoints = 0;
 					break;
 				}
+				
 				Vector2 inputGiocatore = InputManager.movement;
 				movement.SetDirection(inputGiocatore);
 				UpdateAnimation(inputGiocatore);
@@ -192,11 +191,11 @@ public class Guard : Enemy
 		}
 	}
 	// =========================================================
-	// ANIMAZIONI
+	// ANIMATIONS
 	// =========================================================
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
-		// Memorizzo l'ultima direzione SOLO quando la guardia si sta muovendo.
+		// MEMORIZE LAST POSITION ONLY IF GUARD MOVES
 		if (direction != Vector2.zero) {
 			lastHorizontal = direction.x;
 			lastVertical = direction.y;
@@ -209,7 +208,7 @@ public class Guard : Enemy
 		animator.SetFloat("LastVertical", lastVertical);
 	}
 	// =========================================================
-	// MORTE
+	// DEATH
 	// =========================================================
 	protected override void Die() {
 		if (isDying) return;
@@ -222,7 +221,7 @@ public class Guard : Enemy
 		Destroy(gameObject);
 	}
 	// =========================================================
-	// COLLISIONI
+	// COLLISIONS
 	// =========================================================
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag("Bullet")) {
