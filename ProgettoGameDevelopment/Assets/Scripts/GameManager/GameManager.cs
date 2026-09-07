@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,11 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager { get; private set; }
 
-    [SerializeField] private float timeBeforeRestart = 1.2f;
+    public static event Action OnBossDefeated;
 
-    // =========================
-    // POTENZIAMENTI
-    // =========================
+    [SerializeField] private float timeBeforeRestart = 1.2f;
 
     public bool hasTrojanHorse { get; private set; }
     public bool hasZipBomb { get; private set; }
@@ -34,12 +33,19 @@ public class GameManager : MonoBehaviour
     public void BossDefeated()
     {
         Time.timeScale = 0f;
-        PauseManager.pauseManager.ShowVictoryScreen();
+        OnBossDefeated?.Invoke();
     }
 
-    // =========================
-    // SBLOCCO POTENZIAMENTI
-    // =========================
+    public void ReturnToMainMenu()
+    {
+        hasTrojanHorse = false;
+        hasZipBomb = false;
+        hasWorm = false;
+
+        SceneManager.LoadScene(0);
+    }
+
+    // Power-ups
 
     public void UnlockTrojanHorse()
     {
@@ -55,9 +61,7 @@ public class GameManager : MonoBehaviour
         hasWorm = true;
     }
 
-    // =========================
-    // GAME OVER
-    // =========================
+    // Game Over
     public void GameOver()
     {
         StartCoroutine(restartLevelRoutine());
@@ -66,16 +70,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator restartLevelRoutine()
     {
         yield return new WaitForSeconds(timeBeforeRestart);
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void ReturnToMainMenu()
-    {
-        hasTrojanHorse = false;
-        hasZipBomb = false;
-        hasWorm = false;
-
-        SceneManager.LoadScene(0);
     }
 }

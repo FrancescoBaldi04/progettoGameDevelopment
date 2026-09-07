@@ -35,6 +35,14 @@ public class PauseManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (pauseManager == this)
+        {
+            pauseManager = null;
+        }        
+    }
+
     private void Start()
     {
         if (victoryScreen != null)
@@ -88,6 +96,16 @@ public class PauseManager : MonoBehaviour
                 Pause();
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnBossDefeated += ShowVictoryScreen;        
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnBossDefeated -= ShowVictoryScreen;
     }
 
     public void Pause()
