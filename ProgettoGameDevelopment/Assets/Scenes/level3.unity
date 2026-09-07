@@ -48879,7 +48879,7 @@ GameObject:
   - component: {fileID: 645147782}
   - component: {fileID: 645147786}
   m_Layer: 0
-  m_Name: blocco
+  m_Name: block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
