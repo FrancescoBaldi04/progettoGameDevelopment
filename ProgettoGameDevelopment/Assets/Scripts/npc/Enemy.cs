@@ -12,9 +12,7 @@ public class Enemy : MonoBehaviour
 	public GameObject bulletPrefab;
 	public float bulletSpeed = 10f;
 	protected SpriteRenderer spriteRenderer;
-	// Area di rilevamento del parasite
 	[SerializeField] private Vector2 detectionBoxSize = new Vector2(15f, 15f);
-	// Distanza per i controlli del movimento casuale
 	protected Vector2 randomDirection = Vector2.zero;
 	[SerializeField] protected float randomCheckDistance = 1.5f;
 	[SerializeField] protected float randomCheckSize = 0.75f;
@@ -24,13 +22,13 @@ public class Enemy : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	// =========================================================
-	// POSIZIONE DELLO SPRITE
+	// SPRITE POSITION
 	// =========================================================
 	protected Vector2 GetSpritePosition() {
 		return spriteRenderer.bounds.center;
 	}
 	// =========================================================
-	// SPARO
+	// SHOOT
 	// =========================================================
 	public void Shoot(bool WhoIsShooting) {
 		Vector3 firePoint = spriteRenderer.bounds.center;
