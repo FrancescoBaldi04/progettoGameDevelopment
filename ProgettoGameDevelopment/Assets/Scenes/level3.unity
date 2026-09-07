@@ -48896,7 +48896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a756eca428c4be2976082b5ac1d039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  block: {fileID: 0}
+  block: {fileID: 645147786}
   BlockMessage: {fileID: 1308763385}
 --- !u!50 &645147783
 Rigidbody2D:
@@ -50263,7 +50263,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 186736767
+  m_SortingLayerID: -979591537
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -53696,7 +53696,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -979591537
+  m_SortingLayerID: 186736767
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -71837,7 +71837,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -979591537
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3337933588434638481, guid: 4a9ae2b0a92c1654983271026e23b04b, type: 3}
