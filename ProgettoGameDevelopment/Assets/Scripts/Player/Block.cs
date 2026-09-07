@@ -18,22 +18,19 @@ public class Block : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
 {
-    // Caso 1: entra direttamente il Parasite
+   
     Parasite parasite = other.GetComponent<Parasite>();
 
-    // Caso 2: entra un corpo posseduto
+   
     Enemy enemy = other.GetComponent<Enemy>();
 
-    bool parasiteEntered = parasite != null;
-
-    bool possessedBodyEntered =
-        enemy != null &&
-        enemy.currentState == Enemy.State.possessed;
-
-    if (parasiteEntered || possessedBodyEntered)
+    if ( parasite != null || (enemy != null && enemy.currentState == Enemy.State.possessed))
     {
         if(!GameManager.gameManager.hasTrojanHorse){
-            StopCoroutine(messageCoroutine);
+            if (messageCoroutine != null)
+            {
+                StopCoroutine(messageCoroutine);
+            }
 
         messageCoroutine = StartCoroutine(ShowMessage());
         }else{

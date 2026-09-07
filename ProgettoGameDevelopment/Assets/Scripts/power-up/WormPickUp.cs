@@ -22,7 +22,7 @@ public class WormPickUp : MonoBehaviour
                 PauseManager.pauseManager.UpdateWormText();
             }
 
-            pickupMessage.ShowMessage("Worm obtained! While controlling a scientist, Press 'C' to toggle");
+            pickupMessage.ShowMessage("Worm obtained! Press C to increase the parasite speed");
             Destroy(gameObject);
             return;
         }
@@ -42,7 +42,7 @@ public class WormPickUp : MonoBehaviour
                     PauseManager.pauseManager.UpdateWormText();
                 }
 
-                pickupMessage.ShowMessage("Worm obtained! While controlling a scientist, Press 'C' to toggle");
+                pickupMessage.ShowMessage("Worm obtained! Press C to increase the parasite speed");
 
                 Destroy(gameObject);
             }
