@@ -636,7 +636,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -979591537
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -23351,7 +23351,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -979591537
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -28061,7 +28061,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 953537261
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -37538,7 +37538,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -979591537
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3337933588434638481, guid: 4a9ae2b0a92c1654983271026e23b04b, type: 3}
@@ -120913,8 +120913,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
       propertyPath: zipBombUIdescription
-      value: '-Zip Bomb: While possessing a body, press E to sacrifice it and generate
-        an explosion that deals 60 damage'
+      value: '-Zip Bomb: Sacrificing a body generates an explosion that deals 60
+        damage'
       objectReference: {fileID: 0}
     - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
       propertyPath: trojanHorseUIdescription

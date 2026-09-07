@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuPanel: {fileID: 0}
-  VictoryScreen: {fileID: 0}
-  Description: {fileID: 0}
+  victoryScreen: {fileID: 0}
+  description: {fileID: 0}
   resumeButton: {fileID: 0}
   wormText: {fileID: 0}
   wormUIdescription: '-Worm: Press C to increase the parasite speed '
@@ -54,5 +54,5 @@ MonoBehaviour:
   trojanHorseUIdescription: '-Trojan Horse: Decreases damage taken from the parasite
     from 2 per second to 1 per second'
   zipBombText: {fileID: 0}
-  zipBombUIdescription: '-Zip Bomb: While possessing a body, press E to sacrifice
-    it and generate an explosion that deals 60 damage'
+  zipBombUIdescription: '-Zip Bomb: Sacrificing a body generates an explosion that
+    deals 60 damage'

@@ -104,4 +104,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bdeb3b9c4cf9e4f861592cfbec56d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::guardSpawner
-  Guardia: {fileID: 4735945176615505215, guid: 285e2c93b5c22334c88abd471db2c2dc, type: 3}
+  Guards: {fileID: 4735945176615505215, guid: 285e2c93b5c22334c88abd471db2c2dc, type: 3}
+  detectionBoxSize: {x: 30, y: 30}
