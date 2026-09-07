@@ -262,21 +262,6 @@ public class Enemy : MonoBehaviour
 		
 		return randomDirection;
 	}
-	// =========================================================
-	// GIZMOS
-	// =========================================================
-	private void OnDrawGizmosSelected() {
-		if (spriteRenderer == null) return;
-		Vector2 spritePosition = spriteRenderer.bounds.center;
-		// AREA CONTROLLO parasite
-		Gizmos.DrawWireCube(spritePosition, detectionBoxSize);
-		// CONTROLLI MURI
-		Vector2[] directions = {Vector2.up, Vector2.down, Vector2.left, Vector2.right};
-
-		foreach (Vector2 direction in directions) {
-			Vector2 checkPosition = spritePosition + direction * randomCheckDistance;
-			Gizmos.DrawWireCube(checkPosition,new Vector2(randomCheckSize,randomCheckSize));
-		}
-	}
+	
 }
 
