@@ -50,9 +50,6 @@ TagManager:
   - name: Floor
     uniqueID: 4265960265
     locked: 0
-  - name: walls
-    uniqueID: 186736767
-    locked: 0
   - name: Ground_Entities
     uniqueID: 3315375759
     locked: 0
