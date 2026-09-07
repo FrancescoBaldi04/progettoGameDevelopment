@@ -11,45 +11,37 @@ public class Block : MonoBehaviour
     private void Start()
     {
         BlockMessage.SetActive(false);
-        BlockUpdate();
+       
     }
 
-    private void Update()
-    {
-        BlockUpdate();
-    }
-
-    private void BlockUpdate()
-    {
-        if (GameManager.gameManager == null)
-            return;
-
-        if (GameManager.gameManager.hasTrojanHorse)
-        {
-            block.enabled = false;
-        }
-        else
-        {
-            block.enabled = true;
-        }
-    }
+   
 
     private void OnTriggerEnter2D(Collider2D other)
+{
+    // Caso 1: entra direttamente il Parasite
+    Parasite parasite = other.GetComponent<Parasite>();
+
+    // Caso 2: entra un corpo posseduto
+    Enemy enemy = other.GetComponent<Enemy>();
+
+    bool parasiteEntered = parasite != null;
+
+    bool possessedBodyEntered =
+        enemy != null &&
+        enemy.currentState == Enemy.State.possessed;
+
+    if (parasiteEntered || possessedBodyEntered)
     {
-        if (GameManager.gameManager == null)
-            return;
+        if(!GameManager.gameManager.hasTrojanHorse){
+            StopCoroutine(messageCoroutine);
 
-        if (GameManager.gameManager.hasTrojanHorse)
-            return;
-
-        if (other.GetComponent<Parasite>() != null)
-        {
-            if (messageCoroutine != null)
-                StopCoroutine(messageCoroutine);
-
-            messageCoroutine = StartCoroutine(ShowMessage());
+        messageCoroutine = StartCoroutine(ShowMessage());
+        }else{
+            block.enabled = false;
         }
+
     }
+}
 
     private IEnumerator ShowMessage()
     {
