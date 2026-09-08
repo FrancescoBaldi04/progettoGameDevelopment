@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems; 
 using TMPro;
+using UnityEngine.InputSystem.UI;
 
 public class PauseManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private string trojanHorseUIdescription;
     [SerializeField] private TextMeshProUGUI zipBombText;
     [SerializeField] private string zipBombUIdescription;
+
+    private InputSystemUIInputModule uiInputModule;
 
     private bool isPaused = false;
     private bool showingCommands = false;
@@ -51,6 +54,7 @@ public class PauseManager : MonoBehaviour
         }
         pauseMenuPanel.SetActive(false);
         description.SetActive(false);
+        uiInputModule = EventSystem.current.GetComponent<InputSystemUIInputModule>();
     }
 
     private void Update()
@@ -102,6 +106,8 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
 
         UpdatePowerUpTexts();
+        DisableMouseInput();
+
 
         // Automatically highlight the default UI button for keyboard navigation 
         if (resumeButton != null)
@@ -122,6 +128,7 @@ public class PauseManager : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f; // Restore game time 
         isPaused = false;
+        EnableMouseInput();
     }
 
     public void QuitGame()
@@ -162,4 +169,24 @@ public class PauseManager : MonoBehaviour
     { 
         if (zipBombText != null) zipBombText.text = zipBombUIdescription; 
     }
+    private void DisableMouseInput()
+{
+    if (uiInputModule == null)
+        return;
+
+    uiInputModule.point.action.Disable();
+    uiInputModule.leftClick.action.Disable();
+    uiInputModule.rightClick.action.Disable();
+    uiInputModule.middleClick.action.Disable();
+}
+private void EnableMouseInput()
+{
+    if (uiInputModule == null)
+        return;
+
+    uiInputModule.point.action.Enable();
+    uiInputModule.leftClick.action.Enable();
+    uiInputModule.rightClick.action.Enable();
+    uiInputModule.middleClick.action.Enable();
+}
 }
