@@ -5,7 +5,7 @@ using TMPro;
 
 public class PauseManager : MonoBehaviour
 {
-    public static PauseManager pauseManager { get; private set;} // Pattern Singleton
+    public static PauseManager pauseManager { get; private set;} // Singleton
 
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject victoryScreen;
@@ -25,7 +25,7 @@ public class PauseManager : MonoBehaviour
 
     private void Awake()
     {
-        if (pauseManager == null) 
+        if (pauseManager == null) // Singleton pattern
         {
             pauseManager = this;
         }
@@ -45,7 +45,7 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        if (victoryScreen != null)
+        if (victoryScreen != null) // Initialize UI panels state
         {
             victoryScreen.SetActive(false);
         }
@@ -54,28 +54,14 @@ public class PauseManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (GameManager.gameManager.hasWorm)
-        {
-            UpdateWormText();
-        }
-
-        if (GameManager.gameManager.hasZipBomb)
-        {
-            UpdateZipBombText();
-        }
-
-        if (GameManager.gameManager.hasTrojanHorse)
-        {
-            UpdateTrojanHorsetext();
-        }
-        
-        if(showingCommands ){
+    {   
+        // Handle back navigation from the controls screen
+        if(showingCommands ){ 
             if(Keyboard.current.bKey.wasPressedThisFrame){
                 description.SetActive(false);
                 pauseMenuPanel.SetActive(true);
                 showingCommands = false;
-                if (resumeButton != null && EventSystem.current != null)
+                if (resumeButton != null && EventSystem.current != null) // Restore navigation focus to the Resume button
                 {
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(resumeButton);
@@ -84,6 +70,7 @@ public class PauseManager : MonoBehaviour
             return;
         }
 
+        // Toggle Pause menu
         if (StartScreen.isGameStarted && Keyboard.current != null &&
             (Keyboard.current.escapeKey.wasPressedThisFrame || Keyboard.current.pKey.wasPressedThisFrame))
         {
@@ -100,21 +87,23 @@ public class PauseManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.OnBossDefeated += ShowVictoryScreen;        
+        GameManager.OnBossDefeated += ShowVictoryScreen; 
     }
 
     private void OnDisable()
     {
-        GameManager.OnBossDefeated -= ShowVictoryScreen;
+        GameManager.OnBossDefeated -= ShowVictoryScreen; 
     }
 
     public void Pause()
     {
         pauseMenuPanel.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; // Freeze game physics and animations 
         isPaused = true;
 
-        // Seleziona automaticamente il bottone "Resume" quando metti in pausa
+        UpdatePowerUpTexts();
+
+        // Automatically highlight the default UI button for keyboard navigation 
         if (resumeButton != null)
         {
             EventSystem.current.SetSelectedGameObject(null); // Pulisce selezioni precedenti
@@ -131,13 +120,13 @@ public class PauseManager : MonoBehaviour
     public void Resume()
     {
         pauseMenuPanel.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1f; // Restore game time 
         isPaused = false;
     }
 
     public void QuitGame()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1f; // Reset time scale before returning to main menu
 
         if (GameManager.gameManager != null)
         {
@@ -150,12 +139,21 @@ public class PauseManager : MonoBehaviour
         victoryScreen.SetActive(true);
     }
 
+    private void UpdatePowerUpTexts()
+    {
+        // Refresh unlocked power-up descriptions
+        if (GameManager.gameManager == null) return;
+        if (GameManager.gameManager.hasWorm) UpdateWormText();
+        if (GameManager.gameManager.hasZipBomb)  UpdateZipBombText();
+        if (GameManager.gameManager.hasTrojanHorse) UpdateTrojanHorseText();
+    }
+
     public void UpdateWormText() 
     { 
         if (wormText != null) wormText.text = wormUIdescription; 
     }
     
-    public void UpdateTrojanHorsetext() 
+    public void UpdateTrojanHorseText() 
     { 
         if (trojanHorseText != null) trojanHorseText.text = trojanHorseUIdescription; 
     }

@@ -89,10 +89,10 @@ public class Enemy : MonoBehaviour
 	// DIRECTION TOWARDS TARGET
 	// =========================================================
 	public Vector2 GetBestDirection(Vector2 targetPosition,Vector2 exclude) {
-		up = isFree(Vector2.up);
-		down = isFree(Vector2.down);
-		right = isFree(Vector2.right);
-		left = isFree(Vector2.left);
+		up = IsFree(Vector2.up);
+		down = IsFree(Vector2.down);
+		right = IsFree(Vector2.right);
+		left = IsFree(Vector2.left);
 		
 		// CENTER OF THE SPRITE
 		Vector2 currentPosition = GetSpritePosition();
@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
 	// =========================================================
 	// CONTROL FREE DIRECTION
 	// =========================================================
-	public bool isFree(Vector2 direction) {
+	public bool IsFree(Vector2 direction) {
 		Vector2 spritePosition = spriteRenderer.bounds.center;
 		Vector2 checkPosition = spritePosition + direction * randomCheckDistance;
 		Collider2D[] colliders = Physics2D.OverlapBoxAll(checkPosition,new Vector2(randomCheckSize, randomCheckSize),0f);
@@ -177,7 +177,7 @@ public class Enemy : MonoBehaviour
 		float maxDistance = -1f;
 		
 		foreach (Vector2 dir in directions) {
-			if (isFree(dir)) {
+			if (IsFree(dir)) {
 				Vector2 nextPos = currentPosition + dir;
 				float distanceToDanger = Vector2.Distance(nextPos,dangerPosition);
 

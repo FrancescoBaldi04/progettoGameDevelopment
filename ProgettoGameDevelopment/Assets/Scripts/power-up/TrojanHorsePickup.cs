@@ -20,7 +20,7 @@ public class TrojanHorsePickup : MonoBehaviour
 
             if (PauseManager.pauseManager != null)
             {
-                PauseManager.pauseManager.UpdateTrojanHorsetext();
+                PauseManager.pauseManager.UpdateTrojanHorseText();
             }
 
             pickupMessage.ShowMessage("Trojan Horse obtained!");
@@ -42,7 +42,7 @@ public class TrojanHorsePickup : MonoBehaviour
 
                 if (PauseManager.pauseManager != null)
                 {
-                    PauseManager.pauseManager.UpdateTrojanHorsetext();
+                    PauseManager.pauseManager.UpdateTrojanHorseText();
                 }
 
                 pickupMessage.ShowMessage("Trojan Horse obtained!");

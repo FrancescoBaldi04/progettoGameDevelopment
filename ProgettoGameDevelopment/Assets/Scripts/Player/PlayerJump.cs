@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
@@ -7,7 +6,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private float baseJumpForce = 5f;
     [SerializeField] private float maxJumpForce = 15f;
 
-    public bool isCharging {get; private set;} = false; // variabili che dovrà leggere PlayerMovement in modo da bloccare gli altri comandi durante il volo
+    public bool isCharging {get; private set;} = false; 
     public bool isInAir {get; private set;} = false;
     public bool isDead {get; private set;} = false;
 
@@ -24,24 +23,27 @@ public class PlayerJump : MonoBehaviour
     
     void Update()
     {
+        // Prevent charging input when airborne or dead
         if (isInAir || isDead) return;
 
         chargeInput();
     }
 
-    private void chargeInput(){
-        if (InputManager.chargeStarted){ // tasto appena premuto
+    private void chargeInput()
+    {
+        // Start charging input
+        if (InputManager.chargeStarted){ 
             isCharging = true;
             chargeTimer = 0f;
             rb.linearVelocity = Vector2.zero;
             animator.SetBool("isCharging", true);
         }
 
-        if (InputManager.chargeHeld && isCharging){ // il tasto non è ancora stato rilasciato
+        if (InputManager.chargeHeld && isCharging){ // holding input
             chargeTimer += Time.deltaTime;
-            float chargePercent = Mathf.Clamp01(chargeTimer / maxChargeTime); // calcolo la percentuale di carica
+            float chargePercent = Mathf.Clamp01(chargeTimer / maxChargeTime);
 
-            if (chargePercent < 0.33f) {
+            if (chargePercent < 0.33f) { // 3 distinct charge tiers
                 currentChargeState = 1;
             }else if (chargePercent < 0.66f) {
                 currentChargeState = 2;
@@ -52,24 +54,26 @@ public class PlayerJump : MonoBehaviour
             animator.SetInteger("chargeState", currentChargeState);
         }
 
-
+        // Release to jump
         if (InputManager.chargeReleased && isCharging){
-            jump();
+            Jump();
         }
     }
 
-    private void jump(){
+    private void Jump(){
         isCharging = false;
         isInAir = true;
 
+        // Calculate trajectory based on last direction input 
         float lastX = animator.GetFloat("LastHorizontal");
         float lastY = animator.GetFloat("LastVertical");
-        Vector2 jumpDirection = new Vector2(lastX, lastY).normalized; // salta nella direzione dell'ultimo tasto premuto
+        Vector2 jumpDirection = new Vector2(lastX, lastY).normalized; 
 
-        if (jumpDirection == Vector2.zero) jumpDirection = Vector2.down; // in caso abbia appena avviato il gioco e non mi sia mai mosso prima
+        if (jumpDirection == Vector2.zero) jumpDirection = Vector2.down; 
 
-        float finalForce = Mathf.Lerp(baseJumpForce, maxJumpForce, (float)currentChargeState / 3f); // calcolo la forza da applicare in modo proporzionale alla carica, Lerp interpola linearmente tra baseJumpForce e maxJumpForce attraverso il valore ottenuto a partire dalla carica
-        rb.AddForce(jumpDirection * finalForce, ForceMode2D.Impulse); // impulso verso la direzione del salto
+        // Scale jump force proportionally to charge state
+        float finalForce = Mathf.Lerp(baseJumpForce, maxJumpForce, (float)currentChargeState / 3f);
+        rb.AddForce(jumpDirection * finalForce, ForceMode2D.Impulse); 
 
         animator.SetBool("isCharging", false);
         animator.SetTrigger("Jump");
@@ -78,7 +82,7 @@ public class PlayerJump : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D collision) {
         if (isInAir){
-            if (collision.gameObject.CompareTag("Npc")){ // ricordarsi di assegnare il tag Npc ai prefab degli npc
+            if (collision.gameObject.CompareTag("Npc")){ 
                 PossessNpc(collision.gameObject);
             }else{
                 Die();   
@@ -92,29 +96,31 @@ public class PlayerJump : MonoBehaviour
         Parasite parasite = GetComponent<Parasite>();
         if (parasite != null)
         {
-            parasite.Possess(Npc);
+            parasite.Possess(Npc); 
         }
 
+        // Reset Npc momentum 
         Rigidbody2D npcRb = Npc.GetComponent<Rigidbody2D>();
-        if (npcRb != null)
+        if (npcRb != null) 
         {
             npcRb.linearVelocity = Vector2.zero;
             npcRb.angularVelocity = 0f;
         }
 
-        // Disattivo lo sprite del parassita e la sua fisica
+        // Disable parasite physics and rendering while host is controlled
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         rb.linearVelocity = Vector2.zero;
         rb.simulated = false;
 
-        // Collego il parassita all'Npc per farlo muovere insieme a lui
+        // Parent parasite transform to target Npc
         transform.SetParent(Npc.transform);
         transform.localPosition = Vector3.zero;
 
+        // Update camera focus
         if (CameraFollow.instance != null)
         {
-            CameraFollow.instance.SetTarget(Npc.transform); // sposto la telecamera su npc
+            CameraFollow.instance.SetTarget(Npc.transform); 
         }
     }
 

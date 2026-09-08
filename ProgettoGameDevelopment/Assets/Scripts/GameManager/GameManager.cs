@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager gameManager { get; private set; }
+    public static GameManager gameManager { get; private set; } // Singleton
 
-    public static event Action OnBossDefeated;
+    public static event Action OnBossDefeated; // Event broadcast when the final boss is defeated
 
     [SerializeField] private float timeBeforeRestart = 1.2f;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (gameManager != null && gameManager != this) // pattern Singleton
+        if (gameManager != null && gameManager != this) // Singleton pattern
         {
             Destroy(gameObject);
             return;
@@ -29,40 +29,39 @@ public class GameManager : MonoBehaviour
 
         gameManager = this;
 
-        // Mantiene il GameManager quando cambia scena
+        // Preserve GameManager across scene transitions 
         DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {
         SaveLevelPowerUps();
-
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
-        SaveLevelPowerUps();
+        SaveLevelPowerUps(); // Save level checkpoint state and restore normal game time upon loading 
         Time.timeScale = 1f;
     }
-    private void SaveLevelPowerUps()
+    private void SaveLevelPowerUps() // Store state of power-ups at the start of the current level
     {
         startingTrojanHorse = hasTrojanHorse;
         startingZipBomb = hasZipBomb;
         startingWorm = hasWorm;
     }
-    private void RestoreLevelPowerUps()
+    private void RestoreLevelPowerUps() // Revert power-ups to initial level state upon player death
     {
         hasTrojanHorse = startingTrojanHorse;
         hasZipBomb = startingZipBomb;
         hasWorm = startingWorm;
     }
 
-    public void BossDefeated()
+    public void BossDefeated() 
     {
         Time.timeScale = 0f;
         OnBossDefeated?.Invoke();
     }
 
-    public void ReturnToMainMenu()
+    public void ReturnToMainMenu() // Reset all power-ups progress and return to the main scene
     {
         hasTrojanHorse = false;
         hasZipBomb = false;
