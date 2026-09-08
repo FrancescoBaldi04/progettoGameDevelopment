@@ -541,7 +541,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -144.84846, y: 122.5641, z: -95.136986, w: -122.56408}
+  m_margin: {x: -144.84846, y: 144.71597, z: -95.136986, w: -122.56408}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -121587,6 +121587,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406283753}
     m_Modifications:
+    - target: {fileID: 962956695401790554, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
+      propertyPath: m_margin.w
+      value: 10.327343
+      objectReference: {fileID: 0}
+    - target: {fileID: 962956695401790554, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
+      propertyPath: m_margin.x
+      value: -537.8641
+      objectReference: {fileID: 0}
+    - target: {fileID: 962956695401790554, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
+      propertyPath: m_margin.y
+      value: 7.0475407
+      objectReference: {fileID: 0}
+    - target: {fileID: 962956695401790554, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
+      propertyPath: m_margin.z
+      value: 458.35373
+      objectReference: {fileID: 0}
     - target: {fileID: 2932704366072407927, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
       propertyPath: m_text
       value: "-Movement : WASD / Arrows\n-Jump: Press the spacebar to charge up and
