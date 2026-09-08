@@ -13,7 +13,7 @@ public class Parasite : MonoBehaviour
     private float oneSecondTimer; 
     [SerializeField] private HealthBar healthBar;
     private float explosionRadius = 3f;
-    private int explosionDamage = 60;
+    private int explosionDamage = 50;
     [SerializeField] public float moveSpeed = 2.6f;
 
     private Rigidbody2D rb;
@@ -70,9 +70,9 @@ public class Parasite : MonoBehaviour
 
         if (currentState == State.possessing)
         {
-            // =========================
+            
             // ZIP BOMB
-            // =========================
+            
 
             if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
             {
@@ -91,9 +91,9 @@ public class Parasite : MonoBehaviour
 
             return;
         }
-            // =========================
+            
             // RUN
-            // =========================
+        
 
         if (Keyboard.current != null && Keyboard.current.cKey.wasPressedThisFrame)
         {
@@ -126,9 +126,9 @@ public class Parasite : MonoBehaviour
         }      
     }
 
-    // =====================================================
+    
     // POSSESS
-    // =====================================================
+   
 
     public void Possess(GameObject body)
     {
@@ -194,12 +194,12 @@ public class Parasite : MonoBehaviour
         if (possessedBody != null)
         {
             Enemy enemy = possessedBody.GetComponent<Enemy>();
-            possessedBody = null; // sgancio il corpo posseduto
+            possessedBody = null; 
             transform.SetParent(null);
 
             if (enemy != null)
             {
-                enemy.ReceiveDamage(9999); // danno fatale, non posso modificare direttamente gli hitPoints, altrimenti potrei fare un metodo dedicato chiamato Uccidi che imposta gli hp a 0 ma è la stessa cosa sostanzialmente
+                enemy.ReceiveDamage(9999); // Fatal damage: setting HP to 0 through a dedicated Kill method would have the same effect.
             }
         }
 
@@ -221,8 +221,8 @@ public class Parasite : MonoBehaviour
         }
         health = 60f;
 
-        animator.ResetTrigger(jump);  // ripristina il trigger del salto
-        animator.SetTrigger(resetState); // segnala all'animator che il parassita deve tornare alla sua animazione standard
+        animator.ResetTrigger(jump);  // Reset the jump trigger
+        animator.SetTrigger(resetState); // Tell the Animator to return the parasite to its default animation
         
         if (CameraFollow.instance != null)
         {
@@ -230,9 +230,9 @@ public class Parasite : MonoBehaviour
         }
     }
 
-    // =====================================================
+    
     // ZIP BOMB
-    // =====================================================
+    
 
     public void ZipBombExplosion()
     {  
@@ -250,7 +250,7 @@ public class Parasite : MonoBehaviour
 
         ReleaseParasite();
 
-        // Distrugge il corpo sacrificato
+        
         Destroy(bodyToDestroy);
         if (GameManager.gameManager.hasZipBomb)
         {
@@ -279,10 +279,9 @@ public class Parasite : MonoBehaviour
         }
     }
 
-    // =====================================================
+    
     // WORM / RUN
-    // =====================================================
-
+    
     public void Run()
     {
         if (!GameManager.gameManager.hasWorm)
