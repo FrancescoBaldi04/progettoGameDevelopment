@@ -169,24 +169,23 @@ public class PauseManager : MonoBehaviour
     { 
         if (zipBombText != null) zipBombText.text = zipBombUIdescription; 
     }
+    
     private void DisableMouseInput()
-{
-    if (uiInputModule == null)
-        return;
+    {
+        if (uiInputModule == null) return;
 
-    uiInputModule.point.action.Disable();
-    uiInputModule.leftClick.action.Disable();
-    uiInputModule.rightClick.action.Disable();
-    uiInputModule.middleClick.action.Disable();
-}
-private void EnableMouseInput()
-{
-    if (uiInputModule == null)
-        return;
+        uiInputModule.point.action.Disable();
+        uiInputModule.leftClick.action.Disable();
+        uiInputModule.rightClick.action.Disable();
+        uiInputModule.middleClick.action.Disable();
+    }
+    private void EnableMouseInput()
+    {
+        if (uiInputModule == null) return;
 
-    uiInputModule.point.action.Enable();
-    uiInputModule.leftClick.action.Enable();
-    uiInputModule.rightClick.action.Enable();
-    uiInputModule.middleClick.action.Enable();
-}
+        uiInputModule.point.action.Enable();
+        uiInputModule.leftClick.action.Enable();
+        uiInputModule.rightClick.action.Enable();
+        uiInputModule.middleClick.action.Enable();
+    }
 }
