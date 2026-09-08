@@ -7155,8 +7155,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 860780233}
     m_Modifications:
     - target: {fileID: 1300011620992106679, guid: 5b56fddf48a164724accc391efc2e220, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0580046
+      objectReference: {fileID: 0}
+    - target: {fileID: 1300011620992106679, guid: 5b56fddf48a164724accc391efc2e220, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3807354
+      value: 1.397
       objectReference: {fileID: 0}
     - target: {fileID: 1300011620992106679, guid: 5b56fddf48a164724accc391efc2e220, type: 3}
       propertyPath: m_LocalPosition.y
@@ -62731,8 +62735,12 @@ PrefabInstance:
       value: -979591537
       objectReference: {fileID: 0}
     - target: {fileID: 6883656171279400221, guid: 942c2016f79f0422e8f9345c25dd1609, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.058
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883656171279400221, guid: 942c2016f79f0422e8f9345c25dd1609, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.4021974
+      value: 3.3696
       objectReference: {fileID: 0}
     - target: {fileID: 6883656171279400221, guid: 942c2016f79f0422e8f9345c25dd1609, type: 3}
       propertyPath: m_LocalPosition.y
@@ -63432,6 +63440,14 @@ PrefabInstance:
     - target: {fileID: 1216298213764317155, guid: 2613a94bd433e4f7c9d7221a14b0bb09, type: 3}
       propertyPath: m_Offset.y
       value: 6.4379425
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714753125233516760, guid: 2613a94bd433e4f7c9d7221a14b0bb09, type: 3}
+      propertyPath: m_Size.y
+      value: 2.083519
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714753125233516760, guid: 2613a94bd433e4f7c9d7221a14b0bb09, type: 3}
+      propertyPath: m_Offset.y
+      value: 6.5105095
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64846,7 +64862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -65547,7 +65563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4629349811190779688, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 30.765717
+      value: 30.765747
       objectReference: {fileID: 0}
     - target: {fileID: 4629349811190779688, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
       propertyPath: m_AnchoredPosition.y
