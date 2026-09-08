@@ -32,7 +32,7 @@ public class LevelExit : MonoBehaviour
                 if (other.GetComponent<Parasite>() != null){
                     SceneManager.LoadScene(nextScene);
                 }
-                    if(enemy!=null && enemy.currentState == Enemy.State.possessed){
+                    if(enemy!=null && enemy.currentState == Enemy.State.possessed){// Prevent the player from proceeding to the next level while possessing an NPC
                         if (messageCoroutine != null)
             {
                 StopCoroutine(messageCoroutine);

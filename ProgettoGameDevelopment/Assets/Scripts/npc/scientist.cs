@@ -29,9 +29,9 @@ public class Scientist : Enemy
 		}
 		
 		switch (currentState) {
-			// =================================================
+			
 			// WAITING
-			// =================================================
+			
 			case State.idle: {
 				timer -= Time.deltaTime;
 				
@@ -51,9 +51,9 @@ public class Scientist : Enemy
 				}
 				break;
 			}
-			// =================================================
+			
 			// CATCHING
-			// =================================================
+			
 			case State.catching: {
 				if (!CheckForParasite()) {
 					timer = 30.0f;
@@ -83,9 +83,9 @@ public class Scientist : Enemy
 				}
 			break;
 			}
-			// =================================================
+			
 			// ESCAPING
-			// =================================================
+			
 			case State.escaping: {
 				 if (parasite.currentState == Parasite.State.free) {
 					timer = 30.0f;
@@ -104,9 +104,9 @@ public class Scientist : Enemy
 				}
 			break;
 			}
-			// =================================================
+			
 			// POSSESSED
-			// =================================================
+			
 			case State.possessed: {
 				if (parasite.currentState == Parasite.State.free) {
 					this.hitPoints = 0;
@@ -121,9 +121,9 @@ public class Scientist : Enemy
 		}
 	}
 	
-	// =========================================================
+	
 	// DEATH
-	// =========================================================
+	
 	protected override void Die() {
 		if (isDying) return;
 		isDying = true;
@@ -132,9 +132,9 @@ public class Scientist : Enemy
 		
 		Destroy(gameObject);
 	}
-	// =========================================================
+	
 	// ANIMATIONS
-	// =========================================================
+	
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
 
@@ -149,9 +149,9 @@ public class Scientist : Enemy
 		animator.SetFloat("LastHorizontal",lastHorizontal);
 		animator.SetFloat("LastVertical",lastVertical);
 	}
-	// =========================================================
+	
 	// COLLISIONS
-	// =========================================================
+	
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag("Bullet")) {
 			if (parasite.possessedBody == gameObject) {

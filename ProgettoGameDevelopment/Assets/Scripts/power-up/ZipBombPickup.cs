@@ -15,7 +15,7 @@ public class ZipBombPickup : MonoBehaviour
     {
         Parasite parasite = other.GetComponent<Parasite>();
 
-        // Parassita libero
+       
         if (parasite != null)
         {
             GameManager.gameManager.UnlockZipBomb();
@@ -31,7 +31,7 @@ public class ZipBombPickup : MonoBehaviour
             return;
         }
 
-        // Il collider appartiene a un NPC
+        
         Enemy enemy = other.GetComponent<Enemy>();
 
         if (enemy != null && enemy.parasite != null)

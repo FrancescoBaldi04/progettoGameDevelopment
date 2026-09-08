@@ -5,11 +5,11 @@ using TMPro;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    [SerializeField] private TextMeshProUGUI healthText; // riferimento al testo
+    [SerializeField] private TextMeshProUGUI healthText; 
 
-    public float animationSpeed = 5f; // velocità di movimento della barra
+    public float animationSpeed = 5f; // Bar movement speed
 
-    private float targetHealth; // il valore verso cui deve animarsi
+    private float targetHealth; 
     private float maxHealth; 
 
     public void SetMaxHealth(float health)
@@ -32,9 +32,9 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        if (slider.value != targetHealth) // se la barra non è ancora arrivata a targetHealth si muove verso targetHealth
+        if (slider.value != targetHealth) // If the bar has not reached targetHealth yet, move it towards targetHealth
         {
-            slider.value = Mathf.Lerp(slider.value, targetHealth, Time.deltaTime * animationSpeed); // muovo la barra
+            slider.value = Mathf.Lerp(slider.value, targetHealth, Time.deltaTime * animationSpeed); //bar movement
         }
     }
 

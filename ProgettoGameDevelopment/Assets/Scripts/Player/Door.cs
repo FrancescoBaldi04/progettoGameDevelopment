@@ -20,7 +20,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // Allow the door to open when the player possesses a scientist and presses "O"
     { 
 
         Scientist scientist = other.GetComponent<Scientist>();
@@ -31,7 +31,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other) // Close the door when the possessed scientist leaves the trigger
     {
         Scientist scientist = other.GetComponent<Scientist>();
 

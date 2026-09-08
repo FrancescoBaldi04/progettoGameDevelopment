@@ -41,9 +41,9 @@ public class Guard : Enemy
 
 
 		switch (currentState) {
-			// =========================================================
+			
 			// WAITING
-			// =========================================================
+			
 			case State.idle: {
 				timer-=Time.deltaTime;
 				
@@ -65,9 +65,9 @@ public class Guard : Enemy
 				}
 				break;
 			}
-			// =========================================================
+			
 			// ESCAPING
-			// =========================================================
+			
 			case State.escaping: { 
 				if (!CheckForParasite()){
 					timer = 30.0f;
@@ -89,9 +89,9 @@ public class Guard : Enemy
 				}
 				break;
 			}
-			// =========================================================
+			
 			// POSITIONING
-			// =========================================================
+			
 			case State.positioning: { 
 				if (parasite.currentState == Parasite.State.free) {
 					currentState = State.escaping;
@@ -135,9 +135,9 @@ public class Guard : Enemy
 				}
 				break;
 			}
-			// =========================================================
+			
 			// SHOOTING
-			// =========================================================
+
 			case State.shooting: {
 				movement.SetDirection(Vector2.zero);
 				// CENTER OF THE GUARD SPRITE
@@ -174,9 +174,9 @@ public class Guard : Enemy
 				
 				break;
 			}
-			// =========================================================
+			
 			// POSSESSED
-			// =========================================================
+			
 			case State.possessed: {
 				if (parasite.currentState == Parasite.State.free) {
 					hitPoints = 0;
@@ -190,9 +190,9 @@ public class Guard : Enemy
 			}
 		}
 	}
-	// =========================================================
+	
 	// ANIMATIONS
-	// =========================================================
+	
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
 		// MEMORIZE LAST POSITION ONLY IF GUARD MOVES
@@ -207,9 +207,7 @@ public class Guard : Enemy
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
 	}
-	// =========================================================
-	// DEATH
-	// =========================================================
+	
 	protected override void Die() {
 		if (isDying) return;
 		isDying = true;
@@ -220,9 +218,9 @@ public class Guard : Enemy
 		}
 		Destroy(gameObject);
 	}
-	// =========================================================
+	
 	// COLLISIONS
-	// =========================================================
+	
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag("Bullet")) {
 			if (parasite.possessedBody == gameObject) {

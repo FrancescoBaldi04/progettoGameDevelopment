@@ -81,17 +81,17 @@ public class Turret : Enemy
 		}
 		}
 	}
-	// =========================================================
+	
 	// DEATH
-	// =========================================================
+	
 	protected override void Die() {
 		if (isDying) return;
 		isDying = true;
 		Destroy(gameObject, 0.5f);
 	}
-	// =========================================================
+	
 	// ANIMATIONS
-	// =========================================================
+	
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
 

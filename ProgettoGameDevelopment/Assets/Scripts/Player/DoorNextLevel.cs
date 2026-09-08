@@ -14,8 +14,7 @@ public class DoorNextLevel : MonoBehaviour
 
     void Update()
     {
-        if (Miniboss==null) // verificare se questo controllo su null sia sicuro o meno
-        {
+        if (Miniboss==null) {
             Animator.SetTrigger("Open");
             DoorCollider.enabled = false;
              enabled = false;

@@ -9,8 +9,8 @@ public class Parasite : MonoBehaviour
     public State currentState {get; private set;}
     private bool running = false;
     private float health = 60f;
-    private float possessionHealth; // parte da 60 e scende fino a 0 durante il possesso di un npc
-    private float oneSecondTimer; // conta fino ad un secondo in modo da diminuire la vita ogni secondo
+    private float possessionHealth; // Starts at 60 and decreases to 0 while possessing an NPC
+    private float oneSecondTimer; 
     [SerializeField] private HealthBar healthBar;
     private float explosionRadius = 3f;
     private int explosionDamage = 60;
@@ -45,11 +45,11 @@ public class Parasite : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 0f) return; // se siamo nel menu di pausa non permettiamo al parassita di muoversi
+        if (Time.timeScale == 0f) return; // If the pause menu is open, prevent the parasite from moving
         
         if (!StartScreen.isGameStarted) return;
          
-        if (currentState == State.possessing) // consumo vita
+        if (currentState == State.possessing) 
         {
             possessionHealth = HealthDrain(possessionHealth);
         }
@@ -58,12 +58,12 @@ public class Parasite : MonoBehaviour
             health = HealthDrain(health);
         }
 
-        if (health <= 0 && playerJump != null) // morte parassita
+        if (health <= 0 && playerJump != null) // Death of the parasite
         {
             playerJump.Die();
         }
 
-        if (currentState == State.possessing && possessionHealth <= 0) // morte corpo posseduto
+        if (currentState == State.possessing && possessionHealth <= 0) // Death of the possessed body
         {
             PossessedBodyDeath();
         }
@@ -127,7 +127,7 @@ public class Parasite : MonoBehaviour
     }
 
     // =====================================================
-    // POSSESSO
+    // POSSESS
     // =====================================================
 
     public void Possess(GameObject body)
@@ -138,7 +138,7 @@ public class Parasite : MonoBehaviour
         Enemy enemy = body.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.currentState = Enemy.State.possessed; // imposto lo stato dell'npc in possessed
+            enemy.currentState = Enemy.State.possessed; 
         }
 
         possessionHealth = 60f;
@@ -153,7 +153,7 @@ public class Parasite : MonoBehaviour
         {
             possessionHealth -= danno;
 
-            if (possessionHealth < 0) possessionHealth = 0; // se i punti vita sono sotto zero li porto a zero
+            if (possessionHealth < 0) possessionHealth = 0; // If the health points are below zero, set them to zero
 
             healthBar.SetHealth(possessionHealth);
 
@@ -168,11 +168,11 @@ public class Parasite : MonoBehaviour
     {
         oneSecondTimer += Time.deltaTime; 
 
-        if (oneSecondTimer >= 1f) // conto 1 secondo e resetto il timer in modo da decrementare la vita ogni secondo
+        if (oneSecondTimer >= 1f) 
         {
             oneSecondTimer -= 1f;
             
-            if (GameManager.gameManager.hasTrojanHorse) // controllo Trojan Horse
+            if (GameManager.gameManager.hasTrojanHorse) // Take less damage if the player has the Trojan Horse power-up
             {
                 health -= 1f;
             }

@@ -32,9 +32,9 @@ public class scientistMiniboss : Enemy
 		}
 
 		switch (currentState) {
-			// =========================================================
+			
 			// WAITING
-			// =========================================================
+			
 			case State.waiting: {
 				if (!CheckForParasite()) {
 					Vector2 direction = RandomMovement();
@@ -47,9 +47,9 @@ public class scientistMiniboss : Enemy
 				}
 			break;
 			}
-			// =========================================================
+			
 			// CATCHING
-			// =========================================================
+			
 			case State.catching: {
 				// CENTER OF THE MINIBOSS' SPRITE
 				Vector2 minibossPosition = spriteRenderer.bounds.center;
@@ -77,9 +77,9 @@ public class scientistMiniboss : Enemy
 				}
 			break;
 			}
-			// =========================================================
+			
 			// ESCAPING
-			// =========================================================
+			
 			case State.escaping: {
 				// CENTER OF THE PARASITE'S SPRITE
 				Vector2 threatPosition = GetTargetPosition();
@@ -94,9 +94,9 @@ public class scientistMiniboss : Enemy
 			}
 		}
 	}
-	// =========================================================
+	
 	// DEATH
-	// =========================================================
+	
 	protected override void Die() {
 		if (isDying) return;
 		isDying = true;
@@ -109,9 +109,9 @@ public class scientistMiniboss : Enemy
 		Instantiate(ZipBomb, spriteRenderer.bounds.center, Quaternion.identity);
 		Destroy(gameObject);
 	}
-	// =========================================================
+	
 	// ANIMATIONS
-	// =========================================================
+	
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
 
@@ -126,9 +126,9 @@ public class scientistMiniboss : Enemy
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
 	}
-	// =========================================================
+	
 	// COLLISIONS
-	// =========================================================
+	
 	private void OnCollisionEnter2D(Collision2D collision) {
 		
 		if (collision.gameObject.CompareTag("Bullet")) {

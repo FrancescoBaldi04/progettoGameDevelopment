@@ -40,6 +40,8 @@ public class GuardBoss : Enemy
 
 		switch (currentState) {
 		
+		//WAITING
+		
 		case State.waiting: {
 			movement.SetDirection(Vector2.zero);
 			if (parasite.currentState ==Parasite.State.possessing) {
@@ -47,6 +49,8 @@ public class GuardBoss : Enemy
 			}
 		break;
 		}
+
+		//POSITIONING
 			
 		case State.positioning: { 
 				if (parasite.currentState == Parasite.State.free) {
@@ -83,9 +87,9 @@ public class GuardBoss : Enemy
 				}
 				break;
 			}
-			// =========================================================
+			
 			// SHOOTING
-			// =========================================================
+			
 			case State.shooting: {
 				movement.SetDirection(Vector2.zero);
 				// CENTER OF THIS SPRITE
@@ -123,9 +127,9 @@ public class GuardBoss : Enemy
 			}
 		}
 	}
-    // =========================================================
+    
     // ANIMATIONS
-    // =========================================================
+    
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
 	// MEMORIZE LAST POSITION ONLY IF GUARDBOSS IS MOVING
@@ -142,9 +146,9 @@ public class GuardBoss : Enemy
 		animator.SetFloat("LastHorizontal", lastHorizontal);
 		animator.SetFloat("LastVertical", lastVertical);
 	}
-    // =========================================================
+    
     // DEATH
-    // =========================================================
+    
 	protected override void Die() {
 		if (isDying) return;
 		isDying = true;

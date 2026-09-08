@@ -11,7 +11,7 @@ public class TrojanHorsePickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Parassita libero
+        
         Parasite parasite = other.GetComponent<Parasite>();
 
         if (parasite != null)
@@ -29,7 +29,7 @@ public class TrojanHorsePickup : MonoBehaviour
             return;
         }
 
-        // Il collider appartiene a un NPC
+        
         Enemy enemy = other.GetComponent<Enemy>();
 
         if (enemy != null && enemy.parasite != null)
