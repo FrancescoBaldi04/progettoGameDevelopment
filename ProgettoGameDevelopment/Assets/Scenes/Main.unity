@@ -121355,7 +121355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
       propertyPath: zipBombUIdescription
-      value: '-Zip Bomb: Sacrificing a body generates an explosion that deals 60
+      value: '-Zip Bomb: Sacrificing a body generates an explosion that deals 50
         damage'
       objectReference: {fileID: 0}
     - target: {fileID: 6649016581122937436, guid: 8a634b4742d18cb41a9b960c58960928, type: 3}
