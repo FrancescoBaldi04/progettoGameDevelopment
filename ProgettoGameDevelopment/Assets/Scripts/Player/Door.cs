@@ -18,10 +18,10 @@ public class Door : MonoBehaviour
     {
         if (playerNearby && Keyboard.current.oKey.wasPressedThisFrame)
         {
-            // Avvia immediatamente l'animazione
+            // Start the animation
             animator.SetTrigger("Open");
 
-            // Disattiva il collider dopo 1 secondo
+            // Disable the collider after 1 second
             StartCoroutine(DisableColliderAfterDelay());
         }
     }

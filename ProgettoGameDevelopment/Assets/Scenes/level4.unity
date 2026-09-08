@@ -630,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 962956695401790554, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
       propertyPath: m_margin.x
-      value: -538.10406
+      value: -460.9981
       objectReference: {fileID: 0}
     - target: {fileID: 962956695401790554, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
       propertyPath: m_margin.y
@@ -638,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 962956695401790554, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
       propertyPath: m_margin.z
-      value: 480.40213
+      value: 397.24872
       objectReference: {fileID: 0}
     - target: {fileID: 4629349811190779688, guid: 2d634f4b8138fef4f82c98de664e6137, type: 3}
       propertyPath: m_Pivot.x
