@@ -31,9 +31,10 @@ public class scientistMiniboss : Enemy
 			return;
 		}
 
+		// State Machine
 		switch (currentState) {
 			
-			// WAITING
+			// Waiting
 			
 			case State.waiting: {
 				if (!CheckForParasite()) {
@@ -48,12 +49,12 @@ public class scientistMiniboss : Enemy
 			break;
 			}
 			
-			// CATCHING
+			// Catching
 			
 			case State.catching: {
-				// CENTER OF THE MINIBOSS' SPRITE
+				// Center of the Miniboss's sprite
 				Vector2 minibossPosition = spriteRenderer.bounds.center;
-				// CENTER OF THE PARASITE'S SPRITE
+				// Center of the Parasite's sprite
 				SpriteRenderer parasiteSprite = parasite.GetComponent<SpriteRenderer>();
 				Vector2 parasitePosition;
 				if (parasiteSprite != null) {
@@ -78,10 +79,10 @@ public class scientistMiniboss : Enemy
 			break;
 			}
 			
-			// ESCAPING
+			// Escaping
 			
 			case State.escaping: {
-				// CENTER OF THE PARASITE'S SPRITE
+				// Center of the Parasite's sprite
 				Vector2 threatPosition = GetTargetPosition();
 				Vector2 fleeDirection = GetEscapeDirection(threatPosition);
 				movement.SetDirection(fleeDirection);
@@ -95,7 +96,7 @@ public class scientistMiniboss : Enemy
 		}
 	}
 	
-	// DEATH
+	// Death
 	
 	protected override void Die() {
 		if (isDying) return;
@@ -105,12 +106,12 @@ public class scientistMiniboss : Enemy
 			movement.speed = 0f;
 			movement.SetDirection(Vector2.zero);
 		}
-		// DROP POWERUP
+		// Drop power-up
 		Instantiate(ZipBomb, spriteRenderer.bounds.center, Quaternion.identity);
 		Destroy(gameObject);
 	}
 	
-	// ANIMATIONS
+	// Animations
 	
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
@@ -127,7 +128,7 @@ public class scientistMiniboss : Enemy
 		animator.SetFloat("LastVertical", lastVertical);
 	}
 	
-	// COLLISIONS
+	// Handles bullet damage and parasite death upon contact
 	
 	private void OnCollisionEnter2D(Collision2D collision) {
 		

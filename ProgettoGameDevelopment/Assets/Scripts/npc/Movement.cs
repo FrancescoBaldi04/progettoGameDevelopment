@@ -14,13 +14,12 @@ public class Movement : MonoBehaviour
 	}
 	
 	private void FixedUpdate() {
-		this.body.linearVelocity = this.direction * (this.speed);
-		
+		this.body.linearVelocity = direction * speed;
 	}
 	
-	public void SetDirection(Vector2 newdirection) {
+	public void SetDirection(Vector2 newdirection) { // Sets the current movement direction
 		direction=newdirection;
-		  if (newdirection != Vector2.zero) {
+		  if (newdirection != Vector2.zero) { // Maintain last active facing direction when stopping
 			lastDirection=newdirection;
 		}
 	}

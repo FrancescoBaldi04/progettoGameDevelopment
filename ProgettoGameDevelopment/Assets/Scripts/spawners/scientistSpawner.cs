@@ -11,10 +11,14 @@ public class ScientistSpawner : MonoBehaviour
 	private bool block = false;
 	
 	void Start() {
-		int LivelloAttuale = SceneManager.GetActiveScene().buildIndex;
-		if (LivelloAttuale == 0) {
+		// Set maximum active scientist threshold based on the current scene index
+		int currentLevel = SceneManager.GetActiveScene().buildIndex;
+		if (currentLevel == 0) 
+		{
 			maxAmount = 5;
-		} else {
+		} 
+		else 
+		{
 			maxAmount = 3;
 		}
 	}
@@ -23,9 +27,9 @@ public class ScientistSpawner : MonoBehaviour
 		timer -= Time.deltaTime;
 		if (timer <= 0) block = true;
 		if (CheckForParasite()) {
-			int numeroScienziati = FindObjectsByType<Scientist>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
+			int numberOfScientist = FindObjectsByType<Scientist>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 			
-			if (numeroScienziati == 0 && !block) {
+			if (numberOfScientist == 0 && !block) {
 				block = true;
 				timer = 10.0f;
 				if (gender) {
@@ -37,7 +41,7 @@ public class ScientistSpawner : MonoBehaviour
 				}
 			}
 			
-			if (numeroScienziati < maxAmount && timer <=0) {
+			if (numberOfScientist < maxAmount && timer <=0) {
 				block = false;
 				timer = 10.0f;
 				if (gender) {
@@ -51,8 +55,9 @@ public class ScientistSpawner : MonoBehaviour
 		}
 	}
 	
-	protected bool CheckForParasite() {
-		// CENTRO DELLO SPAWNER
+	protected bool CheckForParasite() // Checks if the Parasite, or a possessed body, is within the spawner's detection zone
+	{ 
+		// Center of the Spawner
 		Vector2 position = this.transform.position;
 		Collider2D[] objectsInside = Physics2D.OverlapBoxAll(position, detectionBoxSize, 0f);
 		

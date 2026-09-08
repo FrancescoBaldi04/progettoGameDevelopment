@@ -9,9 +9,8 @@ public class TrojanHorsePickup : MonoBehaviour
        pickupMessage = FindFirstObjectByType<PickupMessage>(FindObjectsInactive.Include);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        
+    private void OnTriggerEnter2D(Collider2D other) // Unlock Trojan Horse
+    {    
         Parasite parasite = other.GetComponent<Parasite>();
 
         if (parasite != null)
@@ -28,8 +27,7 @@ public class TrojanHorsePickup : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        
+     
         Enemy enemy = other.GetComponent<Enemy>();
 
         if (enemy != null && enemy.parasite != null)

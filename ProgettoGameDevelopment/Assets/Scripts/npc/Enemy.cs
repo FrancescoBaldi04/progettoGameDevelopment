@@ -17,20 +17,19 @@ public class Enemy : MonoBehaviour
 	[SerializeField] protected float randomCheckDistance = 1.5f;
 	[SerializeField] protected float randomCheckSize = 0.75f;
 
-	protected virtual void Awake() {
+	protected virtual void Awake() 
+	{
 		parasite = FindFirstObjectByType<Parasite>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
-	// SPRITE POSITION
-	
-	protected Vector2 GetSpritePosition() {
+	protected Vector2 GetSpritePosition() // Returns the position of the sprite
+	{
 		return spriteRenderer.bounds.center;
 	}
 	
-	// SHOOT
-	
-	public void Shoot(bool WhoIsShooting) {
+	// Instantiates and fires a bullet towards a target
+	public void Shoot(bool WhoIsShooting) { 
 		Vector3 firePoint = spriteRenderer.bounds.center;
 		Vector2 direction;
 		
@@ -56,7 +55,7 @@ public class Enemy : MonoBehaviour
 			return;
 		}
 
-		if (WhoIsShooting) {
+		if (WhoIsShooting) { // Ignore collisions between bullet and shooter entities
 			Collider2D possessedCollider = parasite.GetComponent<Collider2D>();
 
 			if (possessedCollider != null) {
@@ -80,21 +79,19 @@ public class Enemy : MonoBehaviour
 
 		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 		
-		if (rb != null) {
+		if (rb != null) { // Apply velocity to projectile
 			rb.linearVelocity = direction * bulletSpeed;
 		}
 	}
 	
-	
-	// DIRECTION TOWARDS TARGET
-	
+	// Calculates the best unblocked cardinal direction towards the specified target position
 	public Vector2 GetBestDirection(Vector2 targetPosition,Vector2 exclude) {
 		up = IsFree(Vector2.up);
 		down = IsFree(Vector2.down);
 		right = IsFree(Vector2.right);
 		left = IsFree(Vector2.left);
 		
-		// CENTER OF THE SPRITE
+		// Center of the sprite
 		Vector2 currentPosition = GetSpritePosition();
 		Vector2 directionVector = targetPosition - currentPosition;
 		
@@ -129,8 +126,7 @@ public class Enemy : MonoBehaviour
 		return bestDirection;
 	}
 	
-	// CONTROL FREE DIRECTION
-	
+	// Checks if a given cardinal direction is free of walls or other NPCs
 	public bool IsFree(Vector2 direction) {
 		Vector2 spritePosition = spriteRenderer.bounds.center;
 		Vector2 checkPosition = spritePosition + direction * randomCheckDistance;
@@ -144,7 +140,7 @@ public class Enemy : MonoBehaviour
 		return true;
 	}
 	
-	// DAMAGE
+	// Damage
 	
 	public void ReceiveDamage(int damage) {
 		hitPoints -= damage;
@@ -158,8 +154,7 @@ public class Enemy : MonoBehaviour
 		Destroy(gameObject);
 	}
 	
-	// POSITION OF TARGET
-	
+	// Target position
 	protected Vector2 GetTargetPosition() {
 		if (parasite.currentState == Parasite.State.possessing && parasite.possessedBody != null) {
 			return parasite.GetPossessedBodyPosition();
@@ -167,10 +162,9 @@ public class Enemy : MonoBehaviour
 		return parasite.transform.position;
 	}
 	
-	// ESCAPE DIRECTION
-	
+	// Evaluates free cardinal directions and picks the one that maximizes distance from a threat
 	public Vector2 GetEscapeDirection(Vector2 dangerPosition) {
-		// CENTER OF THE SPRITE
+		// Center of the sprite
 		Vector2 currentPosition = GetSpritePosition();
 		Vector2[] directions = {Vector2.up,Vector2.down,Vector2.left,Vector2.right};
 		Vector2 bestDirection = Vector2.zero;
@@ -190,10 +184,8 @@ public class Enemy : MonoBehaviour
 		return bestDirection;
 	}
 	
-	// CHECK FOR PARASITE
-	
+	// Detects if the parasite or a possessed entity is within vision range
 	protected bool CheckForParasite() {
-		// CENTER OF THE SPRITE
 		Vector2 spritePosition = GetSpritePosition();
 		Collider2D[] objectsInside = Physics2D.OverlapBoxAll(spritePosition,detectionBoxSize,0f);
 
@@ -214,8 +206,7 @@ public class Enemy : MonoBehaviour
 		return false;
 	}
 	
-	// CHOOSE RANDOM DIRECTION
-	
+	// Choose a random direction
 	protected Vector2 GetRandomDirection() {
 		Vector2[] directions =
 		{Vector2.up,Vector2.down,Vector2.left,Vector2.right};
@@ -234,8 +225,7 @@ public class Enemy : MonoBehaviour
 		return availableDirections[Random.Range(0, availableDirections.Count)];
 	}
 	
-	// CHECK FOR WALLS
-	
+	// Check for wall
 	protected bool WallInDirection(Vector2 direction) {
 		// CENTER OF THE SPRITE
 		Vector2 spritePosition = GetSpritePosition();
@@ -251,8 +241,7 @@ public class Enemy : MonoBehaviour
 		return false;
 	}
 	
-	//  RANDOM MOVEMENT
-	
+	// Provides random direction
 	protected Vector2 RandomMovement() {
 		if (randomDirection == Vector2.zero || WallInDirection(randomDirection)) {
 			randomDirection = GetRandomDirection();

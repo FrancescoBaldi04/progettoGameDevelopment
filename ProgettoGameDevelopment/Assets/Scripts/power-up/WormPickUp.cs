@@ -9,7 +9,7 @@ public class WormPickUp : MonoBehaviour
         pickupMessage = FindFirstObjectByType<PickupMessage>(FindObjectsInactive.Include);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // Unlock Worm
     {
         Parasite parasite = other.GetComponent<Parasite>();
 

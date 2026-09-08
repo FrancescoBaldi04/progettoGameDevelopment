@@ -37,98 +37,98 @@ public class GuardBoss : Enemy
 			return;
 		}
 
-
+		// State machine
 		switch (currentState) {
 		
-		//WAITING
-		
-		case State.waiting: {
-			movement.SetDirection(Vector2.zero);
-			if (parasite.currentState ==Parasite.State.possessing) {
-				currentState = State.positioning;
-			}
-		break;
-		}
-
-		//POSITIONING
+			//Waiting
 			
-		case State.positioning: { 
-				if (parasite.currentState == Parasite.State.free) {
-					currentState = State.waiting;
+			case State.waiting: {
+				movement.SetDirection(Vector2.zero);
+				if (parasite.currentState ==Parasite.State.possessing) {
+					currentState = State.positioning;
+				}
+				break;
+			}
+
+			//Positioning
+				
+			case State.positioning: { 
+					if (parasite.currentState == Parasite.State.free) {
+						currentState = State.waiting;
+						break;
+					}
+					
+					if (movement != null && parasite != null) {
+						// Center of this sprite
+						Vector2 myPosition = spriteRenderer.bounds.center;
+						// Center of the Parasite's sprite
+						SpriteRenderer parasiteSprite = parasite.GetComponent<SpriteRenderer>();
+						Vector2 parasitePosition;
+
+						if (parasiteSprite != null) {
+							parasitePosition = parasiteSprite.bounds.center;
+						} else {
+							parasitePosition = parasite.transform.position;
+						}
+
+						float distance = Vector2.Distance(myPosition, parasitePosition);
+						Vector2 directionToParasite = (parasitePosition - myPosition).normalized;
+						RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParasite, distance, obstacleLayerMask);
+
+
+						if (hit.collider != null || distance > targetDistance + 0.3f) {
+							movement.SetDirection(directionToParasite);
+							UpdateAnimation(directionToParasite);
+						} else {
+							movement.SetDirection(Vector2.zero);
+							UpdateAnimation(Vector2.zero);
+							currentState = State.shooting;
+						}
+					}
 					break;
 				}
 				
-				if (movement != null && parasite != null) {
-					// CENTER OF THIS SPRITE
-					Vector2 myPosition = spriteRenderer.bounds.center;
-					// CENTER OF THE PARASITE'S SPRITE
-					SpriteRenderer parasiteSprite = parasite.GetComponent<SpriteRenderer>();
-					Vector2 parasitePosition;
-
-					if (parasiteSprite != null) {
-						parasitePosition = parasiteSprite.bounds.center;
-					} else {
-						parasitePosition = parasite.transform.position;
+				// Shooting
+				
+				case State.shooting: {
+					movement.SetDirection(Vector2.zero);
+					// Center of this sprite
+					Vector2 origin = spriteRenderer.bounds.center;
+					// Target's position
+					Vector2 targetPosition = GetTargetPosition();
+					Vector2 directionToTarget = (targetPosition - origin).normalized;
+					
+					if (directionToTarget != Vector2.zero) {
+						lastHorizontal = directionToTarget.x; 
+						lastVertical = directionToTarget.y;
+						animator.SetFloat("LastHorizontal", lastHorizontal);
+						animator.SetFloat("LastVertical", lastVertical);
 					}
 
-					float distance = Vector2.Distance(myPosition, parasitePosition);
-					Vector2 directionToParasite = (parasitePosition - myPosition).normalized;
-					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParasite, distance, obstacleLayerMask);
+					timer -= Time.deltaTime;
+					float distance = Vector2.Distance(origin, targetPosition);
 
+					RaycastHit2D hit = Physics2D.Raycast(origin, directionToTarget, distance, obstacleLayerMask);
 
 					if (hit.collider != null || distance > targetDistance + 0.3f) {
-						movement.SetDirection(directionToParasite);
-						UpdateAnimation(directionToParasite);
-					} else {
-						movement.SetDirection(Vector2.zero);
-						UpdateAnimation(Vector2.zero);
-						currentState = State.shooting;
+						currentState = State.positioning;
+						timer = 1.0f;
+					} else if (timer <= 0) {
+						animator.SetTrigger("Shooting");
+						Shoot(false);
+						timer = 1.0f;
 					}
-				}
-				break;
-			}
-			
-			// SHOOTING
-			
-			case State.shooting: {
-				movement.SetDirection(Vector2.zero);
-				// CENTER OF THIS SPRITE
-				Vector2 origin = spriteRenderer.bounds.center;
-				// TARGET'S POSITION
-				Vector2 targetPosition = GetTargetPosition();
-				Vector2 directionToTarget = (targetPosition - origin).normalized;
-				
-				if (directionToTarget != Vector2.zero) {
-					lastHorizontal = directionToTarget.x; 
-					lastVertical = directionToTarget.y;
-					animator.SetFloat("LastHorizontal", lastHorizontal);
-					animator.SetFloat("LastVertical", lastVertical);
-				}
 
-				timer -= Time.deltaTime;
-				float distance = Vector2.Distance(origin, targetPosition);
-
-				RaycastHit2D hit = Physics2D.Raycast(origin, directionToTarget, distance, obstacleLayerMask);
-
-				if (hit.collider != null || distance > targetDistance + 0.3f) {
-					currentState = State.positioning;
-					timer = 1.0f;
-				} else if (timer <= 0) {
-					animator.SetTrigger("Shooting");
-					Shoot(false);
-					timer = 1.0f;
+					if (parasite.currentState == Parasite.State.free) {
+						currentState = State.waiting;
+					}
+					
+					break;
 				}
-
-				if (parasite.currentState == Parasite.State.free) {
-					currentState = State.waiting;
-				}
-				
-				break;
-			}
 		}
 	}
     
-    // ANIMATIONS
+    // Animations
     
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
@@ -147,7 +147,7 @@ public class GuardBoss : Enemy
 		animator.SetFloat("LastVertical", lastVertical);
 	}
     
-    // DEATH
+    // Death
     
 	protected override void Die() {
 		if (isDying) return;
@@ -160,6 +160,7 @@ public class GuardBoss : Enemy
 		Destroy(gameObject);
 	}
 	
+	// Handles projectile damage
 	private void OnCollisionEnter2D(Collision2D collision) {
 	// PROJECTILE DAMAGES GUARDBOSS
 		if (collision.gameObject.CompareTag("Bullet") ){

@@ -3,13 +3,28 @@ using Cinemachine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public static CameraFollow instance;
+    public static CameraFollow instance { get; private set;} // Singleton
 
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
+    { 
+        if (instance == null) // Singleton Pattern
+        {
+            instance = this;
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
     {
-        instance = this;
+        if (instance == this)
+        {
+            instance = null;
+        }        
     }
 
     public void SetTarget(Transform newTarget)

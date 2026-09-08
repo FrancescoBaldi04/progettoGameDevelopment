@@ -10,10 +10,11 @@ public class GuardSpawner : MonoBehaviour
 	private bool block = false;
 	
 	void Start() {
-		int LivelloAttuale = SceneManager.GetActiveScene().buildIndex;
-		if (LivelloAttuale == 1) {
+		// Set maximum active guard threshold based on the current scene index
+		int currentLevel = SceneManager.GetActiveScene().buildIndex;
+		if (currentLevel == 1) {
 			maxAmount = 3;
-		} else if (LivelloAttuale == 2) {
+		} else if (currentLevel == 2) {
 			maxAmount = 4;
 		} else {
 			maxAmount = 0;
@@ -24,6 +25,7 @@ public class GuardSpawner : MonoBehaviour
 	void Update() {
 		timer -= Time.deltaTime;
 		if (timer <= 0) block = true;
+		
 		if (CheckForParasite() && maxAmount > 0) {
 			int totalGuards = FindObjectsByType<Guard>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 			
@@ -40,8 +42,9 @@ public class GuardSpawner : MonoBehaviour
 		}
 	}
 	
-	protected bool CheckForParasite() {
-		// CENTRO DELLO SPAWNER
+	protected bool CheckForParasite() // Checks if the Parasite, or a possessed body, is within the spawner's detection zone 
+	{ 
+		// Center of the spawner
 		Vector2 position = this.transform.position;
 		Collider2D[] objectsInside = Physics2D.OverlapBoxAll(position, detectionBoxSize, 0f);
 		

@@ -39,7 +39,7 @@ public class PlayerJump : MonoBehaviour
             animator.SetBool("isCharging", true);
         }
 
-        if (InputManager.chargeHeld && isCharging){ // holding input
+        if (InputManager.chargeHeld && isCharging){ // Holding input
             chargeTimer += Time.deltaTime;
             float chargePercent = Mathf.Clamp01(chargeTimer / maxChargeTime);
 

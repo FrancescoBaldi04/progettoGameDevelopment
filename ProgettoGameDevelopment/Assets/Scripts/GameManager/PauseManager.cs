@@ -11,9 +11,9 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject victoryScreen;
     [SerializeField] private GameObject description;
     
-    [SerializeField] private GameObject resumeButton; // Riferimento al bottone "Resume" per selezionarlo in automatico
+    [SerializeField] private GameObject resumeButton; 
      
-    [SerializeField] private TextMeshProUGUI wormText; // Riferimenti ai tre oggetti relativi al testo dei power
+    [SerializeField] private TextMeshProUGUI wormText; 
     [SerializeField] private string wormUIdescription;
     [SerializeField] private TextMeshProUGUI trojanHorseText;
     [SerializeField] private string trojanHorseUIdescription;

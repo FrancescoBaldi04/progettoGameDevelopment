@@ -14,10 +14,10 @@ public class DoorNextLevel : MonoBehaviour
 
     void Update()
     {
-        if (Miniboss==null) {
+        if (Miniboss==null) { // Open the door only if the MiniBoss has been defeated
             Animator.SetTrigger("Open");
             DoorCollider.enabled = false;
-             enabled = false;
+            enabled = false;
         }
     }
 }

@@ -11,11 +11,10 @@ public class ZipBombPickup : MonoBehaviour
     );
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // Unlock Zip Bomb
     {
         Parasite parasite = other.GetComponent<Parasite>();
-
-       
+   
         if (parasite != null)
         {
             GameManager.gameManager.UnlockZipBomb();
@@ -30,8 +29,7 @@ public class ZipBombPickup : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        
+   
         Enemy enemy = other.GetComponent<Enemy>();
 
         if (enemy != null && enemy.parasite != null)

@@ -11,7 +11,7 @@ public class Explosion : MonoBehaviour
 
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f) // Check if the current animation clip has finished playing
         {
             Destroy(gameObject);
         }

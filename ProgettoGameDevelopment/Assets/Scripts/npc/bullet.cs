@@ -5,9 +5,9 @@ public class Bullet : MonoBehaviour
 	[SerializeField] private float lifeTime = 3f;
 	void Start()
 	{
-		Destroy(gameObject, lifeTime); // AUTOMATICALLY DESTROYED AFTER A SET TIME
+		Destroy(gameObject, lifeTime); // Automatically destroyed after a set time
 	}
-	private void OnCollisionEnter2D(Collision2D collision) { // THE OUTCOME IS PLACED WITHIN THE COLLIDED OBJECTS
+	private void OnCollisionEnter2D(Collision2D collision) { // The outcome is placed within the collided objects
 		Destroy(gameObject);
 	}
 }

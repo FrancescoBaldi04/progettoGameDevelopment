@@ -23,8 +23,7 @@ public class Guard : Enemy
 
 
 	void Start() {
-		// ALL GUARDS START IDLE
-		// CheckForparasite() WILL ACTIVATE THEM
+		// All Guards start idle, CheckForParasite() will activate them
 		currentState = State.idle;
 		UpdateAnimation(Vector2.zero);
 	}
@@ -39,10 +38,10 @@ public class Guard : Enemy
 			return;
 		}
 
-
+		// State Machine
 		switch (currentState) {
 			
-			// WAITING
+			// Waiting
 			
 			case State.idle: {
 				timer-=Time.deltaTime;
@@ -66,7 +65,7 @@ public class Guard : Enemy
 				break;
 			}
 			
-			// ESCAPING
+			// Escaping
 			
 			case State.escaping: { 
 				if (!CheckForParasite()){
@@ -76,9 +75,8 @@ public class Guard : Enemy
 					UpdateAnimation(Vector2.zero);
 				break;
 				}
-				// Centro dello sprite della guardia.
+
 				Vector2 guardPosition = spriteRenderer.bounds.center;
-				// Centro dello sprite del parasite.
 				Vector2 parasitePosition = parasite.GetComponent<SpriteRenderer>().bounds.center;
 				Vector2 versoDiFuga = -GetBestDirection(parasitePosition, Vector2.zero);
 				movement.SetDirection(versoDiFuga);
@@ -90,7 +88,7 @@ public class Guard : Enemy
 				break;
 			}
 			
-			// POSITIONING
+			// Positioning
 			
 			case State.positioning: { 
 				if (parasite.currentState == Parasite.State.free) {
@@ -106,9 +104,7 @@ public class Guard : Enemy
 				}
 				
 				if (movement != null && parasite != null) {
-					// Centro dello sprite della guardia.
 					Vector2 myPosition = spriteRenderer.bounds.center;
-					// Centro dello sprite del parasite.
 					SpriteRenderer parasiteSprite = parasite.GetComponent<SpriteRenderer>();
 					Vector2 parasitePosition;
 
@@ -120,14 +116,15 @@ public class Guard : Enemy
 
 					float distance = Vector2.Distance(myPosition, parasitePosition);
 					Vector2 directionToParasite = (parasitePosition - myPosition).normalized;
-					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParasite, 
-					                                                         distance, obstacleLayerMask);
-
+					
+					// Check for physical obstacles blocking line of sight
+					RaycastHit2D hit = Physics2D.Raycast(myPosition, directionToParasite, distance, obstacleLayerMask);
 
 					if (hit.collider != null || distance > targetDistance + 0.3f) {
 						movement.SetDirection(directionToParasite);
 						UpdateAnimation(directionToParasite);
 					} else {
+						// Stop moving once clear line of sight is secured
 						movement.SetDirection(Vector2.zero);
 						UpdateAnimation(Vector2.zero);
 						currentState = State.shooting;
@@ -136,15 +133,13 @@ public class Guard : Enemy
 				break;
 			}
 			
-			// SHOOTING
+			// Shooting
 
-			case State.shooting: {
+			case State.shooting: { // Remains stationary and fires at target on interval
 				movement.SetDirection(Vector2.zero);
-				// CENTER OF THE GUARD SPRITE
-				Vector2 origine = spriteRenderer.bounds.center;
-				// TARGET'S POSITION
+				Vector2 origin = spriteRenderer.bounds.center;
 				Vector2 targetPosition = GetTargetPosition();
-				Vector2 directionToTarget = (targetPosition - origine).normalized;
+				Vector2 directionToTarget = (targetPosition - origin).normalized;
 				
 				if (directionToTarget != Vector2.zero) {
 					lastHorizontal = directionToTarget.x; 
@@ -154,10 +149,9 @@ public class Guard : Enemy
 				}
 
 				timer -= Time.deltaTime;
-				float distance = Vector2.Distance(origine, targetPosition);
+				float distance = Vector2.Distance(origin, targetPosition);
 
-				RaycastHit2D hit = Physics2D.Raycast(origine, directionToTarget, 
-											distance, obstacleLayerMask);
+				RaycastHit2D hit = Physics2D.Raycast(origin, directionToTarget, distance, obstacleLayerMask);
 
 				if (hit.collider != null || distance > targetDistance + 0.3f) {
 					currentState = State.positioning;
@@ -175,14 +169,14 @@ public class Guard : Enemy
 				break;
 			}
 			
-			// POSSESSED
-			
+			// Possessed
+	
 			case State.possessed: {
 				if (parasite.currentState == Parasite.State.free) {
 					hitPoints = 0;
 					break;
 				}
-				
+				// Player input
 				Vector2 inputGiocatore = InputManager.movement;
 				movement.SetDirection(inputGiocatore);
 				UpdateAnimation(inputGiocatore);
@@ -191,7 +185,7 @@ public class Guard : Enemy
 		}
 	}
 	
-	// ANIMATIONS
+	// Animations
 	
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
@@ -208,6 +202,8 @@ public class Guard : Enemy
 		animator.SetFloat("LastVertical", lastVertical);
 	}
 	
+	// Death
+
 	protected override void Die() {
 		if (isDying) return;
 		isDying = true;
@@ -219,7 +215,7 @@ public class Guard : Enemy
 		Destroy(gameObject);
 	}
 	
-	// COLLISIONS
+	// Handles projectile damage
 	
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag("Bullet")) {

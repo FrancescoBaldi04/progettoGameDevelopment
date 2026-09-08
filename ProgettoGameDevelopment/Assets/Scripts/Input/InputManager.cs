@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static Vector2 movement {get; private set;} // serve per fare in modo che gli altri script possono leggere la variabile ma non possano modificarla
+    public static Vector2 movement {get; private set;} 
     public static bool chargeStarted {get; private set;}    
     public static bool chargeHeld {get; private set;}
     public static bool chargeReleased{get; private set;}
@@ -15,13 +15,13 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        moveAction = playerInput.actions["Move"];  // nome azione che ho creato su unity
+        moveAction = playerInput.actions["Move"];
         chargeAction = playerInput.actions["ChargeAndJump"];
     }
 
     void Update()
     {
-        if (Time.timeScale == 0f) // se siamo nel menu di pausa non legge gli input
+        if (Time.timeScale == 0f) // Ignore inputs when the game is paused
         {
             movement = Vector2.zero;
             chargeStarted = false;
@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
             return;
         }
         
-        movement = moveAction.ReadValue<Vector2>();
+        movement = moveAction.ReadValue<Vector2>(); // Poll current input values
 
         chargeStarted = chargeAction.WasPressedThisFrame();
         chargeHeld = chargeAction.IsPressed();

@@ -28,9 +28,10 @@ public class Scientist : Enemy
 			return;
 		}
 		
+		// State Machine
 		switch (currentState) {
 			
-			// WAITING
+			// Waiting
 			
 			case State.idle: {
 				timer -= Time.deltaTime;
@@ -52,8 +53,8 @@ public class Scientist : Enemy
 				break;
 			}
 			
-			// CATCHING
-			
+			// Catching: chases down the parasite
+
 			case State.catching: {
 				if (!CheckForParasite()) {
 					timer = 30.0f;
@@ -63,9 +64,9 @@ public class Scientist : Enemy
 				break;
 				}
 				
-				// CENTER OF THE SCIENTIST'S SPRITE
+				// Center of the scientist's sprite
 				Vector2 scientistPosition = spriteRenderer.bounds.center;
-				// CENTER OF THE PARASITE'S SPRITE
+				// Center of the parasite's sprite
 				Vector2 parasitePosition = parasite.GetComponent<SpriteRenderer>().bounds.center;
 				float distance = Vector2.Distance(scientistPosition, parasitePosition);
 
@@ -84,7 +85,7 @@ public class Scientist : Enemy
 			break;
 			}
 			
-			// ESCAPING
+			// Escaping
 			
 			case State.escaping: {
 				 if (parasite.currentState == Parasite.State.free) {
@@ -105,14 +106,14 @@ public class Scientist : Enemy
 			break;
 			}
 			
-			// POSSESSED
+			// Possessed
 			
 			case State.possessed: {
 				if (parasite.currentState == Parasite.State.free) {
 					this.hitPoints = 0;
 					break;
 				}
-				// PLAYER INPUT
+				// Player input
 				Vector2 playerInput = InputManager.movement;
 				movement.SetDirection(playerInput);
 				UpdateAnimation(playerInput);
@@ -122,7 +123,7 @@ public class Scientist : Enemy
 	}
 	
 	
-	// DEATH
+	// Death
 	
 	protected override void Die() {
 		if (isDying) return;
@@ -133,7 +134,7 @@ public class Scientist : Enemy
 		Destroy(gameObject);
 	}
 	
-	// ANIMATIONS
+	// Animations
 	
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
@@ -150,8 +151,7 @@ public class Scientist : Enemy
 		animator.SetFloat("LastVertical",lastVertical);
 	}
 	
-	// COLLISIONS
-	
+	// Handles bullet damage and parasite death upon contact
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag("Bullet")) {
 			if (parasite.possessedBody == gameObject) {

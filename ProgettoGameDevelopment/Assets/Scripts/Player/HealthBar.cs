@@ -27,14 +27,13 @@ public class HealthBar : MonoBehaviour
     {
         targetHealth = health; 
         UpdateText(health);
-        
     }
 
     void Update()
     {
         if (slider.value != targetHealth) // If the bar has not reached targetHealth yet, move it towards targetHealth
         {
-            slider.value = Mathf.Lerp(slider.value, targetHealth, Time.deltaTime * animationSpeed); //bar movement
+            slider.value = Mathf.Lerp(slider.value, targetHealth, Time.deltaTime * animationSpeed); // Bar movement
         }
     }
 

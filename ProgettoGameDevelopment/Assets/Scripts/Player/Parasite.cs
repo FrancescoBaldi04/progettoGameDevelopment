@@ -21,6 +21,7 @@ public class Parasite : MonoBehaviour
 
     public Vector2 movement;
 
+    //Animator parameter
     private const string horizontal = "Horizontal";
     private const string vertical = "Vertical";
     private const string lastHorizontal = "LastHorizontal";
@@ -49,6 +50,7 @@ public class Parasite : MonoBehaviour
         
         if (!StartScreen.isGameStarted) return;
          
+        // Health draining over time depending on possession state
         if (currentState == State.possessing) 
         {
             possessionHealth = HealthDrain(possessionHealth);
@@ -68,17 +70,16 @@ public class Parasite : MonoBehaviour
             PossessedBodyDeath();
         }
 
+        // Inputs and skills while possessing a body
         if (currentState == State.possessing)
         {
-            
-            // ZIP BOMB
-            
-
+            // Zip Bomb
             if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
             {
                 ZipBombExplosion();
             }
            
+            // Shooting skill when possessing a Guard
             if (possessedBody != null && possessedBody.GetComponent<Guard>() != null && Keyboard.current != null && 
                 Keyboard.current.fKey.wasPressedThisFrame)
            {   
@@ -92,9 +93,8 @@ public class Parasite : MonoBehaviour
             return;
         }
             
-            // RUN
+        // Run
         
-
         if (Keyboard.current != null && Keyboard.current.cKey.wasPressedThisFrame)
         {
             Run();
@@ -105,6 +105,7 @@ public class Parasite : MonoBehaviour
             return;
         }
 
+        // Apply movement vector to animator parameters
         movement = InputManager.movement;
 
         animator.SetFloat(horizontal, movement.x);
@@ -118,19 +119,17 @@ public class Parasite : MonoBehaviour
 
         if (playerJump != null && playerJump.isCharging)
         {
-            rb.linearVelocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero; // Force movement velocity to zero while charging
         }
         else
         {
-            rb.linearVelocity = moveSpeed * movement;
+            rb.linearVelocity = moveSpeed * movement; // Apply movement velocity
         }      
     }
-
-    
-    // POSSESS
+ 
+    // Possess
    
-
-    public void Possess(GameObject body)
+    public void Possess(GameObject body) // Possess the NPC body
     {
         possessedBody = body;
         currentState = State.possessing;
@@ -146,8 +145,7 @@ public class Parasite : MonoBehaviour
         healthBar.SetMaxHealth(possessionHealth);
     }
 
-
-    public void TakeDamage(int danno)
+    public void TakeDamage(int danno) // Applies damage to the Parasite or the possessed body
     {
         if (currentState == State.possessing)
         {
@@ -164,7 +162,7 @@ public class Parasite : MonoBehaviour
         }
     }
 
-    private float HealthDrain(float health)
+    private float HealthDrain(float health) // Gradually drains health every second
     {
         oneSecondTimer += Time.deltaTime; 
 
@@ -199,7 +197,7 @@ public class Parasite : MonoBehaviour
 
             if (enemy != null)
             {
-                enemy.ReceiveDamage(9999); // Fatal damage: setting HP to 0 through a dedicated Kill method would have the same effect.
+                enemy.ReceiveDamage(9999); // Fatal damage
             }
         }
 
@@ -230,15 +228,12 @@ public class Parasite : MonoBehaviour
         }
     }
 
-    
     // ZIP BOMB
     
-
-    public void ZipBombExplosion()
+    public void ZipBombExplosion() // Destroy current possessed body and triggers an explosion if ZipBomb is unlocked
     {  
         if (currentState != State.possessing)
         {
-         
             return;
         }
  
@@ -249,8 +244,7 @@ public class Parasite : MonoBehaviour
         healthBar.SetHealth(0);
 
         ReleaseParasite();
-
-        
+   
         Destroy(bodyToDestroy);
         if (GameManager.gameManager.hasZipBomb)
         {
@@ -280,9 +274,9 @@ public class Parasite : MonoBehaviour
     }
 
     
-    // WORM / RUN
+    // WORM
     
-    public void Run()
+    public void Run() // Toggles sprint mode if Worm is unlocked
     {
         if (!GameManager.gameManager.hasWorm)
         {
@@ -310,10 +304,9 @@ public class Parasite : MonoBehaviour
             playerJump.Die();
         }
     }
-    public Vector2 GetPossessedBodyPosition()
+    public Vector2 GetPossessedBodyPosition() // Calculates sprite center position of the possessed body
     {
-        if (possessedBody == null)
-            return transform.position;
+        if (possessedBody == null) return transform.position;
 
         SpriteRenderer sr = possessedBody.GetComponent<SpriteRenderer>();
 

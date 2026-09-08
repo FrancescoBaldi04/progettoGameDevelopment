@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
     private Animator animator;
     private bool playerNearby = false;
     [SerializeField] private Collider2D doorCollider;
+    
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,7 +23,6 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) // Allow the door to open when the player possesses a scientist and presses "O"
     { 
-
         Scientist scientist = other.GetComponent<Scientist>();
 
         if (scientist != null && scientist.currentState == Scientist.State.possessed)
@@ -45,5 +45,4 @@ public class Door : MonoBehaviour
         }
         }
     }
-    
 }

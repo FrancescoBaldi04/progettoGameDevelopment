@@ -9,13 +9,14 @@ public class StartScreen : MonoBehaviour
 
     void Awake()
     {
+        // Automatically start the game if loading a scene other than "Main"
         if (SceneManager.GetActiveScene().name != "Main")
         {
             isGameStarted = true;
         }
         else
         {
-            isGameStarted = false; // tutte le volte che avviene un GameOver o il giocatore preme il pulsante quit del menu giocoIniziato deve essere impostato a false perché altrimenti dopo aver quittato il gioco dal menu e aver premuto il tasto di apertura menu come primo tasto per avviare la partita il menu viene aperto ma il gioco parte lo stesso
+            isGameStarted = false; 
         }
     }
 
@@ -24,21 +25,19 @@ public class StartScreen : MonoBehaviour
         if (isGameStarted)
         {
             Time.timeScale = 1f;
-
             healthBar.gameObject.SetActive(true);
-
             gameObject.SetActive(false);
         }
         else
         {
-            Time.timeScale = 0f;
-
+            Time.timeScale = 0f; // Freeze gameplay and hide UI on the title screen
             healthBar.gameObject.SetActive(false);
         }
     }
 
     void Update()
     {
+        // Start gameplay when any key is pressed
         if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
         {
             isGameStarted = true;

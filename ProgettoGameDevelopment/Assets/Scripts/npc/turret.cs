@@ -23,6 +23,7 @@ public class Turret : Enemy
 			parasite = FindFirstObjectByType<Parasite>();
 		}
 
+		// Activate immediately if Parasite is already possessing an NPC
 		if (parasite != null && parasite.currentState == Parasite.State.possessing) {
 			currentState = State.shooting;
 		} else {
@@ -34,55 +35,57 @@ public class Turret : Enemy
 
 	void Update() {
 		if (isDying) return;
-		if (boss == null)
+		if (boss == null) 
 		{
 			Die();
 			return;
 		}
 
+		// State Machine
 		switch (currentState) {
 		
-		case State.waiting: {
-			if (parasite.currentState ==Parasite.State.possessing) {
-				currentState = State.shooting;
+			case State.waiting: {
+				if (parasite.currentState ==Parasite.State.possessing) {
+					currentState = State.shooting;
+				}
+				break;
 			}
-			break;
-		}
-		
-		case State.shooting: {
-			// CENTER OF THE TURRET'S SPRITE
-			Vector2 origine = spriteRenderer.bounds.center;
-			// TARGET'S POSITION
-			Vector2 targetPosition = GetTargetPosition();
-			Vector2 directionToTarget = (targetPosition - origine).normalized;
+			
+			case State.shooting: {
+				// Center of the Turret's sprite
+				Vector2 origine = spriteRenderer.bounds.center;
+				// Target's position
+				Vector2 targetPosition = GetTargetPosition();
+				Vector2 directionToTarget = (targetPosition - origine).normalized;
+					
+				if (directionToTarget != Vector2.zero) {
+					lastHorizontal = directionToTarget.x; 
+					lastVertical = directionToTarget.y;
+					animator.SetFloat("LastHorizontal", lastHorizontal);
+					animator.SetFloat("LastVertical", lastVertical);
+				}
+
+				timer -= Time.deltaTime;
 				
-			if (directionToTarget != Vector2.zero) {
-				lastHorizontal = directionToTarget.x; 
-				lastVertical = directionToTarget.y;
-				animator.SetFloat("LastHorizontal", lastHorizontal);
-				animator.SetFloat("LastVertical", lastVertical);
-			}
+				// Check line of sight againts obstacles
+				float distance = Vector2.Distance(origine, targetPosition);
+				RaycastHit2D hit = Physics2D.Raycast(origine, directionToTarget, distance, obstacleLayerMask);
 
-			timer -= Time.deltaTime;
-			float distance = Vector2.Distance(origine, targetPosition);
-			RaycastHit2D hit = Physics2D.Raycast(origine, directionToTarget, 
-										distance, obstacleLayerMask);
+				if (timer <= 0) {
+					animator.SetTrigger("Shooting");
+					Shoot(false);
+					timer = 1.0f;
+				}
 
-			if (timer <= 0) {
-				animator.SetTrigger("Shooting");
-				Shoot(false);
-				timer = 1.0f;
+				if (parasite.currentState == Parasite.State.free) {
+					currentState = State.waiting;
+				}
+				break;
 			}
-
-			if (parasite.currentState == Parasite.State.free) {
-				currentState = State.waiting;
-			}
-			break;
-		}
 		}
 	}
 	
-	// DEATH
+	// Death
 	
 	protected override void Die() {
 		if (isDying) return;
@@ -90,7 +93,7 @@ public class Turret : Enemy
 		Destroy(gameObject, 0.5f);
 	}
 	
-	// ANIMATIONS
+	// Animations
 	
 	private void UpdateAnimation(Vector2 direction) {
 		if (animator == null) return;
